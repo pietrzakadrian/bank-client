@@ -12,8 +12,9 @@ import { Switch, Route } from 'react-router-dom';
 
 import { hot } from 'react-hot-loader/root';
 import HomePage from 'containers/HomePage/Loadable';
+import RegisterPage from 'containers/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-
+import 'antd/dist/antd.less';
 import GlobalStyle from '../../global-styles';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/register" component={RegisterPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

@@ -18,6 +18,7 @@ import saga from './saga';
 import messages from './messages';
 import Header from '../../components/Header';
 import Subheader from '../../components/Subheader';
+import RegistrationSteps from '../../components/RegistrationSteps';
 
 const stateSelector = createStructuredSelector({
   registerPage: makeSelectRegisterPage(),
@@ -41,6 +42,8 @@ function RegisterPage() {
 
       <Header />
       <Subheader pageTitle="Register" />
+
+      <RegistrationSteps />
 
       <FormattedMessage {...messages.header} />
     </div>

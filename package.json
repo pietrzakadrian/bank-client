@@ -59,6 +59,7 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "dependencies": {
+    "@ant-design/icons": "4.1.0",
     "@hot-loader/react-dom": "16.13.0",
     "antd": "4.2.0",
     "chalk": "4.0.0",

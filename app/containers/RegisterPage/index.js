@@ -7,7 +7,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -15,10 +15,12 @@ import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import makeSelectRegisterPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
+// import messages from './messages';
 import Header from '../../components/Header';
 import Subheader from '../../components/Subheader';
-import RegistrationSteps from '../../components/RegistrationSteps';
+import RegisterForm from '../../components/RegisterForm';
+import RedirectToggle from '../../components/RedirectToggle';
+import Footer from '../../components/Footer';
 
 const stateSelector = createStructuredSelector({
   registerPage: makeSelectRegisterPage(),
@@ -43,9 +45,12 @@ function RegisterPage() {
       <Header />
       <Subheader pageTitle="Register" />
 
-      <RegistrationSteps />
+      <RegisterForm />
+      <RedirectToggle />
 
-      <FormattedMessage {...messages.header} />
+      <Footer />
+
+      {/* <FormattedMessage {...messages.header} /> */}
     </div>
   );
 }

@@ -14,7 +14,7 @@ import { IntlProvider } from 'react-intl';
 
 import { makeSelectLocale } from './selectors';
 
-const stateSelector = createSelector(makeSelectLocale(), locale => ({
+const stateSelector = createSelector(makeSelectLocale(), (locale) => ({
   locale,
 }));
 

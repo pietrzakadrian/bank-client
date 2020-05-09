@@ -21,6 +21,7 @@ import Subheader from '../../components/Subheader';
 import RegisterForm from '../../components/RegisterForm';
 import RedirectToggle from '../../components/RedirectToggle';
 import Footer from '../../components/Footer';
+import Information from '../../components/Information';
 
 const stateSelector = createStructuredSelector({
   registerPage: makeSelectRegisterPage(),
@@ -44,6 +45,8 @@ function RegisterPage() {
 
       <Header />
       <Subheader pageTitle="Register" />
+
+      <Information />
 
       <RegisterForm />
       <RedirectToggle />

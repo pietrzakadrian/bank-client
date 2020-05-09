@@ -12,13 +12,14 @@ import { PageHeader } from 'antd';
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
 import StyledSubheader from './Subheader.style';
+import LocaleToggle from '../LocaleToggle';
 
 function Subheader({ pageTitle }) {
   return (
     <>
       <StyledSubheader>
         <PageHeader title={pageTitle} />
-        <div>Local toggle</div>
+        <LocaleToggle />
       </StyledSubheader>
     </>
   );

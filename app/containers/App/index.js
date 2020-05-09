@@ -15,6 +15,7 @@ import HomePage from 'containers/HomePage/Loadable';
 import RegisterPage from 'containers/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import 'antd/dist/antd.less';
+import 'sanitize.css/sanitize.css';
 import GlobalStyle from '../../global-styles';
 
 function App() {

@@ -39,12 +39,12 @@ function RegisterPage() {
   return (
     <div>
       <Helmet>
-        <title>RegisterPage</title>
+        <title>Registration</title>
         <meta name="description" content="Description of RegisterPage" />
       </Helmet>
 
       <Header />
-      <Subheader pageTitle="Register" />
+      <Subheader pageTitle="Registration" />
 
       <Information />
 

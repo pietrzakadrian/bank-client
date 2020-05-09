@@ -5,7 +5,17 @@
  */
 
 import React, { useState } from 'react';
-import { Steps, Button, message, Form, Input, Select } from 'antd';
+import { Steps, message, Checkbox, Input, Select } from 'antd';
+import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+import {
+  StyledSteps,
+  StyledFormWrapper,
+  StyledForm,
+  StyledFormItem,
+  StyledFormActionsWrapper,
+  StyledInformation,
+  StyledButton,
+} from './RegisterForm.style';
 
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
@@ -13,7 +23,7 @@ import { Steps, Button, message, Form, Input, Select } from 'antd';
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
 const FirstName = () => (
-  <Form.Item
+  <StyledFormItem
     name="firstname"
     rules={[
       {
@@ -22,12 +32,12 @@ const FirstName = () => (
       },
     ]}
   >
-    <Input placeholder="Input your first name" />
-  </Form.Item>
+    <Input placeholder="Enter first name" />
+  </StyledFormItem>
 );
 
 const LastName = () => (
-  <Form.Item
+  <StyledFormItem
     name="lastname"
     rules={[
       {
@@ -36,12 +46,12 @@ const LastName = () => (
       },
     ]}
   >
-    <Input placeholder="Input your last name" />
-  </Form.Item>
+    <Input placeholder="Enter last name" />
+  </StyledFormItem>
 );
 
 const Password = () => (
-  <Form.Item
+  <StyledFormItem
     name="password"
     rules={[
       {
@@ -50,32 +60,40 @@ const Password = () => (
       },
     ]}
   >
-    <Input.Password placeholder="Input your password" />
-  </Form.Item>
+    <Input.Password placeholder="Enter password" />
+  </StyledFormItem>
 );
 
 const Currency = () => (
-  <Form.Item name="gender" rules={[{ required: true }]}>
-    <Select
-      placeholder="Select a option and change input text above"
-      allowClear
-    >
+  <StyledFormItem name="gender" rules={[{ required: true }]}>
+    <Select placeholder="Select currency" allowClear>
       <Select.Option value="male">male</Select.Option>
       <Select.Option value="female">female</Select.Option>
       <Select.Option value="other">other</Select.Option>
     </Select>
-  </Form.Item>
+  </StyledFormItem>
 );
 
 const EmailAddress = () => (
-  <Form.Item
-    name="email"
-    rules={[
-      { type: 'email', required: true, message: 'Please input your email!' },
-    ]}
-  >
-    <Input />
-  </Form.Item>
+  <>
+    <StyledFormItem
+      tail
+      name="email"
+      rules={[
+        { type: 'email', required: true, message: 'Please input your email!' },
+      ]}
+    >
+      <Input placeholder="Enter e-mail address" />
+    </StyledFormItem>
+
+    <StyledFormItem checkbox name="remember" valuePropName="checked">
+      <Checkbox>I consent to the processing of my personal data.</Checkbox>
+    </StyledFormItem>
+
+    <StyledInformation>
+      Registration does not require confirmation by the email.
+    </StyledInformation>
+  </>
 );
 
 const { Step } = Steps;
@@ -98,7 +116,7 @@ const steps = [
     content: <Currency />,
   },
   {
-    title: 'E-Mail address',
+    title: 'E-Mail Address',
     content: <EmailAddress />,
   },
 ];
@@ -106,40 +124,47 @@ const steps = [
 function RegisterForm() {
   const [current, setCurrent] = useState(0);
   return (
-    <div>
-      <Steps current={current}>
+    <>
+      <StyledSteps current={current}>
         {steps.map((item) => (
           <Step key={item.title} title={item.title} />
         ))}
-      </Steps>
+      </StyledSteps>
 
-      <Form name="register">
-        <div>{steps[current].content}</div>
-      </Form>
-      <div>
-        {current < steps.length - 1 && (
-          <Button type="primary" onClick={() => setCurrent(current + 1)}>
-            Next
-          </Button>
-        )}
-        {current === steps.length - 1 && (
-          <Button
-            type="primary"
-            onClick={() => message.success('Processing complete!')}
-          >
-            Done
-          </Button>
-        )}
-        {current > 0 && (
-          <Button
-            style={{ margin: '0 8px' }}
-            onClick={() => setCurrent(current - 1)}
-          >
-            Previous
-          </Button>
-        )}
-      </div>
-    </div>
+      <StyledFormWrapper>
+        <StyledForm name="register">
+          <div>{steps[current].content}</div>
+        </StyledForm>
+
+        <StyledFormActionsWrapper>
+          {current < steps.length - 1 && (
+            <StyledButton
+              type="primary"
+              onClick={() => setCurrent(current + 1)}
+            >
+              Next <RightOutlined />
+            </StyledButton>
+          )}
+          {current === steps.length - 1 && (
+            <StyledButton
+              type="primary"
+              onClick={() => message.success('Processing complete!')}
+            >
+              Create an account
+            </StyledButton>
+          )}
+          {current > 0 && (
+            <StyledButton
+              type="link"
+              back
+              onClick={() => setCurrent(current - 1)}
+            >
+              <LeftOutlined /> Back
+            </StyledButton>
+          )}
+        </StyledFormActionsWrapper>
+      </StyledFormWrapper>
+    </>
   );
 }
 

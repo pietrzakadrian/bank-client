@@ -17,7 +17,7 @@ function Toggle(props) {
       <Select.Option key={value} value={value}>
         {value.message
           ? value.intl.formatMessage(props.messages[value])
-          : value}
+          : value.toUpperCase()}
       </Select.Option>
     ));
   }

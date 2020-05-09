@@ -8,6 +8,7 @@ import React from 'react';
 import { push } from 'connected-react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { StyledRedirectToggle, StyledButton } from './RedirectToggle.style';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
@@ -27,25 +28,25 @@ function RedirectToggle() {
 
   // eslint-disable-next-line react/prop-types
   const TogglePath = ({ name, path }) => (
-    <button type="button" onClick={() => dispatch(push(path))}>
+    <StyledButton type="link" onClick={() => dispatch(push(path))}>
       {name}
-    </button>
+    </StyledButton>
   );
 
   return (
-    <div>
+    <StyledRedirectToggle>
       {pathname === '/login' ? (
-        <div>
+        <>
           If you do not have an account in our bank, you can create now by
           clicking on <TogglePath name="Register" path="/register" />
-        </div>
+        </>
       ) : (
-        <div>
+        <>
           If you already have a bank account, you can log in by clicking on{' '}
-          <TogglePath name="Login" path="/login" />
-        </div>
+          <TogglePath name="Log In" path="/login" />
+        </>
       )}
-    </div>
+    </StyledRedirectToggle>
   );
 }
 

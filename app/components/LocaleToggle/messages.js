@@ -10,10 +10,6 @@ export const scope = 'boilerplate.containers.LocaleToggle';
 export default defineMessages({
   en: {
     id: `${scope}.en`,
-    defaultMessage: 'en',
-  },
-  de: {
-    id: `${scope}.de`,
-    defaultMessage: 'de',
+    defaultMessage: 'EN',
   },
 });

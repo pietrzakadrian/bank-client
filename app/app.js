@@ -14,7 +14,6 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
-import 'sanitize.css/sanitize.css';
 
 // Import root app
 import App from 'containers/App';
@@ -39,7 +38,7 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
-const ConnectedApp = props => (
+const ConnectedApp = (props) => (
   <Provider store={store}>
     <LanguageProvider messages={props.messages}>
       <ConnectedRouter history={history}>
@@ -55,7 +54,7 @@ ConnectedApp.propTypes = {
   messages: PropTypes.object,
 };
 
-const render = messages => {
+const render = (messages) => {
   ReactDOM.render(<ConnectedApp messages={messages} />, MOUNT_NODE);
 };
 
@@ -71,12 +70,12 @@ if (module.hot) {
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
-  new Promise(resolve => {
+  new Promise((resolve) => {
     resolve(import('intl'));
   })
     .then(() => Promise.all([import('intl/locale-data/jsonp/en.js')]))
     .then(() => render(translationMessages))
-    .catch(err => {
+    .catch((err) => {
       throw err;
     });
 } else {

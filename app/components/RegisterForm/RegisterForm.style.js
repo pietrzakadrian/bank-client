@@ -1,11 +1,45 @@
 import styled from 'styled-components';
 import { Steps, Form, Button } from 'antd';
+import { media } from 'utils';
 
 export const StyledSteps = styled(Steps)`
-  padding: 30px;
-  max-width: 1260px;
-  margin: 0 auto;
+  &&& {
+    padding: 30px;
+    max-width: 1260px;
+    margin: 0 auto;
+    flex-direction: row;
+
+    .ant-steps-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .ant-steps-item-icon {
+        margin-right: 0;
+      }
+
+      .ant-steps-item-content {
+        display: none;
+      }
+    }
+
+    ${media.tablet`
+      .ant-steps-item {
+        display: block;
+
+        .ant-steps-item-icon {
+          margin: 0 8px 0 0;
+        }
+
+        .ant-steps-item-content {
+          display: inline-block;
+        }
+      }
+    `}
+  }
 `;
+
+export const StyledStep = styled(Steps.Step)``;
 
 export const StyledFormWrapper = styled.div`
   text-align: center;

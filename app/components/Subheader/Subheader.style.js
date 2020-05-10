@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { PageHeader } from 'antd';
 
-const StyledSubheader = styled.div`
+export const StyledSubheader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,4 +9,6 @@ const StyledSubheader = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 `;
 
-export default StyledSubheader;
+export const StyledPageHeader = styled(PageHeader)`
+  padding-left: 0;
+`;

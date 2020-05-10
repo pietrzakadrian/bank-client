@@ -6,19 +6,19 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PageHeader } from 'antd';
+// import { PageHeader } from 'antd';
 // import styled from 'styled-components';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
-import StyledSubheader from './Subheader.style';
+import { StyledSubheader, StyledPageHeader } from './Subheader.style';
 import LocaleToggle from '../LocaleToggle';
 
 function Subheader({ pageTitle }) {
   return (
     <>
       <StyledSubheader>
-        <PageHeader title={pageTitle} />
+        <StyledPageHeader title={pageTitle} />
         <LocaleToggle />
       </StyledSubheader>
     </>

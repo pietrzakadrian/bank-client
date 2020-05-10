@@ -5,10 +5,11 @@
  */
 
 import React, { useState } from 'react';
-import { Steps, message, Checkbox, Input, Select } from 'antd';
+import { message, Checkbox, Input, Select } from 'antd';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import {
   StyledSteps,
+  StyledStep,
   StyledFormWrapper,
   StyledForm,
   StyledFormItem,
@@ -24,6 +25,7 @@ import {
 // import messages from './messages';
 const FirstName = () => (
   <StyledFormItem
+    label="First name"
     name="firstname"
     rules={[
       {
@@ -38,6 +40,7 @@ const FirstName = () => (
 
 const LastName = () => (
   <StyledFormItem
+    label="Last name"
     name="lastname"
     rules={[
       {
@@ -52,6 +55,7 @@ const LastName = () => (
 
 const Password = () => (
   <StyledFormItem
+    label="Password"
     name="password"
     rules={[
       {
@@ -65,7 +69,7 @@ const Password = () => (
 );
 
 const Currency = () => (
-  <StyledFormItem name="gender" rules={[{ required: true }]}>
+  <StyledFormItem label="Currency" name="gender" rules={[{ required: true }]}>
     <Select placeholder="Select currency" allowClear>
       <Select.Option value="male">male</Select.Option>
       <Select.Option value="female">female</Select.Option>
@@ -78,6 +82,7 @@ const EmailAddress = () => (
   <>
     <StyledFormItem
       tail
+      label="E-Mail address"
       name="email"
       rules={[
         { type: 'email', required: true, message: 'Please input your email!' },
@@ -95,8 +100,6 @@ const EmailAddress = () => (
     </StyledInformation>
   </>
 );
-
-const { Step } = Steps;
 
 const steps = [
   {
@@ -127,12 +130,12 @@ function RegisterForm() {
     <>
       <StyledSteps current={current}>
         {steps.map((item) => (
-          <Step key={item.title} title={item.title} />
+          <StyledStep key={item.title} title={item.title} />
         ))}
       </StyledSteps>
 
       <StyledFormWrapper>
-        <StyledForm name="register">
+        <StyledForm layout="vertical" name="register">
           <div>{steps[current].content}</div>
         </StyledForm>
 
@@ -156,7 +159,7 @@ function RegisterForm() {
           {current > 0 && (
             <StyledButton
               type="link"
-              back
+              back="true"
               onClick={() => setCurrent(current - 1)}
             >
               <LeftOutlined /> Back

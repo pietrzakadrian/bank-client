@@ -5,6 +5,7 @@ export const StyledFooter = styled.footer`
   margin: 15px auto;
   max-width: 560px;
   font-size: 13px;
+  padding: 0 20px;
 `;
 
 export const StyledWarning = styled.div`
@@ -26,5 +27,6 @@ export const StyledButton = styled(Button)`
   font-weight: 500;
   padding: 0;
   color: inherit;
+  height: auto;
   font-size: inherit;
 `;

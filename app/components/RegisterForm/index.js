@@ -7,6 +7,10 @@
 import React, { useState } from 'react';
 import { message, Checkbox, Input, Select } from 'antd';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+import { createStructuredSelector } from 'reselect';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCurrenciesAction } from '../../containers/RegisterPage/actions';
+
 import {
   StyledSteps,
   StyledStep,
@@ -17,6 +21,7 @@ import {
   StyledInformation,
   StyledButton,
 } from './RegisterForm.style';
+import makeSelectRegisterPage from '../../containers/RegisterPage/selectors';
 
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
@@ -68,15 +73,28 @@ const Password = () => (
   </StyledFormItem>
 );
 
-const Currency = () => (
-  <StyledFormItem label="Currency" name="gender" rules={[{ required: true }]}>
-    <Select placeholder="Select currency" allowClear>
-      <Select.Option value="male">male</Select.Option>
-      <Select.Option value="female">female</Select.Option>
-      <Select.Option value="other">other</Select.Option>
-    </Select>
-  </StyledFormItem>
-);
+const Currency = () => {
+  const { registerPage } = useSelector(stateSelector);
+  const dispatch = useDispatch();
+
+  return (
+    <StyledFormItem label="Currency" name="gender" rules={[{ required: true }]}>
+      <Select
+        loading={registerPage.isLoading}
+        onClick={() => dispatch(getCurrenciesAction())}
+        placeholder="Select currency"
+        allowClear
+      >
+        {registerPage.currencies.length &&
+          registerPage.currencies.map((currency) => (
+            <Select.Option key={currency.uuid} value={currency.uuid}>
+              {currency.name}
+            </Select.Option>
+          ))}
+      </Select>
+    </StyledFormItem>
+  );
+};
 
 const EmailAddress = () => (
   <>
@@ -124,8 +142,13 @@ const steps = [
   },
 ];
 
+const stateSelector = createStructuredSelector({
+  registerPage: makeSelectRegisterPage(),
+});
+
 function RegisterForm() {
   const [current, setCurrent] = useState(0);
+
   return (
     <>
       <StyledSteps current={current}>

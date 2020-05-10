@@ -1,6 +1,22 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import request from 'utils/request';
+import { GET_CURRENCIES } from './constants';
+import {
+  getCurrenciesSuccessAction,
+  getCurrenciesErrorAction,
+} from './actions';
 
-// Individual exports for testing
+export function* getCurrencies() {
+  const requestURL = `https://bank2.pietrzakadrian.com/api/currencies`;
+
+  try {
+    const { data } = yield call(request, requestURL);
+    yield put(getCurrenciesSuccessAction(data));
+  } catch (error) {
+    yield put(getCurrenciesErrorAction(error));
+  }
+}
+
 export default function* registerPageSaga() {
-  // See example in containers/HomePage/saga.js
+  yield takeLatest(GET_CURRENCIES, getCurrencies);
 }

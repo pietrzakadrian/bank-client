@@ -68,11 +68,6 @@ const FirstName = () => {
 const LastName = () => {
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const [isLastName, setIsLastName] = useState(false);
-
-  useEffect(() => {
-    setIsLastName(true);
-  }, [registerPage.lastName]);
 
   return (
     <StyledFormItem
@@ -80,7 +75,7 @@ const LastName = () => {
       name="lastName"
       rules={[
         {
-          required: isLastName,
+          required: true,
           message: 'Last name is required.',
         },
       ]}
@@ -98,11 +93,6 @@ const LastName = () => {
 const Password = () => {
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const [isPassword, checkIsPassword] = useState(false);
-
-  useEffect(() => {
-    checkIsPassword(true);
-  }, [registerPage.password]);
 
   // const asyncValidator = (rule, value, callback) => {
   //   if (value && value.length < 5) {
@@ -114,7 +104,7 @@ const Password = () => {
     <StyledFormItem
       label="Password"
       name="password"
-      rules={[{ required: isPassword, message: 'Password is required.' }]}
+      rules={[{ required: true, message: 'Password is required.' }]}
     >
       <Input.Password
         onChange={(event) => dispatch(changeInputAction(event.target))}
@@ -129,22 +119,18 @@ const Password = () => {
 const Currency = () => {
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const [isCurrency, checkIsCurrency] = useState(false);
-
-  useEffect(() => {
-    checkIsCurrency(true);
-  }, [registerPage.currency]);
 
   return (
     <StyledFormItem
       label="Currency"
       name="currency"
-      rules={[{ required: isCurrency, message: 'Currency is required.' }]}
+      rules={[{ required: true, message: 'Currency is required.' }]}
     >
       <Select
         loading={registerPage.isLoading}
         onClick={() =>
-          !registerPage.currencies.length && dispatch(getCurrenciesAction())
+          registerPage.currencies.length === 0 &&
+          dispatch(getCurrenciesAction())
         }
         onSelect={(currency) => dispatch(selectCurrencyAction(currency))}
         placeholder="Select currency"
@@ -165,11 +151,6 @@ const Currency = () => {
 const EmailAddress = () => {
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const [isEmailAddress, checkIsEmailAddress] = useState(false);
-
-  useEffect(() => {
-    checkIsEmailAddress(true);
-  }, [registerPage.email]);
 
   return (
     <>
@@ -183,7 +164,7 @@ const EmailAddress = () => {
             message: 'E-Mail address must be valid.',
           },
           {
-            required: isEmailAddress,
+            required: true,
             message: 'E-Mail address is required.',
           },
           {
@@ -204,7 +185,7 @@ const EmailAddress = () => {
 
       <StyledFormItem
         tail="true"
-        name="remember"
+        name="confirm-personal-data"
         valuePropName="checked"
         rules={[
           {
@@ -220,7 +201,7 @@ const EmailAddress = () => {
             dispatch(changeCheckboxAction(event.target.checked))
           }
         >
-          I consent to the processing of my personal data.
+          You must agree to the processing of your personal data.
         </Checkbox>
       </StyledFormItem>
 
@@ -271,15 +252,21 @@ function RegisterForm() {
       'password',
       'currency',
       'email',
+      'confirm-personal-data',
     ]);
   }, []);
 
   const onCheck = async () => {
     try {
       await form.validateFields();
-      setCurrent(current + 1);
-    } catch (errorInfo) {
-      console.log('Failed:', errorInfo);
+
+      if (current === steps.length - 1) {
+        dispatch(registerAction());
+      } else {
+        setCurrent(current + 1);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -310,7 +297,7 @@ function RegisterForm() {
             <StyledButton
               disabled={registerPage.isLoading}
               type="primary"
-              onClick={() => dispatch(registerAction())}
+              onClick={onCheck}
             >
               Create an account
             </StyledButton>

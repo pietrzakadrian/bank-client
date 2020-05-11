@@ -4,12 +4,19 @@
  *
  */
 
-import React, { useState } from 'react';
-import { message, Checkbox, Input, Select } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Checkbox, Input, Select, Form } from 'antd';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCurrenciesAction } from '../../containers/RegisterPage/actions';
+import {
+  getCurrenciesAction,
+  changeInputAction,
+  selectCurrencyAction,
+  changeCheckboxAction,
+  registerAction,
+  checkEmailAction,
+} from '../../containers/RegisterPage/actions';
 
 import {
   StyledSteps,
@@ -28,62 +35,119 @@ import makeSelectRegisterPage from '../../containers/RegisterPage/selectors';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
-const FirstName = () => (
-  <StyledFormItem
-    label="First name"
-    name="firstname"
-    rules={[
-      {
-        required: true,
-        message: 'Please input your firstname!',
-      },
-    ]}
-  >
-    <Input placeholder="Enter first name" />
-  </StyledFormItem>
-);
+const FirstName = () => {
+  const { registerPage } = useSelector(stateSelector);
+  const dispatch = useDispatch();
+  const [isFirstName, setIsFirstName] = useState(false);
 
-const LastName = () => (
-  <StyledFormItem
-    label="Last name"
-    name="lastname"
-    rules={[
-      {
-        required: true,
-        message: 'Please input your last name!',
-      },
-    ]}
-  >
-    <Input placeholder="Enter last name" />
-  </StyledFormItem>
-);
+  useEffect(() => {
+    setIsFirstName(true);
+  }, [registerPage.firstName]);
 
-const Password = () => (
-  <StyledFormItem
-    label="Password"
-    name="password"
-    rules={[
-      {
-        required: true,
-        message: 'Please input your password!',
-      },
-    ]}
-  >
-    <Input.Password placeholder="Enter password" />
-  </StyledFormItem>
-);
+  return (
+    <StyledFormItem
+      label="First name"
+      name="firstName"
+      rules={[
+        {
+          required: isFirstName,
+          message: 'First name is required.',
+        },
+      ]}
+    >
+      <Input
+        onChange={(event) => dispatch(changeInputAction(event.target))}
+        name="firstName"
+        value={registerPage.firstName}
+        placeholder="Enter first name"
+      />
+    </StyledFormItem>
+  );
+};
+
+const LastName = () => {
+  const { registerPage } = useSelector(stateSelector);
+  const dispatch = useDispatch();
+  const [isLastName, setIsLastName] = useState(false);
+
+  useEffect(() => {
+    setIsLastName(true);
+  }, [registerPage.lastName]);
+
+  return (
+    <StyledFormItem
+      label="Last name"
+      name="lastName"
+      rules={[
+        {
+          required: isLastName,
+          message: 'Last name is required.',
+        },
+      ]}
+    >
+      <Input
+        onChange={(event) => dispatch(changeInputAction(event.target))}
+        name="lastName"
+        value={registerPage.lastName}
+        placeholder="Enter last name"
+      />
+    </StyledFormItem>
+  );
+};
+
+const Password = () => {
+  const { registerPage } = useSelector(stateSelector);
+  const dispatch = useDispatch();
+  const [isPassword, checkIsPassword] = useState(false);
+
+  useEffect(() => {
+    checkIsPassword(true);
+  }, [registerPage.password]);
+
+  // const asyncValidator = (rule, value, callback) => {
+  //   if (value && value.length < 5) {
+  //     callback('Password must have a minimum of 6 characters.');
+  //   }
+  // };
+
+  return (
+    <StyledFormItem
+      label="Password"
+      name="password"
+      rules={[{ required: isPassword, message: 'Password is required.' }]}
+    >
+      <Input.Password
+        onChange={(event) => dispatch(changeInputAction(event.target))}
+        name="password"
+        value={registerPage.password}
+        placeholder="Enter password"
+      />
+    </StyledFormItem>
+  );
+};
 
 const Currency = () => {
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
+  const [isCurrency, checkIsCurrency] = useState(false);
+
+  useEffect(() => {
+    checkIsCurrency(true);
+  }, [registerPage.currency]);
 
   return (
-    <StyledFormItem label="Currency" name="gender" rules={[{ required: true }]}>
+    <StyledFormItem
+      label="Currency"
+      name="currency"
+      rules={[{ required: isCurrency, message: 'Currency is required.' }]}
+    >
       <Select
         loading={registerPage.isLoading}
-        onClick={() => dispatch(getCurrenciesAction())}
+        onClick={() =>
+          !registerPage.currencies.length && dispatch(getCurrenciesAction())
+        }
+        onSelect={(currency) => dispatch(selectCurrencyAction(currency))}
         placeholder="Select currency"
-        allowClear
       >
         {registerPage.currencies.length &&
           registerPage.currencies.map((currency) => (
@@ -91,33 +155,81 @@ const Currency = () => {
               {currency.name}
             </Select.Option>
           ))}
+
+        {/* <Cascader options={registerPage.currencies} /> */}
       </Select>
     </StyledFormItem>
   );
 };
 
-const EmailAddress = () => (
-  <>
-    <StyledFormItem
-      tail
-      label="E-Mail address"
-      name="email"
-      rules={[
-        { type: 'email', required: true, message: 'Please input your email!' },
-      ]}
-    >
-      <Input placeholder="Enter e-mail address" />
-    </StyledFormItem>
+const EmailAddress = () => {
+  const { registerPage } = useSelector(stateSelector);
+  const dispatch = useDispatch();
+  const [isEmailAddress, checkIsEmailAddress] = useState(false);
 
-    <StyledFormItem checkbox name="remember" valuePropName="checked">
-      <Checkbox>I consent to the processing of my personal data.</Checkbox>
-    </StyledFormItem>
+  useEffect(() => {
+    checkIsEmailAddress(true);
+  }, [registerPage.email]);
 
-    <StyledInformation>
-      Registration does not require confirmation by the email.
-    </StyledInformation>
-  </>
-);
+  return (
+    <>
+      <StyledFormItem
+        label="E-Mail address"
+        name="email"
+        hasFeedback
+        rules={[
+          {
+            type: 'email',
+            message: 'E-Mail address must be valid.',
+          },
+          {
+            required: isEmailAddress,
+            message: 'E-Mail address is required.',
+          },
+          {
+            asyncValidator: (_, value) =>
+              new Promise((resolve, reject) => {
+                dispatch(checkEmailAction(value, reject, resolve));
+              }),
+          },
+        ]}
+      >
+        <Input
+          onChange={(event) => dispatch(changeInputAction(event.target))}
+          name="email"
+          value={registerPage.email}
+          placeholder="Enter e-mail address"
+        />
+      </StyledFormItem>
+
+      <StyledFormItem
+        tail="true"
+        name="remember"
+        valuePropName="checked"
+        rules={[
+          {
+            validator: (_, value) =>
+              value
+                ? Promise.resolve()
+                : Promise.reject(new Error('Should accept agreement')),
+          },
+        ]}
+      >
+        <Checkbox
+          onChange={(event) =>
+            dispatch(changeCheckboxAction(event.target.checked))
+          }
+        >
+          I consent to the processing of my personal data.
+        </Checkbox>
+      </StyledFormItem>
+
+      <StyledInformation>
+        Registration does not require confirmation by the email.
+      </StyledInformation>
+    </>
+  );
+};
 
 const steps = [
   {
@@ -148,6 +260,28 @@ const stateSelector = createStructuredSelector({
 
 function RegisterForm() {
   const [current, setCurrent] = useState(0);
+  const { registerPage } = useSelector(stateSelector);
+  const dispatch = useDispatch();
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    form.validateFields([
+      'firstName',
+      'lastName',
+      'password',
+      'currency',
+      'email',
+    ]);
+  }, []);
+
+  const onCheck = async () => {
+    try {
+      await form.validateFields();
+      setCurrent(current + 1);
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo);
+    }
+  };
 
   return (
     <>
@@ -158,29 +292,32 @@ function RegisterForm() {
       </StyledSteps>
 
       <StyledFormWrapper>
-        <StyledForm layout="vertical" name="register">
+        <StyledForm form={form} layout="vertical" name="register">
           <div>{steps[current].content}</div>
         </StyledForm>
 
         <StyledFormActionsWrapper>
           {current < steps.length - 1 && (
             <StyledButton
+              disabled={registerPage.isLoading}
               type="primary"
-              onClick={() => setCurrent(current + 1)}
+              onClick={onCheck}
             >
               Next <RightOutlined />
             </StyledButton>
           )}
           {current === steps.length - 1 && (
             <StyledButton
+              disabled={registerPage.isLoading}
               type="primary"
-              onClick={() => message.success('Processing complete!')}
+              onClick={() => dispatch(registerAction())}
             >
               Create an account
             </StyledButton>
           )}
           {current > 0 && (
             <StyledButton
+              disabled={registerPage.isLoading}
               type="link"
               back="true"
               onClick={() => setCurrent(current - 1)}

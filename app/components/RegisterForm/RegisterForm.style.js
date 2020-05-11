@@ -14,6 +14,10 @@ export const StyledSteps = styled(Steps)`
       align-items: center;
       justify-content: center;
 
+      &:fast-child {
+        flex: 1;
+      }
+
       .ant-steps-item-icon {
         margin-right: 0;
       }
@@ -25,7 +29,7 @@ export const StyledSteps = styled(Steps)`
 
     ${media.tablet`
       .ant-steps-item {
-        display: block;
+        display: inline-block;
 
         .ant-steps-item-icon {
           margin: 0 8px 0 0;
@@ -63,9 +67,24 @@ export const StyledForm = styled(Form)`
 `;
 
 export const StyledFormItem = styled(Form.Item)`
-  padding: ${(props) => (props.checkbox && '0') || '20px 0 0'};
-  margin-bottom: ${(props) => props.checkbox && '0'};
+  padding: ${(props) => (props.tail ? '0' : '20px 0 0')};
   text-align: left;
+
+  .ant-form-item-label {
+    padding-bottom: 0;
+
+    .ant-form-item-required {
+      font-size: 15.5px;
+
+      &:before {
+        content: none;
+      }
+    }
+  }
+
+  .ant-form-item-explain {
+    font-size: 11px;
+  }
 `;
 
 export const StyledInformation = styled.div`

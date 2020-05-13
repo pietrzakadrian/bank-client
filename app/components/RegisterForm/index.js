@@ -94,17 +94,21 @@ const Password = () => {
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
-  // const asyncValidator = (rule, value, callback) => {
-  //   if (value && value.length < 5) {
-  //     callback('Password must have a minimum of 6 characters.');
-  //   }
-  // };
+  const checkLengthOfCharactersInPassword = (_, value) => {
+    if (value && value.length > 5) {
+      return Promise.resolve();
+    }
+
+    return Promise.reject(
+      new Error('Password must be at least 6 characters long.'),
+    );
+  };
 
   return (
     <StyledFormItem
       label="Password"
       name="password"
-      rules={[{ required: true, message: 'Password is required.' }]}
+      rules={[{ validator: checkLengthOfCharactersInPassword }]}
     >
       <Input.Password
         onChange={(event) => dispatch(changeInputAction(event.target))}
@@ -152,6 +156,21 @@ const EmailAddress = () => {
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  const checkEmailAddressAlreadyExist = (_, value) =>
+    new Promise((resolve, reject) =>
+      dispatch(checkEmailAction(value, reject, resolve)),
+    );
+
+  const checkDataProcessingIsAccepted = (_, value) => {
+    if (value) {
+      return Promise.resolve();
+    }
+
+    return Promise.reject(
+      new Error('You must agree to the processing of your personal data.'),
+    );
+  };
+
   return (
     <>
       <StyledFormItem
@@ -167,12 +186,7 @@ const EmailAddress = () => {
             required: true,
             message: 'E-Mail address is required.',
           },
-          {
-            asyncValidator: (_, value) =>
-              new Promise((resolve, reject) => {
-                dispatch(checkEmailAction(value, reject, resolve));
-              }),
-          },
+          { asyncValidator: checkEmailAddressAlreadyExist },
         ]}
       >
         <Input
@@ -187,21 +201,14 @@ const EmailAddress = () => {
         tail="true"
         name="confirm-personal-data"
         valuePropName="checked"
-        rules={[
-          {
-            validator: (_, value) =>
-              value
-                ? Promise.resolve()
-                : Promise.reject(new Error('Should accept agreement')),
-          },
-        ]}
+        rules={[{ validator: checkDataProcessingIsAccepted }]}
       >
         <Checkbox
           onChange={(event) =>
             dispatch(changeCheckboxAction(event.target.checked))
           }
         >
-          You must agree to the processing of your personal data.
+          I agree to the processing of my personal data.
         </Checkbox>
       </StyledFormItem>
 

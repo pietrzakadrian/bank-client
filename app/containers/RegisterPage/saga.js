@@ -1,4 +1,4 @@
-import { call, put, select, takeLatest, debounce } from 'redux-saga/effects';
+import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
 import request from 'utils/request';
 import { GET_CURRENCIES, REGISTER, CHECK_EMAIL } from './constants';
 import {
@@ -54,6 +54,7 @@ export function* checkEmail({ value, reject, resolve }) {
 
   if (isEmail.test(value)) {
     try {
+      yield delay(500);
       const { exist } = yield call(request, requestURL);
       yield put(checkEmailSuccessAction(exist));
 
@@ -74,6 +75,5 @@ export function* checkEmail({ value, reject, resolve }) {
 export default function* registerPageSaga() {
   yield takeLatest(GET_CURRENCIES, getCurrencies);
   yield takeLatest(REGISTER, register);
-  yield debounce(500, CHECK_EMAIL, checkEmail);
-  // yield takeLatest(CHECK_EMAIL, checkEmail);
+  yield takeLatest(CHECK_EMAIL, checkEmail);
 }

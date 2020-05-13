@@ -7,6 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import { Checkbox, Input, Select, Form } from 'antd';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -20,7 +21,8 @@ import {
 
 import {
   StyledSteps,
-  StyledStep,
+  StyledLoadingOutlined,
+  StyledSpin,
   StyledFormWrapper,
   StyledForm,
   StyledFormItem,
@@ -123,6 +125,7 @@ const Password = () => {
 const Currency = () => {
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
+  const antIcon = <StyledLoadingOutlined spin />;
 
   return (
     <StyledFormItem
@@ -131,22 +134,20 @@ const Currency = () => {
       rules={[{ required: true, message: 'Currency is required.' }]}
     >
       <Select
-        loading={registerPage.isLoading}
         onClick={() =>
-          registerPage.currencies.length === 0 &&
-          dispatch(getCurrenciesAction())
+          !registerPage.currencies.length && dispatch(getCurrenciesAction())
+        }
+        notFoundContent={
+          registerPage.isLoading ? <StyledSpin indicator={antIcon} /> : null
         }
         onSelect={(currency) => dispatch(selectCurrencyAction(currency))}
         placeholder="Select currency"
       >
-        {registerPage.currencies.length &&
-          registerPage.currencies.map((currency) => (
-            <Select.Option key={currency.uuid} value={currency.uuid}>
-              {currency.name}
-            </Select.Option>
-          ))}
-
-        {/* <Cascader options={registerPage.currencies} /> */}
+        {registerPage.currencies.map((currency) => (
+          <Select.Option key={currency.uuid} value={currency.uuid}>
+            {currency.name}
+          </Select.Option>
+        ))}
       </Select>
     </StyledFormItem>
   );
@@ -281,7 +282,7 @@ function RegisterForm() {
     <>
       <StyledSteps current={current}>
         {steps.map((item) => (
-          <StyledStep key={item.title} title={item.title} />
+          <StyledSteps.Step key={item.title} title={item.title} />
         ))}
       </StyledSteps>
 

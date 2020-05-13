@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { Steps, Form, Button } from 'antd';
+import { Steps, Form, Button, Spin } from 'antd';
 import { media } from 'utils';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export const StyledSteps = styled(Steps)`
   &&& {
@@ -14,10 +15,6 @@ export const StyledSteps = styled(Steps)`
       align-items: center;
       justify-content: center;
 
-      &:fast-child {
-        flex: 1;
-      }
-
       .ant-steps-item-icon {
         margin-right: 0;
       }
@@ -27,9 +24,21 @@ export const StyledSteps = styled(Steps)`
       }
     }
 
+    ${media.phone`
+      .ant-steps-item {
+        &:last-child {
+          flex: 1;
+        }
+      }
+    `}
+
     ${media.tablet`
       .ant-steps-item {
         display: inline-block;
+
+        &:last-child {
+          flex: none;
+        }
 
         .ant-steps-item-icon {
           margin: 0 8px 0 0;
@@ -43,7 +52,15 @@ export const StyledSteps = styled(Steps)`
   }
 `;
 
-export const StyledStep = styled(Steps.Step)``;
+export const StyledLoadingOutlined = styled(LoadingOutlined)`
+  font-size: 24px;
+`;
+
+export const StyledSpin = styled(Spin)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const StyledFormWrapper = styled.div`
   text-align: center;

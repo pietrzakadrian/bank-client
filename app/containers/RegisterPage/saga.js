@@ -54,7 +54,7 @@ export function* checkEmail({ value, reject, resolve }) {
 
   if (isEmail.test(value)) {
     try {
-      yield delay(500);
+      yield delay(400);
       const { exist } = yield call(request, requestURL);
       yield put(checkEmailSuccessAction(exist));
 

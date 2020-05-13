@@ -5,7 +5,7 @@ export const StyledSubheader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 50px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 `;
 

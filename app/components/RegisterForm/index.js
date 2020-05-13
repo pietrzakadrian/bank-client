@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Checkbox, Input, Select, Form } from 'antd';
+import { Checkbox, Input, Select, Result, Button, Form } from 'antd';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 
 import { createStructuredSelector } from 'reselect';
@@ -40,22 +40,30 @@ import makeSelectRegisterPage from '../../containers/RegisterPage/selectors';
 const FirstName = () => {
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const [isFirstName, setIsFirstName] = useState(false);
+  const [isStartedRegistration, setIsStartedRegistration] = useState(false);
+  const isName = /^[a-z ,.'-]+$/i;
+
+  const checkStringConsistsLettersOnly = (_, value) => {
+    if (value && !isName.test(value)) {
+      return Promise.reject(new Error('The name entered must be valid.'));
+    }
+
+    if (!value && isStartedRegistration) {
+      return Promise.reject(new Error('First name is required.'));
+    }
+
+    return Promise.resolve();
+  };
 
   useEffect(() => {
-    setIsFirstName(true);
+    setIsStartedRegistration(true);
   }, [registerPage.firstName]);
 
   return (
     <StyledFormItem
       label="First name"
       name="firstName"
-      rules={[
-        {
-          required: isFirstName,
-          message: 'First name is required.',
-        },
-      ]}
+      rules={[{ validator: checkStringConsistsLettersOnly }]}
     >
       <Input
         onChange={(event) => dispatch(changeInputAction(event.target))}
@@ -71,16 +79,25 @@ const LastName = () => {
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  const isName = /^[a-z ,.'-]+$/i;
+
+  const checkStringConsistsLettersOnly = (_, value) => {
+    if (value && !isName.test(value)) {
+      return Promise.reject(new Error('The name entered must be valid.'));
+    }
+
+    if (!value) {
+      return Promise.reject(new Error('Last name is required.'));
+    }
+
+    return Promise.resolve();
+  };
+
   return (
     <StyledFormItem
       label="Last name"
       name="lastName"
-      rules={[
-        {
-          required: true,
-          message: 'Last name is required.',
-        },
-      ]}
+      rules={[{ validator: checkStringConsistsLettersOnly }]}
     >
       <Input
         onChange={(event) => dispatch(changeInputAction(event.target))}
@@ -168,7 +185,9 @@ const EmailAddress = () => {
     }
 
     return Promise.reject(
-      new Error('You must agree to the processing of your personal data.'),
+      new Error(
+        'Confirmation of consent to the processing of personal data is required.',
+      ),
     );
   };
 
@@ -281,46 +300,66 @@ function RegisterForm() {
   return (
     <>
       <StyledSteps current={current}>
-        {steps.map((item) => (
-          <StyledSteps.Step key={item.title} title={item.title} />
+        {steps.map((item, i) => (
+          <StyledSteps.Step
+            status={
+              steps.length === i + 1 ? registerPage.pinCode && 'finish' : null
+            }
+            key={item.title}
+            title={item.title}
+          />
         ))}
       </StyledSteps>
 
       <StyledFormWrapper>
-        <StyledForm form={form} layout="vertical" name="register">
-          <div>{steps[current].content}</div>
-        </StyledForm>
-
-        <StyledFormActionsWrapper>
-          {current < steps.length - 1 && (
-            <StyledButton
-              disabled={registerPage.isLoading}
-              type="primary"
-              onClick={onCheck}
-            >
-              Next <RightOutlined />
-            </StyledButton>
-          )}
-          {current === steps.length - 1 && (
-            <StyledButton
-              disabled={registerPage.isLoading}
-              type="primary"
-              onClick={onCheck}
-            >
-              Create an account
-            </StyledButton>
-          )}
-          {current > 0 && (
-            <StyledButton
-              disabled={registerPage.isLoading}
-              type="link"
-              back="true"
-              onClick={() => setCurrent(current - 1)}
-            >
-              <LeftOutlined /> Back
-            </StyledButton>
-          )}
-        </StyledFormActionsWrapper>
+        {registerPage.pinCode ? (
+          <Result
+            status="success"
+            title="The account has been successfully registered!"
+            subTitle={`Your PIN code is: ${registerPage.pinCode}. Remember it or save it in a safe place, because you must enter the PIN code when you want to log into the banking system.`}
+            extra={[
+              <Button key="1" type="primary">
+                Log in to the banking system
+              </Button>,
+            ]}
+          />
+        ) : (
+          <>
+            <StyledForm form={form} layout="vertical" name="register">
+              <div>{steps[current].content}</div>
+            </StyledForm>
+            <StyledFormActionsWrapper>
+              {current < steps.length - 1 && (
+                <StyledButton
+                  disabled={registerPage.isLoading}
+                  type="primary"
+                  onClick={onCheck}
+                >
+                  Next <RightOutlined />
+                </StyledButton>
+              )}
+              {current === steps.length - 1 && (
+                <StyledButton
+                  disabled={registerPage.isLoading}
+                  type="primary"
+                  onClick={onCheck}
+                >
+                  Create an account
+                </StyledButton>
+              )}
+              {current > 0 && (
+                <StyledButton
+                  disabled={registerPage.isLoading}
+                  type="link"
+                  back="true"
+                  onClick={() => setCurrent(current - 1)}
+                >
+                  <LeftOutlined /> Back
+                </StyledButton>
+              )}
+            </StyledFormActionsWrapper>
+          </>
+        )}
       </StyledFormWrapper>
     </>
   );

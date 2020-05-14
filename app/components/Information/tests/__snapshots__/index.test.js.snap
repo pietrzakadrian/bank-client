@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Information /> should render a information 1`] = `
+<div
+  class="Informationstyle__StyledInformation-sc-7iwlvw-0 eEPUpK"
+>
+  If you take advantage of our promotion and register your account by the end of September in our bank, you will receive 10,00 USD from us. Accounts already created will also receive this from us.
+</div>
+`;

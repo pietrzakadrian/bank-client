@@ -5,14 +5,12 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
 import StyledInformation from './Information.style';
 
-function Information() {
+export default function Information() {
   return (
     <StyledInformation>
       If you take advantage of our promotion and register your account by the
@@ -21,7 +19,3 @@ function Information() {
     </StyledInformation>
   );
 }
-
-Information.propTypes = {};
-
-export default Information;

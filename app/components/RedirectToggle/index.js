@@ -8,30 +8,28 @@ import React from 'react';
 import { push } from 'connected-react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 import { StyledRedirectToggle, StyledButton } from './RedirectToggle.style';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
-
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
 import { makeSelectLocation } from '../../containers/App/selectors';
 
 const stateSelector = createStructuredSelector({
   location: makeSelectLocation(),
 });
 
-function RedirectToggle() {
-  const {
-    location: { pathname },
-  } = useSelector(stateSelector);
+const TogglePath = ({ name, path }) => {
   const dispatch = useDispatch();
 
-  // eslint-disable-next-line react/prop-types
-  const TogglePath = ({ name, path }) => (
+  return (
     <StyledButton type="link" onClick={() => dispatch(push(path))}>
       {name}
     </StyledButton>
   );
+};
+
+export default function RedirectToggle() {
+  const {
+    location: { pathname },
+  } = useSelector(stateSelector);
 
   return (
     <StyledRedirectToggle>
@@ -50,6 +48,7 @@ function RedirectToggle() {
   );
 }
 
-RedirectToggle.propTypes = {};
-
-export default RedirectToggle;
+TogglePath.propTypes = {
+  name: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+};

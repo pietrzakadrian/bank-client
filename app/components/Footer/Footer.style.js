@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Button } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
 
 export const StyledFooter = styled.footer`
   margin: 15px auto;
@@ -16,7 +17,10 @@ export const StyledWarning = styled.div`
   font-size: 14px;
 `;
 
-export const StyledList = styled.div``;
+export const StyledInfoCircleOutlined = styled(InfoCircleOutlined)`
+  font-size: 40px;
+  margin-right: 13px;
+`;
 
 export const StyledTip = styled.div`
   color: rgb(229, 0, 0);

@@ -1,22 +1,23 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { ConnectedRouter } from 'connected-react-router';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
-import Header from '../index';
+import { IntlProvider } from 'react-intl';
+import Information from '../index';
+import { DEFAULT_LOCALE } from '../../../locales';
 import configureStore from '../../../configureStore';
 
-describe('<Header />', () => {
+describe('<Information />', () => {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
 
-  it('should render a div', () => {
+  it('should render a information', () => {
     const { container } = render(
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Header />
-        </ConnectedRouter>
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <Information />
+        </IntlProvider>
       </Provider>,
     );
     expect(container.firstChild).toMatchSnapshot();

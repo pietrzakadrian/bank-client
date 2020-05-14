@@ -8,39 +8,26 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
+import { createMemoryHistory } from 'history';
 import Footer from '../index';
 import { DEFAULT_LOCALE } from '../../../locales';
+import configureStore from '../../../configureStore';
 
 describe('<Footer />', () => {
-  it('Expect to not log errors in console', () => {
-    const spy = jest.spyOn(global.console, 'error');
-    render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <Footer />
-      </IntlProvider>,
-    );
-    expect(spy).not.toHaveBeenCalled();
-  });
+  const history = createMemoryHistory();
+  const store = configureStore({}, history);
 
-  it('Expect to have additional unit tests specified', () => {
-    expect(true).toEqual(false);
-  });
-
-  /**
-   * Unskip this test to use it
-   *
-   * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
-   */
-  it.skip('Should render and match the snapshot', () => {
-    const {
-      container: { firstChild },
-    } = render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <Footer />
-      </IntlProvider>,
+  it('should render a div', () => {
+    const { container } = render(
+      <Provider store={store}>
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <Footer />
+        </IntlProvider>
+      </Provider>,
     );
-    expect(firstChild).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

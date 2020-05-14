@@ -10,10 +10,7 @@ import icon from 'images/icon.png';
 import logo from 'images/logo.png';
 import { StyledHeader, StyledImg } from './Header.style';
 
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
-
-function Header() {
+export default function Header() {
   return (
     <StyledHeader>
       <Link to="/">
@@ -29,7 +26,3 @@ function Header() {
     </StyledHeader>
   );
 }
-
-Header.propTypes = {};
-
-export default Header;

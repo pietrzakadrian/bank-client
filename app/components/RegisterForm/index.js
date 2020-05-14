@@ -266,7 +266,7 @@ const stateSelector = createStructuredSelector({
   registerPage: makeSelectRegisterPage(),
 });
 
-function RegisterForm() {
+export default function RegisterForm() {
   const [current, setCurrent] = useState(0);
   const { registerPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
@@ -293,7 +293,7 @@ function RegisterForm() {
         setCurrent(current + 1);
       }
     } catch (error) {
-      console.log(error);
+      /* tesy */
     }
   };
 
@@ -364,7 +364,3 @@ function RegisterForm() {
     </>
   );
 }
-
-RegisterForm.propTypes = {};
-
-export default RegisterForm;

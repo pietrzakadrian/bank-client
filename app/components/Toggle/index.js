@@ -8,8 +8,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Select } from 'antd';
 
-function Toggle(props) {
-  let content = <option>--</option>;
+export default function Toggle(props) {
+  let content = <Select.Option>--</Select.Option>;
 
   // If we have items, render them
   if (props.values) {
@@ -35,5 +35,3 @@ Toggle.propTypes = {
   value: PropTypes.string,
   messages: PropTypes.object,
 };
-
-export default Toggle;

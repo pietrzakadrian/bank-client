@@ -6,32 +6,29 @@
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { InfoCircleOutlined } from '@ant-design/icons';
 import { push } from 'connected-react-router';
 import {
   StyledFooter,
   StyledButton,
+  StyledInfoCircleOutlined,
   StyledWarning,
   StyledTip,
-  StyledList,
 } from './Footer.style';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
 
-function Footer() {
+export default function Footer() {
   const dispatch = useDispatch();
 
   return (
     <StyledFooter>
       <StyledWarning>
-        <InfoCircleOutlined style={{ fontSize: 40, marginRight: 13 }} />
+        <StyledInfoCircleOutlined />
         Remember the basic safety rules.
       </StyledWarning>
 
-      <StyledList>
+      <div>
         Before you enter your ID number and access password on your website,
         make sure
         <ul>
@@ -44,7 +41,7 @@ function Footer() {
             of the browser screen
           </li>
         </ul>
-      </StyledList>
+      </div>
 
       <StyledTip>
         Remember: The bank does not require confirmation of any data, correct
@@ -65,7 +62,3 @@ function Footer() {
     </StyledFooter>
   );
 }
-
-Footer.propTypes = {};
-
-export default Footer;

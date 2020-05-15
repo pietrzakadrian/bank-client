@@ -10,7 +10,6 @@ import {
   GET_CURRENCIES_ERROR,
   CHANGE_INPUT,
   SELECT_CURRENCY,
-  CHANGE_CHECKBOX,
   REGISTER,
   REGISTER_SUCCESS,
   REGISTER_ERROR,
@@ -18,6 +17,8 @@ import {
   CHECK_EMAIL_SUCCESS,
   CHECK_EMAIL_ERROR,
   CHECK_EMAIL_INVALID,
+  NEXT_STEP,
+  PREVIOUS_STEP,
 } from './constants';
 
 export function getCurrenciesAction() {
@@ -52,13 +53,6 @@ export function selectCurrencyAction(currency) {
   return {
     type: SELECT_CURRENCY,
     currency,
-  };
-}
-
-export function changeCheckboxAction(checked) {
-  return {
-    type: CHANGE_CHECKBOX,
-    checked,
   };
 }
 
@@ -97,10 +91,9 @@ export function checkEmailInvalidAction() {
   };
 }
 
-export function checkEmailSuccessAction(exist) {
+export function checkEmailSuccessAction() {
   return {
     type: CHECK_EMAIL_SUCCESS,
-    exist,
   };
 }
 
@@ -108,5 +101,17 @@ export function checkEmailErrorAction(error) {
   return {
     type: CHECK_EMAIL_ERROR,
     error,
+  };
+}
+
+export function nextStepAction() {
+  return {
+    type: NEXT_STEP,
+  };
+}
+
+export function previousStepAction() {
+  return {
+    type: PREVIOUS_STEP,
   };
 }

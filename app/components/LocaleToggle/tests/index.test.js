@@ -28,17 +28,6 @@ describe('<LocaleToggle />', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  //   it('should present the default `en` english language option', () => {
-  //     const { queryByDisplayValue } = render(
-  //       <Provider store={store}>
-  //         <LanguageProvider messages={translationMessages}>
-  //           <LocaleToggle />
-  //         </LanguageProvider>
-  //       </Provider>,
-  //     );
-  //     expect(queryByDisplayValue('en')).toBeInTheDocument();
-  //   });
-
   //   it('should dispatch changeLocale when user selects a new option', () => {
   //     const { container } = render(
   //       <Provider store={store}>

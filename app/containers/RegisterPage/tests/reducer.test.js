@@ -1,5 +1,6 @@
 import produce from 'immer';
 
+// import { getAction } from 'connected-react-router';
 import registerPageReducer from '../reducer';
 import {
   getCurrenciesAction,
@@ -7,7 +8,6 @@ import {
   getCurrenciesErrorAction,
   changeInputAction,
   selectCurrencyAction,
-  changeCheckboxAction,
   registerAction,
   registerSuccessAction,
   registerErrorAction,
@@ -15,6 +15,8 @@ import {
   checkEmailInvalidAction,
   checkEmailSuccessAction,
   checkEmailErrorAction,
+  nextStepAction,
+  previousStepAction,
 } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
@@ -26,12 +28,12 @@ describe('registerPageReducer', () => {
       lastName: '',
       currency: '',
       email: '',
-      isExistEmail: false,
-      isAllowProcessingData: false,
+      password: '',
       isLoading: false,
       pinCode: '',
       currencies: [],
       error: '',
+      currentStep: 0,
     };
   });
 
@@ -96,17 +98,6 @@ describe('registerPageReducer', () => {
     );
   });
 
-  it('should handle the changeCheckbox action correctly', () => {
-    const fixture = true;
-    const expectedResult = produce(state, (draft) => {
-      draft.isAllowProcessingData = fixture;
-    });
-
-    expect(registerPageReducer(state, changeCheckboxAction(fixture))).toEqual(
-      expectedResult,
-    );
-  });
-
   it('should handle the register action correctly', () => {
     const expectedResult = produce(state, (draft) => {
       draft.isLoading = true;
@@ -157,7 +148,6 @@ describe('registerPageReducer', () => {
     const fixture = true;
     const expectedResult = produce(state, (draft) => {
       draft.isLoading = false;
-      draft.isExistEmail = fixture;
     });
 
     expect(
@@ -186,4 +176,41 @@ describe('registerPageReducer', () => {
       expectedResult,
     );
   });
+
+  it('should handle the nextStep action correctly', () => {
+    const expectedResult = produce(state, (draft) => {
+      draft.currentStep += 1;
+    });
+
+    expect(registerPageReducer(state, nextStepAction())).toEqual(
+      expectedResult,
+    );
+  });
+
+  it('should handle the previousStep action correctly', () => {
+    const expectedResult = produce(state, (draft) => {
+      draft.currentStep -= 1;
+    });
+
+    expect(registerPageReducer(state, previousStepAction())).toEqual(
+      expectedResult,
+    );
+  });
+
+  // it('should handle the LocationChangeAction action correctly', () => {
+  //   const expectedResult = produce(state, (draft) => {
+  //     draft.firstName = state.firstName;
+  //     draft.lastName = state.lastName;
+  //     draft.currency = state.currency;
+  //     draft.email = state.email;
+  //     draft.password = state.password;
+  //     draft.isLoading = state.isLoading;
+  //     draft.pinCode = state.pinCode;
+  //     draft.currencies = state.currencies;
+  //     draft.error = state.error;
+  //     draft.currentStep = state.currentStep;
+  //   });
+
+  //   expect(registerPageReducer(state, getAction())).toEqual(expectedResult);
+  // });
 });

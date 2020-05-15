@@ -4,7 +4,6 @@ import {
   getCurrenciesErrorAction,
   changeInputAction,
   selectCurrencyAction,
-  changeCheckboxAction,
   registerAction,
   registerSuccessAction,
   registerErrorAction,
@@ -12,6 +11,8 @@ import {
   checkEmailInvalidAction,
   checkEmailSuccessAction,
   checkEmailErrorAction,
+  nextStepAction,
+  previousStepAction,
 } from '../actions';
 import {
   GET_CURRENCIES,
@@ -19,7 +20,6 @@ import {
   GET_CURRENCIES_ERROR,
   CHANGE_INPUT,
   SELECT_CURRENCY,
-  CHANGE_CHECKBOX,
   CHECK_EMAIL_INVALID,
   CHECK_EMAIL,
   CHECK_EMAIL_SUCCESS,
@@ -27,6 +27,8 @@ import {
   REGISTER,
   REGISTER_SUCCESS,
   REGISTER_ERROR,
+  NEXT_STEP,
+  PREVIOUS_STEP,
 } from '../constants';
 
 describe('RegisterPage actions', () => {
@@ -85,17 +87,6 @@ describe('RegisterPage actions', () => {
     });
   });
 
-  describe('changeCheckboxAction', () => {
-    it('should return the correct type', () => {
-      const checked = true;
-      const expectedResult = {
-        type: CHANGE_CHECKBOX,
-        checked,
-      };
-      expect(changeCheckboxAction(checked)).toEqual(expectedResult);
-    });
-  });
-
   describe('registerAction', () => {
     it('should return the correct type', () => {
       const expectedResult = {
@@ -144,12 +135,10 @@ describe('RegisterPage actions', () => {
 
   describe('checkEmailSuccessAction', () => {
     it('should return the correct type', () => {
-      const exist = true;
       const expectedResult = {
         type: CHECK_EMAIL_SUCCESS,
-        exist,
       };
-      expect(checkEmailSuccessAction(exist)).toEqual(expectedResult);
+      expect(checkEmailSuccessAction()).toEqual(expectedResult);
     });
   });
 
@@ -170,6 +159,24 @@ describe('RegisterPage actions', () => {
         type: CHECK_EMAIL_INVALID,
       };
       expect(checkEmailInvalidAction()).toEqual(expectedResult);
+    });
+  });
+
+  describe('nextStepAction', () => {
+    it('should return the correct type', () => {
+      const expectedResult = {
+        type: NEXT_STEP,
+      };
+      expect(nextStepAction()).toEqual(expectedResult);
+    });
+  });
+
+  describe('previousStepAction', () => {
+    it('should return the correct type', () => {
+      const expectedResult = {
+        type: PREVIOUS_STEP,
+      };
+      expect(previousStepAction()).toEqual(expectedResult);
     });
   });
 });

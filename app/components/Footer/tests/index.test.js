@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
@@ -21,7 +21,7 @@ describe('<Footer />', () => {
   const store = configureStore({}, history);
 
   it('should render a div', () => {
-    const { container } = render(
+    const { container, getByText } = render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
           <Footer />
@@ -29,5 +29,7 @@ describe('<Footer />', () => {
       </Provider>,
     );
     expect(container.firstChild).toMatchSnapshot();
+    const button = getByText('Privacy rules');
+    fireEvent.click(button);
   });
 });

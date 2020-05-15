@@ -10,7 +10,13 @@ import {
   checkEmailErrorAction,
   checkEmailInvalidAction,
 } from './actions';
-import makeSelectRegisterPage from './selectors';
+import {
+  makeSelectFirstName,
+  makeSelectEmail,
+  makeSelectLastName,
+  makeSelectPassword,
+  makeSelectCurrency,
+} from './selectors';
 
 export function* getCurrencies() {
   const requestURL = `https://bank2.pietrzakadrian.com/api/currencies`;
@@ -24,9 +30,12 @@ export function* getCurrencies() {
 }
 
 export function* register() {
-  const { firstName, lastName, email, password, currency } = yield select(
-    makeSelectRegisterPage(),
-  );
+  const firstName = yield select(makeSelectFirstName());
+  const lastName = yield select(makeSelectLastName());
+  const email = yield select(makeSelectEmail());
+  const password = yield select(makeSelectPassword());
+  const currency = yield select(makeSelectCurrency());
+
   const requestURL = `https://bank2.pietrzakadrian.com/api/Auth/register`;
   const requestParameters = {
     method: 'POST',

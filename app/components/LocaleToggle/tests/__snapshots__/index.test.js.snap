@@ -22,6 +22,7 @@ exports[`<LocaleToggle /> should match the snapshot 1`] = `
         readonly=""
         role="combobox"
         style="opacity: 0;"
+        unselectable="on"
         value=""
       />
     </span>

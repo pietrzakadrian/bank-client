@@ -1,16 +1,16 @@
-/*
- * RedirectToggle Messages
- *
- * This contains all the text for the RedirectToggle component.
- */
+// /*
+//  * RedirectToggle Messages
+//  *
+//  * This contains all the text for the RedirectToggle component.
+//  */
 
-import { defineMessages } from 'react-intl';
+// import { defineMessages } from 'react-intl';
 
-export const scope = 'app.components.RedirectToggle';
+// export const scope = 'app.components.RedirectToggle';
 
-export default defineMessages({
-  header: {
-    id: `${scope}.header`,
-    defaultMessage: 'This is the RedirectToggle component!',
-  },
-});
+// export default defineMessages({
+//   header: {
+//     id: `${scope}.header`,
+//     defaultMessage: 'This is the RedirectToggle component!',
+//   },
+// });

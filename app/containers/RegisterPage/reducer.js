@@ -5,13 +5,13 @@
  */
 
 import produce from 'immer';
+import { LOCATION_CHANGE } from 'connected-react-router';
 import {
   GET_CURRENCIES,
   GET_CURRENCIES_SUCCESS,
   GET_CURRENCIES_ERROR,
   CHANGE_INPUT,
   SELECT_CURRENCY,
-  CHANGE_CHECKBOX,
   REGISTER,
   REGISTER_SUCCESS,
   REGISTER_ERROR,
@@ -19,6 +19,8 @@ import {
   CHECK_EMAIL_SUCCESS,
   CHECK_EMAIL_ERROR,
   CHECK_EMAIL_INVALID,
+  NEXT_STEP,
+  PREVIOUS_STEP,
 } from './constants';
 
 export const initialState = {
@@ -26,12 +28,12 @@ export const initialState = {
   lastName: '',
   currency: '',
   email: '',
-  isExistEmail: false,
-  isAllowProcessingData: false,
+  password: '',
   isLoading: false,
   pinCode: '',
   currencies: [],
   error: '',
+  currentStep: 0,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -51,9 +53,6 @@ const registerPageReducer = produce((draft, action) => {
       draft.pinCode = action.pinCode;
       break;
     case CHECK_EMAIL_SUCCESS:
-      draft.isLoading = false;
-      draft.isExistEmail = action.exist;
-      break;
     case CHECK_EMAIL_INVALID:
       draft.isLoading = false;
       break;
@@ -69,8 +68,23 @@ const registerPageReducer = produce((draft, action) => {
     case SELECT_CURRENCY:
       draft.currency = action.currency;
       break;
-    case CHANGE_CHECKBOX:
-      draft.isAllowProcessingData = action.checked;
+    case NEXT_STEP:
+      draft.currentStep += 1;
+      break;
+    case PREVIOUS_STEP:
+      draft.currentStep -= 1;
+      break;
+    case LOCATION_CHANGE:
+      draft.firstName = initialState.firstName;
+      draft.lastName = initialState.lastName;
+      draft.currency = initialState.currency;
+      draft.email = initialState.email;
+      draft.password = initialState.password;
+      draft.isLoading = initialState.isLoading;
+      draft.pinCode = initialState.pinCode;
+      draft.currencies = initialState.currencies;
+      draft.error = initialState.error;
+      draft.currentStep = initialState.currentStep;
       break;
   }
 }, initialState);

@@ -10,7 +10,9 @@ export const GET_CURRENCIES_ERROR = 'app/RegisterPage/GET_CURRENCIES_ERROR';
 
 export const CHANGE_INPUT = 'app/RegisterPage/CHANGE_INPUT';
 export const SELECT_CURRENCY = 'app/RegisterPage/SELECT_CURRENCY';
-export const CHANGE_CHECKBOX = 'app/RegisterPage/CHANGE_CHECKBOX';
+
+export const NEXT_STEP = 'app/RegisterPage/NEXT_STEP';
+export const PREVIOUS_STEP = 'app/RegisterPage/PREVIOUS_STEP';
 
 export const CHECK_EMAIL_INVALID = 'app/RegisterPage/CHECK_EMAIL_INVALID';
 export const CHECK_EMAIL = 'app/RegisterPage/CHECK_EMAIL';

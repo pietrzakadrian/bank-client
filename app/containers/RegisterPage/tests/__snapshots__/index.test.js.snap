@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RegisterPage /> should render its registerPage 1`] = `
+<header
+  class="Headerstyle__StyledHeader-sc-1v0bnwr-0 jQivEs"
+>
+  <a
+    href="/"
+  >
+    <img
+      alt="Bank Application"
+      class="Headerstyle__StyledImg-sc-1v0bnwr-1 ldXBof"
+      height="100%"
+      src="IMAGE_MOCK"
+      width="180"
+    />
+  </a>
+  <img
+    alt="Adrian Pietrzak"
+    class="Headerstyle__StyledImg-sc-1v0bnwr-1 ldXBof"
+    height="100%"
+    src="IMAGE_MOCK"
+    width="50"
+  />
+</header>
+`;

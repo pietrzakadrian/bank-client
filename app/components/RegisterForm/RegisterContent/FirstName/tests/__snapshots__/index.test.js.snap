@@ -1,39 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FirstName /> should render a information 1`] = `
-<div
-  class="ant-row ant-form-item RegisterFormstyle__StyledFormItem-sc-1yq7sv9-7 iamOBg"
+<form
+  class="ant-form ant-form-horizontal"
 >
   <div
-    class="ant-col ant-form-item-label"
-  >
-    <label
-      class=""
-      for="firstName"
-      title="First name"
-    >
-      First name
-    </label>
-  </div>
-  <div
-    class="ant-col ant-form-item-control"
+    class="ant-row ant-form-item RegisterFormstyle__StyledFormItem-sc-1yq7sv9-7 iamOBg"
   >
     <div
-      class="ant-form-item-control-input"
+      class="ant-col ant-form-item-label"
+    >
+      <label
+        class=""
+        for="firstName"
+        title="First name"
+      >
+        First name
+      </label>
+    </div>
+    <div
+      class="ant-col ant-form-item-control"
     >
       <div
-        class="ant-form-item-control-input-content"
+        class="ant-form-item-control-input"
       >
-        <input
-          class="ant-input"
-          id="firstName"
-          name="firstName"
-          placeholder="Enter first name"
-          type="text"
-          value=""
-        />
+        <div
+          class="ant-form-item-control-input-content"
+        >
+          <input
+            class="ant-input"
+            id="firstName"
+            name="firstName"
+            placeholder="Enter first name"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>
 `;

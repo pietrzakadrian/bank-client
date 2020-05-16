@@ -1,39 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<EmailAddress /> should render a information 1`] = `
-<div
-  class="ant-row ant-form-item RegisterFormstyle__StyledFormItem-sc-1yq7sv9-7 iamOBg"
+<form
+  class="ant-form ant-form-horizontal"
 >
   <div
-    class="ant-col ant-form-item-label"
-  >
-    <label
-      class="ant-form-item-required"
-      for="email"
-      title="E-Mail address"
-    >
-      E-Mail address
-    </label>
-  </div>
-  <div
-    class="ant-col ant-form-item-control"
+    class="ant-row ant-form-item RegisterFormstyle__StyledFormItem-sc-1yq7sv9-7 iamOBg"
   >
     <div
-      class="ant-form-item-control-input"
+      class="ant-col ant-form-item-label"
+    >
+      <label
+        class="ant-form-item-required"
+        for="email"
+        title="E-Mail address"
+      >
+        E-Mail address
+      </label>
+    </div>
+    <div
+      class="ant-col ant-form-item-control"
     >
       <div
-        class="ant-form-item-control-input-content"
+        class="ant-form-item-control-input"
       >
-        <input
-          class="ant-input"
-          id="email"
-          name="email"
-          placeholder="Enter e-mail address"
-          type="text"
-          value=""
-        />
+        <div
+          class="ant-form-item-control-input-content"
+        >
+          <input
+            class="ant-input"
+            id="email"
+            name="email"
+            placeholder="Enter e-mail address"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <div
+    class="ant-row ant-form-item RegisterFormstyle__StyledFormItem-sc-1yq7sv9-7 dPiuqy"
+    tail="true"
+  >
+    <div
+      class="ant-col ant-form-item-control"
+    >
+      <div
+        class="ant-form-item-control-input"
+      >
+        <div
+          class="ant-form-item-control-input-content"
+        >
+          <label
+            class="ant-checkbox-wrapper"
+          >
+            <span
+              class="ant-checkbox"
+            >
+              <input
+                class="ant-checkbox-input"
+                id="confirm-personal-data"
+                type="checkbox"
+                value=""
+              />
+              <span
+                class="ant-checkbox-inner"
+              />
+            </span>
+            <span>
+              I agree to the processing of my personal data.
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="RegisterFormstyle__StyledInformation-sc-1yq7sv9-8 cnaIfl"
+  >
+    Registration does not require confirmation by the email.
+  </div>
+</form>
 `;

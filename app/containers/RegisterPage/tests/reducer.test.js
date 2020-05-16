@@ -1,6 +1,7 @@
 import produce from 'immer';
 
 // import { getAction } from 'connected-react-router';
+import { onLocationChanged } from 'connected-react-router';
 import registerPageReducer from '../reducer';
 import {
   getCurrenciesAction,
@@ -197,20 +198,22 @@ describe('registerPageReducer', () => {
     );
   });
 
-  // it('should handle the LocationChangeAction action correctly', () => {
-  //   const expectedResult = produce(state, (draft) => {
-  //     draft.firstName = state.firstName;
-  //     draft.lastName = state.lastName;
-  //     draft.currency = state.currency;
-  //     draft.email = state.email;
-  //     draft.password = state.password;
-  //     draft.isLoading = state.isLoading;
-  //     draft.pinCode = state.pinCode;
-  //     draft.currencies = state.currencies;
-  //     draft.error = state.error;
-  //     draft.currentStep = state.currentStep;
-  //   });
+  it('should handle the LocationChangeAction action correctly', () => {
+    const expectedResult = produce(state, (draft) => {
+      draft.firstName = state.firstName;
+      draft.lastName = state.lastName;
+      draft.currency = state.currency;
+      draft.email = state.email;
+      draft.password = state.password;
+      draft.isLoading = state.isLoading;
+      draft.pinCode = state.pinCode;
+      draft.currencies = state.currencies;
+      draft.error = state.error;
+      draft.currentStep = state.currentStep;
+    });
 
-  //   expect(registerPageReducer(state, getAction())).toEqual(expectedResult);
-  // });
+    expect(registerPageReducer(state, onLocationChanged())).toEqual(
+      expectedResult,
+    );
+  });
 });

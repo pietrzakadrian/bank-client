@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import './__mocks__/matchMedia';
+import 'containers/RegisterPage/tests/__mocks__/matchMedia';
+import { Form } from 'antd';
 
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
@@ -17,7 +18,9 @@ describe('<Currency />', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
-          <Currency />
+          <Form>
+            <Currency />
+          </Form>
         </IntlProvider>
       </Provider>,
     );

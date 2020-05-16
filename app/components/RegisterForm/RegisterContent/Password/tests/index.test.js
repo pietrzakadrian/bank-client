@@ -5,8 +5,10 @@ import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
 import configureStore from 'configureStore';
+import { Form } from 'antd';
+
 import Password from '../index';
-import './__mocks__/matchMedia';
+import 'containers/RegisterPage/tests/__mocks__/matchMedia';
 
 describe('<Password />', () => {
   const history = createMemoryHistory();
@@ -16,7 +18,9 @@ describe('<Password />', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
-          <Password />
+          <Form>
+            <Password />
+          </Form>
         </IntlProvider>
       </Provider>,
     );

@@ -7,6 +7,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
+import { FormattedMessage } from 'react-intl';
 import {
   StyledFooter,
   StyledButton,
@@ -15,8 +16,7 @@ import {
   StyledTip,
 } from './Footer.style';
 
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
+import messages from './messages';
 
 export default function Footer() {
   const dispatch = useDispatch();
@@ -25,38 +25,29 @@ export default function Footer() {
     <StyledFooter>
       <StyledWarning>
         <StyledInfoCircleOutlined />
-        Remember the basic safety rules.
+        <FormattedMessage {...messages.header} />
       </StyledWarning>
 
       <div>
-        Before you enter your ID number and access password on your website,
-        make sure
+        <FormattedMessage {...messages.subheader} />
         <ul>
           <li>
-            Your password is secure. It contains at least 8 characters and
-            consists of uppercase and lowercase letters
+            <FormattedMessage {...messages.ul_li1} />
           </li>
           <li>
-            in the address bar or status bar, a padlock is visible at the bottom
-            of the browser screen
+            <FormattedMessage {...messages.ul_li2} />
           </li>
         </ul>
       </div>
 
       <StyledTip>
-        Remember: The bank does not require confirmation of any data, correct
-        login or reading of the Banks messages by means of SMS, TAN and / or
-        e-mail, or installation of any applications on the users phones or
-        computers.
+        <FormattedMessage {...messages.warning} />
       </StyledTip>
 
       <div>
-        This site uses cookies to provide services at the highest level. By
-        clicking or navigating the site, you agree to allow our collection of
-        information on through cookies. For more information on security, please
-        visit:{' '}
+        <FormattedMessage {...messages.footer} />{' '}
         <StyledButton type="link" onClick={() => dispatch(push('/privacy'))}>
-          Privacy rules
+          <FormattedMessage {...messages.buttonContent} />
         </StyledButton>
       </div>
     </StyledFooter>

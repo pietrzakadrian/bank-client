@@ -21,7 +21,7 @@ describe('<Footer />', () => {
   const store = configureStore({}, history);
 
   it('should render a div', () => {
-    const { container, getByText } = render(
+    const { container } = render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
           <Footer />
@@ -29,6 +29,17 @@ describe('<Footer />', () => {
       </Provider>,
     );
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('should handle click events', () => {
+    const { getByText } = render(
+      <Provider store={store}>
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <Footer />
+        </IntlProvider>
+      </Provider>,
+    );
+
     const button = getByText('Privacy rules');
     fireEvent.click(button);
   });

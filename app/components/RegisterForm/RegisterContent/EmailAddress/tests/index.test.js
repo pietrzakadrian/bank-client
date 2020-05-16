@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import './__mocks__/matchMedia';
-
+import 'containers/RegisterPage/tests/__mocks__/matchMedia';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
+import { Form } from 'antd';
 import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
 import configureStore from 'configureStore';
@@ -17,7 +17,9 @@ describe('<EmailAddress />', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
-          <EmailAddress />
+          <Form>
+            <EmailAddress />
+          </Form>
         </IntlProvider>
       </Provider>,
     );

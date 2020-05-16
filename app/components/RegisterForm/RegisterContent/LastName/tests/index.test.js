@@ -1,12 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
+import { Form } from 'antd';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
 import configureStore from 'configureStore';
 import LastName from '../index';
-import './__mocks__/matchMedia';
+import 'containers/RegisterPage/tests/__mocks__/matchMedia';
 
 describe('<LastName />', () => {
   const history = createMemoryHistory();
@@ -16,7 +17,9 @@ describe('<LastName />', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
-          <LastName />
+          <Form>
+            <LastName />
+          </Form>
         </IntlProvider>
       </Provider>,
     );

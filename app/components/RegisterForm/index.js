@@ -19,7 +19,7 @@ import {
   makeSelectPinCode,
   makeSelectCurrentStep,
 } from 'containers/RegisterPage/selectors';
-import { steps } from 'components/RegisterStep/steps';
+import steps from 'components/RegisterStep/Steps';
 import RegisterStep from 'components/RegisterStep';
 import {
   StyledFormWrapper,

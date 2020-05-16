@@ -10,6 +10,8 @@ import {
   getCurrenciesAction,
   selectCurrencyAction,
 } from 'containers/RegisterPage/actions';
+// import { FormattedMessage } from 'react-intl';
+// import messages from './messages';
 import {
   StyledFormItem,
   StyledLoadingOutlined,

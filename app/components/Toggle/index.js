@@ -11,7 +11,6 @@ import { Select } from 'antd';
 export default function Toggle({ values, value, messages, onToggle }) {
   let content = <Select.Option>--</Select.Option>;
 
-  // If we have items, render them
   if (values) {
     content = values.map((val) => (
       <Select.Option key={val} value={val}>

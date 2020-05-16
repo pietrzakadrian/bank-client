@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Input } from 'antd';
 
+import { makeSelectPassword } from 'containers/RegisterPage/selectors';
+import { changeInputAction } from 'containers/RegisterPage/actions';
+// import { FormattedMessage } from 'react-intl';
 import { StyledFormItem } from '../../RegisterForm.style';
-import { makeSelectPassword } from '../../../../containers/RegisterPage/selectors';
-import { changeInputAction } from '../../../../containers/RegisterPage/actions';
+// import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   password: makeSelectPassword(),

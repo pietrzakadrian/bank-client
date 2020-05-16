@@ -2,13 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Input, Checkbox } from 'antd';
-
+// import { FormattedMessage } from 'react-intl';
 import {
   changeInputAction,
   checkEmailAction,
 } from 'containers/RegisterPage/actions';
+import { makeSelectEmail } from 'containers/RegisterPage/selectors';
+// import messages from './messages';
 import { StyledFormItem, StyledInformation } from '../../RegisterForm.style';
-import { makeSelectEmail } from '../../../../containers/RegisterPage/selectors';
 
 const stateSelector = createStructuredSelector({
   email: makeSelectEmail(),

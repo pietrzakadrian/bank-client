@@ -4,7 +4,9 @@ import { createStructuredSelector } from 'reselect';
 import { Input } from 'antd';
 import { makeSelectLastName } from 'containers/RegisterPage/selectors';
 import { changeInputAction } from 'containers/RegisterPage/actions';
+// import { FormattedMessage } from 'react-intl';
 import { StyledFormItem } from '../../RegisterForm.style';
+// import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   lastName: makeSelectLastName(),

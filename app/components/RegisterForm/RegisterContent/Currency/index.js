@@ -10,8 +10,8 @@ import {
   getCurrenciesAction,
   selectCurrencyAction,
 } from 'containers/RegisterPage/actions';
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
+import { intlShape, injectIntl } from 'react-intl';
+import messages from './messages';
 import {
   StyledFormItem,
   StyledLoadingOutlined,
@@ -23,22 +23,24 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
 });
 
-export default function Currency() {
+function Currency({ intl }) {
   const { isLoading, currencies } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const spinIcon = <StyledLoadingOutlined spin />;
 
   return (
     <StyledFormItem
-      label="Currency"
+      label={intl.formatMessage(messages.label)}
       name="currency"
-      rules={[{ required: true, message: 'Currency is required.' }]}
+      rules={[
+        { required: true, message: intl.formatMessage(messages.validation) },
+      ]}
     >
       <Select
         onClick={() => !currencies.length && dispatch(getCurrenciesAction())}
         notFoundContent={isLoading ? <StyledSpin indicator={spinIcon} /> : null}
         onSelect={(currency) => dispatch(selectCurrencyAction(currency))}
-        placeholder="Select currency"
+        placeholder={intl.formatMessage(messages.placeholder)}
       >
         {currencies.map((currency) => (
           <Select.Option key={currency.uuid} value={currency.uuid}>
@@ -49,3 +51,9 @@ export default function Currency() {
     </StyledFormItem>
   );
 }
+
+Currency.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(Currency);

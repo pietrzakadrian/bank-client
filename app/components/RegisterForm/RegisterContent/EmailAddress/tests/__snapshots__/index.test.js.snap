@@ -69,7 +69,9 @@ exports[`<EmailAddress /> should render a information 1`] = `
               />
             </span>
             <span>
-              I agree to the processing of my personal data.
+              <span>
+                I agree to the processing of my personal data.
+              </span>
             </span>
           </label>
         </div>
@@ -79,7 +81,9 @@ exports[`<EmailAddress /> should render a information 1`] = `
   <div
     class="RegisterFormstyle__StyledInformation-sc-1yq7sv9-8 cnaIfl"
   >
-    Registration does not require confirmation by the email.
+    <span>
+      Registration does not require confirmation by the email.
+    </span>
   </div>
 </form>
 `;

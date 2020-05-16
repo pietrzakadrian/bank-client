@@ -4,26 +4,30 @@ import { createStructuredSelector } from 'reselect';
 import { Input } from 'antd';
 import { makeSelectLastName } from 'containers/RegisterPage/selectors';
 import { changeInputAction } from 'containers/RegisterPage/actions';
-// import { FormattedMessage } from 'react-intl';
+import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from '../../RegisterForm.style';
-// import messages from './messages';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   lastName: makeSelectLastName(),
 });
 
-export default function LastName() {
+function LastName({ intl }) {
   const { lastName } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const isName = /^[a-z ,.'-]+$/i;
 
   const checkStringConsistsLettersOnly = (_, value) => {
     if (value && !isName.test(value)) {
-      return Promise.reject(new Error('The name entered must be valid.'));
+      return Promise.reject(
+        new Error(intl.formatMessage(messages.validation_valid)),
+      );
     }
 
     if (!value) {
-      return Promise.reject(new Error('Last name is required.'));
+      return Promise.reject(
+        new Error(intl.formatMessage(messages.validation_required)),
+      );
     }
 
     return Promise.resolve();
@@ -31,7 +35,7 @@ export default function LastName() {
 
   return (
     <StyledFormItem
-      label="Last name"
+      label={intl.formatMessage(messages.label)}
       name="lastName"
       rules={[{ validator: checkStringConsistsLettersOnly }]}
     >
@@ -39,8 +43,14 @@ export default function LastName() {
         onChange={(event) => dispatch(changeInputAction(event.target))}
         name="lastName"
         value={lastName}
-        placeholder="Enter last name"
+        placeholder={intl.formatMessage(messages.placeholder)}
       />
     </StyledFormItem>
   );
 }
+
+LastName.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(LastName);

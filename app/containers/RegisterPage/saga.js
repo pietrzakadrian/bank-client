@@ -68,7 +68,7 @@ export function* checkEmail({ value, reject, resolve }) {
       yield put(checkEmailSuccessAction(exist));
 
       if (exist) {
-        yield call(reject, 'E-Mail address already exists.');
+        yield call(reject);
       } else {
         yield call(resolve);
       }

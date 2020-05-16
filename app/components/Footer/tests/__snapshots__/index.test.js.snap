@@ -30,26 +30,38 @@ exports[`<Footer /> should render a div 1`] = `
         />
       </svg>
     </span>
-    Remember the basic safety rules.
+    <span>
+      Remember the basic safety rules.
+    </span>
   </div>
   <div>
-    Before you enter your ID number and access password on your website, make sure
+    <span>
+      Before you enter your ID number and access password on your website, make sure
+    </span>
     <ul>
       <li>
-        Your password is secure. It contains at least 8 characters and consists of uppercase and lowercase letters
+        <span>
+          Your password is secure. It contains at least 8 characters and consists of uppercase and lowercase letters
+        </span>
       </li>
       <li>
-        in the address bar or status bar, a padlock is visible at the bottom of the browser screen
+        <span>
+          in the address bar or status bar, a padlock is visible at the bottom of the browser screen
+        </span>
       </li>
     </ul>
   </div>
   <div
     class="Footerstyle__StyledTip-ii3akc-3 snhOq"
   >
-    Remember: The bank does not require confirmation of any data, correct login or reading of the Banks messages by means of SMS, TAN and / or e-mail, or installation of any applications on the users phones or computers.
+    <span>
+      Remember: The bank does not require confirmation of any data, correct login or reading of the Banks messages by means of SMS, TAN and / or e-mail, or installation of any applications on the users phones or computers.
+    </span>
   </div>
   <div>
-    This site uses cookies to provide services at the highest level. By clicking or navigating the site, you agree to allow our collection of information on through cookies. For more information on security, please visit:
+    <span>
+      This site uses cookies to provide services at the highest level. By clicking or navigating the site, you agree to allow our collection of information on through cookies. For more information on security, please visit:
+    </span>
      
     <button
       class="ant-btn Footerstyle__StyledButton-ii3akc-4 ifdXTD ant-btn-link"

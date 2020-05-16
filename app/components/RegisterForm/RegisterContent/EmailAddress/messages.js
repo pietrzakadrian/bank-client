@@ -38,4 +38,8 @@ export default defineMessages({
     id: `${scope}.information`,
     defaultMessage: 'Registration does not require confirmation by the email.',
   },
+  emailExist: {
+    id: `${scope}.emailExist`,
+    defaultMessage: 'E-Mail address already exists.',
+  },
 });

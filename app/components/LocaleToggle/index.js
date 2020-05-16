@@ -22,7 +22,6 @@ const stateSelector = createSelector(makeSelectLocale(), (locale) => ({
 export default function LocaleToggle() {
   const { locale } = useSelector(stateSelector);
   const dispatch = useDispatch();
-
   const onLocaleToggle = (evt) => dispatch(changeLocale(evt.target.value));
 
   return (

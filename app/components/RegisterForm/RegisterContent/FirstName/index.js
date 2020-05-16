@@ -4,15 +4,15 @@ import { createStructuredSelector } from 'reselect';
 import { Input } from 'antd';
 import { makeSelectFirstName } from 'containers/RegisterPage/selectors';
 import { changeInputAction } from 'containers/RegisterPage/actions';
-// import { FormattedMessage } from 'react-intl';
+import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from '../../RegisterForm.style';
-// import messages from './messages';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   firstName: makeSelectFirstName(),
 });
 
-export default function FirstName() {
+function FirstName({ intl }) {
   const { firstName } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const [isStartedRegistration, setIsStartedRegistration] = useState(false);
@@ -20,11 +20,15 @@ export default function FirstName() {
 
   const checkStringConsistsLettersOnly = (_, value) => {
     if (value && !isName.test(value)) {
-      return Promise.reject(new Error('The name entered must be valid.'));
+      return Promise.reject(
+        new Error(intl.formatMessage(messages.validation_valid)),
+      );
     }
 
     if (!value && isStartedRegistration) {
-      return Promise.reject(new Error('First name is required.'));
+      return Promise.reject(
+        new Error(intl.formatMessage(messages.validation_required)),
+      );
     }
 
     return Promise.resolve();
@@ -36,7 +40,7 @@ export default function FirstName() {
 
   return (
     <StyledFormItem
-      label="First name"
+      label={intl.formatMessage(messages.label)}
       name="firstName"
       rules={[{ validator: checkStringConsistsLettersOnly }]}
     >
@@ -44,8 +48,14 @@ export default function FirstName() {
         onChange={(event) => dispatch(changeInputAction(event.target))}
         name="firstName"
         value={firstName}
-        placeholder="Enter first name"
+        placeholder={intl.formatMessage(messages.placeholder)}
       />
     </StyledFormItem>
   );
 }
+
+FirstName.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(FirstName);

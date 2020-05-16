@@ -5,15 +5,15 @@ import { Input } from 'antd';
 
 import { makeSelectPassword } from 'containers/RegisterPage/selectors';
 import { changeInputAction } from 'containers/RegisterPage/actions';
-// import { FormattedMessage } from 'react-intl';
+import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from '../../RegisterForm.style';
-// import messages from './messages';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   password: makeSelectPassword(),
 });
 
-export default function Password() {
+function Password({ intl }) {
   const { password } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
@@ -23,13 +23,13 @@ export default function Password() {
     }
 
     return Promise.reject(
-      new Error('Password must be at least 6 characters long.'),
+      new Error(intl.formatMessage(messages.validation_valid)),
     );
   };
 
   return (
     <StyledFormItem
-      label="Password"
+      label={intl.formatMessage(messages.label)}
       name="password"
       rules={[{ validator: checkLengthOfCharactersInPassword }]}
     >
@@ -37,8 +37,14 @@ export default function Password() {
         onChange={(event) => dispatch(changeInputAction(event.target))}
         name="password"
         value={password}
-        placeholder="Enter password"
+        placeholder={intl.formatMessage(messages.placeholder)}
       />
     </StyledFormItem>
   );
 }
+
+Password.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(Password);

@@ -2,27 +2,27 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Input, Checkbox } from 'antd';
-// import { FormattedMessage } from 'react-intl';
+import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
 import {
   changeInputAction,
   checkEmailAction,
 } from 'containers/RegisterPage/actions';
 import { makeSelectEmail } from 'containers/RegisterPage/selectors';
-// import messages from './messages';
+import messages from './messages';
 import { StyledFormItem, StyledInformation } from '../../RegisterForm.style';
 
 const stateSelector = createStructuredSelector({
   email: makeSelectEmail(),
 });
 
-export default function EmailAddress() {
+function EmailAddress({ intl }) {
   const { email } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
-  const checkEmailAddressAlreadyExist = (_, value) =>
+  const checkEmailAddressAlreadyExist = (_, value, callback) =>
     new Promise((resolve, reject) =>
       dispatch(checkEmailAction(value, reject, resolve)),
-    );
+    ).catch(() => callback(intl.formatMessage(messages.emailExist)));
 
   const checkDataProcessingIsAccepted = (_, value) => {
     if (value) {
@@ -31,7 +31,7 @@ export default function EmailAddress() {
 
     return Promise.reject(
       new Error(
-        'Confirmation of consent to the processing of personal data is required.',
+        intl.formatMessage(messages.validation_processing_personal_data),
       ),
     );
   };
@@ -45,11 +45,11 @@ export default function EmailAddress() {
         rules={[
           {
             type: 'email',
-            message: 'E-Mail address must be valid.',
+            message: intl.formatMessage(messages.validation_email_valid),
           },
           {
             required: true,
-            message: 'E-Mail address is required.',
+            message: intl.formatMessage(messages.validation_email_required),
           },
           { asyncValidator: checkEmailAddressAlreadyExist },
         ]}
@@ -58,7 +58,7 @@ export default function EmailAddress() {
           onChange={(event) => dispatch(changeInputAction(event.target))}
           name="email"
           value={email}
-          placeholder="Enter e-mail address"
+          placeholder={intl.formatMessage(messages.placeholder)}
         />
       </StyledFormItem>
 
@@ -68,12 +68,20 @@ export default function EmailAddress() {
         valuePropName="checked"
         rules={[{ validator: checkDataProcessingIsAccepted }]}
       >
-        <Checkbox>I agree to the processing of my personal data.</Checkbox>
+        <Checkbox>
+          <FormattedMessage {...messages.checkbox_content} />
+        </Checkbox>
       </StyledFormItem>
 
       <StyledInformation>
-        Registration does not require confirmation by the email.
+        <FormattedMessage {...messages.information} />
       </StyledInformation>
     </>
   );
 }
+
+EmailAddress.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(EmailAddress);

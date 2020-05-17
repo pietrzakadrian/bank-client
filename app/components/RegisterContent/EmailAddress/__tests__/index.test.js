@@ -1,16 +1,15 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import 'containers/RegisterPage/tests/__mocks__/matchMedia';
-import { Form } from 'antd';
-
+import 'containers/RegisterPage/__tests__/__mocks__/matchMedia';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
+import { Form } from 'antd';
 import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
 import configureStore from 'configureStore';
-import Currency from '../index';
+import EmailAddress from '../index';
 
-describe('<Currency />', () => {
+describe('<EmailAddress />', () => {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
 
@@ -19,7 +18,7 @@ describe('<Currency />', () => {
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
           <Form>
-            <Currency />
+            <EmailAddress />
           </Form>
         </IntlProvider>
       </Provider>,

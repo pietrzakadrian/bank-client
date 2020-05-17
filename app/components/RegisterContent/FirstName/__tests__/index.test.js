@@ -6,20 +6,18 @@ import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
 import configureStore from 'configureStore';
 import { Form } from 'antd';
-
-import Password from '../index';
-import 'containers/RegisterPage/tests/__mocks__/matchMedia';
-
-describe('<Password />', () => {
+import FirstName from '../index';
+import 'containers/RegisterPage/__tests__/__mocks__/matchMedia';
+describe('<FirstName />', () => {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
 
-  it('should render a Password', () => {
+  it('should render a information', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
           <Form>
-            <Password />
+            <FirstName />
           </Form>
         </IntlProvider>
       </Provider>,

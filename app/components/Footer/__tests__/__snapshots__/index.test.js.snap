@@ -5,7 +5,7 @@ exports[`<Footer /> should render a div 1`] = `
   class="Footerstyle__StyledFooter-ii3akc-0 bPUOfu"
 >
   <div
-    class="Footerstyle__StyledWarning-ii3akc-1 fQtJKn"
+    class="Footerstyle__StyledWarning-ii3akc-1 iGLjsw"
   >
     <span
       aria-label="info-circle"
@@ -52,7 +52,7 @@ exports[`<Footer /> should render a div 1`] = `
     </ul>
   </div>
   <div
-    class="Footerstyle__StyledTip-ii3akc-3 snhOq"
+    class="Footerstyle__StyledTip-ii3akc-3 gUnehx"
   >
     <span>
       Remember: The bank does not require confirmation of any data, correct login or reading of the Banks messages by means of SMS, TAN and / or e-mail, or installation of any applications on the users phones or computers.
@@ -64,7 +64,7 @@ exports[`<Footer /> should render a div 1`] = `
     </span>
      
     <button
-      class="ant-btn Footerstyle__StyledButton-ii3akc-4 ifdXTD ant-btn-link"
+      class="ant-btn Footerstyle__StyledButton-ii3akc-4 lepEIQ ant-btn-link"
       type="button"
     >
       <span>

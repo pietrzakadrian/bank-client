@@ -2,7 +2,7 @@
 
 exports[`<Subheader /> should render a information 1`] = `
 <div
-  class="Subheaderstyle__StyledSubheader-sc-5bqx2y-0 iGgpYz"
+  class="Subheaderstyle__StyledSubheader-sc-5bqx2y-0 jziucg"
 >
   <div
     class="ant-page-header Subheaderstyle__StyledPageHeader-sc-5bqx2y-1 fjdRAX ant-page-header-ghost"

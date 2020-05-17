@@ -2,14 +2,14 @@
 
 exports[`<RedirectToggle /> should render a information 1`] = `
 <div
-  class="RedirectTogglestyle__StyledRedirectToggle-sc-13etpaw-0 gfUxfv"
+  class="RedirectTogglestyle__StyledRedirectToggle-sc-13etpaw-0 jFRban"
 >
   <span>
     If you already have a bank account, you can log in by clicking on
   </span>
    
   <button
-    class="ant-btn RedirectTogglestyle__StyledButton-sc-13etpaw-1 iMiuhT ant-btn-link"
+    class="ant-btn RedirectTogglestyle__StyledButton-sc-13etpaw-1 jqtwAm ant-btn-link"
     type="button"
   >
     <span>

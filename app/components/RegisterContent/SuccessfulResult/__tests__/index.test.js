@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
 import configureStore from 'configureStore';
-import 'containers/RegisterPage/tests/__mocks__/matchMedia';
+import 'containers/RegisterPage/__tests__/__mocks__/matchMedia';
 import SuccessfulResult from '../index';
 describe('<FirstName />', () => {
   const history = createMemoryHistory();

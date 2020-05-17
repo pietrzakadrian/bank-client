@@ -5,7 +5,7 @@ exports[`<LastName /> should render a LastName 1`] = `
   class="ant-form ant-form-horizontal"
 >
   <div
-    class="ant-row ant-form-item RegisterFormstyle__StyledFormItem-sc-1yq7sv9-5 ggDUte"
+    class="ant-row ant-form-item Formstyle__StyledFormItem-u95n9s-5 eNoyHh"
   >
     <div
       class="ant-col ant-form-item-label"

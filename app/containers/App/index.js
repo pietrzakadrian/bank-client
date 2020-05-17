@@ -14,6 +14,7 @@ import { hot } from 'react-hot-loader/root';
 import HomePage from 'containers/HomePage/Loadable';
 import RegisterPage from 'containers/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import { routes } from 'utils';
 import 'antd/dist/antd.less';
 import 'sanitize.css/sanitize.css';
 import GlobalStyle from 'global-styles';
@@ -22,8 +23,8 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/register" component={RegisterPage} />
+        <Route exact path={routes.home} component={HomePage} />
+        <Route path={routes.register} component={RegisterPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

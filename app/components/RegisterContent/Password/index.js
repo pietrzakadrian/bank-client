@@ -6,7 +6,7 @@ import { Input } from 'antd';
 import { makeSelectPassword } from 'containers/RegisterPage/selectors';
 import { changeInputAction } from 'containers/RegisterPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
-import { StyledFormItem } from '../../RegisterForm.style';
+import { StyledFormItem } from '../../RegisterForm/RegisterForm.style';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

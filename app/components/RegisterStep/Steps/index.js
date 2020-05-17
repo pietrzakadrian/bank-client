@@ -5,7 +5,7 @@ import {
   Password,
   LastName,
   FirstName,
-} from 'components/RegisterForm/RegisterContent';
+} from 'components/RegisterContent';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 

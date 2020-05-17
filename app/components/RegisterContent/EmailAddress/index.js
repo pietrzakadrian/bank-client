@@ -8,8 +8,11 @@ import {
   checkEmailAction,
 } from 'containers/RegisterPage/actions';
 import { makeSelectEmail } from 'containers/RegisterPage/selectors';
+import {
+  StyledFormItem,
+  StyledInformation,
+} from 'components/RegisterForm/RegisterForm.style';
 import messages from './messages';
-import { StyledFormItem, StyledInformation } from '../../RegisterForm.style';
 
 const stateSelector = createStructuredSelector({
   email: makeSelectEmail(),

@@ -1,6 +1,6 @@
 /**
  *
- * LocaleToggle
+ * Toggle
  *
  */
 

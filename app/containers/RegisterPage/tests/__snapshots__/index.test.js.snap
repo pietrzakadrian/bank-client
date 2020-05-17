@@ -2,7 +2,7 @@
 
 exports[`<RegisterPage /> should render its registerPage 1`] = `
 <header
-  class="Headerstyle__StyledHeader-sc-1v0bnwr-0 jQivEs"
+  class="Headerstyle__StyledHeader-sc-1v0bnwr-0 dcAuMn"
 >
   <a
     href="/"

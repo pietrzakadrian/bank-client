@@ -11,12 +11,12 @@ import {
   selectCurrencyAction,
 } from 'containers/RegisterPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
-import messages from './messages';
 import {
   StyledFormItem,
   StyledLoadingOutlined,
   StyledSpin,
-} from '../../RegisterForm.style';
+} from 'components/RegisterForm/RegisterForm.style';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   currencies: makeSelectCurrencies(),

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Steps, Form, Button, Spin } from 'antd';
+import { Steps, Form, Spin } from 'antd';
 import { media } from 'utils';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -65,17 +65,6 @@ export const StyledSpin = styled(Spin)`
 export const StyledFormWrapper = styled.div`
   text-align: center;
   background-color: rgb(242, 244, 247);
-`;
-
-export const StyledFormActionsWrapper = styled.div`
-  padding: 0 0 20px;
-  max-width: 300px;
-  margin: 0 auto;
-`;
-
-export const StyledButton = styled(Button)`
-  width: 100%;
-  color: ${(props) => props.back && 'inherit'};
 `;
 
 export const StyledForm = styled(Form)`

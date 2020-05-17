@@ -7,7 +7,7 @@ export const StyledRedirectToggle = styled.div`
   text-align: left;
   font-weight: ${typography.fontWeightBold};
 
-  padding: 0 12px;
+  padding: 0 15px;
   max-width: 560px;
 `;
 

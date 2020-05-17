@@ -5,7 +5,8 @@ import { LoadingOutlined } from '@ant-design/icons';
 
 export const StyledSteps = styled(Steps)`
   &&& {
-    padding: 30px;
+    padding: 20px 30px 30px;
+
     max-width: 1260px;
     margin: 0 auto;
     flex-direction: row;
@@ -33,6 +34,8 @@ export const StyledSteps = styled(Steps)`
     `}
 
     ${media.tablet`
+      padding: 20px 50px 30px;
+
       .ant-steps-item {
         display: inline-block;
 

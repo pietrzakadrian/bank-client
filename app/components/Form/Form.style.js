@@ -1,6 +1,17 @@
 import styled from 'styled-components';
 import { colors } from 'utils';
-import { Form } from 'antd';
+import { Form, InputNumber, Button } from 'antd';
+
+export const StyledFormActionsWrapper = styled.div`
+  padding: 0 0 20px;
+  max-width: 300px;
+  margin: 0 auto;
+`;
+
+export const StyledButton = styled(Button)`
+  width: 100%;
+  color: ${(props) => props.back && 'inherit'};
+`;
 
 export const StyledFormWrapper = styled.div`
   text-align: center;
@@ -10,6 +21,14 @@ export const StyledFormWrapper = styled.div`
 export const StyledForm = styled(Form)`
   max-width: 300px;
   margin: 0 auto;
+`;
+
+export const StyledInputNumber = styled(InputNumber)`
+  width: 100%;
+
+  .ant-input-number-handler-wrap {
+    display: none;
+  }
 `;
 
 export const StyledFormItem = styled(Form.Item)`

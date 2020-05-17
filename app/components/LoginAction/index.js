@@ -4,16 +4,17 @@ import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import {
-  registerAction,
   nextStepAction,
   previousStepAction,
-} from 'containers/RegisterPage/actions';
+  loginAction,
+} from 'containers/LoginPage/actions';
 import {
   makeSelectIsLoading,
   makeSelectCurrentStep,
-} from 'containers/RegisterPage/selectors';
-import steps from 'components/RegisterStep/Steps';
+} from 'containers/LoginPage/selectors';
+import steps from 'components/LoginStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+
 import {
   StyledFormActionsWrapper,
   StyledButton,
@@ -25,7 +26,7 @@ const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),
 });
 
-export default function RegisterAction({ form }) {
+export default function LoginAction({ form }) {
   const { isLoading, currentStep } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
@@ -34,7 +35,7 @@ export default function RegisterAction({ form }) {
       await form.validateFields();
 
       if (currentStep === steps.length - 1) {
-        dispatch(registerAction());
+        dispatch(loginAction());
       } else {
         dispatch(nextStepAction());
       }
@@ -75,6 +76,6 @@ export default function RegisterAction({ form }) {
   );
 }
 
-RegisterAction.propTypes = {
+LoginAction.propTypes = {
   form: PropTypes.object.isRequired,
 };

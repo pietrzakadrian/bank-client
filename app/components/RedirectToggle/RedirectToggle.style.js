@@ -4,7 +4,7 @@ import { typography, colors } from 'utils';
 
 export const StyledRedirectToggle = styled.div`
   margin: 20px auto 30px;
-  text-align: center;
+  text-align: left;
   font-weight: ${typography.fontWeightBold};
 
   padding: 0 12px;

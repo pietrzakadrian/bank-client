@@ -8,6 +8,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 import { FormattedMessage } from 'react-intl';
+import { routes } from 'utils';
 import {
   StyledFooter,
   StyledButton,
@@ -15,7 +16,6 @@ import {
   StyledWarning,
   StyledTip,
 } from './Footer.style';
-
 import messages from './messages';
 
 export default function Footer() {
@@ -46,7 +46,10 @@ export default function Footer() {
 
       <div>
         <FormattedMessage {...messages.footer} />{' '}
-        <StyledButton type="link" onClick={() => dispatch(push('/privacy'))}>
+        <StyledButton
+          type="link"
+          onClick={() => dispatch(push(routes.privacy))}
+        >
           <FormattedMessage {...messages.buttonContent} />
         </StyledButton>
       </div>

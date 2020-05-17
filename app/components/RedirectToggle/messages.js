@@ -11,7 +11,7 @@ export const scope = 'app.components.RedirectToggle';
 export default defineMessages({
   register: {
     id: `${scope}.register`,
-    defaultMessage: 'Register',
+    defaultMessage: 'Registration',
   },
   login: {
     id: `${scope}.login`,

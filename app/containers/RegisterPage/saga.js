@@ -1,5 +1,5 @@
 import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
-import request from 'utils/request';
+import { api, request } from 'utils';
 import { GET_CURRENCIES, REGISTER, CHECK_EMAIL } from './constants';
 import {
   getCurrenciesSuccessAction,
@@ -19,7 +19,7 @@ import {
 } from './selectors';
 
 export function* getCurrencies() {
-  const requestURL = `https://bank2.pietrzakadrian.com/api/currencies`;
+  const requestURL = api.currencies;
 
   try {
     const { data } = yield call(request, requestURL);
@@ -36,7 +36,7 @@ export function* register() {
   const password = yield select(makeSelectPassword());
   const currency = yield select(makeSelectCurrency());
 
-  const requestURL = `https://bank2.pietrzakadrian.com/api/Auth/register`;
+  const requestURL = api.auth.register;
   const requestParameters = {
     method: 'POST',
     headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
@@ -54,7 +54,7 @@ export function* register() {
 }
 
 export function* checkEmail({ value, reject, resolve }) {
-  const requestURL = `https://bank2.pietrzakadrian.com/api/Users/${value}/checkEmail`;
+  const requestURL = api.users.checkEmail(value);
   const isEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+(?:[a-z0-9-]*[a-z0-9])?/;
 
   if (!value) {

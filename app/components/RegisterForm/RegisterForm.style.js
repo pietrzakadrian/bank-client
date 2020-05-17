@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Steps, Form, Spin } from 'antd';
+import { Steps, Spin } from 'antd';
 import { media, colors } from 'utils';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -60,37 +60,6 @@ export const StyledSpin = styled(Spin)`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-export const StyledFormWrapper = styled.div`
-  text-align: center;
-  background-color: ${colors.grey};
-`;
-
-export const StyledForm = styled(Form)`
-  max-width: 300px;
-  margin: 0 auto;
-`;
-
-export const StyledFormItem = styled(Form.Item)`
-  padding: ${(props) => (props.tail ? '0' : '20px 0 0')};
-  text-align: left;
-
-  .ant-form-item-label {
-    padding-bottom: 0;
-
-    .ant-form-item-required {
-      font-size: 15.5px;
-
-      &:before {
-        content: none;
-      }
-    }
-  }
-
-  .ant-form-item-explain {
-    font-size: 11px;
-  }
 `;
 
 export const StyledInformation = styled.div`

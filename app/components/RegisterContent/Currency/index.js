@@ -12,10 +12,10 @@ import {
 } from 'containers/RegisterPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import {
-  StyledFormItem,
   StyledLoadingOutlined,
   StyledSpin,
 } from 'components/RegisterForm/RegisterForm.style';
+import { StyledFormItem } from 'components/Form/Form.style';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

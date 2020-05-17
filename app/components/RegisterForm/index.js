@@ -16,7 +16,7 @@ import {
 import steps from 'components/RegisterStep/Steps';
 import RegisterStep from 'components/RegisterStep';
 import SuccessfulResult from 'components/RegisterContent/SuccessfulResult';
-import { StyledFormWrapper, StyledForm } from './RegisterForm.style';
+import { StyledFormWrapper, StyledForm } from 'components/Form/Form.style';
 
 const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(),

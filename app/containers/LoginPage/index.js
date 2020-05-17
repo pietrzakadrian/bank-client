@@ -17,6 +17,7 @@ import RedirectToggle from 'components/RedirectToggle';
 import Footer from 'components/Footer';
 
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+import LoginForm from 'components/LoginForm';
 import makeSelectLoginPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -46,6 +47,8 @@ export default function LoginPage() {
       <Subheader pageTitle="Log In" />
 
       <Information />
+
+      <LoginForm />
 
       <RedirectToggle />
       <Footer />

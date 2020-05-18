@@ -5,18 +5,22 @@ import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
 import configureStore from 'configureStore';
-import 'utils/__tests__/__mocks__/matchMedia';
-import SuccessfulResult from '../index';
+import { Form } from 'antd';
 
-describe('<FirstName />', () => {
+import PinCode from '../index';
+import 'utils/__tests__/__mocks__/matchMedia';
+
+describe('<PinCode />', () => {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
 
-  it('should render a SuccessfulResult', () => {
+  it('should render a PinCode', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
-          <SuccessfulResult />
+          <Form>
+            <PinCode />
+          </Form>
         </IntlProvider>
       </Provider>,
     );

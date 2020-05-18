@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import 'containers/RegisterPage/__tests__/__mocks__/matchMedia';
+import 'utils/__tests__/__mocks__/matchMedia';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { Form } from 'antd';

@@ -7,7 +7,8 @@ import { DEFAULT_LOCALE } from 'locales';
 import configureStore from 'configureStore';
 import { Form } from 'antd';
 import FirstName from '../index';
-import 'containers/RegisterPage/__tests__/__mocks__/matchMedia';
+import 'utils/__tests__/__mocks__/matchMedia';
+
 describe('<FirstName />', () => {
   const history = createMemoryHistory();
   const store = configureStore({}, history);

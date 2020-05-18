@@ -7,7 +7,7 @@ import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
 import configureStore from 'configureStore';
 import LastName from '../index';
-import 'containers/RegisterPage/__tests__/__mocks__/matchMedia';
+import 'utils/__tests__/__mocks__/matchMedia';
 
 describe('<LastName />', () => {
   const history = createMemoryHistory();

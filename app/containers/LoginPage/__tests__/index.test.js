@@ -6,15 +6,15 @@ import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import configureStore from '../../../configureStore';
-import RegisterPage from '../index';
+import LoginPage from '../index';
 import { DEFAULT_LOCALE } from '../../../locales';
 import 'utils/__tests__/__mocks__/matchMedia';
 
-describe('<RegisterPage />', () => {
+describe('<LoginPage />', () => {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
 
-  it('should render its registerPage', () => {
+  it('should render its loginPage', () => {
     const {
       container: { firstChild },
     } = render(
@@ -22,7 +22,7 @@ describe('<RegisterPage />', () => {
         <IntlProvider locale={DEFAULT_LOCALE}>
           <ConnectedRouter history={history}>
             <HelmetProvider>
-              <RegisterPage />
+              <LoginPage />
             </HelmetProvider>
           </ConnectedRouter>
         </IntlProvider>

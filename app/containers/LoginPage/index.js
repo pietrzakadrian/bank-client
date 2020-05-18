@@ -5,6 +5,8 @@
  */
 
 import React from 'react';
+import { intlShape, injectIntl } from 'react-intl';
+
 import { Helmet } from 'react-helmet-async';
 import Header from 'components/Header';
 import Subheader from 'components/Subheader';
@@ -15,20 +17,24 @@ import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import LoginForm from 'components/LoginForm';
 import reducer from './reducer';
 import saga from './saga';
+import messages from './messages';
 
-export default function LoginPage() {
+function LoginPage({ intl }) {
   useInjectReducer({ key: 'loginPage', reducer });
   useInjectSaga({ key: 'loginPage', saga });
 
   return (
     <div>
       <Helmet>
-        <title>LoginPage</title>
-        <meta name="description" content="Description of LoginPage" />
+        <title>{intl.formatMessage(messages.login)}</title>
+        <meta
+          name="description"
+          content={intl.formatMessage(messages.description)}
+        />
       </Helmet>
 
       <Header />
-      <Subheader pageTitle="Log In" />
+      <Subheader pageTitle={intl.formatMessage(messages.login)} />
 
       <Information />
 
@@ -39,3 +45,9 @@ export default function LoginPage() {
     </div>
   );
 }
+
+LoginPage.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(LoginPage);

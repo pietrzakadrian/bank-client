@@ -8,10 +8,8 @@ import {
   previousStepAction,
   loginAction,
 } from 'containers/LoginPage/actions';
-import {
-  makeSelectIsLoading,
-  makeSelectCurrentStep,
-} from 'containers/LoginPage/selectors';
+import { makeSelectCurrentStep } from 'containers/LoginPage/selectors';
+import { makeSelectIsLoading } from 'containers/App/selectors';
 import steps from 'components/LoginStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 

@@ -21,12 +21,6 @@ const makeSelectPinCode = () =>
 const makeSelectPassword = () =>
   createSelector(selectLoginPageDomain, (substate) => substate.password);
 
-const makeSelectIsLoading = () =>
-  createSelector(selectLoginPageDomain, (substate) => substate.isLoading);
-
-const makeSelectError = () =>
-  createSelector(selectLoginPageDomain, (substate) => substate.error);
-
 const makeSelectCurrentStep = () =>
   createSelector(selectLoginPageDomain, (substate) => substate.currentStep);
 
@@ -34,7 +28,5 @@ export {
   selectLoginPageDomain,
   makeSelectPinCode,
   makeSelectPassword,
-  makeSelectIsLoading,
-  makeSelectError,
   makeSelectCurrentStep,
 };

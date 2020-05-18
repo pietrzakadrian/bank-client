@@ -8,10 +8,8 @@ import {
   nextStepAction,
   previousStepAction,
 } from 'containers/RegisterPage/actions';
-import {
-  makeSelectIsLoading,
-  makeSelectCurrentStep,
-} from 'containers/RegisterPage/selectors';
+import { makeSelectCurrentStep } from 'containers/RegisterPage/selectors';
+import { makeSelectIsLoading } from 'containers/App/selectors';
 import steps from 'components/RegisterStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import {

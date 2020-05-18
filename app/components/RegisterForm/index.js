@@ -9,7 +9,6 @@ import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import RegisterAction from 'components/RegisterAction';
 import {
-  makeSelectIsLoading,
   makeSelectPinCode,
   makeSelectCurrentStep,
 } from 'containers/RegisterPage/selectors';
@@ -19,7 +18,6 @@ import SuccessfulResult from 'components/RegisterContent/SuccessfulResult';
 import { StyledFormWrapper, StyledForm } from 'components/Form/Form.style';
 
 const stateSelector = createStructuredSelector({
-  isLoading: makeSelectIsLoading(),
   pinCode: makeSelectPinCode(),
   currentStep: makeSelectCurrentStep(),
 });

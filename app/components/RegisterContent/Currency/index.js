@@ -2,10 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Select } from 'antd';
-import {
-  makeSelectCurrencies,
-  makeSelectIsLoading,
-} from 'containers/RegisterPage/selectors';
+import { makeSelectCurrencies } from 'containers/RegisterPage/selectors';
+import { makeSelectIsLoading } from 'containers/App/selectors';
 import {
   getCurrenciesAction,
   selectCurrencyAction,

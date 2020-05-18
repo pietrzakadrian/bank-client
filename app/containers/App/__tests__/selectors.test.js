@@ -1,4 +1,10 @@
-import { makeSelectLocation } from 'containers/App/selectors';
+import {
+  makeSelectLocation,
+  makeSelectIsLogged,
+  makeSelectIsLoading,
+  makeSelectToken,
+  makeSelectUser,
+} from 'containers/App/selectors';
 
 describe('makeSelectLocation', () => {
   it('should select the location', () => {
@@ -10,5 +16,57 @@ describe('makeSelectLocation', () => {
       router,
     };
     expect(locationStateSelector(mockedState)).toEqual(router.location);
+  });
+});
+
+describe('makeSelectIsLogged', () => {
+  const isLoggedSelector = makeSelectIsLogged();
+  it('should select the is logged', () => {
+    const isLogged = false;
+    const mockedState = {
+      global: {
+        isLogged,
+      },
+    };
+    expect(isLoggedSelector(mockedState)).toEqual(isLogged);
+  });
+});
+
+describe('makeSelectIsLoading', () => {
+  const isLoadingSelector = makeSelectIsLoading();
+  it('should select the is loading', () => {
+    const isLoading = false;
+    const mockedState = {
+      global: {
+        isLoading,
+      },
+    };
+    expect(isLoadingSelector(mockedState)).toEqual(isLoading);
+  });
+});
+
+describe('makeSelectToken', () => {
+  const tokenSelector = makeSelectToken();
+  it('should select the token', () => {
+    const token = {};
+    const mockedState = {
+      global: {
+        token,
+      },
+    };
+    expect(tokenSelector(mockedState)).toEqual(token);
+  });
+});
+
+describe('makeSelectUser', () => {
+  const userSelector = makeSelectUser();
+  it('should select the token', () => {
+    const user = {};
+    const mockedState = {
+      global: {
+        user,
+      },
+    };
+    expect(userSelector(mockedState)).toEqual(user);
   });
 });

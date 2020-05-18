@@ -20,10 +20,8 @@ describe('selectRegisterPageDomain', () => {
       currency: '',
       email: '',
       password: '',
-      isLoading: false,
       pinCode: '',
       currencies: [],
-      error: '',
       currentStep: 0,
     };
     const mockedState = {

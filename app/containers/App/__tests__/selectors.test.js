@@ -1,10 +1,27 @@
 import {
+  selectGlobalDomain,
   makeSelectLocation,
   makeSelectIsLogged,
   makeSelectIsLoading,
   makeSelectToken,
   makeSelectUser,
 } from 'containers/App/selectors';
+
+describe('selectGlobalDomain', () => {
+  it('should select the home state', () => {
+    const globalState = {
+      isLogged: false,
+      isLoading: false,
+      error: {},
+      token: {},
+      user: {},
+    };
+    const mockedState = {
+      global: globalState,
+    };
+    expect(selectGlobalDomain(mockedState)).toEqual(globalState);
+  });
+});
 
 describe('makeSelectLocation', () => {
   it('should select the location', () => {

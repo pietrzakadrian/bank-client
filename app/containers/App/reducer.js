@@ -6,11 +6,14 @@
 
 import produce from 'immer';
 import {
+  CHANGE_PINCODE,
+  CHANGE_PASSWORD,
   LOGIN_SUCCESS,
   LOGIN,
   LOGIN_ERROR,
 } from 'containers/LoginPage/constants';
 import {
+  CHANGE_INPUT,
   CHECK_EMAIL,
   REGISTER,
   GET_CURRENCIES,
@@ -27,7 +30,7 @@ import { LOGOUT_SUCCESS } from './constants';
 export const initialState = {
   isLogged: false,
   isLoading: false,
-  error: {},
+  error: '',
   token: {},
   user: {},
 };
@@ -35,6 +38,11 @@ export const initialState = {
 /* eslint-disable default-case, no-param-reassign */
 const appReducer = produce((draft, action) => {
   switch (action.type) {
+    case CHANGE_PINCODE:
+    case CHANGE_PASSWORD:
+    case CHANGE_INPUT:
+      draft.error = initialState.error;
+      break;
     case LOGIN_SUCCESS:
       draft.isLogged = true;
       draft.isLoading = false;

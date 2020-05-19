@@ -17,6 +17,9 @@ const makeSelectToken = () =>
 const makeSelectUser = () =>
   createSelector(selectGlobalDomain, (globalState) => globalState.user);
 
+const makeSelectError = () =>
+  createSelector(selectGlobalDomain, (globalState) => globalState.error);
+
 const makeSelectLocation = () =>
   createSelector(selectRouter, (routerState) => routerState.location);
 
@@ -27,4 +30,5 @@ export {
   makeSelectToken,
   makeSelectUser,
   makeSelectLocation,
+  makeSelectError,
 };

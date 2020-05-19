@@ -17,4 +17,16 @@ export default defineMessages({
     id: `${scope}.login`,
     defaultMessage: 'Log In',
   },
+  accountNotFound: {
+    id: `${scope}.accountNotFound`,
+    defaultMessage: `Account with pin number {pinCode} does not exist.`,
+  },
+  passwordInvalid: {
+    id: `${scope}.passwordInvalid`,
+    defaultMessage: `The password you entered is incorrect.`,
+  },
+  serverError: {
+    id: `${scope}.serverError`,
+    defaultMessage: `Work on the bank application is underway. Please try again in a moment.`,
+  },
 });

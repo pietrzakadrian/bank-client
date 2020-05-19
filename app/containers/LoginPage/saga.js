@@ -1,10 +1,12 @@
+import React from 'react';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
-
 import { push } from 'connected-react-router';
 import { api, request, routes } from 'utils';
+import { FormattedMessage } from 'react-intl';
 import { LOGIN } from './constants';
 import { makeSelectPassword, makeSelectPinCode } from './selectors';
 import { loginSuccessAction, loginErrorAction } from './actions';
+import messages from './messages';
 
 export function* login() {
   const pinCode = yield select(makeSelectPinCode());
@@ -22,7 +24,26 @@ export function* login() {
     yield put(loginSuccessAction(user, token));
     yield put(push(routes.home));
   } catch (error) {
-    yield put(loginErrorAction(error));
+    let message;
+
+    switch (error.statusCode) {
+      case 404:
+        message = (
+          <FormattedMessage
+            {...messages.accountNotFound}
+            values={{ pinCode }}
+          />
+        );
+        break;
+      case 403:
+        message = <FormattedMessage {...messages.passwordInvalid} />;
+        break;
+      default:
+        message = <FormattedMessage {...messages.serverError} />;
+        break;
+    }
+
+    yield put(loginErrorAction(message));
   }
 }
 

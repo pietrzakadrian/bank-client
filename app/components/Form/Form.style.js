@@ -13,6 +13,14 @@ export const StyledButton = styled(Button)`
   color: ${(props) => props.back && 'inherit'};
 `;
 
+export const StyledError = styled.div`
+  max-width: 300px;
+  font-size: 11px;
+  margin: 0 auto;
+  color: ${colors.redErr};
+  line-height: 1.5715;
+`;
+
 export const StyledFormWrapper = styled.div`
   text-align: center;
   background-color: ${colors.grey};

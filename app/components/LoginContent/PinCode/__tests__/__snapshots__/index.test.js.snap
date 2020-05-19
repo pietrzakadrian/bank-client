@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Password /> should render a Password 1`] = `
+exports[`<PinCode /> should render a PinCode 1`] = `
 <form
   class="ant-form ant-form-horizontal"
 >

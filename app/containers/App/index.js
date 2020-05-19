@@ -18,8 +18,12 @@ import { routes } from 'utils';
 import 'antd/dist/antd.less';
 import 'sanitize.css/sanitize.css';
 import GlobalStyle from 'global-styles';
+import { useInjectSaga } from 'redux-injectors';
+import saga from './saga';
 
 function App() {
+  useInjectSaga({ key: 'app', saga });
+
   return (
     <div>
       <Switch>

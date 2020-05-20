@@ -26,7 +26,7 @@ describe('registerPageReducer', () => {
     state = {
       isLogged: false,
       isLoading: false,
-      error: {},
+      error: '',
       token: {},
       user: {},
     };

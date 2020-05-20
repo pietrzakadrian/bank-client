@@ -113,14 +113,14 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
     </span>
   </div>
   <div
-    class="Formstyle__StyledFormWrapper-u95n9s-2 etNLnZ"
+    class="Formstyle__StyledFormWrapper-u95n9s-3 gJbitQ"
   >
     <form
-      class="ant-form ant-form-vertical Formstyle__StyledForm-u95n9s-3 dTRSHg"
+      class="ant-form ant-form-vertical Formstyle__StyledForm-u95n9s-4 khDgmT"
       id="register"
     >
       <div
-        class="ant-row ant-form-item Formstyle__StyledFormItem-u95n9s-5 eNoyHh"
+        class="ant-row ant-form-item Formstyle__StyledFormItem-u95n9s-6 cgBASO"
       >
         <div
           class="ant-col ant-form-item-label"
@@ -143,7 +143,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
               class="ant-form-item-control-input-content"
             >
               <div
-                class="ant-input-number Formstyle__StyledInputNumber-u95n9s-4 fxhDPV"
+                class="ant-input-number Formstyle__StyledInputNumber-u95n9s-5 ipUaNg"
               >
                 <div
                   class="ant-input-number-handler-wrap"
@@ -225,6 +225,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
         </div>
       </div>
     </form>
+    
     <div
       class="Formstyle__StyledFormActionsWrapper-u95n9s-0 bpYSCT"
     >

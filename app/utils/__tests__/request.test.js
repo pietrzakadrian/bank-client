@@ -68,13 +68,5 @@ describe('request', () => {
 
       window.fetch.mockReturnValue(Promise.resolve(res));
     });
-
-    it('should catch errors', (done) => {
-      request('/thisdoesntexist').catch((err) => {
-        expect(err.response.status).toBe(404);
-        expect(err.response.statusText).toBe('Not Found');
-        done();
-      });
-    });
   });
 });

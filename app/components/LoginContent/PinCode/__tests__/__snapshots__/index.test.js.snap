@@ -5,7 +5,7 @@ exports[`<PinCode /> should render a PinCode 1`] = `
   class="ant-form ant-form-horizontal"
 >
   <div
-    class="ant-row ant-form-item Formstyle__StyledFormItem-u95n9s-5 eNoyHh"
+    class="ant-row ant-form-item Formstyle__StyledFormItem-u95n9s-6 cgBASO"
   >
     <div
       class="ant-col ant-form-item-label"
@@ -28,7 +28,7 @@ exports[`<PinCode /> should render a PinCode 1`] = `
           class="ant-form-item-control-input-content"
         >
           <div
-            class="ant-input-number Formstyle__StyledInputNumber-u95n9s-4 fxhDPV"
+            class="ant-input-number Formstyle__StyledInputNumber-u95n9s-5 ipUaNg"
           >
             <div
               class="ant-input-number-handler-wrap"

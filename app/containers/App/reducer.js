@@ -25,9 +25,15 @@ import {
   REGISTER_ERROR,
   CHECK_EMAIL_ERROR,
 } from 'containers/RegisterPage/constants';
-import { LOGOUT_SUCCESS } from './constants';
+import {
+  LOGOUT_SUCCESS,
+  COLLAPSED_SIDEBAR,
+  COLLAPSED_DRAWER,
+} from './constants';
 
 export const initialState = {
+  isCollapsedSidebar: false,
+  isCollapsedDrawer: false,
   isLogged: false,
   isLoading: false,
   error: '',
@@ -53,6 +59,8 @@ const appReducer = produce((draft, action) => {
       draft.isLogged = initialState.isLogged;
       draft.token = initialState.token;
       draft.user = initialState.user;
+      draft.isCollapsedSidebar = initialState.isCollapsedSidebar;
+      draft.isCollapsedDrawer = initialState.isCollapsedDrawer;
       break;
     case CHECK_EMAIL:
     case REGISTER:
@@ -72,6 +80,12 @@ const appReducer = produce((draft, action) => {
     case GET_CURRENCIES_ERROR:
       draft.isLoading = false;
       draft.error = action.error;
+      break;
+    case COLLAPSED_SIDEBAR:
+      draft.isCollapsedSidebar = !draft.isCollapsedSidebar;
+      break;
+    case COLLAPSED_DRAWER:
+      draft.isCollapsedDrawer = !draft.isCollapsedDrawer;
       break;
   }
 }, initialState);

@@ -20,6 +20,7 @@ import 'sanitize.css/sanitize.css';
 import GlobalStyle from 'global-styles';
 import { useInjectSaga } from 'redux-injectors';
 import saga from './saga';
+import StyledLayout from '../../components/App/Layout';
 
 function App() {
   useInjectSaga({ key: 'app', saga });
@@ -27,7 +28,12 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route exact path={routes.home} component={HomePage} />
+        <StyledLayout>
+          <Switch>
+            <Route exact path={routes.home} component={HomePage} />
+          </Switch>
+        </StyledLayout>
+
         <Route path={routes.login} component={LoginPage} />
         <Route path={routes.register} component={RegisterPage} />
         <Route component={NotFoundPage} />

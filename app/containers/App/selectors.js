@@ -20,6 +20,18 @@ const makeSelectUser = () =>
 const makeSelectError = () =>
   createSelector(selectGlobalDomain, (globalState) => globalState.error);
 
+const makeSelectIsCollapsedSidebar = () =>
+  createSelector(
+    selectGlobalDomain,
+    (globalState) => globalState.isCollapsedSidebar,
+  );
+
+const makeSelectIsCollapsedDrawer = () =>
+  createSelector(
+    selectGlobalDomain,
+    (globalState) => globalState.isCollapsedDrawer,
+  );
+
 const makeSelectLocation = () =>
   createSelector(selectRouter, (routerState) => routerState.location);
 
@@ -31,4 +43,6 @@ export {
   makeSelectUser,
   makeSelectLocation,
   makeSelectError,
+  makeSelectIsCollapsedSidebar,
+  makeSelectIsCollapsedDrawer,
 };

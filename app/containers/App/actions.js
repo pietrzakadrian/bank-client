@@ -4,7 +4,13 @@
  *
  */
 
-import { LOGOUT, LOGOUT_SUCCESS, LOGOUT_ERROR } from './constants';
+import {
+  LOGOUT,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERROR,
+  COLLAPSED_SIDEBAR,
+  COLLAPSED_DRAWER,
+} from './constants';
 
 export function logoutAction() {
   return {
@@ -22,5 +28,17 @@ export function logoutErrorAction(error) {
   return {
     type: LOGOUT_ERROR,
     error,
+  };
+}
+
+export function collapsedSidebarAction() {
+  return {
+    type: COLLAPSED_SIDEBAR,
+  };
+}
+
+export function collapsedDrawerAction() {
+  return {
+    type: COLLAPSED_DRAWER,
   };
 }

@@ -10,4 +10,6 @@ export const StyledFooter = styled.footer`
   bottom: 0;
   padding: 10px;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
+  font-size: 12px;
+  opacity: 0.7;
 `;

@@ -60,3 +60,7 @@ export const StyledBarsOutlined = styled(BarsOutlined)`
     display: none;
   `}
 `;
+
+export const StyledHeaderWrapper = styled.div`
+  display: flex;
+`;

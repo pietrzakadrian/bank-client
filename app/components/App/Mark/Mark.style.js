@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { media } from 'utils';
 
-export const StyledMark = styled.span`
+export const StyledMark = styled.img`
   color: black;
 
   ${media.tablet`

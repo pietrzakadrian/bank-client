@@ -19,23 +19,27 @@ export const StyledMenuItem = styled(Menu.Item)`
 export const StyledDesktopOutlined = styled(DesktopOutlined)`
   &&& {
     font-size: 19px;
+    margin: 0 20px 0 10px;
   }
 `;
 
 export const StyledWalletOutlined = styled(WalletOutlined)`
   &&& {
     font-size: 19px;
+    margin: 0 20px 0 10px;
   }
 `;
 
 export const StyledHistoryOutlined = styled(HistoryOutlined)`
   &&& {
     font-size: 19px;
+    margin: 0 20px 0 10px;
   }
 `;
 
 export const StyledSettingOutlined = styled(SettingOutlined)`
   &&& {
     font-size: 19px;
+    margin: 0 20px 0 10px;
   }
 `;

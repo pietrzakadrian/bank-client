@@ -9,8 +9,8 @@ import { useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import { routes } from 'utils';
+import { makeSelectLocation } from 'containers/App/selectors';
 import { StyledRedirectToggle } from './RedirectToggle.style';
-import { makeSelectLocation } from '../../containers/App/selectors';
 import TogglePath from './TogglePath';
 import messages from './messages';
 
@@ -25,12 +25,12 @@ function RedirectToggle({ intl }) {
 
   return (
     <StyledRedirectToggle>
-      {pathname === routes.login ? (
+      {pathname === routes.login.path ? (
         <>
           <FormattedMessage {...messages.registerContent} />{' '}
           <TogglePath
             name={intl.formatMessage(messages.register)}
-            path={routes.register}
+            path={routes.register.path}
           />
         </>
       ) : (
@@ -38,7 +38,7 @@ function RedirectToggle({ intl }) {
           <FormattedMessage {...messages.loginContent} />{' '}
           <TogglePath
             name={intl.formatMessage(messages.login)}
-            path={routes.login}
+            path={routes.login.path}
           />
         </>
       )}

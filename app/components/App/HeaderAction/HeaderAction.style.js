@@ -17,7 +17,7 @@ export const StyledHeaderAction = styled.div`
   ${media.tablet`
     display: inline-block;
     width: auto;
-    margin-right: 25px;
+    margin-right: 40px;
   `};
 `;
 

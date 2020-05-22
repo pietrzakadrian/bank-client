@@ -30,13 +30,17 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route exact path={routes.home} component={HomePage} />
-        <Route path={routes.login} component={LoginPage} />
-        <Route path={routes.register} component={RegisterPage} />
+        <Route exact path={routes.home.path} component={HomePage} />
+        <Route path={routes.login.path} component={LoginPage} />
+        <Route path={routes.register.path} component={RegisterPage} />
 
         <Layout>
           <Switch>
-            <Route exact path={routes.dashboard} component={DashboardPage} />
+            <Route
+              exact
+              path={routes.dashboard.path}
+              component={DashboardPage}
+            />
           </Switch>
         </Layout>
 

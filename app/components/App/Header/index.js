@@ -19,8 +19,10 @@ import {
   StyledMenuFoldOutlined,
   StyledBarsOutlined,
   StyledHeader,
+  StyledHeaderWrapper,
 } from './Header.style';
 import Mark from '../Mark';
+import HeaderName from '../HeaderName';
 
 const stateSelector = createStructuredSelector({
   isCollapsedSidebar: makeSelectIsCollapsedSidebar(),
@@ -34,16 +36,19 @@ export default function Header() {
 
   return (
     <StyledHeader open={isCollapsedSidebar}>
-      {isCollapsedSidebar ? (
-        <StyledMenuUnfoldOutlined onClick={onCollapsedSidebar} />
-      ) : (
-        <StyledMenuFoldOutlined onClick={onCollapsedSidebar} />
-      )}
+      <StyledHeaderWrapper>
+        {isCollapsedSidebar ? (
+          <StyledMenuUnfoldOutlined onClick={onCollapsedSidebar} />
+        ) : (
+          <StyledMenuFoldOutlined onClick={onCollapsedSidebar} />
+        )}
 
-      <StyledBarsOutlined onClick={onCollapsedDrawer} />
+        <StyledBarsOutlined onClick={onCollapsedDrawer} />
+
+        <HeaderName />
+      </StyledHeaderWrapper>
 
       <HeaderAction />
-
       <Mark />
     </StyledHeader>
   );

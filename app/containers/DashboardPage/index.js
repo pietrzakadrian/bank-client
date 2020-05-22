@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { useInjectSaga } from 'redux-injectors';
+import Greeting from 'components/App/Greeting';
 import makeSelectDashboardPage from './selectors';
 // import reducer from './reducer';
 import saga from './saga';
@@ -34,7 +35,7 @@ function DashboardPage() {
         <title>DashboardPage</title>
         <meta name="description" content="Description of DashboardPage" />
       </Helmet>
-      <div>test</div>
+      <Greeting />
     </div>
   );
 }

@@ -14,13 +14,15 @@ import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import RegisterPage from 'containers/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import DashboardPage from 'containers/DashboardPage/Loadable';
+
 import { routes } from 'utils';
 import 'antd/dist/antd.less';
 import 'sanitize.css/sanitize.css';
 import GlobalStyle from 'global-styles';
 import { useInjectSaga } from 'redux-injectors';
+import Layout from 'components/App/Layout';
 import saga from './saga';
-import StyledLayout from '../../components/App/Layout';
 
 function App() {
   useInjectSaga({ key: 'app', saga });
@@ -28,14 +30,16 @@ function App() {
   return (
     <div>
       <Switch>
-        <StyledLayout>
-          <Switch>
-            <Route exact path={routes.home} component={HomePage} />
-          </Switch>
-        </StyledLayout>
-
+        <Route exact path={routes.home} component={HomePage} />
         <Route path={routes.login} component={LoginPage} />
         <Route path={routes.register} component={RegisterPage} />
+
+        <Layout>
+          <Switch>
+            <Route exact path={routes.dashboard} component={DashboardPage} />
+          </Switch>
+        </Layout>
+
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

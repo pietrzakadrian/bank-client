@@ -14,9 +14,14 @@ export const StyledSidebar = styled(Layout.Sider)`
   position: fixed;
   left: 0;
   transition: all 0.1s ease-in-out;
-  box-shadow: 4px 0px 8px -3px rgba(17, 17, 17, 0.6);
+  box-shadow: rgba(17, 17, 17, 0.06) 4px 0px 8px -3px;
   display: none;
   overflow-x: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+
+  .ant-menu {
+    border-right: 0;
+  }
 
   ${media.tablet`
       display: block;

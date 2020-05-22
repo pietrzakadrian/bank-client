@@ -28,10 +28,12 @@ export default function Sidebar() {
 
   return (
     <StyledSidebar
+      theme="light"
       trigger={null}
       collapsible
       collapsed={isCollapsedSidebar}
       width={250}
+      collapsedWidth={0}
     >
       <Logo />
       <Navigation />

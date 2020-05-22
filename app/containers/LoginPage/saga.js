@@ -22,7 +22,7 @@ export function* login() {
   try {
     const { user, token } = yield call(request, requestURL, requestParameters);
     yield put(loginSuccessAction(user, token));
-    yield put(push(routes.home));
+    yield put(push(routes.dashboard));
   } catch (error) {
     let message;
 

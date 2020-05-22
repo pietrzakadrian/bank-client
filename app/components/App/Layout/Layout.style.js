@@ -5,7 +5,7 @@ import { headerHeight } from 'components/App/Header/Header.style';
 
 export const StyledContent = styled(Layout.Content)`
   margin: ${headerHeight} auto 0;
-  padding: 0 24px 24px;
+  padding: 24px;
   width: 100%;
 `;
 
@@ -15,6 +15,6 @@ export const StyledLayout = styled(Layout)`
   background-color: #fff;
 
   ${media.tablet`
-    padding-left: ${({ open }) => (open ? '80px' : '250px')};
+    padding-left: ${({ open }) => (open ? 0 : '250px')};
   `}
 `;

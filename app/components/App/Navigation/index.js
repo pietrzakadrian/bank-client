@@ -1,24 +1,50 @@
 import React from 'react';
 import { Menu } from 'antd';
+import { routes } from 'utils';
+
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
-import { StyledMenuItem } from './Navigation.style';
+  StyledMenuItem,
+  StyledDesktopOutlined,
+  StyledWalletOutlined,
+  StyledHistoryOutlined,
+  StyledSettingOutlined,
+} from './Navigation.style';
+
+const items = [
+  {
+    id: 1,
+    name: 'Dashboard',
+    path: routes.dashboard,
+    icon: <StyledDesktopOutlined />,
+  },
+  {
+    id: 2,
+    name: 'Payment',
+    path: routes.dashboard,
+    icon: <StyledWalletOutlined />,
+  },
+  {
+    id: 3,
+    name: 'History',
+    path: routes.dashboard,
+    icon: <StyledHistoryOutlined />,
+  },
+  {
+    id: 4,
+    name: 'Settings',
+    path: routes.dashboard,
+    icon: <StyledSettingOutlined />,
+  },
+];
 
 export default function Navigation() {
   return (
-    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-      <StyledMenuItem key="1" icon={<UserOutlined />}>
-        nav 1
-      </StyledMenuItem>
-      <StyledMenuItem key="2" icon={<VideoCameraOutlined />}>
-        nav 2
-      </StyledMenuItem>
-      <StyledMenuItem key="3" icon={<UploadOutlined />}>
-        nav 3
-      </StyledMenuItem>
+    <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
+      {items.map((item) => (
+        <StyledMenuItem key={item.id} icon={item.icon}>
+          {item.name}
+        </StyledMenuItem>
+      ))}
     </Menu>
   );
 }

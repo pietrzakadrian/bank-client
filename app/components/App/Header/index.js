@@ -13,12 +13,14 @@ import {
   collapsedSidebarAction,
   collapsedDrawerAction,
 } from 'containers/App/actions';
+import HeaderAction from 'components/App/HeaderAction';
 import {
   StyledMenuUnfoldOutlined,
   StyledMenuFoldOutlined,
   StyledBarsOutlined,
   StyledHeader,
 } from './Header.style';
+import Mark from '../Mark';
 
 const stateSelector = createStructuredSelector({
   isCollapsedSidebar: makeSelectIsCollapsedSidebar(),
@@ -39,6 +41,10 @@ export default function Header() {
       )}
 
       <StyledBarsOutlined onClick={onCollapsedDrawer} />
+
+      <HeaderAction />
+
+      <Mark />
     </StyledHeader>
   );
 }

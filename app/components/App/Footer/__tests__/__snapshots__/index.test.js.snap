@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> should match the snapshot 1`] = `
+<footer
+  class="Footerstyle__StyledFooter-a5b9l3-0 gQFBFx"
+>
+  Bank Application 2.0
+</footer>
+`;

@@ -12,6 +12,7 @@ import { makeSelectIsCollapsedSidebar } from 'containers/App/selectors';
 import Navigation from 'components/App/Navigation';
 import Footer from 'components/App/Footer';
 import { StyledSidebar } from './Sidebar.style';
+import Logo from '../Logo';
 
 // import Navigation from 'components/App/Navigation';
 // import Footer from 'components/App/Footer';
@@ -32,7 +33,7 @@ export default function Sidebar() {
       collapsed={isCollapsedSidebar}
       width={250}
     >
-      <div className="logo">Logo</div>
+      <Logo />
       <Navigation />
       <Footer />
     </StyledSidebar>

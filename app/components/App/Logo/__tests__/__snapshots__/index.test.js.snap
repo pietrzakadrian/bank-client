@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Logo /> should match the snapshot 1`] = `
+<div
+  class="Logostyle__StyledLogo-sgm567-0 dVKnaq"
+>
+  Bank Application
+</div>
+`;

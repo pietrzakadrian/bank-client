@@ -24,6 +24,8 @@ describe('registerPageReducer', () => {
   let state;
   beforeEach(() => {
     state = {
+      isCollapsedDrawer: false,
+      isCollapsedSidebar: false,
       isLogged: false,
       isLoading: false,
       error: '',

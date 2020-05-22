@@ -7,14 +7,16 @@ import {
 } from '@ant-design/icons';
 import { Layout } from 'antd';
 
+export const headerHeight = '64px';
+
 export const StyledHeader = styled(Layout.Header)`
   display: flex;
   align-items: center;
   padding: 0 25px;
-  // height: 83px;
   justify-content: space-between;
   width: 100%;
-  // background: #fff;
+  position: fixed;
+  height: ${headerHeight};
 `;
 
 export const StyledMenuUnfoldOutlined = styled(MenuUnfoldOutlined)`

@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 import { media } from 'utils';
 import { Layout } from 'antd';
+import { headerHeight } from 'components/App/Header/Header.style';
 
 export const StyledContent = styled(Layout.Content)`
-  margin: 0px auto;
-  padding: 0 24px;
+  margin: ${headerHeight} auto 0;
+  padding: 0 24px 24px;
   width: 100%;
-
-  ${media.tablet`
-    margin: 20px auto;
-    box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.05);
-  `}
 `;
 
 export const StyledLayout = styled(Layout)`

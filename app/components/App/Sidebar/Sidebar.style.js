@@ -6,7 +6,6 @@
 
 import styled from 'styled-components';
 import { Layout } from 'antd';
-// import { PRIMARY_RED, SECONDARY_RED } from 'utils/colors';
 import { media } from 'utils';
 
 export const StyledSidebar = styled(Layout.Sider)`
@@ -21,5 +20,5 @@ export const StyledSidebar = styled(Layout.Sider)`
 
   ${media.tablet`
       display: block;
-    `}
+    `};
 `;

@@ -15,6 +15,7 @@ import RedirectToggle from 'components/RedirectToggle';
 import Footer from 'components/Footer';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import LoginForm from 'components/LoginForm';
+import { routes } from 'utils';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -34,7 +35,7 @@ function LoginPage({ intl }) {
       </Helmet>
 
       <Header />
-      <Subheader pageTitle={intl.formatMessage(messages.login)} />
+      <Subheader pageTitle={routes.login.name} />
 
       <Information />
 

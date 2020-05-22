@@ -19,5 +19,5 @@ export default function Subheader({ pageTitle }) {
 }
 
 Subheader.propTypes = {
-  pageTitle: PropTypes.string.isRequired,
+  pageTitle: PropTypes.object.isRequired,
 };

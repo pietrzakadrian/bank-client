@@ -15,6 +15,7 @@ import RegisterForm from 'components/RegisterForm';
 import RedirectToggle from 'components/RedirectToggle';
 import Footer from 'components/Footer';
 import Information from 'components/Information';
+import { routes } from 'utils';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -34,7 +35,7 @@ function RegisterPage({ intl }) {
       </Helmet>
 
       <Header />
-      <Subheader pageTitle={intl.formatMessage(messages.registration)} />
+      <Subheader pageTitle={routes.register.name} />
 
       <Information />
 

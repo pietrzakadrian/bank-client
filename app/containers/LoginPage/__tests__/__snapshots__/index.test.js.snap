@@ -38,9 +38,10 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
         >
           <span
             class="ant-page-header-heading-title"
-            title="Log In"
           >
-            Log In
+            <span>
+              Log In
+            </span>
           </span>
         </div>
       </div>

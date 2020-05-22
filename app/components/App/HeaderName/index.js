@@ -16,7 +16,10 @@ export default function HeaderName() {
   return (
     <StyledHeaderName>
       {Object.entries(routes).map(
-        (route) => route[1].path === pathname && <div>{route[1].name}</div>,
+        (route) =>
+          route[1].path === pathname && (
+            <div key={route[1].path}>{route[1].name}</div>
+          ),
       )}
     </StyledHeaderName>
   );

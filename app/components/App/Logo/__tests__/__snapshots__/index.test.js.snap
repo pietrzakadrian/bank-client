@@ -2,8 +2,13 @@
 
 exports[`<Logo /> should match the snapshot 1`] = `
 <div
-  class="Logostyle__StyledLogo-sgm567-0 dVKnaq"
+  class="Logostyle__StyledLogo-sgm567-0 mCXGT"
 >
-  Bank Application
+  <img
+    alt="Bank Application"
+    height="auto"
+    src="IMAGE_MOCK"
+    width="150"
+  />
 </div>
 `;

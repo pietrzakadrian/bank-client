@@ -10,9 +10,9 @@ import { Helmet } from 'react-helmet-async';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+import { useInjectSaga } from 'redux-injectors';
 import makeSelectDashboardPage from './selectors';
-import reducer from './reducer';
+// import reducer from './reducer';
 import saga from './saga';
 
 const stateSelector = createStructuredSelector({
@@ -20,7 +20,7 @@ const stateSelector = createStructuredSelector({
 });
 
 function DashboardPage() {
-  useInjectReducer({ key: 'dashboardPage', reducer });
+  // useInjectReducer({ key: 'dashboardPage', reducer });
   useInjectSaga({ key: 'dashboardPage', saga });
 
   /* eslint-disable no-unused-vars */

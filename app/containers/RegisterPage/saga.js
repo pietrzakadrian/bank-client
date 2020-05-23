@@ -54,7 +54,7 @@ export function* register() {
 }
 
 export function* checkEmail({ value, reject, resolve }) {
-  const requestURL = api.users.checkEmail(value);
+  const requestURL = api.users('checkEmail')(value);
   const isEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+(?:[a-z0-9-]*[a-z0-9])?/;
 
   if (!value) {

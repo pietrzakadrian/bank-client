@@ -17,7 +17,7 @@ import {
 
 export function* getAmountMoney() {
   const { accessToken } = yield select(makeSelectToken());
-  const requestURL = api.bills.amountMoney;
+  const requestURL = api.bills('amountMoney');
   const requestParameters = {
     method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}` },
@@ -37,7 +37,7 @@ export function* getAmountMoney() {
 
 export function* getAccountBalanceHistory() {
   const { accessToken } = yield select(makeSelectToken());
-  const requestURL = api.bills.accountBalanceHistory;
+  const requestURL = api.bills('accountBalanceHistory');
   const requestParameters = {
     method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}` },
@@ -57,7 +57,7 @@ export function* getAccountBalanceHistory() {
 
 export function* getBills() {
   const { accessToken } = yield select(makeSelectToken());
-  const requestURL = api.bills.bills;
+  const requestURL = api.bills();
   const requestParameters = {
     method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}` },

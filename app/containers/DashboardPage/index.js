@@ -7,25 +7,25 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
-import { useSelector, useDispatch } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { useDispatch } from 'react-redux';
 
-import { useInjectSaga } from 'redux-injectors';
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import Greeting from 'components/App/Greeting';
-import makeSelectDashboardPage from './selectors';
-// import reducer from './reducer';
+// import makeSelectDashboardPage from './selectors';
+import AvailableFunds from 'components/App/AvailableFunds';
+import reducer from './reducer';
 import saga from './saga';
 
-const stateSelector = createStructuredSelector({
-  dashboardPage: makeSelectDashboardPage(),
-});
+// const stateSelector = createStructuredSelector({
+//   dashboardPage: makeSelectDashboardPage(),
+// });
 
-function DashboardPage() {
-  // useInjectReducer({ key: 'dashboardPage', reducer });
+export default function DashboardPage() {
+  useInjectReducer({ key: 'dashboardPage', reducer });
   useInjectSaga({ key: 'dashboardPage', saga });
 
   /* eslint-disable no-unused-vars */
-  const { dashboardPage } = useSelector(stateSelector);
+  // const { dashboardPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
   /* eslint-enable no-unused-vars */
 
@@ -36,10 +36,8 @@ function DashboardPage() {
         <meta name="description" content="Description of DashboardPage" />
       </Helmet>
       <Greeting />
+
+      <AvailableFunds />
     </div>
   );
 }
-
-DashboardPage.propTypes = {};
-
-export default DashboardPage;

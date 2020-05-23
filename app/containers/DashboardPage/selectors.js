@@ -16,8 +16,36 @@ const selectDashboardPageDomain = (state) =>
  * Default selector used by DashboardPage
  */
 
-const makeSelectDashboardPage = () =>
-  createSelector(selectDashboardPageDomain, (substate) => substate);
+const makeSelectAmountMoney = () =>
+  createSelector(selectDashboardPageDomain, (substate) => substate.amountMoney);
 
-export default makeSelectDashboardPage;
-export { selectDashboardPageDomain };
+const makeSelectRevenues = () =>
+  createSelector(selectDashboardPageDomain, (substate) => substate.revenues);
+
+const makeSelectExpenses = () =>
+  createSelector(selectDashboardPageDomain, (substate) => substate.expenses);
+
+const makeSelectCurrencyName = () =>
+  createSelector(
+    selectDashboardPageDomain,
+    (substate) => substate.currencyName,
+  );
+
+const makeSelectBills = () =>
+  createSelector(selectDashboardPageDomain, (substate) => substate.bills);
+
+const makeSelectAccountBalanceHistory = () =>
+  createSelector(
+    selectDashboardPageDomain,
+    (substate) => substate.accountBalanceHistory,
+  );
+
+export {
+  selectDashboardPageDomain,
+  makeSelectAmountMoney,
+  makeSelectRevenues,
+  makeSelectExpenses,
+  makeSelectCurrencyName,
+  makeSelectBills,
+  makeSelectAccountBalanceHistory,
+};

@@ -31,7 +31,6 @@ export default function Layout({ children }) {
       <StyledLayout open={isCollapsedSidebar}>
         <Header />
         <StyledContent>{children}</StyledContent>
-
         <Copyright />
       </StyledLayout>
     </>

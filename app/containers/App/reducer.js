@@ -32,7 +32,7 @@ import {
 } from './constants';
 
 export const initialState = {
-  isCollapsedSidebar: false,
+  isCollapsedSidebar: true,
   isCollapsedDrawer: false,
   isLogged: false,
   isLoading: false,

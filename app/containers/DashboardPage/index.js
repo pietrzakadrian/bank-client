@@ -13,6 +13,7 @@ import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import Greeting from 'components/App/Greeting';
 // import makeSelectDashboardPage from './selectors';
 import AvailableFunds from 'components/App/AvailableFunds';
+import Savings from 'components/App/Savings';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -38,6 +39,7 @@ export default function DashboardPage() {
       <Greeting />
 
       <AvailableFunds />
+      <Savings />
     </div>
   );
 }

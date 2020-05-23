@@ -7,9 +7,9 @@ const TRANSACTIONS = 'Transactions';
 
 export default {
   auth: {
-    login: `${API_BASE_URL}${AUTH}/login`,
-    register: `${API_BASE_URL}${AUTH}/register`,
-    logout: `${API_BASE_URL}${AUTH}/logout`,
+    login: `${API_BASE_URL}/${AUTH}/login`,
+    register: `${API_BASE_URL}/${AUTH}/register`,
+    logout: `${API_BASE_URL}/${AUTH}/logout`,
   },
   users: (path = '') => {
     switch (path) {

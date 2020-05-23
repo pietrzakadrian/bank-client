@@ -39,7 +39,7 @@ export default function Greeting() {
       </div>
 
       {user?.userAuth?.lastSuccessfulLoggedDate && (
-        <>
+        <div>
           <FormattedMessage {...messages.lastSuccessfulLogin} />{' '}
           <StyledLastSuccessfulLoggedDateWrapper>
             {format(
@@ -47,11 +47,11 @@ export default function Greeting() {
               locale === 'en' ? dateFormat12Hour : dateFormat24Hour,
             )}
           </StyledLastSuccessfulLoggedDateWrapper>
-        </>
+        </div>
       )}
 
       {user?.userAuth?.lastFailedLoggedDate && (
-        <>
+        <div>
           <FormattedMessage {...messages.lastFailedLogin} />{' '}
           <StyledLastFailedLoggedDate>
             {format(
@@ -59,7 +59,7 @@ export default function Greeting() {
               locale === 'en' ? dateFormat12Hour : dateFormat24Hour,
             )}
           </StyledLastFailedLoggedDate>
-        </>
+        </div>
       )}
     </StyledGreeting>
   );

@@ -50,7 +50,7 @@ exports[`<Header /> should match the snapshot 1`] = `
       </svg>
     </span>
     <span
-      class="HeaderNamestyle__StyledHeaderName-nzk4nk-0 dFnsYb"
+      class="HeaderNamestyle__StyledHeaderName-nzk4nk-0 hLDDHY"
     >
       <div>
         Home
@@ -58,7 +58,7 @@ exports[`<Header /> should match the snapshot 1`] = `
     </span>
   </div>
   <div
-    class="HeaderActionstyle__StyledHeaderAction-k0rq6d-0 keJFSU"
+    class="HeaderActionstyle__StyledHeaderAction-k0rq6d-0 MsQQc"
   >
     <div
       class="HeaderActionstyle__StyledHeaderActionItem-k0rq6d-1 KzJkT"

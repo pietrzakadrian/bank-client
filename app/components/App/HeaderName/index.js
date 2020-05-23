@@ -1,20 +1,25 @@
 import React from 'react';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectLocation } from 'containers/App/selectors';
+import {
+  makeSelectLocation,
+  makeSelectIsCollapsedSidebar,
+} from 'containers/App/selectors';
 import { useSelector } from 'react-redux';
 import { routes } from 'utils';
 import { StyledHeaderName } from './HeaderName.style';
 
 const stateSelector = createStructuredSelector({
   location: makeSelectLocation(),
+  isCollapsedSidebar: makeSelectIsCollapsedSidebar(),
 });
 export default function HeaderName() {
   const {
     location: { pathname },
+    isCollapsedSidebar,
   } = useSelector(stateSelector);
 
   return (
-    <StyledHeaderName>
+    <StyledHeaderName open={isCollapsedSidebar}>
       {Object.entries(routes).map(
         (route) =>
           route[1].path === pathname && (

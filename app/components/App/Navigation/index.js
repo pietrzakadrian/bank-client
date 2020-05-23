@@ -5,36 +5,36 @@ import { routes } from 'utils';
 import {
   StyledMenuItem,
   StyledDesktopOutlined,
-  StyledWalletOutlined,
-  StyledHistoryOutlined,
-  StyledSettingOutlined,
+  // StyledWalletOutlined,
+  // StyledHistoryOutlined,
+  // StyledSettingOutlined,
 } from './Navigation.style';
 
 const items = [
   {
     id: 1,
-    name: 'Dashboard',
-    path: routes.dashboard,
+    name: routes.dashboard.name,
+    path: routes.dashboard.path,
     icon: <StyledDesktopOutlined />,
   },
-  {
-    id: 2,
-    name: 'Payment',
-    path: routes.dashboard,
-    icon: <StyledWalletOutlined />,
-  },
-  {
-    id: 3,
-    name: 'History',
-    path: routes.dashboard,
-    icon: <StyledHistoryOutlined />,
-  },
-  {
-    id: 4,
-    name: 'Settings',
-    path: routes.dashboard,
-    icon: <StyledSettingOutlined />,
-  },
+  // {
+  //   id: 2,
+  //   name: routes.dashboard.name,
+  //   path: routes.dashboard.path,
+  //   icon: <StyledWalletOutlined />,
+  // },
+  // {
+  //   id: 3,
+  //   name: routes.dashboard.name,
+  //   path: routes.dashboard.path,
+  //   icon: <StyledHistoryOutlined />,
+  // },
+  // {
+  //   id: 4,
+  //   name: routes.dashboard.name,
+  //   path: routes.dashboard.path,
+  //   icon: <StyledSettingOutlined />,
+  // },
 ];
 
 export default function Navigation() {

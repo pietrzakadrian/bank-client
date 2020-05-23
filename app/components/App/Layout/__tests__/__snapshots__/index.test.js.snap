@@ -140,7 +140,7 @@ exports[`<Layout /> should match the snapshot 1`] = `
       </li>
     </ul>
     <footer
-      class="Footerstyle__StyledFooter-a5b9l3-0 gMHClc"
+      class="Footerstyle__StyledFooter-a5b9l3-0 gcmDBN"
     >
       <strong>
         Bank Application v2.0

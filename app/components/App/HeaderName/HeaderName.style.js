@@ -7,6 +7,17 @@ export const StyledHeaderName = styled.span`
   font-size: 19px;
 
   ${media.tablet`
+    position: absolute;
+    top: 0;
+    left: 50px;
+    display: ${({ open }) => (open ? 'inline-block' : 'none')};
+    // visibility: hidden;
+  `}
+
+  ${media.desktop`
     display: inline-block;
+    position: relative;
+    top: auto;
+    left: auto;
   `}
 `;

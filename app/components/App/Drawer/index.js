@@ -9,8 +9,10 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectIsCollapsedDrawer } from 'containers/App/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { collapsedDrawerAction } from 'containers/App/actions';
+import Footer from 'components/App/Footer';
+import Navigation from 'components/App/Navigation';
+import Logo from 'components/App/Logo';
 import { StyledDrawer } from './Drawer.style';
-import Footer from '../Footer';
 
 const stateSelector = createStructuredSelector({
   isCollapsedDrawer: makeSelectIsCollapsedDrawer(),
@@ -28,6 +30,8 @@ export default function Drawer() {
       visible={isCollapsedDrawer}
       onClose={onCollapsedDrawer}
     >
+      <Logo />
+      <Navigation />
       <Footer />
     </StyledDrawer>
   );

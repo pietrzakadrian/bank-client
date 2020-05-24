@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Steps, Spin } from 'antd';
+import { Steps } from 'antd';
 import { media, colors } from 'utils';
-import { LoadingOutlined } from '@ant-design/icons';
 
 export const StyledSteps = styled(Steps)`
   &&& {
@@ -53,16 +52,6 @@ export const StyledSteps = styled(Steps)`
       }
     `}
   }
-`;
-
-export const StyledLoadingOutlined = styled(LoadingOutlined)`
-  font-size: 24px;
-`;
-
-export const StyledSpin = styled(Spin)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const StyledInformation = styled.div`

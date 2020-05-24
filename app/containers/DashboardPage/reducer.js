@@ -14,9 +14,10 @@ import {
 
 export const initialState = {
   amountMoney: '',
-  revenues: '',
-  expenses: '',
   currencyName: '',
+  savings: '',
+  savingsData: [],
+  savingsColors: [],
   bills: [],
   accountBalanceHistory: [],
 };
@@ -32,9 +33,10 @@ const dashboardPageReducer = produce((draft, action) => {
       draft.currencyName = action.currencyName;
       break;
     case GET_ACCOUNT_BALANCE_SUCCESS:
-      draft.revenues = action.revenues;
-      draft.expenses = action.expenses;
       draft.currencyName = action.currencyName;
+      draft.savings = action.savings.toFixed(1).replace('.', ',');
+      draft.savingsData = action.savingsData;
+      draft.savingsColors = action.savingsColors;
       break;
     case GET_ACCOUNT_BALANCE_HISTORY_SUCCESS:
       draft.accountBalanceHistory =

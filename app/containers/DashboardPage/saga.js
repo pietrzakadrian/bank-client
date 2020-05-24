@@ -1,6 +1,7 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects';
 import { makeSelectToken } from 'containers/App/selectors';
-import { api, request } from 'utils';
+import { api, request, colors } from 'utils';
+
 import {
   GET_AMOUNT_MONEY,
   GET_ACCOUNT_BALANCE_HISTORY,
@@ -52,7 +53,31 @@ export function* getAccountBalance() {
       requestURL,
       requestParameters,
     );
-    yield put(getAccountBalanceSuccessAction(revenues, expenses, currencyName));
+
+    const expensesPercent = (expenses * 100) / revenues;
+    const revenuesPercent = 100 - expensesPercent || 0;
+    let savingsData;
+    let savingsColors;
+
+    if ((revenues && expenses) === '0.00') {
+      savingsData = [{ id: 1, name: 'savings', value: 100 }];
+      savingsColors = ['#b8b8b8'];
+    } else {
+      savingsData = [
+        { id: 1, name: 'revenues', value: revenues },
+        { id: 2, name: 'expenses', value: expenses },
+      ];
+      savingsColors = [colors.primaryBlue, colors.red];
+    }
+
+    yield put(
+      getAccountBalanceSuccessAction(
+        currencyName,
+        revenuesPercent,
+        savingsData,
+        savingsColors,
+      ),
+    );
   } catch (error) {
     yield put(getAccountBalanceErrorAction(error));
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Trend from 'react-trend';
-import { Card } from 'antd';
+
 import { createStructuredSelector } from 'reselect';
 import {
   makeSelectAmountMoney,
@@ -12,7 +12,8 @@ import {
   getAmountMoneyAction,
   getAccountBalanceHistoryAction,
 } from 'containers/DashboardPage/actions';
-import { StyledAvailableFunds } from './styles';
+import { colors } from 'utils';
+import Card from 'components/App/Card';
 
 const stateSelector = createStructuredSelector({
   amountMoney: makeSelectAmountMoney(),
@@ -43,30 +44,21 @@ export default function AvailableFunds() {
     if (amountMoney && currencyName && accountBalanceHistory.length) {
       setIsLoading(false);
     }
-  }, [amountMoney && currencyName && accountBalanceHistory]);
+  }, [amountMoney && currencyName, accountBalanceHistory]);
 
-  return (
-    <StyledAvailableFunds>
-      <Card title="Available Funds" style={{ width: 300 }}>
-        {isLoading ? (
-          <div>loader</div>
-        ) : (
-          <>
-            {amountMoney} {currencyName}
-            <Trend
-              smooth
-              autoDraw
-              autoDrawDuration={3000}
-              autoDrawEasing="ease-out"
-              data={accountBalanceHistory}
-              gradient={['#42b3f4']}
-              radius={0}
-              strokeWidth={3.6}
-              strokeLinecap="butt"
-            />
-          </>
-        )}
-      </Card>
-    </StyledAvailableFunds>
+  const trend = (
+    <Trend
+      smooth
+      autoDraw
+      autoDrawDuration={1500}
+      autoDrawEasing="ease-out"
+      data={accountBalanceHistory}
+      gradient={[`${colors.primaryBlue}`]}
+      radius={0}
+      strokeWidth={4.0}
+      strokeLinecap="butt"
+    />
   );
+
+  return <Card isLoading={isLoading} svg={trend} />;
 }

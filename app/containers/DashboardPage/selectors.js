@@ -19,11 +19,17 @@ const selectDashboardPageDomain = (state) =>
 const makeSelectAmountMoney = () =>
   createSelector(selectDashboardPageDomain, (substate) => substate.amountMoney);
 
-const makeSelectRevenues = () =>
-  createSelector(selectDashboardPageDomain, (substate) => substate.revenues);
+const makeSelectSavings = () =>
+  createSelector(selectDashboardPageDomain, (substate) => substate.savings);
 
-const makeSelectExpenses = () =>
-  createSelector(selectDashboardPageDomain, (substate) => substate.expenses);
+const makeSelectSavingsData = () =>
+  createSelector(selectDashboardPageDomain, (substate) => substate.savingsData);
+
+const makeSelectSavingsColors = () =>
+  createSelector(
+    selectDashboardPageDomain,
+    (substate) => substate.savingsColors,
+  );
 
 const makeSelectCurrencyName = () =>
   createSelector(
@@ -43,8 +49,9 @@ const makeSelectAccountBalanceHistory = () =>
 export {
   selectDashboardPageDomain,
   makeSelectAmountMoney,
-  makeSelectRevenues,
-  makeSelectExpenses,
+  makeSelectSavings,
+  makeSelectSavingsData,
+  makeSelectSavingsColors,
   makeSelectCurrencyName,
   makeSelectBills,
   makeSelectAccountBalanceHistory,

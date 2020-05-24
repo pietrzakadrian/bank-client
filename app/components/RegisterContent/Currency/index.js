@@ -9,11 +9,9 @@ import {
   selectCurrencyAction,
 } from 'containers/RegisterPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
-import {
-  StyledLoadingOutlined,
-  StyledSpin,
-} from 'components/RegisterForm/RegisterForm.style';
+
 import { StyledFormItem } from 'components/Form/Form.style';
+import LoadingIndicator from 'components/LoadingIndicator';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
@@ -24,7 +22,6 @@ const stateSelector = createStructuredSelector({
 function Currency({ intl }) {
   const { isLoading, currencies } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const spinIcon = <StyledLoadingOutlined spin />;
 
   return (
     <StyledFormItem
@@ -36,7 +33,7 @@ function Currency({ intl }) {
     >
       <Select
         onClick={() => !currencies.length && dispatch(getCurrenciesAction())}
-        notFoundContent={isLoading ? <StyledSpin indicator={spinIcon} /> : null}
+        notFoundContent={isLoading ? <LoadingIndicator /> : null}
         onSelect={(currency) => dispatch(selectCurrencyAction(currency))}
         placeholder={intl.formatMessage(messages.placeholder)}
       >

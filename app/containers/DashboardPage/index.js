@@ -38,8 +38,10 @@ export default function DashboardPage() {
       </Helmet>
       <Greeting />
 
-      <AvailableFunds />
-      <Savings />
+      <div style={{ display: 'flex', maxWidth: 960, margin: '0 auto' }}>
+        <AvailableFunds />
+        <Savings />
+      </div>
     </div>
   );
 }

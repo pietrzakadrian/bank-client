@@ -1,81 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
 import { PieChart, Pie, Cell } from 'recharts';
 import {
-  makeSelectCurrencyName,
-  makeSelectAmountMoney,
-  makeSelectExpenses,
+  makeSelectSavingsColors,
+  makeSelectSavings,
+  makeSelectSavingsData,
 } from 'containers/DashboardPage/selectors';
 import { getAccountBalanceAction } from 'containers/DashboardPage/actions';
 
-const COLORS = ['#0088FE', '#00C49F'];
+import Card from '../Card';
+
 const stateSelector = createStructuredSelector({
-  revenues: makeSelectAmountMoney(),
-  expenses: makeSelectExpenses(),
-  currencyName: makeSelectCurrencyName(),
+  savings: makeSelectSavings(),
+  savingsData: makeSelectSavingsData(),
+  savingsColors: makeSelectSavingsColors(),
 });
 
 export default function Savings() {
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState();
   const dispatch = useDispatch();
-  const { revenues, expenses, currencyName } = useSelector(stateSelector);
+  const { savings, savingsData, savingsColors } = useSelector(stateSelector);
 
   const getSavings = () => dispatch(getAccountBalanceAction());
 
   useEffect(() => {
-    if (!revenues || !expenses || !currencyName) getSavings();
+    if (!savings) getSavings();
 
-    if (revenues && expenses && currencyName) {
+    if (savings) {
       setIsLoading(false);
-
-      if ((revenues && expenses) === '0.00') {
-        setData([
-          {
-            name: 'revenues',
-            value: 100,
-          },
-        ]);
-      } else {
-        setData([
-          {
-            id: 1,
-            name: 'revenues',
-            value: revenues,
-          },
-          {
-            id: 2,
-            name: 'expenses',
-            value: expenses,
-          },
-        ]);
-      }
     }
-  }, [revenues && expenses && currencyName]);
+  }, [savings]);
 
-  return (
-    <div>
-      {isLoading ? (
-        <div>spinner</div>
-      ) : (
-        <PieChart width={200} height={200}>
-          <Pie
-            data={data}
-            dataKey="value"
-            cx={100}
-            cy={100}
-            innerRadius={70}
-            outerRadius={80}
-            fill="#8884d8"
-            paddingAngle={0}
-          >
-            {data.map((entry, index) => (
-              <Cell key={data.id} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-        </PieChart>
-      )}
-    </div>
+  const pieChart = (
+    <PieChart margin={0} width={200} height={61}>
+      <Pie
+        data={savingsData}
+        dataKey="value"
+        innerRadius={75}
+        outerRadius={80}
+        paddingAngle={0}
+      >
+        {savingsData?.map((_, index) => (
+          <Cell
+            key={savingsData.id}
+            fill={savingsColors[index % savingsColors.length]}
+          />
+        ))}
+      </Pie>
+    </PieChart>
   );
+
+  return <Card pie="true" isLoading={isLoading} svg={pieChart} />;
 }

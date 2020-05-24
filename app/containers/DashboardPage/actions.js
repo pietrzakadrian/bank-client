@@ -67,15 +67,17 @@ export function getAccountBalanceAction() {
 }
 
 export function getAccountBalanceSuccessAction(
-  revenues,
-  expenses,
   currencyName,
+  savings,
+  savingsData,
+  savingsColors,
 ) {
   return {
     type: GET_ACCOUNT_BALANCE_SUCCESS,
-    revenues,
-    expenses,
     currencyName,
+    savings,
+    savingsData,
+    savingsColors,
   };
 }
 

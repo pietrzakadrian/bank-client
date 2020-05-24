@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+
 import { Helmet } from 'react-helmet-async';
 import { useDispatch } from 'react-redux';
 
@@ -14,6 +14,7 @@ import Greeting from 'components/App/Greeting';
 // import makeSelectDashboardPage from './selectors';
 import AvailableFunds from 'components/App/AvailableFunds';
 import Savings from 'components/App/Savings';
+import BankInformation from 'components/App/BankInformation';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -36,11 +37,23 @@ export default function DashboardPage() {
         <title>DashboardPage</title>
         <meta name="description" content="Description of DashboardPage" />
       </Helmet>
+
       <Greeting />
 
-      <div style={{ display: 'flex', maxWidth: 960, margin: '0 auto' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          maxWidth: 960,
+          width: 'calc(100% - 70px)',
+          margin: '0 auto',
+        }}
+      >
         <AvailableFunds />
+
         <Savings />
+
+        <BankInformation />
       </div>
     </div>
   );

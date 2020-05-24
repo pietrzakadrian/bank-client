@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LoadingIndicator from 'components/LoadingIndicator';
 import {
   StyledCard,
@@ -7,28 +8,63 @@ import {
   StyledCardContentTypography,
   StyledCardContentTypographyHeader,
   StyledCardContentTypographyMain,
+  StyledCardContentTypographyMainUnit,
+  StyledCardContentDescription,
 } from './Card.style';
 
-// eslint-disable-next-line react/prop-types
-export default function Card({ isLoading, svg, pie }) {
+export default function Card({
+  isLoading,
+  svg,
+  svgFormat,
+  title,
+  content,
+  unit,
+  description,
+}) {
   return (
     <StyledCard>
       {isLoading ? (
         <LoadingIndicator />
       ) : (
-        <StyledCardContent>
-          <StyledCardContentTypography>
-            <StyledCardContentTypographyHeader>
-              Available Funds
-            </StyledCardContentTypographyHeader>
-            <StyledCardContentTypographyMain>
-              0.00 PLN
-            </StyledCardContentTypographyMain>
-          </StyledCardContentTypography>
+        <StyledCardContent noCenter={!!description}>
+          {title && content && unit && (
+            <StyledCardContentTypography>
+              <StyledCardContentTypographyHeader>
+                {title}
+              </StyledCardContentTypographyHeader>
 
-          <StyledCardContentWidget pie={pie}>{svg}</StyledCardContentWidget>
+              <StyledCardContentTypographyMain>
+                {content}
+                <StyledCardContentTypographyMainUnit>
+                  {unit}
+                </StyledCardContentTypographyMainUnit>
+              </StyledCardContentTypographyMain>
+            </StyledCardContentTypography>
+          )}
+
+          {description && (
+            <StyledCardContentDescription>
+              {description}
+            </StyledCardContentDescription>
+          )}
+
+          {svg && (
+            <StyledCardContentWidget svgFormat={svgFormat}>
+              {svg}
+            </StyledCardContentWidget>
+          )}
         </StyledCardContent>
       )}
     </StyledCard>
   );
 }
+
+Card.propTypes = {
+  isLoading: PropTypes.bool,
+  svg: PropTypes.object,
+  svgFormat: PropTypes.bool,
+  title: PropTypes.string,
+  content: PropTypes.string,
+  unit: PropTypes.string,
+  description: PropTypes.string,
+};

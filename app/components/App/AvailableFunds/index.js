@@ -60,5 +60,13 @@ export default function AvailableFunds() {
     />
   );
 
-  return <Card isLoading={isLoading} svg={trend} />;
+  return (
+    <Card
+      isLoading={isLoading}
+      svg={trend}
+      title="Available Funds"
+      content={amountMoney}
+      unit={currencyName}
+    />
+  );
 }

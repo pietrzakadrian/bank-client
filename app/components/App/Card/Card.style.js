@@ -1,22 +1,23 @@
 import styled from 'styled-components';
+import { typography } from 'utils';
 
 export const StyledCard = styled.section`
   height: 95px;
   background-color: rgb(243, 243, 243);
   border: 1px solid rgba(0, 0, 0, 0.12);
-  width: 33%;
   padding: 16px 24px;
   position: relative;
   display: flex;
   align-items: center;
   max-width: 310px;
   justify-content: center;
+  width: 100%;
 `;
 
 export const StyledCardContent = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: ${({ noCenter }) => (noCenter ? 'baseline' : 'center')};
   height: 61px;
   width: 100%;
 `;
@@ -24,6 +25,10 @@ export const StyledCardContent = styled.div`
 export const StyledCardContentTypography = styled.div`
   width: 65%;
   height: 61px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.4;
 `;
 
 export const StyledCardContentTypographyHeader = styled.div`
@@ -31,12 +36,22 @@ export const StyledCardContentTypographyHeader = styled.div`
 `;
 
 export const StyledCardContentTypographyMain = styled.div`
-  font-size: 22px;
+  font-size: 25px;
+  font-weight: ${typography.fontWeightMedium};
+`;
+
+export const StyledCardContentTypographyMainUnit = styled.span`
+  font-size: 16px;
+  margin-left: 5px;
+  font-weight: ${typography.fontWeightLight};
+`;
+
+export const StyledCardContentDescription = styled.div`
+  font-size: 14px;
 `;
 
 export const StyledCardContentWidget = styled.div`
   width: 35%;
-  text-align: right;
 
   .recharts-wrapper {
     width: 100% !important;
@@ -52,6 +67,6 @@ export const StyledCardContentWidget = styled.div`
       position: absolute;
       right: -6px;
     }
-    max-width: ${({ pie }) => pie && '74px'};
+    max-width: ${({ svgFormat }) => svgFormat && '74px'};
   }
 `;

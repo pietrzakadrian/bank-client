@@ -44,7 +44,7 @@ export default function Savings() {
       >
         {savingsData?.map((_, index) => (
           <Cell
-            key={savingsData.id}
+            key={index}
             fill={savingsColors[index % savingsColors.length]}
           />
         ))}
@@ -52,5 +52,14 @@ export default function Savings() {
     </PieChart>
   );
 
-  return <Card pie="true" isLoading={isLoading} svg={pieChart} />;
+  return (
+    <Card
+      pie="true"
+      title="Savings"
+      unit="%"
+      content={savings}
+      isLoading={isLoading}
+      svg={pieChart}
+    />
+  );
 }

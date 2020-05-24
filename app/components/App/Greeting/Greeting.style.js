@@ -3,6 +3,7 @@ import { colors, typography } from 'utils';
 
 export const StyledGreeting = styled.section`
   text-align: right;
+  margin: 0 0 20px;
 `;
 
 export const StyledNameWrapper = styled.span`

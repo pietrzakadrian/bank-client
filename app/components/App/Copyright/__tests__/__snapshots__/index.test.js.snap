@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Copyright /> should render a Copyright 1`] = `
+<div
+  class="Copyrightstyle__StyledCopyright-sc-1dw2rfe-0 cWZkZd"
+>
+  Copyright © 
+  2020
+  . Made by Adrian Pietrzak
+</div>
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BankInformation /> should render a BankInformation 1`] = `
+<section
+  class="Cardstyle__StyledCard-s807iu-0 gZCSEQ"
+>
+  <div
+    class="Cardstyle__StyledCardContent-s807iu-1 bkXQSW"
+  >
+    <div
+      class="Cardstyle__StyledCardContentDescription-s807iu-6 cyBFNZ"
+    >
+      Did you know that transfers in our bank arrive immediately?
+    </div>
+  </div>
+</section>
+`;

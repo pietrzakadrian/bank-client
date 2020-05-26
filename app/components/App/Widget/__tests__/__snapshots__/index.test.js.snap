@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> should render a Card 1`] = `
+<section
+  class="Cardstyle__StyledCard-s807iu-0 gZCSEQ"
+>
+  <div
+    class="Cardstyle__StyledCardContent-s807iu-1 igsbgO"
+  />
+</section>
+`;

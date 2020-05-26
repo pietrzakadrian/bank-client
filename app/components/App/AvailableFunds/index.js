@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Trend from 'react-trend';
-
 import { createStructuredSelector } from 'reselect';
 import {
   makeSelectAmountMoney,
@@ -13,7 +12,9 @@ import {
   getAccountBalanceHistoryAction,
 } from 'containers/DashboardPage/actions';
 import { colors } from 'utils';
-import Card from 'components/App/Card';
+import Widget from 'components/App/Widget';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   amountMoney: makeSelectAmountMoney(),
@@ -61,12 +62,16 @@ export default function AvailableFunds() {
   );
 
   return (
-    <Card
-      isLoading={isLoading}
-      svg={trend}
-      title="Available Funds"
-      content={amountMoney}
-      unit={currencyName}
-    />
+    <FormattedMessage {...messages.availableFunds}>
+      {(title) => (
+        <Widget
+          isLoading={isLoading}
+          svg={trend}
+          title={title}
+          content={amountMoney}
+          unit={currencyName}
+        />
+      )}
+    </FormattedMessage>
   );
 }

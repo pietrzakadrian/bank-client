@@ -15,6 +15,8 @@ import Greeting from 'components/App/Greeting';
 import AvailableFunds from 'components/App/AvailableFunds';
 import Savings from 'components/App/Savings';
 import BankInformation from 'components/App/BankInformation';
+import Bills from 'components/App/Bills';
+import RecentTransactions from 'components/App/RecentTransactions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -54,6 +56,19 @@ export default function DashboardPage() {
         <Savings />
 
         <BankInformation />
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          maxWidth: 960,
+          width: 'calc(100% - 70px)',
+          margin: '0 auto',
+        }}
+      >
+        <Bills />
+        <RecentTransactions />
       </div>
     </div>
   );

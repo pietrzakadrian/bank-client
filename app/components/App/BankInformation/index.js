@@ -1,8 +1,12 @@
 import React from 'react';
-import Card from 'components/App/Card';
+import Widget from 'components/App/Widget';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 export default function BankInformation() {
   return (
-    <Card description="Did you know that transfers in our bank arrive immediately?" />
+    <FormattedMessage {...messages.description}>
+      {(description) => <Widget description={description} />}
+    </FormattedMessage>
   );
 }

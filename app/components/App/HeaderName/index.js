@@ -21,10 +21,8 @@ export default function HeaderName() {
   return (
     <StyledHeaderName open={isCollapsedSidebar}>
       {Object.entries(routes).map(
-        (route) =>
-          route[1].path === pathname && (
-            <div key={route[1].path}>{route[1].name}</div>
-          ),
+        ({ 1: route }) =>
+          route.path === pathname && <div key={route.path}>{route.name}</div>,
       )}
     </StyledHeaderName>
   );

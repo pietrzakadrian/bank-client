@@ -46,6 +46,12 @@ const makeSelectAccountBalanceHistory = () =>
     (substate) => substate.accountBalanceHistory,
   );
 
+const makeSelectRecentTransactions = () =>
+  createSelector(
+    selectDashboardPageDomain,
+    (substate) => substate.recentTransactions,
+  );
+
 export {
   selectDashboardPageDomain,
   makeSelectAmountMoney,
@@ -55,4 +61,5 @@ export {
   makeSelectCurrencyName,
   makeSelectBills,
   makeSelectAccountBalanceHistory,
+  makeSelectRecentTransactions,
 };

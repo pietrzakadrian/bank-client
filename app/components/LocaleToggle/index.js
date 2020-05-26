@@ -12,8 +12,8 @@ import Toggle from 'components/Toggle';
 
 import messages from './messages';
 import { appLocales } from '../../locales';
-import { changeLocale } from '../../containers/LanguageProvider/actions';
-import { makeSelectLocale } from '../../containers/LanguageProvider/selectors';
+import { changeLocale } from '../../providers/LanguageProvider/actions';
+import { makeSelectLocale } from '../../providers/LanguageProvider/selectors';
 
 const stateSelector = createSelector(makeSelectLocale(), (locale) => ({
   locale,

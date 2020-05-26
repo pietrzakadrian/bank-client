@@ -10,6 +10,7 @@ import {
   GET_AMOUNT_MONEY_SUCCESS,
   GET_ACCOUNT_BALANCE_SUCCESS,
   GET_ACCOUNT_BALANCE_HISTORY_SUCCESS,
+  GET_RECENT_TRANSACTIONS_SUCCESS,
 } from './constants';
 
 export const initialState = {
@@ -20,13 +21,20 @@ export const initialState = {
   savingsColors: [],
   bills: [],
   accountBalanceHistory: [],
+  recentTransactions: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const dashboardPageReducer = produce((draft, action) => {
   switch (action.type) {
     case GET_BILLS_SUCCESS:
-      draft.bills = action.bills;
+      draft.bills = action.bills.map((bill) => ({
+        ...bill,
+        amountMoney: bill.amountMoney.replace(/\B(?=(\d{3})+(?!\d))/g, ' '),
+        accountBillNumber: bill.accountBillNumber
+          .replace(/(^\d{2}|\d{4})+?/g, '$1 ')
+          .trim(),
+      }));
       break;
     case GET_AMOUNT_MONEY_SUCCESS:
       draft.amountMoney = action.amountMoney;
@@ -43,6 +51,9 @@ const dashboardPageReducer = produce((draft, action) => {
         action.accountBalanceHistory.length === 1
           ? [...action.accountBalanceHistory, 0]
           : action.accountBalanceHistory;
+      break;
+    case GET_RECENT_TRANSACTIONS_SUCCESS:
+      draft.recentTransactions = action.recentTransactions;
       break;
   }
 }, initialState);

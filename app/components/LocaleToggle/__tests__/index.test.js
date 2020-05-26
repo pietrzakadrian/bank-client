@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 
-import * as actions from 'containers/LanguageProvider/actions';
-import LanguageProvider from 'containers/LanguageProvider';
+import * as actions from 'providers/LanguageProvider/actions';
+import LanguageProvider from 'providers/LanguageProvider';
 import LocaleToggle from '../index';
 
 import configureStore from '../../../configureStore';

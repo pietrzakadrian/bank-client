@@ -17,6 +17,9 @@ import {
   GET_ACCOUNT_BALANCE_HISTORY,
   GET_ACCOUNT_BALANCE_HISTORY_SUCCESS,
   GET_ACCOUNT_BALANCE_HISTORY_ERROR,
+  GET_RECENT_TRANSACTIONS,
+  GET_RECENT_TRANSACTIONS_SUCCESS,
+  GET_RECENT_TRANSACTIONS_ERROR,
 } from './constants';
 
 export function getBillsAction() {
@@ -104,6 +107,26 @@ export function getAccountBalanceHistorySuccessAction(accountBalanceHistory) {
 export function getAccountBalanceHistoryErrorAction(error) {
   return {
     type: GET_ACCOUNT_BALANCE_HISTORY_ERROR,
+    error,
+  };
+}
+
+export function getRecentTransactionsAction() {
+  return {
+    type: GET_RECENT_TRANSACTIONS,
+  };
+}
+
+export function getRecentTransactionsSuccessAction(recentTransactions) {
+  return {
+    type: GET_RECENT_TRANSACTIONS_SUCCESS,
+    recentTransactions,
+  };
+}
+
+export function getRecentTransactionsErrorAction(error) {
+  return {
+    type: GET_RECENT_TRANSACTIONS_ERROR,
     error,
   };
 }

@@ -1,12 +1,13 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects';
 import { makeSelectToken } from 'containers/App/selectors';
-import { api, request, colors } from 'utils';
+import { api, request } from 'utils';
 
 import {
   GET_AMOUNT_MONEY,
   GET_ACCOUNT_BALANCE_HISTORY,
   GET_BILLS,
   GET_ACCOUNT_BALANCE,
+  GET_RECENT_TRANSACTIONS,
 } from './constants';
 import {
   getAmountMoneySuccessAction,
@@ -17,6 +18,8 @@ import {
   getBillsErrorAction,
   getAccountBalanceSuccessAction,
   getAccountBalanceErrorAction,
+  getRecentTransactionsSuccessAction,
+  getRecentTransactionsErrorAction,
 } from './actions';
 
 export function* getAmountMoney() {
@@ -56,18 +59,19 @@ export function* getAccountBalance() {
 
     const expensesPercent = (expenses * 100) / revenues;
     const revenuesPercent = 100 - expensesPercent || 0;
+
     let savingsData;
     let savingsColors;
 
-    if ((revenues && expenses) === '0.00') {
-      savingsData = [{ id: 1, name: 'savings', value: 100 }];
+    if (revenues === '0.00' && expenses === '0.00') {
       savingsColors = ['#b8b8b8'];
+      savingsData = [{ id: 1, name: 'savings', value: 100 }];
     } else {
+      savingsColors = ['red', 'blue'];
       savingsData = [
-        { id: 1, name: 'revenues', value: revenues },
-        { id: 2, name: 'expenses', value: expenses },
+        { name: 'revenues', value: revenues },
+        { name: 'expenses', value: expenses },
       ];
-      savingsColors = [colors.primaryBlue, colors.red];
     }
 
     yield put(
@@ -79,6 +83,7 @@ export function* getAccountBalance() {
       ),
     );
   } catch (error) {
+    console.log(error);
     yield put(getAccountBalanceErrorAction(error));
   }
 }
@@ -106,6 +111,7 @@ export function* getAccountBalanceHistory() {
 export function* getBills() {
   const { accessToken } = yield select(makeSelectToken());
   const requestURL = api.bills();
+
   const requestParameters = {
     method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}` },
@@ -119,9 +125,26 @@ export function* getBills() {
   }
 }
 
+export function* getRecentTransactions() {
+  const { accessToken } = yield select(makeSelectToken());
+  const requestURL = `${api.transactions()}?take=4&order=DESC`;
+  const requestParameters = {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${accessToken}` },
+  };
+
+  try {
+    const { data } = yield call(request, requestURL, requestParameters);
+    yield put(getRecentTransactionsSuccessAction(data));
+  } catch (error) {
+    yield put(getRecentTransactionsErrorAction(error));
+  }
+}
+
 export default function* dashboardPageSaga() {
   yield takeEvery(GET_AMOUNT_MONEY, getAmountMoney);
   yield takeEvery(GET_ACCOUNT_BALANCE, getAccountBalance);
   yield takeEvery(GET_ACCOUNT_BALANCE_HISTORY, getAccountBalanceHistory);
   yield takeEvery(GET_BILLS, getBills);
+  yield takeEvery(GET_RECENT_TRANSACTIONS, getRecentTransactions);
 }

@@ -3,7 +3,7 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectUser } from 'containers/App/selectors';
 import { useSelector } from 'react-redux';
 import { format, getHours } from 'date-fns';
-import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
+import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
 import { FormattedMessage } from 'react-intl';
 import {
   StyledGreeting,

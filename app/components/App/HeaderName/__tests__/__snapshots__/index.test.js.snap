@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AvailableFunds /> should render a AvailableFunds 1`] = `
+<span
+  class="HeaderNamestyle__StyledHeaderName-sc-106aplm-0 gbrzuL"
+  open=""
+>
+  <div>
+    Home
+  </div>
+</span>
+`;

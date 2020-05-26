@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
 import { PieChart, Pie, Cell } from 'recharts';
 import {
   makeSelectSavingsColors,
@@ -9,8 +8,9 @@ import {
   makeSelectSavingsData,
 } from 'containers/DashboardPage/selectors';
 import { getAccountBalanceAction } from 'containers/DashboardPage/actions';
-
-import Card from '../Card';
+import Widget from 'components/App/Widget';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   savings: makeSelectSavings(),
@@ -31,7 +31,9 @@ export default function Savings() {
     if (savings) {
       setIsLoading(false);
     }
-  }, [savings]);
+  }, [savings, JSON.stringify(savingsData), JSON.stringify(savingsColors)]);
+
+  console.log(savingsData);
 
   const pieChart = (
     <PieChart margin={0} width={200} height={61}>
@@ -42,9 +44,9 @@ export default function Savings() {
         outerRadius={80}
         paddingAngle={0}
       >
-        {savingsData?.map((_, index) => (
+        {savingsData?.map((entry, index) => (
           <Cell
-            key={index}
+            key={`cell-${index}`}
             fill={savingsColors[index % savingsColors.length]}
           />
         ))}
@@ -53,13 +55,17 @@ export default function Savings() {
   );
 
   return (
-    <Card
-      pie="true"
-      title="Savings"
-      unit="%"
-      content={savings}
-      isLoading={isLoading}
-      svg={pieChart}
-    />
+    <FormattedMessage {...messages.savings}>
+      {(title) => (
+        <Widget
+          pie="true"
+          title={title}
+          unit="%"
+          content={savings}
+          isLoading={isLoading}
+          svg={pieChart}
+        />
+      )}
+    </FormattedMessage>
   );
 }

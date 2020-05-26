@@ -1,72 +1,30 @@
 import styled from 'styled-components';
-import { typography } from 'utils';
+import { Card } from 'antd';
 
-export const StyledCard = styled.section`
-  height: 95px;
-  background-color: rgb(243, 243, 243);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 16px 24px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  max-width: 310px;
-  justify-content: center;
-  width: 100%;
-`;
+export const StyledCard = styled(Card)`
+  box-shadow: ${({ isShadow }) =>
+    isShadow &&
+    'rgba(0, 0, 0, 0.2) 0em 0.0625em 0.1875em 0em, rgba(0, 0, 0, 0.14) 0em 0.0625em 0.0625em 0em, rgba(0, 0, 0, 0.12) 0em 0.125em 0.0625em -0.0625em'};
 
-export const StyledCardContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: ${({ noCenter }) => (noCenter ? 'baseline' : 'center')};
-  height: 61px;
-  width: 100%;
-`;
-
-export const StyledCardContentTypography = styled.div`
-  width: 65%;
-  height: 61px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  line-height: 1.4;
-`;
-
-export const StyledCardContentTypographyHeader = styled.div`
-  font-size: 18px;
-`;
-
-export const StyledCardContentTypographyMain = styled.div`
-  font-size: 25px;
-  font-weight: ${typography.fontWeightMedium};
-`;
-
-export const StyledCardContentTypographyMainUnit = styled.span`
-  font-size: 16px;
-  margin-left: 5px;
-  font-weight: ${typography.fontWeightLight};
-`;
-
-export const StyledCardContentDescription = styled.div`
-  font-size: 14px;
-`;
-
-export const StyledCardContentWidget = styled.div`
-  width: 35%;
-
-  .recharts-wrapper {
-    width: 100% !important;
-    position: relative;
+  .ant-card-head {
+    background-color: ${(props) => props.isBackground && `rgb(247, 247, 247)`};
   }
 
-  svg {
-    width: 100%;
-    height: 100%;
+  .ant-card-body {
+    padding: 0;
+    display: ${({ isLoading }) => isLoading && 'flex'};
+    justify-content: ${({ isLoading }) => isLoading && 'center'};
+    min-height: 220px;
+    height 100%;
+    max-height: 220px;
+    overflow-y: scroll;
 
-    &.recharts-surface {
-      max-width: 74px;
-      position: absolute;
-      right: -6px;
+    .ant-table-tbody > tr > td {
+      padding: 16px 24px;
+
+      &:last-child {
+        text-align: right;
+      }
     }
-    max-width: ${({ svgFormat }) => svgFormat && '74px'};
   }
 `;

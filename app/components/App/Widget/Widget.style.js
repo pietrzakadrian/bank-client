@@ -52,6 +52,7 @@ export const StyledWidgetContentDescription = styled.div`
 
 export const StyledWidgetContentWidget = styled.div`
   width: 35%;
+  display: flex;
 
   .recharts-wrapper {
     width: 100% !important;

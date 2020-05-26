@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -6,6 +7,9 @@ import { getRecentTransactionsAction } from 'containers/DashboardPage/actions';
 import { StyledCard } from 'components/App/Card/Card.style';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { Table } from 'antd';
+import { format } from 'date-fns';
+
+const dateFormat = `dd.MM.yyyy`;
 
 const stateSelector = createStructuredSelector({
   recentTransactions: makeSelectRecentTransactions(),
@@ -13,14 +17,24 @@ const stateSelector = createStructuredSelector({
 
 const columns = [
   {
-    dataIndex: 'accountBillNumber',
-    key: 'accountBillNumber',
-    render: (text) => <div>{text}</div>,
+    key: 'leftSide',
+    render: ({ transferTitle, senderAccountBill: { user } }) => (
+      <div>
+        <div>
+          from {user.firstName} {user.lastName}
+        </div>
+        <div>{transferTitle}</div>
+      </div>
+    ),
   },
   {
-    dataIndex: 'amountMoney',
-    key: 'amountMoney',
-    render: (text) => <div>{text}</div>,
+    key: 'rightSide',
+    render: ({ updatedAt, amountMoney }) => (
+      <div>
+        <div>{format(new Date(updatedAt), dateFormat)}</div>
+        <div>{amountMoney}</div>
+      </div>
+    ),
   },
 ];
 

@@ -2,7 +2,7 @@
 
 exports[`<FirstName /> should render a SuccessfulResult 1`] = `
 <div
-  class="ant-result ant-result-success SuccessfulResultstyle__StyledResult-sc-1b0234m-0 fnDIns"
+  class="ant-result ant-result-success SuccessfulResultstyle__StyledResult-sc-68imx0-0 ccVeQh"
 >
   <div
     class="ant-result-icon"

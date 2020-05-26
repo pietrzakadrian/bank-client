@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Greeting /> should render a Greeting 1`] = `
+<section
+  class="Greetingstyle__StyledGreeting-r6yczo-0 idXROt"
+>
+  <div>
+    <span>
+      Good morning
+    </span>
+    ,
+     
+    <span
+      class="Greetingstyle__StyledNameWrapper-r6yczo-1 ifLnoL"
+    >
+       
+    </span>
+  </div>
+</section>
+`;

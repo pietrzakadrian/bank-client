@@ -2,14 +2,14 @@
 
 exports[`<Footer /> should render a div 1`] = `
 <footer
-  class="Footerstyle__StyledFooter-ii3akc-0 bPUOfu"
+  class="Footerstyle__StyledFooter-sc-3vvbi3-0 dvHDti"
 >
   <div
-    class="Footerstyle__StyledWarning-ii3akc-1 iGLjsw"
+    class="Footerstyle__StyledWarning-sc-3vvbi3-1 btJlec"
   >
     <span
       aria-label="info-circle"
-      class="anticon anticon-info-circle Footerstyle__StyledInfoCircleOutlined-ii3akc-2 jHWYWQ"
+      class="anticon anticon-info-circle Footerstyle__StyledInfoCircleOutlined-sc-3vvbi3-2 iXYsXs"
       role="img"
     >
       <svg
@@ -52,7 +52,7 @@ exports[`<Footer /> should render a div 1`] = `
     </ul>
   </div>
   <div
-    class="Footerstyle__StyledTip-ii3akc-3 gUnehx"
+    class="Footerstyle__StyledTip-sc-3vvbi3-3 feybDB"
   >
     <span>
       Remember: The bank does not require confirmation of any data, correct login or reading of the Banks messages by means of SMS, TAN and / or e-mail, or installation of any applications on the users phones or computers.
@@ -64,7 +64,7 @@ exports[`<Footer /> should render a div 1`] = `
     </span>
      
     <button
-      class="ant-btn Footerstyle__StyledButton-ii3akc-4 lepEIQ ant-btn-link"
+      class="ant-btn Footerstyle__StyledButton-sc-3vvbi3-4 byxUJI ant-btn-link"
       type="button"
     >
       <span>

@@ -3,14 +3,14 @@
 exports[`<LoginPage /> should render its loginPage 1`] = `
 <div>
   <header
-    class="Headerstyle__StyledHeader-sc-1v0bnwr-0 dcAuMn"
+    class="Headerstyle__StyledHeader-ae05xe-0 gxFPFE"
   >
     <a
       href="/"
     >
       <img
         alt="Bank Application"
-        class="Headerstyle__StyledImg-sc-1v0bnwr-1 ldXBof"
+        class="Headerstyle__StyledImg-ae05xe-1 ggLcVg"
         height="100%"
         src="IMAGE_MOCK"
         width="180"
@@ -18,17 +18,17 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
     </a>
     <img
       alt="Adrian Pietrzak"
-      class="Headerstyle__StyledImg-sc-1v0bnwr-1 ldXBof"
+      class="Headerstyle__StyledImg-ae05xe-1 ggLcVg"
       height="100%"
       src="IMAGE_MOCK"
       width="50"
     />
   </header>
   <div
-    class="Subheaderstyle__StyledSubheader-sc-5bqx2y-0 jziucg"
+    class="Subheaderstyle__StyledSubheader-sc-1dbp7w7-0 lkJlFV"
   >
     <div
-      class="ant-page-header Subheaderstyle__StyledPageHeader-sc-5bqx2y-1 fjdRAX ant-page-header-ghost"
+      class="ant-page-header Subheaderstyle__StyledPageHeader-sc-1dbp7w7-1 gjCZxq ant-page-header-ghost"
     >
       <div
         class="ant-page-header-heading"
@@ -107,21 +107,21 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
     </div>
   </div>
   <div
-    class="Informationstyle__StyledInformation-sc-7iwlvw-0 lepieR"
+    class="Informationstyle__StyledInformation-sc-1p8zm62-0 dDYeav"
   >
     <span>
       If you take advantage of our promotion and register your account by the end of this year, you will receive 10,00 USD from us. Accounts already created will also receive this from us.
     </span>
   </div>
   <div
-    class="Formstyle__StyledFormWrapper-u95n9s-3 gJbitQ"
+    class="Formstyle__StyledFormWrapper-sc-7x4ylh-3 cHpiyG"
   >
     <form
-      class="ant-form ant-form-vertical Formstyle__StyledForm-u95n9s-4 khDgmT"
+      class="ant-form ant-form-vertical Formstyle__StyledForm-sc-7x4ylh-4 iTcOQt"
       id="register"
     >
       <div
-        class="ant-row ant-form-item Formstyle__StyledFormItem-u95n9s-6 cgBASO"
+        class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 ePwRJs"
       >
         <div
           class="ant-col ant-form-item-label"
@@ -144,7 +144,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
               class="ant-form-item-control-input-content"
             >
               <div
-                class="ant-input-number Formstyle__StyledInputNumber-u95n9s-5 ipUaNg"
+                class="ant-input-number Formstyle__StyledInputNumber-sc-7x4ylh-5 eKKIVi"
               >
                 <div
                   class="ant-input-number-handler-wrap"
@@ -228,10 +228,10 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
     </form>
     
     <div
-      class="Formstyle__StyledFormActionsWrapper-u95n9s-0 bpYSCT"
+      class="Formstyle__StyledFormActionsWrapper-sc-7x4ylh-0 hCgvJp"
     >
       <button
-        class="ant-btn Formstyle__StyledButton-u95n9s-1 dtzDyb ant-btn-primary"
+        class="ant-btn Formstyle__StyledButton-sc-7x4ylh-1 hEdmIp ant-btn-primary"
         type="button"
       >
         <span>
@@ -262,14 +262,14 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
     </div>
   </div>
   <div
-    class="RedirectTogglestyle__StyledRedirectToggle-sc-13etpaw-0 jFRban"
+    class="RedirectTogglestyle__StyledRedirectToggle-sc-15lqog-0 WiacX"
   >
     <span>
       If you already have a bank account, you can log in by clicking on
     </span>
      
     <button
-      class="ant-btn RedirectTogglestyle__StyledButton-sc-13etpaw-1 jqtwAm ant-btn-link"
+      class="ant-btn RedirectTogglestyle__StyledButton-sc-15lqog-1 cEWUtu ant-btn-link"
       type="button"
     >
       <span>
@@ -278,14 +278,14 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
     </button>
   </div>
   <footer
-    class="Footerstyle__StyledFooter-ii3akc-0 bPUOfu"
+    class="Footerstyle__StyledFooter-sc-3vvbi3-0 dvHDti"
   >
     <div
-      class="Footerstyle__StyledWarning-ii3akc-1 iGLjsw"
+      class="Footerstyle__StyledWarning-sc-3vvbi3-1 btJlec"
     >
       <span
         aria-label="info-circle"
-        class="anticon anticon-info-circle Footerstyle__StyledInfoCircleOutlined-ii3akc-2 jHWYWQ"
+        class="anticon anticon-info-circle Footerstyle__StyledInfoCircleOutlined-sc-3vvbi3-2 iXYsXs"
         role="img"
       >
         <svg
@@ -328,7 +328,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
       </ul>
     </div>
     <div
-      class="Footerstyle__StyledTip-ii3akc-3 gUnehx"
+      class="Footerstyle__StyledTip-sc-3vvbi3-3 feybDB"
     >
       <span>
         Remember: The bank does not require confirmation of any data, correct login or reading of the Banks messages by means of SMS, TAN and / or e-mail, or installation of any applications on the users phones or computers.
@@ -340,7 +340,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
       </span>
        
       <button
-        class="ant-btn Footerstyle__StyledButton-ii3akc-4 lepEIQ ant-btn-link"
+        class="ant-btn Footerstyle__StyledButton-sc-3vvbi3-4 byxUJI ant-btn-link"
         type="button"
       >
         <span>

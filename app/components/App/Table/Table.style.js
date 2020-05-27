@@ -35,6 +35,12 @@ export const StyledTable = styled(Table)`
           text-overflow: ellipsis;
         }
       }
+
+      &:last-child {
+        .ant-table-cell {
+          border-bottom: 0;
+        }
+      }
     }
 
     .ant-table-tbody {

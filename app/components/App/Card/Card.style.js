@@ -14,6 +14,7 @@ export const StyledCard = styled(Card)`
   }
 
   .ant-card-body {
+    max-height: calc(100% - 58px);
     padding: 0;
     display: ${({ loaded, disabled }) => (loaded || disabled) && 'flex'};
     justify-content: ${({ loaded, disabled }) =>
@@ -21,10 +22,8 @@ export const StyledCard = styled(Card)`
     align-items: ${({ loaded, disabled }) => (loaded || disabled) && 'center'};
     text-align: ${({ loaded, disabled }) => (loaded || disabled) && 'center'};
     height 100%;
-    max-height: 199px;
-    min-height: 199px;
+    // max-height: 199px;
+    // min-height: 199px;
     overflow-y: scroll;
-
-
   }
 `;

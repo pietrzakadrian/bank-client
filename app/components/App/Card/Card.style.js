@@ -14,7 +14,7 @@ export const StyledCard = styled(Card)`
   }
 
   .ant-card-body {
-    max-height: calc(100% - 58px);
+    max-height: calc(100% - 56px);
     padding: 0;
     display: ${({ loaded, disabled }) => (loaded || disabled) && 'flex'};
     justify-content: ${({ loaded, disabled }) =>

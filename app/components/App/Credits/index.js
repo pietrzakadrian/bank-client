@@ -8,6 +8,7 @@ export default function Credits() {
       bordered="true"
       title="Credits"
       disabled="true"
+      shadowed="true"
       extra={<>New credit</>}
     >
       <div>Funkcja Kredyty została wyłączona.</div>

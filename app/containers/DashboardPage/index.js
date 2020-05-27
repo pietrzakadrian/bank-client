@@ -77,7 +77,7 @@ export default function DashboardPage() {
           rowHeight={8}
           margin={[20, 10]}
           isResizable={false}
-          isDraggable={false}
+          isDraggable
         >
           <StyledGridItem
             key="1"
@@ -108,15 +108,15 @@ export default function DashboardPage() {
             <RecentTransactions />
           </StyledGridItem>
 
-          <StyledGridItem key="6" data-grid={{ x: 0, y: 3, w: 1, h: 15 }}>
+          <StyledGridItem key="6" data-grid={{ x: 0, y: 3, w: 1, h: 16 }}>
             <BankCards />
           </StyledGridItem>
 
-          <StyledGridItem key="7" data-grid={{ x: 1, y: 3, w: 1, h: 15 }}>
+          <StyledGridItem key="7" data-grid={{ x: 1, y: 3, w: 1, h: 16 }}>
             <Credits />
           </StyledGridItem>
 
-          <StyledGridItem key="8" data-grid={{ x: 2, y: 2, w: 1, h: 15 }}>
+          <StyledGridItem key="8" data-grid={{ x: 2, y: 2, w: 1, h: 16 }}>
             <Deposits />
           </StyledGridItem>
         </ResponsiveGridLayout>

@@ -26,7 +26,7 @@ export default function Widget({
       {isLoading ? (
         <LoadingIndicator />
       ) : (
-        <StyledWidgetContent noCenter={!!description}>
+        <StyledWidgetContent centered={!!description}>
           {title && content && unit && (
             <StyledWidgetContentTypography>
               <StyledWidgetContentTypographyHeader>

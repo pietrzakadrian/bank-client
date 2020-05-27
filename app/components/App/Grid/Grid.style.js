@@ -8,7 +8,6 @@ export const StyledGridWrapper = styled.div`
 
   ${media.tablet`
     max-width: 1100px;
-    width: calc(100% - 70px);
   `}
 `;
 

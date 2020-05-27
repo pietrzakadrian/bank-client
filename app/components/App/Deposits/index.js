@@ -9,6 +9,7 @@ export default function Deposits() {
       title="Deposits"
       disabled="true"
       extra={<>New deposit</>}
+      shadowed="true"
     >
       <div>Funkcja Depozyty została wyłączona.</div>
     </StyledCard>

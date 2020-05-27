@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { typography } from 'utils';
 
 export const StyledWidget = styled.section`
-  height: 95px;
+  height: 96px;
   background-color: rgb(243, 243, 243);
   border: 1px solid rgba(0, 0, 0, 0.12);
   padding: 16px 24px;
@@ -16,18 +16,17 @@ export const StyledWidget = styled.section`
 export const StyledWidgetContent = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: ${({ noCenter }) => (noCenter ? 'baseline' : 'center')};
-  height: 61px;
+  align-items: ${({ centered }) => (centered ? 'baseline' : 'center')};
+  height: 100%;
   width: 100%;
 `;
 
 export const StyledWidgetContentTypography = styled.div`
-  width: 65%;
-  height: 61px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   line-height: 1.4;
+  width: 100%;
 `;
 
 export const StyledWidgetContentTypographyHeader = styled.div`
@@ -50,7 +49,8 @@ export const StyledWidgetContentDescription = styled.div`
 `;
 
 export const StyledWidgetContentWidget = styled.div`
-  width: 35%;
+  width: 100%;
+  max-width: 74px;
   display: flex;
 
   .recharts-wrapper {
@@ -67,6 +67,7 @@ export const StyledWidgetContentWidget = styled.div`
       position: absolute;
       right: -6px;
     }
-    max-width: ${({ svgFormat }) => svgFormat && '74px'};
+
+    max-width: 74px;
   }
 `;

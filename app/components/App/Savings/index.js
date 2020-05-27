@@ -33,8 +33,6 @@ export default function Savings() {
     }
   }, [savings, JSON.stringify(savingsData), JSON.stringify(savingsColors)]);
 
-  console.log(savingsData);
-
   const pieChart = (
     <PieChart margin={0} width={200} height={61}>
       <Pie

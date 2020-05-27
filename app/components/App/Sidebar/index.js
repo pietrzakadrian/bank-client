@@ -33,7 +33,7 @@ export default function Sidebar() {
       collapsible
       collapsed={isCollapsedSidebar}
       width={250}
-      collapsedWidth={0}
+      collapsedWidth={80}
     >
       <Logo />
       <Navigation />

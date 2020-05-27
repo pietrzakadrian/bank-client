@@ -9,7 +9,6 @@ export const StyledWidget = styled.section`
   position: relative;
   display: flex;
   align-items: center;
-  max-width: 310px;
   justify-content: center;
   width: 100%;
 `;

@@ -15,6 +15,6 @@ export const StyledLayout = styled(Layout)`
   background-color: #fff;
 
   ${media.tablet`
-    padding-left: ${({ open }) => (open ? 0 : '250px')};
+    padding-left: ${({ open }) => (open ? '80px' : '250px')};
   `}
 `;

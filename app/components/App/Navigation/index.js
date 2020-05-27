@@ -2,9 +2,11 @@ import React from 'react';
 import { Menu } from 'antd';
 import { routes } from 'utils';
 
+import { DesktopOutlined } from '@ant-design/icons';
+
 import {
   StyledMenuItem,
-  StyledDesktopOutlined,
+
   // StyledWalletOutlined,
   // StyledHistoryOutlined,
   // StyledSettingOutlined,
@@ -15,7 +17,7 @@ const items = [
     id: 1,
     name: routes.dashboard.name,
     path: routes.dashboard.path,
-    icon: <StyledDesktopOutlined />,
+    icon: <DesktopOutlined />,
   },
   // {
   //   id: 2,

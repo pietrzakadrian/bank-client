@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectBills } from 'containers/DashboardPage/selectors';
 import { getBillsAction } from 'containers/DashboardPage/actions';
-import { Table } from 'antd';
 import { StyledCard } from 'components/App/Card/Card.style';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { StyledTable } from 'components/App/Table/Table.style';
 import { StyledBillAmountMoney } from './Bills.style';
 
 const stateSelector = createStructuredSelector({
@@ -15,12 +15,10 @@ const stateSelector = createStructuredSelector({
 const columns = [
   {
     dataIndex: 'accountBillNumber',
-    key: 'accountBillNumber',
     render: (text) => <div>{text}</div>,
   },
   {
     dataIndex: 'amountMoney',
-    key: 'amountMoney',
     render: (text, { currency }) => (
       <>
         <StyledBillAmountMoney>{text}</StyledBillAmountMoney> {currency.name}
@@ -46,21 +44,22 @@ export default function Bills() {
 
   return (
     <StyledCard
-      isBackground
-      isLoading={isLoading}
+      darker="true"
+      loaded={isLoading ? 1 : 0}
       bordered={false}
-      isShadow
+      shadowed="true"
       title="Bills"
-      style={{ width: 600 }}
+      extra={<>Create a new bill</>}
     >
       {isLoading ? (
         <LoadingIndicator />
       ) : (
-        <Table
+        <StyledTable
           showHeader={false}
           pagination={false}
           dataSource={bills}
           columns={columns}
+          rowKey={(record) => record.uuid}
         />
       )}
     </StyledCard>

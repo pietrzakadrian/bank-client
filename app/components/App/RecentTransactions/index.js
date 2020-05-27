@@ -3,45 +3,28 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectRecentTransactions } from 'containers/DashboardPage/selectors';
+import { makeSelectUser } from 'containers/App/selectors';
 import { getRecentTransactionsAction } from 'containers/DashboardPage/actions';
 import { StyledCard } from 'components/App/Card/Card.style';
 import LoadingIndicator from 'components/LoadingIndicator';
-import { Table } from 'antd';
+
 import { format } from 'date-fns';
+import { StyledTable } from 'components/App/Table/Table.style';
+import {
+  StyledSenderAmountMoney,
+  StyledUser,
+} from './RecentTransactions.style';
 
 const dateFormat = `dd.MM.yyyy`;
-
 const stateSelector = createStructuredSelector({
+  user: makeSelectUser(),
   recentTransactions: makeSelectRecentTransactions(),
 });
-
-const columns = [
-  {
-    key: 'leftSide',
-    render: ({ transferTitle, senderAccountBill: { user } }) => (
-      <div>
-        <div>
-          from {user.firstName} {user.lastName}
-        </div>
-        <div>{transferTitle}</div>
-      </div>
-    ),
-  },
-  {
-    key: 'rightSide',
-    render: ({ updatedAt, amountMoney }) => (
-      <div>
-        <div>{format(new Date(updatedAt), dateFormat)}</div>
-        <div>{amountMoney}</div>
-      </div>
-    ),
-  },
-];
 
 export default function RecentTransactions() {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  const { recentTransactions } = useSelector(stateSelector);
+  const { recentTransactions, user } = useSelector(stateSelector);
 
   const getRecentTransactions = () => dispatch(getRecentTransactionsAction());
 
@@ -53,22 +36,65 @@ export default function RecentTransactions() {
     }
   }, [JSON.stringify(recentTransactions)]);
 
+  const columns = [
+    {
+      render: ({ transferTitle, senderAccountBill, recipientAccountBill }) => (
+        <>
+          <div>
+            {senderAccountBill.user.uuid === user.uuid ? (
+              <div>
+                <div style={{ display: 'inline' }}>to </div>
+                <StyledUser>
+                  {recipientAccountBill.user.firstName}{' '}
+                  {recipientAccountBill.user.lastName}
+                </StyledUser>
+              </div>
+            ) : (
+              <div>
+                <div style={{ display: 'inline' }}>from </div>
+                <StyledUser>
+                  {senderAccountBill.user.firstName}{' '}
+                  {senderAccountBill.user.lastName}
+                </StyledUser>
+              </div>
+            )}
+          </div>
+          <div>{transferTitle}</div>
+        </>
+      ),
+    },
+    {
+      render: ({ updatedAt, amountMoney, senderAccountBill }) => (
+        <div className="right">
+          <div>{format(new Date(updatedAt), dateFormat)}</div>
+          <div>
+            {senderAccountBill.user.uuid === user.uuid ? (
+              <StyledSenderAmountMoney>
+                -{amountMoney} {senderAccountBill.currency.name}
+              </StyledSenderAmountMoney>
+            ) : (
+              <>
+                {amountMoney} {senderAccountBill.currency.name}
+              </>
+            )}{' '}
+          </div>
+        </div>
+      ),
+    },
+  ];
+
   return (
-    <StyledCard
-      isLoading={isLoading}
-      bordered={false}
-      isShadow
-      title="Recent Transactions"
-      style={{ width: 330 }}
-    >
+    <StyledCard loaded={isLoading ? 1 : 0} bordered title="Recent Transactions">
       {isLoading ? (
         <LoadingIndicator />
       ) : (
-        <Table
+        <StyledTable
+          minimaled="true"
           showHeader={false}
           pagination={false}
           dataSource={recentTransactions}
           columns={columns}
+          rowKey={(record) => record.uuid}
         />
       )}
     </StyledCard>

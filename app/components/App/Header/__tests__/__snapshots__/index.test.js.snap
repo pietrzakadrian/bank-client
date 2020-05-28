@@ -2,7 +2,7 @@
 
 exports[`<Header /> should match the snapshot 1`] = `
 <header
-  class="ant-layout-header Headerstyle__StyledHeader-k18jp7-0 iAOvVc"
+  class="ant-layout-header Headerstyle__StyledHeader-k18jp7-0 hlDNXb"
   open=""
 >
   <div

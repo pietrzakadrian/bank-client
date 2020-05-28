@@ -21,6 +21,7 @@ describe('dashboardPageReducer', () => {
       savingsColors: [],
       bills: [],
       accountBalanceHistory: [],
+      recentTransactions: [],
     };
   });
 

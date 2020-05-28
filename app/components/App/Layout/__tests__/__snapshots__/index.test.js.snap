@@ -2,8 +2,8 @@
 
 exports[`<Layout /> should match the snapshot 1`] = `
 <aside
-  class="Sidebarstyle__StyledSidebar-vo27yo-0 dgpoex ant-layout-sider ant-layout-sider-light ant-layout-sider-collapsed ant-layout-sider-zero-width"
-  style="flex: 0 0 0px; max-width: 0px; min-width: 0px; width: 0px;"
+  class="Sidebarstyle__StyledSidebar-vo27yo-0 llASxP ant-layout-sider ant-layout-sider-light ant-layout-sider-collapsed"
+  style="flex: 0 0 80px; max-width: 80px; min-width: 80px; width: 80px;"
 >
   <div
     class="ant-layout-sider-children"
@@ -23,12 +23,12 @@ exports[`<Layout /> should match the snapshot 1`] = `
       role="menu"
     >
       <li
-        class="ant-menu-item Navigationstyle__StyledMenuItem-wt3miw-0 dUoMzc ant-menu-item-selected"
+        class="ant-menu-item Navigationstyle__StyledMenuItem-wt3miw-0 gsAkiO ant-menu-item-selected"
         role="menuitem"
       >
         <span
           aria-label="desktop"
-          class="anticon anticon-desktop Navigationstyle__StyledDesktopOutlined-wt3miw-1 emSucX"
+          class="anticon anticon-desktop"
           role="img"
         >
           <svg
@@ -54,10 +54,10 @@ exports[`<Layout /> should match the snapshot 1`] = `
       </li>
     </ul>
     <footer
-      class="Footerstyle__StyledFooter-sc-7flfx7-0 kGbQmA"
+      class="Footerstyle__StyledFooter-sc-7flfx7-0 ljccJr"
     >
       <strong>
-        Bank Application v2.0
+        Bank Application 2.0
       </strong>
        | 22.05.20
     </footer>

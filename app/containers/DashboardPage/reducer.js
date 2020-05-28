@@ -22,7 +22,6 @@ export const initialState = {
   bills: [],
   accountBalanceHistory: [],
   recentTransactions: [],
-  layout: {},
 };
 
 /* eslint-disable default-case, no-param-reassign */

@@ -6,13 +6,13 @@ exports[`<Navigation /> should match the snapshot 1`] = `
   role="menu"
 >
   <li
-    class="ant-menu-item Navigationstyle__StyledMenuItem-wt3miw-0 dUoMzc ant-menu-item-selected"
+    class="ant-menu-item Navigationstyle__StyledMenuItem-wt3miw-0 gsAkiO ant-menu-item-selected"
     role="menuitem"
     style="padding-left: 24px;"
   >
     <span
       aria-label="desktop"
-      class="anticon anticon-desktop Navigationstyle__StyledDesktopOutlined-wt3miw-1 emSucX"
+      class="anticon anticon-desktop"
       role="img"
     >
       <svg

@@ -2,7 +2,7 @@
 
 exports[`<Savings /> should render a Savings 1`] = `
 <section
-  class="Cardstyle__StyledCard-s807iu-0 gZCSEQ"
+  class="Widgetstyle__StyledWidget-sc-1bl1ktb-0 kjDbLh"
 >
   <div
     class="ant-spin ant-spin-spinning LoadingIndicatorstyle__StyledSpin-sc-1hamj2j-0 jYctYG"

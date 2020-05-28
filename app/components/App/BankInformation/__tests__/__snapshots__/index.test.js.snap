@@ -2,13 +2,13 @@
 
 exports[`<BankInformation /> should render a BankInformation 1`] = `
 <section
-  class="Cardstyle__StyledCard-s807iu-0 gZCSEQ"
+  class="Widgetstyle__StyledWidget-sc-1bl1ktb-0 kjDbLh"
 >
   <div
-    class="Cardstyle__StyledCardContent-s807iu-1 bkXQSW"
+    class="Widgetstyle__StyledWidgetContent-sc-1bl1ktb-1 ctZsZP"
   >
     <div
-      class="Cardstyle__StyledCardContentDescription-s807iu-6 cyBFNZ"
+      class="Widgetstyle__StyledWidgetContentDescription-sc-1bl1ktb-6 glPtKX"
     >
       Did you know that transfers in our bank arrive immediately?
     </div>

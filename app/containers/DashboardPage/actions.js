@@ -20,6 +20,7 @@ import {
   GET_RECENT_TRANSACTIONS,
   GET_RECENT_TRANSACTIONS_SUCCESS,
   GET_RECENT_TRANSACTIONS_ERROR,
+  CHANGE_LAYOUT,
 } from './constants';
 
 export function getBillsAction() {
@@ -128,5 +129,12 @@ export function getRecentTransactionsErrorAction(error) {
   return {
     type: GET_RECENT_TRANSACTIONS_ERROR,
     error,
+  };
+}
+
+export function changeLayoutAction(layout) {
+  return {
+    type: CHANGE_LAYOUT,
+    layout,
   };
 }

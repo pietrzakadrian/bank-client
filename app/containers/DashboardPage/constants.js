@@ -33,3 +33,5 @@ export const GET_RECENT_TRANSACTIONS_SUCCESS =
   'app/DashboardPage/GET_RECENT_TRANSACTIONS_SUCCESS';
 export const GET_RECENT_TRANSACTIONS_ERROR =
   'app/DashboardPage/GET_RECENT_TRANSACTIONS_ERROR';
+
+export const CHANGE_LAYOUT = 'app/DashboardPage/CHANGE_LAYOUT';

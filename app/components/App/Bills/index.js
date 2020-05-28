@@ -5,7 +5,10 @@ import { makeSelectBills } from 'containers/DashboardPage/selectors';
 import { getBillsAction } from 'containers/DashboardPage/actions';
 import { StyledCard } from 'components/App/Card/Card.style';
 import LoadingIndicator from 'components/LoadingIndicator';
-import { StyledTable } from 'components/App/Table/Table.style';
+import {
+  StyledTable,
+  StyledTableWrapper,
+} from 'components/App/Table/Table.style';
 import { StyledBillAmountMoney } from './Bills.style';
 
 const stateSelector = createStructuredSelector({
@@ -54,13 +57,15 @@ export default function Bills() {
       {isLoading ? (
         <LoadingIndicator />
       ) : (
-        <StyledTable
-          showHeader={false}
-          pagination={false}
-          dataSource={bills}
-          columns={columns}
-          rowKey={(record) => record.uuid}
-        />
+        <StyledTableWrapper onMouseDown={(e) => e.stopPropagation()}>
+          <StyledTable
+            showHeader={false}
+            pagination={false}
+            dataSource={bills}
+            columns={columns}
+            rowKey={(record) => record.uuid}
+          />
+        </StyledTableWrapper>
       )}
     </StyledCard>
   );

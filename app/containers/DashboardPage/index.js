@@ -6,60 +6,43 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import Greeting from 'components/App/Greeting';
-// import makeSelectDashboardPage from './selectors';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import useResizeObserver from 'use-resize-observer';
 import AvailableFunds from 'components/App/AvailableFunds';
 import Savings from 'components/App/Savings';
 import BankInformation from 'components/App/BankInformation';
 import Bills from 'components/App/Bills';
 import RecentTransactions from 'components/App/RecentTransactions';
 import BankCards from 'components/App/BankCards';
+import { onResize } from 'providers/ResizeLayout';
 import {
   StyledGridWrapper,
   StyledGridItem,
 } from 'components/App/Grid/Grid.style';
-import reducer from './reducer';
+import { createStructuredSelector } from 'reselect';
+import Credits from 'components/App/Credits';
+import Deposits from 'components/App/Deposits';
+import { makeSelectLayout } from 'containers/App/selectors';
 import saga from './saga';
-import Credits from '../../components/App/Credits';
-import Deposits from '../../components/App/Deposits';
+import reducer from './reducer';
+import { changeLayoutAction } from './actions';
 
-// const stateSelector = createStructuredSelector({
-//   dashboardPage: makeSelectDashboardPage(),
-// });
-
-// function getFromLS(key) {
-//   let ls = {};
-//   if (global.localStorage)
-//     ls = JSON.parse(global.localStorage.getItem('rgl-8')) || {};
-
-//   return ls[key];
-// }
-
-// function saveToLS(key, value) {
-//   if (global.localStorage) {
-//     global.localStorage.setItem(
-//       'rgl-8',
-//       JSON.stringify({
-//         [key]: value,
-//       }),
-//     );
-//   }
-// }
-
-const ResponsiveGridLayout = WidthProvider(Responsive);
-// const originalLayouts = getFromLS('layouts') || {};
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
+const stateSelector = createStructuredSelector({
+  layout: makeSelectLayout(),
+});
 
 export default function DashboardPage() {
+  const { layout } = useSelector(stateSelector);
+  const dispatch = useDispatch();
+  const { ref } = useResizeObserver({ onResize });
+
   useInjectReducer({ key: 'dashboardPage', reducer });
   useInjectSaga({ key: 'dashboardPage', saga });
-
-  /* eslint-disable no-unused-vars */
-  // const { dashboardPage } = useSelector(stateSelector);
-  const dispatch = useDispatch();
-  /* eslint-enable no-unused-vars */
 
   return (
     <div>
@@ -70,14 +53,16 @@ export default function DashboardPage() {
 
       <Greeting />
 
-      <StyledGridWrapper>
-        <ResponsiveGridLayout
-          breakpoints={{ lg: 1100, md: 900, sm: 610, xs: 480, xxs: 0 }}
+      <StyledGridWrapper ref={ref}>
+        <ResponsiveReactGridLayout
+          breakpoints={{ lg: 1100, md: 900, sm: 580, xs: 480, xxs: 0 }}
           cols={{ lg: 3, md: 3, sm: 2, xs: 1, xxs: 1 }}
           rowHeight={8}
           margin={[20, 10]}
           isResizable={false}
           isDraggable
+          layouts={layout}
+          onLayoutChange={(_, layouts) => dispatch(changeLayoutAction(layouts))}
         >
           <StyledGridItem
             key="1"
@@ -119,7 +104,7 @@ export default function DashboardPage() {
           <StyledGridItem key="8" data-grid={{ x: 2, y: 2, w: 1, h: 16 }}>
             <Deposits />
           </StyledGridItem>
-        </ResponsiveGridLayout>
+        </ResponsiveReactGridLayout>
       </StyledGridWrapper>
     </div>
   );

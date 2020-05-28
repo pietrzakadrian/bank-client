@@ -7,9 +7,11 @@ import { makeSelectUser } from 'containers/App/selectors';
 import { getRecentTransactionsAction } from 'containers/DashboardPage/actions';
 import { StyledCard } from 'components/App/Card/Card.style';
 import LoadingIndicator from 'components/LoadingIndicator';
-
 import { format } from 'date-fns';
-import { StyledTable } from 'components/App/Table/Table.style';
+import {
+  StyledTable,
+  StyledTableWrapper,
+} from 'components/App/Table/Table.style';
 import {
   StyledSenderAmountMoney,
   StyledUser,
@@ -31,7 +33,7 @@ export default function RecentTransactions() {
   useEffect(() => {
     if (!recentTransactions.length) getRecentTransactions();
 
-    if (recentTransactions.length) {
+    if (recentTransactions) {
       setIsLoading(false);
     }
   }, [JSON.stringify(recentTransactions)]);
@@ -65,7 +67,7 @@ export default function RecentTransactions() {
     },
     {
       render: ({ updatedAt, amountMoney, senderAccountBill }) => (
-        <div className="right">
+        <div>
           <div>{format(new Date(updatedAt), dateFormat)}</div>
           <div>
             {senderAccountBill.user.uuid === user.uuid ? (
@@ -76,7 +78,7 @@ export default function RecentTransactions() {
               <>
                 {amountMoney} {senderAccountBill.currency.name}
               </>
-            )}{' '}
+            )}
           </div>
         </div>
       ),
@@ -88,14 +90,16 @@ export default function RecentTransactions() {
       {isLoading ? (
         <LoadingIndicator />
       ) : (
-        <StyledTable
-          minimaled="true"
-          showHeader={false}
-          pagination={false}
-          dataSource={recentTransactions}
-          columns={columns}
-          rowKey={(record) => record.uuid}
-        />
+        <StyledTableWrapper onMouseDown={(e) => e.stopPropagation()}>
+          <StyledTable
+            minimaled="true"
+            showHeader={false}
+            pagination={false}
+            dataSource={recentTransactions}
+            columns={columns}
+            rowKey={(record) => record.uuid}
+          />
+        </StyledTableWrapper>
       )}
     </StyledCard>
   );

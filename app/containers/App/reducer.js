@@ -30,6 +30,7 @@ import {
   COLLAPSED_SIDEBAR,
   COLLAPSED_DRAWER,
 } from './constants';
+import { CHANGE_LAYOUT } from '../DashboardPage/constants';
 
 export const initialState = {
   isCollapsedSidebar: true,
@@ -86,6 +87,9 @@ const appReducer = produce((draft, action) => {
       break;
     case COLLAPSED_DRAWER:
       draft.isCollapsedDrawer = !draft.isCollapsedDrawer;
+      break;
+    case CHANGE_LAYOUT:
+      draft.layout = JSON.parse(JSON.stringify(action.layout));
       break;
   }
 }, initialState);

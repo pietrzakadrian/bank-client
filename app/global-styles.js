@@ -6,6 +6,14 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     width: 100%;
     overscroll-behavior-y: none;
+
+    &.react-draggable-transparent-selection {
+      .react-draggable {
+        &:not(:active) {
+          opacity: 0.3;
+        }
+      }
+    }
   }
 
   #app {

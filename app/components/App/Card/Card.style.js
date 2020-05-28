@@ -14,16 +14,26 @@ export const StyledCard = styled(Card)`
   }
 
   .ant-card-body {
-    max-height: calc(100% - 56px);
+    max-height: calc(100% - 58px);
     padding: 0;
-    display: ${({ loaded, disabled }) => (loaded || disabled) && 'flex'};
-    justify-content: ${({ loaded, disabled }) =>
-      (loaded || disabled) && 'center'};
-    align-items: ${({ loaded, disabled }) => (loaded || disabled) && 'center'};
-    text-align: ${({ loaded, disabled }) => (loaded || disabled) && 'center'};
+    display: ${({ loaded, excluded }) => (loaded || excluded) && 'flex'};
+    justify-content: ${({ loaded, excluded }) =>
+      (loaded || excluded) && 'center'};
+    align-items: ${({ loaded, excluded }) => (loaded || excluded) && 'center'};
+    text-align: ${({ loaded, excluded }) => (loaded || excluded) && 'center'};
     height 100%;
-    // max-height: 199px;
-    // min-height: 199px;
     overflow-y: scroll;
+
+    &:hover {
+      cursor: auto;
+    }
   }
+`;
+
+export const StyledCardContent = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

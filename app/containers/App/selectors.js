@@ -32,6 +32,9 @@ const makeSelectIsCollapsedDrawer = () =>
     (globalState) => globalState.isCollapsedDrawer,
   );
 
+const makeSelectLayout = () =>
+  createSelector(selectGlobalDomain, (globalState) => globalState.layout);
+
 const makeSelectLocation = () =>
   createSelector(selectRouter, (routerState) => routerState.location);
 
@@ -45,4 +48,5 @@ export {
   makeSelectError,
   makeSelectIsCollapsedSidebar,
   makeSelectIsCollapsedDrawer,
+  makeSelectLayout,
 };

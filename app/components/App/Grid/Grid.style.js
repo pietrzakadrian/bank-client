@@ -6,16 +6,21 @@ export const StyledGridWrapper = styled.div`
   margin: 0 auto;
   width: 100%;
 
+  .react-grid-placeholder {
+    background-color: rgba(24, 144, 255, 0.1);
+    z-index: 1;
+  }
+
   ${media.tablet`
     max-width: 1100px;
   `}
 `;
 
 export const StyledGridItem = styled.div`
-  border: 1px solid red;
+  transition: 0.2s;
 
   &.react-draggable-dragging {
-    z-index: 1;
+    z-index: 2;
   }
 
   ${media.tablet`

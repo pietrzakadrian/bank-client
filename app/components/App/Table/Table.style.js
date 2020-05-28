@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 import { Table } from 'antd';
 
+export const StyledTableWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+
+  &:hover {
+    cursor: auto;
+  }
+`;
+
 export const StyledTable = styled(Table)`
   &&& {
     height: 100%;
@@ -74,12 +83,13 @@ export const StyledTable = styled(Table)`
         display: block;
         width: 100%;
         height: 100%;
-        max-height: 54.5px;
+        max-height: calc(100% / 4);
 
         > td {
           height: 100%;
           padding: ${(props) => (props.minimaled ? '5px 24px' : '16px 24px;')};
           white-space: nowrap;
+          display: ${({ dataSource }) => !dataSource.lenght && 'none'};
 
           &:last-child {
             text-align: right;

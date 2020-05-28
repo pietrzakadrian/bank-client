@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledCard } from '../Card/Card.style';
+import { StyledCard, StyledCardContent } from '../Card/Card.style';
 
 export default function Deposits() {
   return (
@@ -7,11 +7,13 @@ export default function Deposits() {
       darker="true"
       bordered="true"
       title="Deposits"
-      disabled="true"
+      excluded="true"
       extra={<>New deposit</>}
       shadowed="true"
     >
-      <div>Funkcja Depozyty została wyłączona.</div>
+      <StyledCardContent onMouseDown={(e) => e.stopPropagation()}>
+        Funkcja Depozyty została wyłączona.
+      </StyledCardContent>
     </StyledCard>
   );
 }

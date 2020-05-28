@@ -1,7 +1,8 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects';
 import { makeSelectToken } from 'containers/App/selectors';
-import { api, request, colors } from 'utils';
+import { api, request, colors, routes } from 'utils';
 
+import { push } from 'connected-react-router';
 import {
   GET_AMOUNT_MONEY,
   GET_ACCOUNT_BALANCE_HISTORY,
@@ -39,6 +40,15 @@ export function* getAmountMoney() {
     yield put(getAmountMoneySuccessAction(amountMoney, currencyName));
   } catch (error) {
     yield put(getAmountMoneyErrorAction(error));
+
+    switch (error.statusCode) {
+      case 401:
+        yield put(push(routes.login.path));
+        break;
+      default:
+        yield put(push(routes.login.path));
+        break;
+    }
   }
 }
 

@@ -19,6 +19,7 @@ export const StyledSidebar = styled(Layout.Sider)`
     display: none;
     overflow-x: hidden;
     border-right: 1px solid rgba(0, 0, 0, 0.12);
+    z-index: 3;
 
     .ant-menu {
       border-right: 0;

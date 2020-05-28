@@ -22,7 +22,7 @@ export const StyledHeader = styled(Layout.Header)`
   transition: all 0.1s ease-in-out;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   background: ${colors.white};
-  z-index: 2;
+  z-index: 3;
 
   ${media.tablet`
     width: ${({ open }) => (open ? '100%' : 'calc(100% - 250px)')};

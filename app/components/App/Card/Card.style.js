@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 import { Card } from 'antd';
 
+const cardHeaderHeight = 58;
 export const StyledCard = styled(Card)`
   width: 100%;
   height: 100%;
@@ -11,10 +12,15 @@ export const StyledCard = styled(Card)`
 
   .ant-card-head {
     background-color: ${({ darker }) => darker && `rgb(247, 247, 247)`};
+    height: ${cardHeaderHeight}px;
+
+    .ant-card-extra {
+      padding: 0;
+    }
   }
 
   .ant-card-body {
-    max-height: calc(100% - 58px);
+    max-height: calc(100% - ${cardHeaderHeight}px);
     padding: 0;
     display: ${({ loaded, excluded }) => (loaded || excluded) && 'flex'};
     justify-content: ${({ loaded, excluded }) =>

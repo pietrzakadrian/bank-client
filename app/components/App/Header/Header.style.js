@@ -12,7 +12,7 @@ export const headerHeight = '64px';
 export const StyledHeader = styled(Layout.Header)`
   display: flex;
   align-items: center;
-  padding: 0 25px;
+  padding: 0 25px 0 15px;
   justify-content: space-between;
   width: 100%;
   position: fixed;
@@ -34,6 +34,15 @@ export const StyledMenuUnfoldOutlined = styled(MenuUnfoldOutlined)`
   font-size: 19px;
   display: none;
   align-items: center;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  border-radius: 25px;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
 
   ${media.tablet`
     display: flex;
@@ -45,6 +54,15 @@ export const StyledMenuFoldOutlined = styled(MenuFoldOutlined)`
   font-size: 19px;
   display: none;
   align-items: center;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  border-radius: 25px;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
 
   ${media.tablet`
     display: flex;
@@ -64,4 +82,5 @@ export const StyledBarsOutlined = styled(BarsOutlined)`
 
 export const StyledHeaderWrapper = styled.div`
   display: flex;
+  align-items: center;
 `;

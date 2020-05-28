@@ -9,7 +9,11 @@ import {
   StyledTable,
   StyledTableWrapper,
 } from 'components/App/Table/Table.style';
+import { PlusCircleOutlined } from '@ant-design/icons';
+import { FormattedMessage } from 'react-intl';
 import { StyledBillAmountMoney } from './Bills.style';
+import { StyledButton, StyledButtonContent } from '../Button/Button.style';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   bills: makeSelectBills(),
@@ -52,7 +56,13 @@ export default function Bills() {
       bordered={false}
       shadowed="true"
       title="Bills"
-      extra={<>Create a new bill</>}
+      extra={
+        <StyledButton type="link">
+          <StyledButtonContent onMouseDown={(e) => e.stopPropagation()}>
+            <PlusCircleOutlined /> <FormattedMessage {...messages.action} />
+          </StyledButtonContent>
+        </StyledButton>
+      }
     >
       {isLoading ? (
         <LoadingIndicator />

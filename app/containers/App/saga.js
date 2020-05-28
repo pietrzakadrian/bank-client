@@ -20,9 +20,18 @@ export function* logout() {
   try {
     yield call(request, requestURL, requestParameters);
     yield put(logoutSuccessAction());
-    yield put(push(routes.home));
+    yield put(push(routes.home.path));
   } catch (error) {
     yield put(logoutErrorAction(error));
+
+    switch (error.statusCode) {
+      case 401:
+        yield put(push(routes.home.path));
+        break;
+      default:
+        yield put(push(routes.login.path));
+        break;
+    }
   }
 }
 

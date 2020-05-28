@@ -94,6 +94,15 @@ export function* getAccountBalance() {
     );
   } catch (error) {
     yield put(getAccountBalanceErrorAction(error));
+
+    switch (error.statusCode) {
+      case 401:
+        yield put(push(routes.login.path));
+        break;
+      default:
+        yield put(push(routes.login.path));
+        break;
+    }
   }
 }
 
@@ -114,6 +123,15 @@ export function* getAccountBalanceHistory() {
     yield put(getAccountBalanceHistorySuccessAction(accountBalanceHistory));
   } catch (error) {
     yield put(getAccountBalanceHistoryErrorAction(error));
+
+    switch (error.statusCode) {
+      case 401:
+        yield put(push(routes.login.path));
+        break;
+      default:
+        yield put(push(routes.login.path));
+        break;
+    }
   }
 }
 
@@ -131,6 +149,15 @@ export function* getBills() {
     yield put(getBillsSuccessAction(data));
   } catch (error) {
     yield put(getBillsErrorAction(error));
+
+    switch (error.statusCode) {
+      case 401:
+        yield put(push(routes.login.path));
+        break;
+      default:
+        yield put(push(routes.login.path));
+        break;
+    }
   }
 }
 
@@ -147,6 +174,15 @@ export function* getRecentTransactions() {
     yield put(getRecentTransactionsSuccessAction(data));
   } catch (error) {
     yield put(getRecentTransactionsErrorAction(error));
+
+    switch (error.statusCode) {
+      case 401:
+        yield put(push(routes.login.path));
+        break;
+      default:
+        yield put(push(routes.login.path));
+        break;
+    }
   }
 }
 

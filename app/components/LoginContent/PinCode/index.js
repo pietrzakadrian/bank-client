@@ -15,6 +15,8 @@ function PinCode({ intl }) {
   const { pinCode } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  const onChangePinCode = (value) => dispatch(changePinCodeAction(value));
+
   return (
     <StyledFormItem
       label={intl.formatMessage(messages.label)}
@@ -24,7 +26,7 @@ function PinCode({ intl }) {
       ]}
     >
       <StyledInputNumber
-        onChange={(value) => dispatch(changePinCodeAction(value))}
+        onChange={onChangePinCode}
         name="pinCode"
         value={pinCode}
         placeholder={intl.formatMessage(messages.placeholder)}

@@ -16,6 +16,8 @@ function Password({ intl }) {
   const { password } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  const onChangeInput = (event) => dispatch(changeInputAction(event.target));
+
   const checkLengthOfCharactersInPassword = (_, value) => {
     if (value && value.length > 5) {
       return Promise.resolve();
@@ -33,7 +35,7 @@ function Password({ intl }) {
       rules={[{ validator: checkLengthOfCharactersInPassword }]}
     >
       <Input.Password
-        onChange={(event) => dispatch(changeInputAction(event.target))}
+        onChange={(event) => onChangeInput(event)}
         name="password"
         value={password}
         placeholder={intl.formatMessage(messages.placeholder)}

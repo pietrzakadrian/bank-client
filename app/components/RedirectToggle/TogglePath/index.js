@@ -6,9 +6,10 @@ import { StyledButton } from '../RedirectToggle.style';
 
 export default function TogglePath({ name, path }) {
   const dispatch = useDispatch();
+  const onChangeRoute = (route) => dispatch(push(route));
 
   return (
-    <StyledButton type="link" onClick={() => dispatch(push(path))}>
+    <StyledButton type="link" onClick={() => onChangeRoute(path)}>
       {name}
     </StyledButton>
   );

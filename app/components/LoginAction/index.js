@@ -30,20 +30,23 @@ export default function LoginAction({ form }) {
   const { isLoading, currentStep, error } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  const onPreviousStep = () => dispatch(previousStepAction());
+  const onNextStep = () => dispatch(nextStepAction());
+  const onLogin = () => dispatch(loginAction());
+
   const onValidateFields = async () => {
     try {
       await form.validateFields();
 
       if (currentStep === steps.length - 1) {
-        dispatch(loginAction());
+        onLogin();
       } else {
-        dispatch(nextStepAction());
+        onNextStep();
       }
     } catch (err) {
       // Error(error);
     }
   };
-  const onPreviousStep = () => dispatch(previousStepAction());
 
   return (
     <StyledFormActionsWrapper>

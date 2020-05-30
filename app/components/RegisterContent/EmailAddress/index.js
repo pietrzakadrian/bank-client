@@ -20,9 +20,13 @@ function EmailAddress({ intl }) {
   const { email } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  const onChangeInput = (event) => dispatch(changeInputAction(event.target));
+  const onCheckEmail = (value, reject, resolve) =>
+    dispatch(checkEmailAction(value, reject, resolve));
+
   const checkEmailAddressAlreadyExist = (_, value, callback) =>
     new Promise((resolve, reject) =>
-      dispatch(checkEmailAction(value, reject, resolve)),
+      onCheckEmail(value, reject, resolve),
     ).catch(() => callback(intl.formatMessage(messages.emailExist)));
 
   const checkDataProcessingIsAccepted = (_, value) => {
@@ -56,7 +60,7 @@ function EmailAddress({ intl }) {
         ]}
       >
         <Input
-          onChange={(event) => dispatch(changeInputAction(event.target))}
+          onChange={(event) => onChangeInput(event)}
           name="email"
           value={email}
           placeholder={intl.formatMessage(messages.placeholder)}

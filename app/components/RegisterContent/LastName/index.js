@@ -6,6 +6,7 @@ import { makeSelectLastName } from 'containers/RegisterPage/selectors';
 import { changeInputAction } from 'containers/RegisterPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
+import { nameValidation } from 'helpers';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
@@ -15,10 +16,11 @@ const stateSelector = createStructuredSelector({
 function LastName({ intl }) {
   const { lastName } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const isName = /^[a-z ,.'-]+$/i;
+
+  const onChangeInput = (event) => dispatch(changeInputAction(event.target));
 
   const checkStringConsistsLettersOnly = (_, value) => {
-    if (value && !isName.test(value)) {
+    if (value && !nameValidation(value)) {
       return Promise.reject(
         new Error(intl.formatMessage(messages.validation_valid)),
       );
@@ -40,7 +42,7 @@ function LastName({ intl }) {
       rules={[{ validator: checkStringConsistsLettersOnly }]}
     >
       <Input
-        onChange={(event) => dispatch(changeInputAction(event.target))}
+        onChange={(event) => onChangeInput(event)}
         name="lastName"
         value={lastName}
         placeholder={intl.formatMessage(messages.placeholder)}

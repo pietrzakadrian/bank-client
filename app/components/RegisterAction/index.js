@@ -28,6 +28,7 @@ export default function RegisterAction({ form }) {
   const { isLoading, currentStep } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  const onPreviousStep = () => dispatch(previousStepAction());
   const onValidateFields = async () => {
     try {
       await form.validateFields();
@@ -41,7 +42,6 @@ export default function RegisterAction({ form }) {
       Error(error);
     }
   };
-  const onPreviousStep = () => dispatch(previousStepAction());
 
   return (
     <StyledFormActionsWrapper>

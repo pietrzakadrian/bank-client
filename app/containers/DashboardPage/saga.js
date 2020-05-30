@@ -1,3 +1,4 @@
+import React from 'react';
 import { takeEvery, call, put, select } from 'redux-saga/effects';
 import {
   makeSelectToken,
@@ -6,6 +7,8 @@ import {
 import { api, request, colors, routes } from 'utils';
 import { notification } from 'antd';
 import { push } from 'connected-react-router';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 import {
   GET_AMOUNT_MONEY,
   GET_ACCOUNT_BALANCE_HISTORY,
@@ -231,9 +234,10 @@ export function* createNewBill() {
 
     yield put(createNewBillSuccessAction(bill));
     notification.success({
-      message: 'Bill has been created',
-      description:
-        'New bill has been assigned to your account and appeared in your bills widget.',
+      message: <FormattedMessage {...messages.billHasBeenCreated} />,
+      description: (
+        <FormattedMessage {...messages.billHasBeenCreatedDescription} />
+      ),
       style,
       placement,
     });
@@ -243,14 +247,14 @@ export function* createNewBill() {
 
     switch (error.statusCode) {
       case 400:
-        message = 'Bill has not been created';
-        description =
-          'You cannot create a new account because the maximum number of accounts has been exceeded.';
+        message = <FormattedMessage {...messages.billHasNotBeenCreated} />;
+        description = (
+          <FormattedMessage {...messages.billHasNotBeenCreatedDescription} />
+        );
         break;
       default:
-        message = 'Server problem';
-        description =
-          'Work on the bank application is underway. Please try again in a moment.';
+        message = <FormattedMessage {...messages.serverError} />;
+        description = <FormattedMessage {...messages.serverErrorDescription} />;
         break;
     }
 

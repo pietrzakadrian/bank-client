@@ -17,6 +17,9 @@ function Password({ intl }) {
   const { password } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  const onChangePassword = (event) =>
+    dispatch(changePasswordAction(event.target.value));
+
   return (
     <StyledFormItem
       label={intl.formatMessage(messages.label)}
@@ -26,7 +29,7 @@ function Password({ intl }) {
       ]}
     >
       <Input.Password
-        onChange={(event) => dispatch(changePasswordAction(event.target.value))}
+        onChange={onChangePassword}
         name="password"
         value={password}
         placeholder={intl.formatMessage(messages.placeholder)}

@@ -5,3 +5,8 @@ export const formatBill = (bill) => ({
     .replace(/(^\d{2}|\d{4})+?/g, '$1 ')
     .trim(),
 });
+
+export const nameValidation = (name) => {
+  const isName = /^[a-z ,.'-]+$/i;
+  return isName.test(name);
+};

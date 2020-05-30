@@ -23,6 +23,11 @@ function Currency({ intl }) {
   const { isLoading, currencies } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  const onGetCurrencies = () =>
+    !currencies.length && dispatch(getCurrenciesAction());
+  const onSelectCurrency = (currency) =>
+    dispatch(selectCurrencyAction(currency));
+
   return (
     <StyledFormItem
       label={intl.formatMessage(messages.label)}
@@ -32,9 +37,9 @@ function Currency({ intl }) {
       ]}
     >
       <Select
-        onClick={() => !currencies.length && dispatch(getCurrenciesAction())}
+        onClick={onGetCurrencies}
         notFoundContent={isLoading ? <LoadingIndicator /> : null}
-        onSelect={(currency) => dispatch(selectCurrencyAction(currency))}
+        onSelect={onSelectCurrency}
         placeholder={intl.formatMessage(messages.placeholder)}
       >
         {currencies.map((currency) => (

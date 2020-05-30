@@ -4,6 +4,7 @@ import { colors, typography } from 'utils';
 export const StyledGreeting = styled.section`
   text-align: right;
   margin: 0 0 20px;
+  line-height: 1.3;
 `;
 
 export const StyledNameWrapper = styled.span`

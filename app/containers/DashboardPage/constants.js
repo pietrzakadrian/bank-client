@@ -4,6 +4,18 @@
  *
  */
 
+export const GET_CURRENCIES = 'app/DashboardPage/GET_CURRENCIES';
+export const GET_CURRENCIES_SUCCESS =
+  'app/DashboardPage/GET_CURRENCIES_SUCCESS';
+export const GET_CURRENCIES_ERROR = 'app/DashboardPage/GET_CURRENCIES_ERROR';
+
+export const SELECT_CURRENCY = 'app/DashboardPage/SELECT_CURRENCY';
+
+export const CREATE_NEW_BILL = 'app/DashboardPage/CREATE_NEW_BILL';
+export const CREATE_NEW_BILL_SUCCESS =
+  'app/DashboardPage/CREATE_NEW_BILL_SUCCESS';
+export const CREATE_NEW_BILL_ERROR = 'app/DashboardPage/CREATE_NEW_BILL_ERROR';
+
 export const GET_BILLS = 'app/DashboardPage/GET_BILLS';
 export const GET_BILLS_SUCCESS = 'app/DashboardPage/GET_BILLS_SUCCESS';
 export const GET_BILLS_ERROR = 'app/DashboardPage/GET_BILLS_ERROR';
@@ -35,3 +47,5 @@ export const GET_RECENT_TRANSACTIONS_ERROR =
   'app/DashboardPage/GET_RECENT_TRANSACTIONS_ERROR';
 
 export const CHANGE_LAYOUT = 'app/DashboardPage/CHANGE_LAYOUT';
+
+export const TOGGLE_MODAL = 'app/DashboardPage/TOGGLE_MODAL';

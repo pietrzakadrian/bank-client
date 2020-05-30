@@ -5,15 +5,21 @@
  */
 
 import produce from 'immer';
+import { formatBill } from 'helpers';
 import {
+  GET_CURRENCIES_SUCCESS,
   GET_BILLS_SUCCESS,
   GET_AMOUNT_MONEY_SUCCESS,
   GET_ACCOUNT_BALANCE_SUCCESS,
   GET_ACCOUNT_BALANCE_HISTORY_SUCCESS,
   GET_RECENT_TRANSACTIONS_SUCCESS,
+  CREATE_NEW_BILL_SUCCESS,
+  SELECT_CURRENCY,
+  TOGGLE_MODAL,
 } from './constants';
 
 export const initialState = {
+  isOpenedModal: false,
   amountMoney: '',
   currencyName: '',
   savings: '',
@@ -22,19 +28,25 @@ export const initialState = {
   bills: [],
   accountBalanceHistory: [],
   recentTransactions: [],
+  currency: '',
+  currencies: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const dashboardPageReducer = produce((draft, action) => {
   switch (action.type) {
+    case SELECT_CURRENCY:
+      draft.currency = action.currency;
+      break;
+    case GET_CURRENCIES_SUCCESS:
+      draft.currencies = action.data;
+      break;
     case GET_BILLS_SUCCESS:
-      draft.bills = action.bills.map((bill) => ({
-        ...bill,
-        amountMoney: bill.amountMoney.replace(/\B(?=(\d{3})+(?!\d))/g, ' '),
-        accountBillNumber: bill.accountBillNumber
-          .replace(/(^\d{2}|\d{4})+?/g, '$1 ')
-          .trim(),
-      }));
+      draft.bills = action.bills.map(formatBill);
+      break;
+    case CREATE_NEW_BILL_SUCCESS:
+      draft.bills = [...draft.bills, formatBill(action.bill)];
+      draft.currency = initialState.currency;
       break;
     case GET_AMOUNT_MONEY_SUCCESS:
       draft.amountMoney = action.amountMoney;
@@ -54,6 +66,9 @@ const dashboardPageReducer = produce((draft, action) => {
       break;
     case GET_RECENT_TRANSACTIONS_SUCCESS:
       draft.recentTransactions = action.recentTransactions;
+      break;
+    case TOGGLE_MODAL:
+      draft.isOpenedModal = !draft.isOpenedModal;
       break;
   }
 }, initialState);

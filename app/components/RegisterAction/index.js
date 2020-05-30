@@ -16,6 +16,7 @@ import {
   StyledFormActionsWrapper,
   StyledButton,
 } from 'components/Form/Form.style';
+import LoadingIndicator from 'components/LoadingIndicator';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
@@ -54,6 +55,9 @@ export default function RegisterAction({ form }) {
             <FormattedMessage {...messages.next} /> <RightOutlined />
           </>
         )) ||
+          (currentStep === steps.length - 1 && isLoading && (
+            <LoadingIndicator />
+          )) ||
           (currentStep === steps.length - 1 && (
             <FormattedMessage {...messages.create} />
           ))}

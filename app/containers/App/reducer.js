@@ -11,6 +11,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN,
   LOGIN_ERROR,
+  PREVIOUS_STEP,
 } from 'containers/LoginPage/constants';
 import {
   CHANGE_INPUT,
@@ -25,12 +26,12 @@ import {
   REGISTER_ERROR,
   CHECK_EMAIL_ERROR,
 } from 'containers/RegisterPage/constants';
+import { CHANGE_LAYOUT } from 'containers/DashboardPage/constants';
 import {
   LOGOUT_SUCCESS,
   COLLAPSED_SIDEBAR,
   COLLAPSED_DRAWER,
 } from './constants';
-import { CHANGE_LAYOUT } from '../DashboardPage/constants';
 
 export const initialState = {
   isCollapsedSidebar: true,
@@ -48,6 +49,7 @@ const appReducer = produce((draft, action) => {
     case CHANGE_PINCODE:
     case CHANGE_PASSWORD:
     case CHANGE_INPUT:
+    case PREVIOUS_STEP:
       draft.error = initialState.error;
       break;
     case LOGIN_SUCCESS:

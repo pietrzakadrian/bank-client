@@ -64,7 +64,7 @@ function EmailAddress({ intl }) {
       </StyledFormItem>
 
       <StyledFormItem
-        tail="true"
+        tailed="true"
         name="confirm-personal-data"
         valuePropName="checked"
         rules={[{ validator: checkDataProcessingIsAccepted }]}

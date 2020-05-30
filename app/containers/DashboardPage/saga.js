@@ -1,7 +1,10 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects';
-import { makeSelectToken } from 'containers/App/selectors';
+import {
+  makeSelectToken,
+  makeSelectIsCollapsedSidebar,
+} from 'containers/App/selectors';
 import { api, request, colors, routes } from 'utils';
-
+import { notification } from 'antd';
 import { push } from 'connected-react-router';
 import {
   GET_AMOUNT_MONEY,
@@ -9,6 +12,8 @@ import {
   GET_BILLS,
   GET_ACCOUNT_BALANCE,
   GET_RECENT_TRANSACTIONS,
+  CREATE_NEW_BILL,
+  GET_CURRENCIES,
 } from './constants';
 import {
   getAmountMoneySuccessAction,
@@ -21,7 +26,12 @@ import {
   getAccountBalanceErrorAction,
   getRecentTransactionsSuccessAction,
   getRecentTransactionsErrorAction,
+  getCurrenciesSuccessAction,
+  getCurrenciesErrorAction,
+  createNewBillSuccessAction,
+  createNewBillErrorAction,
 } from './actions';
+import { makeSelectCurrency } from './selectors';
 
 export function* getAmountMoney() {
   const { accessToken } = yield select(makeSelectToken());
@@ -138,7 +148,6 @@ export function* getAccountBalanceHistory() {
 export function* getBills() {
   const { accessToken } = yield select(makeSelectToken());
   const requestURL = api.bills();
-
   const requestParameters = {
     method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}` },
@@ -186,10 +195,82 @@ export function* getRecentTransactions() {
   }
 }
 
+export function* getCurrencies() {
+  const requestURL = api.currencies;
+
+  try {
+    const { data } = yield call(request, requestURL);
+    yield put(getCurrenciesSuccessAction(data));
+  } catch (error) {
+    yield put(getCurrenciesErrorAction(error));
+  }
+}
+
+export function* createNewBill() {
+  const currency = yield select(makeSelectCurrency());
+  const isCollapsedSidebar = yield select(makeSelectIsCollapsedSidebar());
+  const { accessToken } = yield select(makeSelectToken());
+
+  const requestURL = api.bills();
+  const requestParameters = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ currency }),
+  };
+
+  const style = { width: 400, marginLeft: isCollapsedSidebar ? 80 : 250 };
+  const placement = 'bottomLeft';
+
+  try {
+    const bill = yield call(request, requestURL, requestParameters);
+    delete bill.user;
+
+    yield put(createNewBillSuccessAction(bill));
+    notification.success({
+      message: 'Bill has been created',
+      description:
+        'New bill has been assigned to your account and appeared in your bills widget.',
+      style,
+      placement,
+    });
+  } catch (error) {
+    let message;
+    let description;
+
+    switch (error.statusCode) {
+      case 400:
+        message = 'Bill has not been created';
+        description =
+          'You cannot create a new account because the maximum number of accounts has been exceeded.';
+        break;
+      default:
+        message = 'Server problem';
+        description =
+          'Work on the bank application is underway. Please try again in a moment.';
+        break;
+    }
+
+    notification.error({
+      message,
+      description,
+      style,
+      placement,
+    });
+
+    yield put(createNewBillErrorAction(message));
+  }
+}
+
 export default function* dashboardPageSaga() {
   yield takeEvery(GET_AMOUNT_MONEY, getAmountMoney);
   yield takeEvery(GET_ACCOUNT_BALANCE, getAccountBalance);
   yield takeEvery(GET_ACCOUNT_BALANCE_HISTORY, getAccountBalanceHistory);
   yield takeEvery(GET_BILLS, getBills);
   yield takeEvery(GET_RECENT_TRANSACTIONS, getRecentTransactions);
+  yield takeEvery(CREATE_NEW_BILL, createNewBill);
+  yield takeEvery(GET_CURRENCIES, getCurrencies);
 }

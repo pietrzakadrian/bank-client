@@ -5,6 +5,9 @@
  */
 
 import {
+  CREATE_NEW_BILL,
+  CREATE_NEW_BILL_SUCCESS,
+  CREATE_NEW_BILL_ERROR,
   GET_BILLS,
   GET_BILLS_SUCCESS,
   GET_BILLS_ERROR,
@@ -21,7 +24,65 @@ import {
   GET_RECENT_TRANSACTIONS_SUCCESS,
   GET_RECENT_TRANSACTIONS_ERROR,
   CHANGE_LAYOUT,
+  GET_CURRENCIES,
+  GET_CURRENCIES_SUCCESS,
+  GET_CURRENCIES_ERROR,
+  SELECT_CURRENCY,
+  TOGGLE_MODAL,
 } from './constants';
+
+export function toggleModalAction() {
+  return {
+    type: TOGGLE_MODAL,
+  };
+}
+
+export function getCurrenciesAction() {
+  return {
+    type: GET_CURRENCIES,
+  };
+}
+
+export function getCurrenciesSuccessAction(data) {
+  return {
+    type: GET_CURRENCIES_SUCCESS,
+    data,
+  };
+}
+
+export function getCurrenciesErrorAction(error) {
+  return {
+    type: GET_CURRENCIES_ERROR,
+    error,
+  };
+}
+
+export function selectCurrencyAction(currency) {
+  return {
+    type: SELECT_CURRENCY,
+    currency,
+  };
+}
+
+export function createNewBillAction() {
+  return {
+    type: CREATE_NEW_BILL,
+  };
+}
+
+export function createNewBillSuccessAction(bill) {
+  return {
+    type: CREATE_NEW_BILL_SUCCESS,
+    bill,
+  };
+}
+
+export function createNewBillErrorAction(error) {
+  return {
+    type: CREATE_NEW_BILL_ERROR,
+    error,
+  };
+}
 
 export function getBillsAction() {
   return {

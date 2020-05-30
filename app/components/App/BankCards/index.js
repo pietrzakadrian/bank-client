@@ -1,6 +1,6 @@
 import React from 'react';
 import { CreditCardOutlined } from '@ant-design/icons';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 
 import {
   StyledButton,
@@ -9,13 +9,13 @@ import {
 import { StyledCard, StyledCardContent } from '../Card/Card.style';
 import messages from './messages';
 
-export default function BankCards() {
+function BankCards({ intl }) {
   return (
     <StyledCard
       shadowed="true"
       darker="true"
       bordered="true"
-      title="Cards"
+      title={intl.formatMessage(messages.title)}
       excluded="true"
       extra={
         <StyledButton type="link">
@@ -31,3 +31,9 @@ export default function BankCards() {
     </StyledCard>
   );
 }
+
+BankCards.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(BankCards);

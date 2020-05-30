@@ -13,6 +13,7 @@ export const StyledLayout = styled(Layout)`
   transition: all 0.1s ease-in-out;
   padding-left: 0;
   background-color: #fff;
+  position: relative;
 
   ${media.tablet`
     padding-left: ${({ open }) => (open ? '80px' : '250px')};

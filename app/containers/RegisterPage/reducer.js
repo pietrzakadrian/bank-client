@@ -36,7 +36,7 @@ const registerPageReducer = produce((draft, action) => {
       draft.pinCode = action.pinCode;
       break;
     case CHANGE_INPUT:
-      draft[action.name] = action.value;
+      draft[action.name] = action.value.trim();
       break;
     case SELECT_CURRENCY:
       draft.currency = action.currency;

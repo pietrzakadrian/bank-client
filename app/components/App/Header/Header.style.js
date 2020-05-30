@@ -12,7 +12,7 @@ export const headerHeight = '64px';
 export const StyledHeader = styled(Layout.Header)`
   display: flex;
   align-items: center;
-  padding: 0 25px 0 15px;
+  padding: 0 25px;
   justify-content: space-between;
   width: 100%;
   position: fixed;

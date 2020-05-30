@@ -67,11 +67,11 @@ export const StyledTable = styled(Table)`
         }
       }
 
-      &:last-child {
-        .ant-table-cell {
-          border-bottom: 0;
-        }
-      }
+      // &:last-child {
+      //   .ant-table-cell {
+      //     border-bottom: 0;
+      //   }
+      // }
     }
 
     .ant-table-tbody {

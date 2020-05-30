@@ -9,15 +9,18 @@ export const StyledFormActionsWrapper = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
-  width: 100%;
-  color: ${(props) => props.back && 'inherit'};
+  &&& {
+    width: 100%;
+    color: ${({ back }) => back && 'inherit'};
+    background-color: ${({ errored }) => errored && colors.red};
+  }
 `;
 
 export const StyledError = styled.div`
   max-width: 300px;
   font-size: 11px;
   margin: 0 auto;
-  color: ${colors.redErr};
+  color: ${colors.white};
   line-height: 1.5715;
 `;
 
@@ -40,7 +43,7 @@ export const StyledInputNumber = styled(InputNumber)`
 `;
 
 export const StyledFormItem = styled(Form.Item)`
-  padding: ${(props) => (props.tail ? '0' : '20px 0 0')};
+  padding: ${({ tailed }) => (tailed ? '0' : '20px 0 0')};
   text-align: left;
 
   .ant-form-item-label {

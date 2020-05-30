@@ -41,7 +41,7 @@ exports[`<EmailAddress /> should render a information 1`] = `
   </div>
   <div
     class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 eHMGva"
-    tail="true"
+    tailed="true"
   >
     <div
       class="ant-col ant-form-item-control"

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import Greeting from 'components/App/Greeting';
+import { useMediaQuery } from 'react-responsive';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import useResizeObserver from 'use-resize-observer';
 import AvailableFunds from 'components/App/AvailableFunds';
@@ -30,16 +31,19 @@ import { makeSelectLayout } from 'containers/App/selectors';
 import saga from './saga';
 import reducer from './reducer';
 import { changeLayoutAction } from './actions';
+import { makeSelectIsOpenedModal } from './selectors';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const stateSelector = createStructuredSelector({
   layout: makeSelectLayout(),
+  isOpenedModal: makeSelectIsOpenedModal(),
 });
 
 export default function DashboardPage() {
-  const { layout } = useSelector(stateSelector);
+  const { layout, isOpenedModal } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const { ref } = useResizeObserver({ onResize });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useInjectReducer({ key: 'dashboardPage', reducer });
   useInjectSaga({ key: 'dashboardPage', saga });
@@ -60,7 +64,7 @@ export default function DashboardPage() {
           rowHeight={8}
           margin={[20, 10]}
           isResizable={false}
-          isDraggable
+          isDraggable={!isOpenedModal && !isMobile}
           layouts={layout}
           onLayoutChange={(_, layouts) => dispatch(changeLayoutAction(layouts))}
         >

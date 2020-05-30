@@ -25,6 +25,26 @@ const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
   }
 
+  
+  @media screen and (max-width: 480px) {
+    .ant-notification {
+      &.ant-notification-bottomLeft {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin-left: 0 !important;
+
+        .ant-notification-notice {
+          margin-left: 0 !important;
+          width: 100% !important;
+        }
+      }
+    }
+
+    // .ant-modal {
+    //   top: 50%;
+    //   transform: translateY(-50%);
+    // }
+  }
 `;
 
 export default GlobalStyle;

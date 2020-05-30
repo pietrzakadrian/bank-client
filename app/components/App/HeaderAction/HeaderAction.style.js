@@ -6,6 +6,7 @@ import {
   BellOutlined,
 } from '@ant-design/icons';
 import { headerHeight } from 'components/App/Header/Header.style';
+import { Button } from 'antd';
 
 export const StyledHeaderAction = styled.div`
   color: black;
@@ -13,17 +14,22 @@ export const StyledHeaderAction = styled.div`
   display: flex;
   justify-content: space-evenly;
   height: ${headerHeight};
+  align-items: center;
 
   ${media.tablet`
-    display: inline-block;
     width: auto;
     margin-right: 55px;
   `};
 `;
 
-export const StyledHeaderActionItem = styled.div`
+export const StyledHeaderActionItem = styled(Button)`
   display: inline-flex;
   align-items: center;
+  padding: 0;
+
+  .anticon {
+    display: flex;
+  }
 
   ${media.tablet`
     margin: 0 10px;

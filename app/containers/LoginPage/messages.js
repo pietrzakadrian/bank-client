@@ -27,6 +27,6 @@ export default defineMessages({
   },
   serverError: {
     id: `${scope}.serverError`,
-    defaultMessage: `Work on the bank application is underway. Please try again in a moment.`,
+    defaultMessage: `Please try again in a moment.`,
   },
 });

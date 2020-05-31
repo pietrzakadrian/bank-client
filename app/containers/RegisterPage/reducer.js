@@ -26,7 +26,7 @@ export const initialState = {
   currentStep: 0,
 };
 
-/* eslint-disable default-case, no-param-reassign */
+/* eslint-disable default-case, no-param-reassign, consistent-return */
 const registerPageReducer = produce((draft, action) => {
   switch (action.type) {
     case GET_CURRENCIES_SUCCESS:
@@ -48,15 +48,7 @@ const registerPageReducer = produce((draft, action) => {
       draft.currentStep -= 1;
       break;
     case LOCATION_CHANGE:
-      draft.firstName = initialState.firstName;
-      draft.lastName = initialState.lastName;
-      draft.currency = initialState.currency;
-      draft.email = initialState.email;
-      draft.password = initialState.password;
-      draft.pinCode = initialState.pinCode;
-      draft.currencies = initialState.currencies;
-      draft.currentStep = initialState.currentStep;
-      break;
+      return initialState;
   }
 }, initialState);
 

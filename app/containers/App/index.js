@@ -15,13 +15,13 @@ import LoginPage from 'containers/LoginPage/Loadable';
 import RegisterPage from 'containers/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import DashboardPage from 'containers/DashboardPage/Loadable';
+import Layout from 'components/App/Layout';
 
 import { routes } from 'utils';
 import 'antd/dist/antd.less';
 import 'sanitize.css/sanitize.css';
 import GlobalStyle from 'global-styles';
 import { useInjectSaga } from 'redux-injectors';
-import Layout from 'components/App/Layout';
 import saga from './saga';
 
 function App() {

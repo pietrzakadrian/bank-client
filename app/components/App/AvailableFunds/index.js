@@ -6,6 +6,7 @@ import {
   makeSelectAccountBalanceHistory,
   makeSelectCurrencyName,
 } from 'containers/DashboardPage/selectors';
+import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   getAmountMoneyAction,
@@ -14,38 +15,36 @@ import {
 import { colors } from 'utils';
 import Widget from 'components/App/Widget';
 import { FormattedMessage } from 'react-intl';
+import {
+  GET_AMOUNT_MONEY_REQUEST,
+  GET_ACCOUNT_BALANCE_HISTORY_REQUEST,
+} from 'containers/DashboardPage/constants';
+import { getRequestName } from 'helpers';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   amountMoney: makeSelectAmountMoney(),
   accountBalanceHistory: makeSelectAccountBalanceHistory(),
   currencyName: makeSelectCurrencyName(),
+  isLoading: makeSelectIsLoading(getRequestName(GET_AMOUNT_MONEY_REQUEST)),
 });
 
 export default function AvailableFunds() {
-  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  const { amountMoney, accountBalanceHistory, currencyName } = useSelector(
-    stateSelector,
-  );
+  const {
+    amountMoney,
+    accountBalanceHistory,
+    currencyName,
+    isLoading,
+  } = useSelector(stateSelector);
 
   const getAmountMoney = () => dispatch(getAmountMoneyAction());
-  const getAccountBalanceHistory = () =>
-    dispatch(getAccountBalanceHistoryAction());
+  // const getAccountBalanceHistory = () =>
+  //   dispatch(getAccountBalanceHistoryAction());
 
   useEffect(() => {
-    if (!accountBalanceHistory.length) {
-      getAccountBalanceHistory();
-    }
-
-    if (!amountMoney || !currencyName) {
-      getAmountMoney();
-    }
-
-    if (amountMoney && currencyName && accountBalanceHistory.length) {
-      setIsLoading(false);
-    }
-  }, [amountMoney && currencyName, accountBalanceHistory]);
+    getAmountMoney();
+  }, []);
 
   const trend = (
     <Trend

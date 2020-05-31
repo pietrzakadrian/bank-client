@@ -2,7 +2,7 @@ import { takeEvery, call, put, select } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
 import { makeSelectToken } from 'containers/App/selectors';
-import { LOGOUT } from './constants';
+import { LOGOUT_REQUEST } from './constants';
 import { logoutSuccessAction, logoutErrorAction } from './actions';
 
 export function* logout() {
@@ -36,5 +36,5 @@ export function* logout() {
 }
 
 export default function* loginPageSaga() {
-  yield takeEvery(LOGOUT, logout);
+  yield takeEvery(LOGOUT_REQUEST, logout);
 }

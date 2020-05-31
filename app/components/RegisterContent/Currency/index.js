@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Select } from 'antd';
 import { makeSelectCurrencies } from 'containers/RegisterPage/selectors';
-import { makeSelectIsLoading } from 'containers/App/selectors';
+import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import {
   getCurrenciesAction,
   selectCurrencyAction,
@@ -12,11 +12,13 @@ import { intlShape, injectIntl } from 'react-intl';
 
 import { StyledFormItem } from 'components/Form/Form.style';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { GET_CURRENCIES_REQUEST } from 'containers/RegisterPage/constants';
+import { getRequestName } from 'helpers';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   currencies: makeSelectCurrencies(),
-  isLoading: makeSelectIsLoading(),
+  isLoading: makeSelectIsLoading(getRequestName(GET_CURRENCIES_REQUEST)),
 });
 
 function Currency({ intl }) {

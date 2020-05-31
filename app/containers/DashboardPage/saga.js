@@ -1,5 +1,12 @@
 import React from 'react';
-import { takeEvery, call, put, select } from 'redux-saga/effects';
+import {
+  takeLatest,
+  takeEvery,
+  call,
+  put,
+  select,
+  all,
+} from 'redux-saga/effects';
 import {
   makeSelectToken,
   makeSelectIsCollapsedSidebar,
@@ -10,13 +17,13 @@ import { push } from 'connected-react-router';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import {
-  GET_AMOUNT_MONEY,
-  GET_ACCOUNT_BALANCE_HISTORY,
-  GET_BILLS,
-  GET_ACCOUNT_BALANCE,
-  GET_RECENT_TRANSACTIONS,
-  CREATE_NEW_BILL,
-  GET_CURRENCIES,
+  GET_AMOUNT_MONEY_REQUEST,
+  GET_ACCOUNT_BALANCE_HISTORY_REQUEST,
+  GET_BILLS_REQUEST,
+  GET_ACCOUNT_BALANCE_REQUEST,
+  GET_RECENT_TRANSACTIONS_REQUEST,
+  CREATE_NEW_BILL_REQUEST,
+  GET_CURRENCIES_REQUEST,
 } from './constants';
 import {
   getAmountMoneySuccessAction,
@@ -50,7 +57,8 @@ export function* getAmountMoney() {
       requestURL,
       requestParameters,
     );
-    yield put(getAmountMoneySuccessAction(amountMoney, currencyName));
+    return { amountMoney, currencyName };
+    // yield put(getAmountMoneySuccessAction(amountMoney, currencyName));
   } catch (error) {
     yield put(getAmountMoneyErrorAction(error));
 
@@ -120,6 +128,8 @@ export function* getAccountBalance() {
 }
 
 export function* getAccountBalanceHistory() {
+  console.log('getAccountBalanceHistory', getAccountBalanceHistory);
+
   const { accessToken } = yield select(makeSelectToken());
   const requestURL = api.bills('accountBalanceHistory');
   const requestParameters = {
@@ -133,7 +143,7 @@ export function* getAccountBalanceHistory() {
       requestURL,
       requestParameters,
     );
-    yield put(getAccountBalanceHistorySuccessAction(accountBalanceHistory));
+    return accountBalanceHistory;
   } catch (error) {
     yield put(getAccountBalanceHistoryErrorAction(error));
 
@@ -269,12 +279,31 @@ export function* createNewBill() {
   }
 }
 
+export function* getAmount2() {
+  const { availableFunds, accountBalanceHistory } = yield all({
+    availableFunds: call(getAmountMoney),
+    accountBalanceHistory: call(getAccountBalanceHistory),
+  });
+
+  yield put(
+    getAmountMoneySuccessAction(
+      availableFunds.amountMoney,
+      availableFunds.currencyName,
+      accountBalanceHistory,
+    ),
+  );
+}
+
 export default function* dashboardPageSaga() {
-  yield takeEvery(GET_AMOUNT_MONEY, getAmountMoney);
-  yield takeEvery(GET_ACCOUNT_BALANCE, getAccountBalance);
-  yield takeEvery(GET_ACCOUNT_BALANCE_HISTORY, getAccountBalanceHistory);
-  yield takeEvery(GET_BILLS, getBills);
-  yield takeEvery(GET_RECENT_TRANSACTIONS, getRecentTransactions);
-  yield takeEvery(CREATE_NEW_BILL, createNewBill);
-  yield takeEvery(GET_CURRENCIES, getCurrencies);
+  yield takeLatest(GET_AMOUNT_MONEY_REQUEST, getAmount2);
+  // yield takeEvery(GET_AMOUNT_MONEY_REQUEST, getAmountMoney);
+  yield takeEvery(GET_ACCOUNT_BALANCE_REQUEST, getAccountBalance);
+  // yield takeEvery(
+  //   GET_ACCOUNT_BALANCE_HISTORY_REQUEST,
+  //   getAccountBalanceHistory,
+  // );
+  yield takeEvery(GET_BILLS_REQUEST, getBills);
+  yield takeEvery(GET_RECENT_TRANSACTIONS_REQUEST, getRecentTransactions);
+  yield takeEvery(CREATE_NEW_BILL_REQUEST, createNewBill);
+  yield takeEvery(GET_CURRENCIES_REQUEST, getCurrencies);
 }

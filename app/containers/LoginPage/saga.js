@@ -3,7 +3,7 @@ import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { api, request, routes } from 'utils';
 import { FormattedMessage } from 'react-intl';
-import { LOGIN } from './constants';
+import { LOGIN_REQUEST } from './constants';
 import { makeSelectPassword, makeSelectPinCode } from './selectors';
 import { loginSuccessAction, loginErrorAction } from './actions';
 import messages from './messages';
@@ -48,5 +48,5 @@ export function* login() {
 }
 
 export default function* loginPageSaga() {
-  yield takeLatest(LOGIN, login);
+  yield takeLatest(LOGIN_REQUEST, login);
 }

@@ -5,25 +5,25 @@
  */
 
 import {
-  GET_CURRENCIES,
   GET_CURRENCIES_SUCCESS,
   GET_CURRENCIES_ERROR,
   CHANGE_INPUT,
   SELECT_CURRENCY,
-  REGISTER,
   REGISTER_SUCCESS,
   REGISTER_ERROR,
-  CHECK_EMAIL,
   CHECK_EMAIL_SUCCESS,
   CHECK_EMAIL_ERROR,
   CHECK_EMAIL_INVALID,
   NEXT_STEP,
   PREVIOUS_STEP,
+  REGISTER_REQUEST,
+  CHECK_EMAIL_REQUEST,
+  GET_CURRENCIES_REQUEST,
 } from './constants';
 
 export function getCurrenciesAction() {
   return {
-    type: GET_CURRENCIES,
+    type: GET_CURRENCIES_REQUEST,
   };
 }
 
@@ -58,7 +58,7 @@ export function selectCurrencyAction(currency) {
 
 export function registerAction() {
   return {
-    type: REGISTER,
+    type: REGISTER_REQUEST,
   };
 }
 
@@ -78,7 +78,7 @@ export function registerErrorAction(error) {
 
 export function checkEmailAction(value, reject, resolve) {
   return {
-    type: CHECK_EMAIL,
+    type: CHECK_EMAIL_REQUEST,
     value,
     reject,
     resolve,

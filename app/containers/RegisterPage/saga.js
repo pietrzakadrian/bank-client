@@ -1,6 +1,11 @@
 import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
 import { api, request } from 'utils';
-import { GET_CURRENCIES, REGISTER, CHECK_EMAIL } from './constants';
+import { emailValidation } from 'helpers';
+import {
+  GET_CURRENCIES_REQUEST,
+  REGISTER_REQUEST,
+  CHECK_EMAIL_REQUEST,
+} from './constants';
 import {
   getCurrenciesSuccessAction,
   getCurrenciesErrorAction,
@@ -55,13 +60,12 @@ export function* register() {
 
 export function* checkEmail({ value, reject, resolve }) {
   const requestURL = api.users('checkEmail')(value);
-  const isEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+(?:[a-z0-9-]*[a-z0-9])?/;
 
   if (!value) {
     yield call(resolve);
   }
 
-  if (isEmail.test(value)) {
+  if (emailValidation(value)) {
     try {
       yield delay(400);
       const { exist } = yield call(request, requestURL);
@@ -82,7 +86,7 @@ export function* checkEmail({ value, reject, resolve }) {
 }
 
 export default function* registerPageSaga() {
-  yield takeLatest(GET_CURRENCIES, getCurrencies);
-  yield takeLatest(REGISTER, register);
-  yield takeLatest(CHECK_EMAIL, checkEmail);
+  yield takeLatest(GET_CURRENCIES_REQUEST, getCurrencies);
+  yield takeLatest(REGISTER_REQUEST, register);
+  yield takeLatest(CHECK_EMAIL_REQUEST, checkEmail);
 }

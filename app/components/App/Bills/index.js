@@ -13,6 +13,7 @@ import {
 import { makeSelectIsCollapsedSidebar } from 'containers/App/selectors';
 import { StyledCard } from 'components/App/Card/Card.style';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import {
   StyledTable,
   StyledTableWrapper,
@@ -21,6 +22,8 @@ import { PlusCircleOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
 import Modal from 'components/App/Modal';
 
+import { getRequestName } from 'helpers';
+import { GET_BILLS_REQUEST } from 'containers/DashboardPage/constants';
 import { StyledBillAmountMoney } from './Bills.style';
 import { StyledButton, StyledButtonContent } from '../Button/Button.style';
 import messages from './messages';
@@ -30,6 +33,7 @@ const stateSelector = createStructuredSelector({
   currencies: makeSelectCurrencies(),
   currency: makeSelectCurrency(),
   isCollapsedSidebar: makeSelectIsCollapsedSidebar(),
+  isLoading: makeSelectIsLoading(getRequestName(GET_BILLS_REQUEST)),
 });
 
 const columns = [
@@ -48,9 +52,8 @@ const columns = [
 ];
 
 export default function Bills() {
-  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  const { bills } = useSelector(stateSelector);
+  const { bills, isLoading } = useSelector(stateSelector);
 
   const getBills = () => dispatch(getBillsAction());
   const toggleModal = () => dispatch(toggleModalAction());
@@ -59,11 +62,7 @@ export default function Bills() {
     if (!bills.length) {
       getBills();
     }
-
-    if (bills.length) {
-      setIsLoading(false);
-    }
-  }, [JSON.stringify(bills)]);
+  }, []);
 
   return (
     <>

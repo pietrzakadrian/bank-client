@@ -15,18 +15,21 @@ import {
   toggleModalAction,
 } from 'containers/DashboardPage/actions';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
+import { getRequestName } from 'helpers';
+import { CREATE_NEW_BILL_REQUEST } from 'containers/DashboardPage/constants';
 import { StyledModal } from './Modal.style';
 
 const stateSelector = createStructuredSelector({
   currencies: makeSelectCurrencies(),
   isOpenedModal: makeSelectIsOpenedModal(),
+  isLoading: makeSelectIsLoading(getRequestName(CREATE_NEW_BILL_REQUEST)),
 });
 
 export default function Modal() {
   const [form] = Form.useForm();
-  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const { currencies, isOpenedModal } = useSelector(stateSelector);
+  const { currencies, isOpenedModal, isLoading } = useSelector(stateSelector);
 
   const toggleModal = () => dispatch(toggleModalAction());
   const getCurrencies = () => dispatch(getCurrenciesAction());
@@ -35,7 +38,6 @@ export default function Modal() {
   const onValidateFields = async () => {
     try {
       await form.validateFields(['currency']);
-      setIsLoading(true);
       createNewBill();
       toggleModal();
       form.resetFields();

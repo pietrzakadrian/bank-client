@@ -8,9 +8,6 @@ const selectRouter = (state) => state.router;
 const makeSelectIsLogged = () =>
   createSelector(selectGlobalDomain, (globalState) => globalState.isLogged);
 
-const makeSelectIsLoading = () =>
-  createSelector(selectGlobalDomain, (globalState) => globalState.isLoading);
-
 const makeSelectToken = () =>
   createSelector(selectGlobalDomain, (globalState) => globalState.token);
 
@@ -41,7 +38,6 @@ const makeSelectLocation = () =>
 export {
   selectGlobalDomain,
   makeSelectIsLogged,
-  makeSelectIsLoading,
   makeSelectToken,
   makeSelectUser,
   makeSelectLocation,

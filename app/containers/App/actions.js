@@ -5,7 +5,7 @@
  */
 
 import {
-  LOGOUT,
+  LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_ERROR,
   COLLAPSED_SIDEBAR,
@@ -14,7 +14,7 @@ import {
 
 export function logoutAction() {
   return {
-    type: LOGOUT,
+    type: LOGOUT_REQUEST,
   };
 }
 

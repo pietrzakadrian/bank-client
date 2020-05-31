@@ -26,7 +26,7 @@ export const initialState = {
   savingsData: [],
   savingsColors: [],
   bills: [],
-  accountBalanceHistory: [],
+  accountBalanceHistory: [0, 0],
   recentTransactions: [],
   currency: '',
   currencies: [],
@@ -51,6 +51,10 @@ const dashboardPageReducer = produce((draft, action) => {
     case GET_AMOUNT_MONEY_SUCCESS:
       draft.amountMoney = action.amountMoney;
       draft.currencyName = action.currencyName;
+      draft.accountBalanceHistory =
+        action.accountBalanceHistory.length === 1
+          ? [...action.accountBalanceHistory, 0]
+          : action.accountBalanceHistory;
       break;
     case GET_ACCOUNT_BALANCE_SUCCESS:
       draft.currencyName = action.currencyName;
@@ -58,12 +62,12 @@ const dashboardPageReducer = produce((draft, action) => {
       draft.savingsData = action.savingsData;
       draft.savingsColors = action.savingsColors;
       break;
-    case GET_ACCOUNT_BALANCE_HISTORY_SUCCESS:
-      draft.accountBalanceHistory =
-        action.accountBalanceHistory.length === 1
-          ? [...action.accountBalanceHistory, 0]
-          : action.accountBalanceHistory;
-      break;
+    // case GET_ACCOUNT_BALANCE_HISTORY_SUCCESS:
+    //   draft.accountBalanceHistory =
+    //     action.accountBalanceHistory.length === 1
+    //       ? [...action.accountBalanceHistory, 0]
+    //       : action.accountBalanceHistory;
+    //   break;
     case GET_RECENT_TRANSACTIONS_SUCCESS:
       draft.recentTransactions = action.recentTransactions;
       break;

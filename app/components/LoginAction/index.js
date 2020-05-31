@@ -15,19 +15,23 @@ import {
   loginAction,
 } from 'containers/LoginPage/actions';
 import { makeSelectCurrentStep } from 'containers/LoginPage/selectors';
-import { makeSelectIsLoading, makeSelectError } from 'containers/App/selectors';
+import { makeSelectError } from 'containers/App/selectors';
+import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import steps from 'components/LoginStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+import { getRequestName } from 'helpers';
+import { LOGIN_REQUEST } from 'containers/LoginPage/constants';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
-  isLoading: makeSelectIsLoading(),
   currentStep: makeSelectCurrentStep(),
   error: makeSelectError(),
+  isLoading: makeSelectIsLoading(getRequestName(LOGIN_REQUEST)),
 });
 
 export default function LoginAction({ form }) {
   const { isLoading, currentStep, error } = useSelector(stateSelector);
+
   const dispatch = useDispatch();
 
   const onPreviousStep = () => dispatch(previousStepAction());
@@ -44,7 +48,7 @@ export default function LoginAction({ form }) {
         onNextStep();
       }
     } catch (err) {
-      // Error(error);
+      Error(error);
     }
   };
 

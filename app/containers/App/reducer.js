@@ -9,7 +9,7 @@ import {
   CHANGE_PINCODE,
   CHANGE_PASSWORD,
   LOGIN_SUCCESS,
-  LOGIN,
+  LOGIN_REQUEST,
   LOGIN_ERROR,
   PREVIOUS_STEP,
 } from 'containers/LoginPage/constants';
@@ -37,7 +37,6 @@ export const initialState = {
   isCollapsedSidebar: true,
   isCollapsedDrawer: false,
   isLogged: false,
-  isLoading: false,
   error: '',
   token: {},
   user: {},
@@ -54,34 +53,15 @@ const appReducer = produce((draft, action) => {
       break;
     case LOGIN_SUCCESS:
       draft.isLogged = true;
-      draft.isLoading = false;
       draft.token = action.token;
       draft.user = action.user;
       break;
     case LOGOUT_SUCCESS:
-      draft.isLogged = initialState.isLogged;
-      draft.token = initialState.token;
-      draft.user = initialState.user;
-      draft.isCollapsedSidebar = initialState.isCollapsedSidebar;
-      draft.isCollapsedDrawer = initialState.isCollapsedDrawer;
-      break;
-    case CHECK_EMAIL:
-    case REGISTER:
-    case GET_CURRENCIES:
-    case LOGIN:
-      draft.isLoading = true;
-      break;
-    case GET_CURRENCIES_SUCCESS:
-    case REGISTER_SUCCESS:
-    case CHECK_EMAIL_SUCCESS:
-    case CHECK_EMAIL_INVALID:
-      draft.isLoading = false;
-      break;
+      return initialState;
     case LOGIN_ERROR:
     case CHECK_EMAIL_ERROR:
     case REGISTER_ERROR:
     case GET_CURRENCIES_ERROR:
-      draft.isLoading = false;
       draft.error = action.error;
       break;
     case COLLAPSED_SIDEBAR:

@@ -35,10 +35,7 @@ const loginPageReducer = produce((draft, action) => {
       draft.currentStep -= 1;
       break;
     case LOCATION_CHANGE:
-      draft.pinCode = initialState.pinCode;
-      draft.password = initialState.password;
-      draft.currentStep = initialState.currentStep;
-      break;
+      return initialState;
   }
 }, initialState);
 

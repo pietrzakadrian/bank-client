@@ -9,7 +9,7 @@ import {
   CHANGE_PASSWORD,
   NEXT_STEP,
   PREVIOUS_STEP,
-  LOGIN,
+  LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
 } from './constants';
@@ -30,7 +30,7 @@ export function changePasswordAction(password) {
 
 export function loginAction() {
   return {
-    type: LOGIN,
+    type: LOGIN_REQUEST,
   };
 }
 

@@ -9,7 +9,7 @@ import {
   previousStepAction,
 } from 'containers/RegisterPage/actions';
 import { makeSelectCurrentStep } from 'containers/RegisterPage/selectors';
-import { makeSelectIsLoading } from 'containers/App/selectors';
+
 import steps from 'components/RegisterStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import {
@@ -17,26 +17,32 @@ import {
   StyledButton,
 } from 'components/Form/Form.style';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { getRequestName } from 'helpers';
+import { REGISTER_REQUEST } from 'containers/RegisterPage/constants';
+import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
-  isLoading: makeSelectIsLoading(),
   currentStep: makeSelectCurrentStep(),
+  isLoading: makeSelectIsLoading(getRequestName(REGISTER_REQUEST)),
 });
 
 export default function RegisterAction({ form }) {
   const { isLoading, currentStep } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  const onRegister = () => dispatch(registerAction());
   const onPreviousStep = () => dispatch(previousStepAction());
+  const onNextStep = () => dispatch(nextStepAction());
+
   const onValidateFields = async () => {
     try {
       await form.validateFields();
 
       if (currentStep === steps.length - 1) {
-        dispatch(registerAction());
+        onRegister();
       } else {
-        dispatch(nextStepAction());
+        onNextStep();
       }
     } catch (error) {
       Error(error);

@@ -5,30 +5,30 @@
  */
 
 import {
-  CREATE_NEW_BILL,
   CREATE_NEW_BILL_SUCCESS,
   CREATE_NEW_BILL_ERROR,
-  GET_BILLS,
   GET_BILLS_SUCCESS,
   GET_BILLS_ERROR,
-  GET_AMOUNT_MONEY,
   GET_AMOUNT_MONEY_SUCCESS,
   GET_AMOUNT_MONEY_ERROR,
-  GET_ACCOUNT_BALANCE,
   GET_ACCOUNT_BALANCE_SUCCESS,
   GET_ACCOUNT_BALANCE_ERROR,
-  GET_ACCOUNT_BALANCE_HISTORY,
   GET_ACCOUNT_BALANCE_HISTORY_SUCCESS,
   GET_ACCOUNT_BALANCE_HISTORY_ERROR,
-  GET_RECENT_TRANSACTIONS,
   GET_RECENT_TRANSACTIONS_SUCCESS,
   GET_RECENT_TRANSACTIONS_ERROR,
   CHANGE_LAYOUT,
-  GET_CURRENCIES,
+  GET_CURRENCIES_REQUEST,
   GET_CURRENCIES_SUCCESS,
   GET_CURRENCIES_ERROR,
   SELECT_CURRENCY,
   TOGGLE_MODAL,
+  CREATE_NEW_BILL_REQUEST,
+  GET_BILLS_REQUEST,
+  GET_AMOUNT_MONEY_REQUEST,
+  GET_ACCOUNT_BALANCE_REQUEST,
+  GET_ACCOUNT_BALANCE_HISTORY_REQUEST,
+  GET_RECENT_TRANSACTIONS_REQUEST,
 } from './constants';
 
 export function toggleModalAction() {
@@ -39,7 +39,7 @@ export function toggleModalAction() {
 
 export function getCurrenciesAction() {
   return {
-    type: GET_CURRENCIES,
+    type: GET_CURRENCIES_REQUEST,
   };
 }
 
@@ -66,7 +66,7 @@ export function selectCurrencyAction(currency) {
 
 export function createNewBillAction() {
   return {
-    type: CREATE_NEW_BILL,
+    type: CREATE_NEW_BILL_REQUEST,
   };
 }
 
@@ -86,7 +86,7 @@ export function createNewBillErrorAction(error) {
 
 export function getBillsAction() {
   return {
-    type: GET_BILLS,
+    type: GET_BILLS_REQUEST,
   };
 }
 
@@ -106,15 +106,20 @@ export function getBillsErrorAction(error) {
 
 export function getAmountMoneyAction() {
   return {
-    type: GET_AMOUNT_MONEY,
+    type: GET_AMOUNT_MONEY_REQUEST,
   };
 }
 
-export function getAmountMoneySuccessAction(amountMoney, currencyName) {
+export function getAmountMoneySuccessAction(
+  amountMoney,
+  currencyName,
+  accountBalanceHistory,
+) {
   return {
     type: GET_AMOUNT_MONEY_SUCCESS,
     amountMoney,
     currencyName,
+    accountBalanceHistory,
   };
 }
 
@@ -127,7 +132,7 @@ export function getAmountMoneyErrorAction(error) {
 
 export function getAccountBalanceAction() {
   return {
-    type: GET_ACCOUNT_BALANCE,
+    type: GET_ACCOUNT_BALANCE_REQUEST,
   };
 }
 
@@ -155,7 +160,7 @@ export function getAccountBalanceErrorAction(error) {
 
 export function getAccountBalanceHistoryAction() {
   return {
-    type: GET_ACCOUNT_BALANCE_HISTORY,
+    type: GET_ACCOUNT_BALANCE_HISTORY_REQUEST,
   };
 }
 
@@ -175,7 +180,7 @@ export function getAccountBalanceHistoryErrorAction(error) {
 
 export function getRecentTransactionsAction() {
   return {
-    type: GET_RECENT_TRANSACTIONS,
+    type: GET_RECENT_TRANSACTIONS_REQUEST,
   };
 }
 

@@ -12,6 +12,9 @@ import {
   StyledTable,
   StyledTableWrapper,
 } from 'components/App/Table/Table.style';
+import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
+import { getRequestName } from 'helpers';
+import { GET_RECENT_TRANSACTIONS_REQUEST } from 'containers/DashboardPage/constants';
 import {
   StyledSenderAmountMoney,
   StyledUser,
@@ -21,22 +24,20 @@ const dateFormat = `dd.MM.yyyy`;
 const stateSelector = createStructuredSelector({
   user: makeSelectUser(),
   recentTransactions: makeSelectRecentTransactions(),
+  isLoading: makeSelectIsLoading(
+    getRequestName(GET_RECENT_TRANSACTIONS_REQUEST),
+  ),
 });
 
 export default function RecentTransactions() {
-  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  const { recentTransactions, user } = useSelector(stateSelector);
+  const { recentTransactions, user, isLoading } = useSelector(stateSelector);
 
   const getRecentTransactions = () => dispatch(getRecentTransactionsAction());
 
   useEffect(() => {
     if (!recentTransactions.length) getRecentTransactions();
-
-    if (recentTransactions) {
-      setIsLoading(false);
-    }
-  }, [JSON.stringify(recentTransactions)]);
+  }, []);
 
   const columns = [
     {

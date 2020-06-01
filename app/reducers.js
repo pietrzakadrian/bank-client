@@ -9,6 +9,7 @@ import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'providers/LanguageProvider/reducer';
 import loadingProviderReducer from 'providers/LoadingProvider/reducer';
+import errorProviderReducer from './providers/ErrorProvider/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -18,6 +19,7 @@ export default function createReducer(injectedReducers = {}) {
     global: globalReducer,
     language: languageProviderReducer,
     loading: loadingProviderReducer,
+    error: errorProviderReducer,
     router: connectRouter(history),
     ...injectedReducers,
   });

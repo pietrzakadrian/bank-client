@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectLoading = (state) => state.loading || initialState;
+const selectError = (state) => state.error || initialState;
 
-const makeSelectLoading = (action) =>
-  createSelector(selectLoading, (loadingState) => loadingState[action]);
+const makeSelectError = (action) =>
+  createSelector(selectError, (errorState) => errorState[action]);
 
-export { makeSelectLoading };
+export { makeSelectError };

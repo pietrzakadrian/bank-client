@@ -15,7 +15,7 @@ import {
   loginAction,
 } from 'containers/LoginPage/actions';
 import { makeSelectCurrentStep } from 'containers/LoginPage/selectors';
-import { makeSelectError } from 'containers/App/selectors';
+import { makeSelectError } from 'providers/ErrorProvider/selectors';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import steps from 'components/LoginStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
@@ -25,7 +25,7 @@ import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),
-  error: makeSelectError(),
+  error: makeSelectError(getRequestName(LOGIN_REQUEST)),
   isLoading: makeSelectIsLoading(getRequestName(LOGIN_REQUEST)),
 });
 
@@ -48,7 +48,7 @@ export default function LoginAction({ form }) {
         onNextStep();
       }
     } catch (err) {
-      throw new Error(error);
+      Error(error);
     }
   };
 

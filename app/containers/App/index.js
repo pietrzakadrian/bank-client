@@ -23,6 +23,8 @@ import 'sanitize.css/sanitize.css';
 import GlobalStyle from 'global-styles';
 import { useInjectSaga } from 'redux-injectors';
 import saga from './saga';
+import PrivateRoute from '../../components/Route/PrivateRoute';
+import PublicRoute from '../../components/Route/PublicRoute';
 
 function App() {
   useInjectSaga({ key: 'app', saga });
@@ -30,13 +32,21 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route exact path={routes.home.path} component={HomePage} />
-        <Route path={routes.login.path} component={LoginPage} />
-        <Route path={routes.register.path} component={RegisterPage} />
+        <PublicRoute exact path={routes.home.path} component={HomePage} />
+        <PublicRoute
+          restricted
+          path={routes.login.path}
+          component={LoginPage}
+        />
+        <PublicRoute
+          restricted
+          path={routes.register.path}
+          component={RegisterPage}
+        />
 
         <Layout>
           <Switch>
-            <Route
+            <PrivateRoute
               exact
               path={routes.dashboard.path}
               component={DashboardPage}

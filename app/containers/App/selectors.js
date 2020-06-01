@@ -14,9 +14,6 @@ const makeSelectToken = () =>
 const makeSelectUser = () =>
   createSelector(selectGlobalDomain, (globalState) => globalState.user);
 
-const makeSelectError = () =>
-  createSelector(selectGlobalDomain, (globalState) => globalState.error);
-
 const makeSelectIsCollapsedSidebar = () =>
   createSelector(
     selectGlobalDomain,
@@ -41,7 +38,6 @@ export {
   makeSelectToken,
   makeSelectUser,
   makeSelectLocation,
-  makeSelectError,
   makeSelectIsCollapsedSidebar,
   makeSelectIsCollapsedDrawer,
   makeSelectLayout,

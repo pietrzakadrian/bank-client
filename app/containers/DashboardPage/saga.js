@@ -251,6 +251,8 @@ export function* createNewBill() {
       placement,
     });
   } catch (error) {
+    yield put(createNewBillErrorAction(message));
+
     let message;
     let description;
 
@@ -273,8 +275,6 @@ export function* createNewBill() {
       style,
       placement,
     });
-
-    yield put(createNewBillErrorAction(message));
   }
 }
 

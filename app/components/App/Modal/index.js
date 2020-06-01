@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Select, Button, Form } from 'antd';
 import { StyledForm, StyledFormItem } from 'components/Form/Form.style';
@@ -42,7 +42,7 @@ export default function Modal() {
       toggleModal();
       form.resetFields();
     } catch (error) {
-      Error(error);
+      throw new Error(error);
     }
   };
 

@@ -5,16 +5,16 @@
  */
 
 import {
+  CREATE_NEW_BILL_REQUEST,
   CREATE_NEW_BILL_SUCCESS,
   CREATE_NEW_BILL_ERROR,
+  GET_BILLS_REQUEST,
   GET_BILLS_SUCCESS,
   GET_BILLS_ERROR,
-  GET_AMOUNT_MONEY_SUCCESS,
-  GET_AMOUNT_MONEY_ERROR,
+  GET_ACCOUNT_BALANCE_REQUEST,
   GET_ACCOUNT_BALANCE_SUCCESS,
   GET_ACCOUNT_BALANCE_ERROR,
-  GET_ACCOUNT_BALANCE_HISTORY_SUCCESS,
-  GET_ACCOUNT_BALANCE_HISTORY_ERROR,
+  GET_RECENT_TRANSACTIONS_REQUEST,
   GET_RECENT_TRANSACTIONS_SUCCESS,
   GET_RECENT_TRANSACTIONS_ERROR,
   CHANGE_LAYOUT,
@@ -23,13 +23,36 @@ import {
   GET_CURRENCIES_ERROR,
   SELECT_CURRENCY,
   TOGGLE_MODAL,
-  CREATE_NEW_BILL_REQUEST,
-  GET_BILLS_REQUEST,
-  GET_AMOUNT_MONEY_REQUEST,
-  GET_ACCOUNT_BALANCE_REQUEST,
-  GET_ACCOUNT_BALANCE_HISTORY_REQUEST,
-  GET_RECENT_TRANSACTIONS_REQUEST,
+  GET_AVAILABLE_FUNDS_REQUEST,
+  GET_AVAILABLE_FUNDS_SUCCESS,
+  GET_AVAILABLE_FUNDS_ERROR,
 } from './constants';
+
+export function getAvailableFundsAction() {
+  return {
+    type: GET_AVAILABLE_FUNDS_REQUEST,
+  };
+}
+
+export function getAvailableFundsSuccessAction(
+  amountMoney,
+  currencyName,
+  accountBalanceHistory,
+) {
+  return {
+    type: GET_AVAILABLE_FUNDS_SUCCESS,
+    amountMoney,
+    currencyName,
+    accountBalanceHistory,
+  };
+}
+
+export function getAvailableFundsErrorAction(error) {
+  return {
+    type: GET_AVAILABLE_FUNDS_ERROR,
+    error,
+  };
+}
 
 export function toggleModalAction() {
   return {
@@ -104,32 +127,6 @@ export function getBillsErrorAction(error) {
   };
 }
 
-export function getAmountMoneyAction() {
-  return {
-    type: GET_AMOUNT_MONEY_REQUEST,
-  };
-}
-
-export function getAmountMoneySuccessAction(
-  amountMoney,
-  currencyName,
-  accountBalanceHistory,
-) {
-  return {
-    type: GET_AMOUNT_MONEY_SUCCESS,
-    amountMoney,
-    currencyName,
-    accountBalanceHistory,
-  };
-}
-
-export function getAmountMoneyErrorAction(error) {
-  return {
-    type: GET_AMOUNT_MONEY_ERROR,
-    error,
-  };
-}
-
 export function getAccountBalanceAction() {
   return {
     type: GET_ACCOUNT_BALANCE_REQUEST,
@@ -154,26 +151,6 @@ export function getAccountBalanceSuccessAction(
 export function getAccountBalanceErrorAction(error) {
   return {
     type: GET_ACCOUNT_BALANCE_ERROR,
-    error,
-  };
-}
-
-export function getAccountBalanceHistoryAction() {
-  return {
-    type: GET_ACCOUNT_BALANCE_HISTORY_REQUEST,
-  };
-}
-
-export function getAccountBalanceHistorySuccessAction(accountBalanceHistory) {
-  return {
-    type: GET_ACCOUNT_BALANCE_HISTORY_SUCCESS,
-    accountBalanceHistory,
-  };
-}
-
-export function getAccountBalanceHistoryErrorAction(error) {
-  return {
-    type: GET_ACCOUNT_BALANCE_HISTORY_ERROR,
     error,
   };
 }

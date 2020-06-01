@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  takeLatest,
-  takeEvery,
-  call,
-  put,
-  select,
-  all,
-} from 'redux-saga/effects';
+import { takeLatest, call, put, select, all } from 'redux-saga/effects';
 import {
   makeSelectToken,
   makeSelectIsCollapsedSidebar,
@@ -17,19 +10,14 @@ import { push } from 'connected-react-router';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import {
-  GET_AMOUNT_MONEY_REQUEST,
-  GET_ACCOUNT_BALANCE_HISTORY_REQUEST,
   GET_BILLS_REQUEST,
   GET_ACCOUNT_BALANCE_REQUEST,
   GET_RECENT_TRANSACTIONS_REQUEST,
   CREATE_NEW_BILL_REQUEST,
   GET_CURRENCIES_REQUEST,
+  GET_AVAILABLE_FUNDS_REQUEST,
 } from './constants';
 import {
-  getAmountMoneySuccessAction,
-  getAmountMoneyErrorAction,
-  getAccountBalanceHistorySuccessAction,
-  getAccountBalanceHistoryErrorAction,
   getBillsSuccessAction,
   getBillsErrorAction,
   getAccountBalanceSuccessAction,
@@ -40,10 +28,40 @@ import {
   getCurrenciesErrorAction,
   createNewBillSuccessAction,
   createNewBillErrorAction,
+  getAvailableFundsErrorAction,
+  getAvailableFundsSuccessAction,
 } from './actions';
 import { makeSelectCurrency } from './selectors';
 
-export function* getAmountMoney() {
+export function* getAvailableFunds() {
+  try {
+    const [availableFunds, accountBalanceHistory] = yield all([
+      call(getAmountMoney),
+      call(getAccountBalanceHistory),
+    ]);
+
+    yield put(
+      getAvailableFundsSuccessAction(
+        availableFunds.amountMoney,
+        availableFunds.currencyName,
+        accountBalanceHistory,
+      ),
+    );
+  } catch (error) {
+    yield put(getAvailableFundsErrorAction(error));
+
+    switch (error.statusCode) {
+      case 401:
+        yield put(push(routes.login.path));
+        break;
+      default:
+        yield put(push(routes.login.path));
+        break;
+    }
+  }
+}
+
+function* getAmountMoney() {
   const { accessToken } = yield select(makeSelectToken());
   const requestURL = api.bills('amountMoney');
   const requestParameters = {
@@ -57,19 +75,31 @@ export function* getAmountMoney() {
       requestURL,
       requestParameters,
     );
-    return { amountMoney, currencyName };
-    // yield put(getAmountMoneySuccessAction(amountMoney, currencyName));
-  } catch (error) {
-    yield put(getAmountMoneyErrorAction(error));
 
-    switch (error.statusCode) {
-      case 401:
-        yield put(push(routes.login.path));
-        break;
-      default:
-        yield put(push(routes.login.path));
-        break;
-    }
+    return yield { amountMoney, currencyName };
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+function* getAccountBalanceHistory() {
+  const { accessToken } = yield select(makeSelectToken());
+  const requestURL = api.bills('accountBalanceHistory');
+  const requestParameters = {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${accessToken}` },
+  };
+
+  try {
+    const { accountBalanceHistory } = yield call(
+      request,
+      requestURL,
+      requestParameters,
+    );
+
+    return yield accountBalanceHistory;
+  } catch (error) {
+    throw new Error(error);
   }
 }
 
@@ -115,37 +145,6 @@ export function* getAccountBalance() {
     );
   } catch (error) {
     yield put(getAccountBalanceErrorAction(error));
-
-    switch (error.statusCode) {
-      case 401:
-        yield put(push(routes.login.path));
-        break;
-      default:
-        yield put(push(routes.login.path));
-        break;
-    }
-  }
-}
-
-export function* getAccountBalanceHistory() {
-  console.log('getAccountBalanceHistory', getAccountBalanceHistory);
-
-  const { accessToken } = yield select(makeSelectToken());
-  const requestURL = api.bills('accountBalanceHistory');
-  const requestParameters = {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${accessToken}` },
-  };
-
-  try {
-    const { accountBalanceHistory } = yield call(
-      request,
-      requestURL,
-      requestParameters,
-    );
-    return accountBalanceHistory;
-  } catch (error) {
-    yield put(getAccountBalanceHistoryErrorAction(error));
 
     switch (error.statusCode) {
       case 401:
@@ -279,31 +278,11 @@ export function* createNewBill() {
   }
 }
 
-export function* getAmount2() {
-  const { availableFunds, accountBalanceHistory } = yield all({
-    availableFunds: call(getAmountMoney),
-    accountBalanceHistory: call(getAccountBalanceHistory),
-  });
-
-  yield put(
-    getAmountMoneySuccessAction(
-      availableFunds.amountMoney,
-      availableFunds.currencyName,
-      accountBalanceHistory,
-    ),
-  );
-}
-
 export default function* dashboardPageSaga() {
-  yield takeLatest(GET_AMOUNT_MONEY_REQUEST, getAmount2);
-  // yield takeEvery(GET_AMOUNT_MONEY_REQUEST, getAmountMoney);
-  yield takeEvery(GET_ACCOUNT_BALANCE_REQUEST, getAccountBalance);
-  // yield takeEvery(
-  //   GET_ACCOUNT_BALANCE_HISTORY_REQUEST,
-  //   getAccountBalanceHistory,
-  // );
-  yield takeEvery(GET_BILLS_REQUEST, getBills);
-  yield takeEvery(GET_RECENT_TRANSACTIONS_REQUEST, getRecentTransactions);
-  yield takeEvery(CREATE_NEW_BILL_REQUEST, createNewBill);
-  yield takeEvery(GET_CURRENCIES_REQUEST, getCurrencies);
+  yield takeLatest(GET_AVAILABLE_FUNDS_REQUEST, getAvailableFunds);
+  yield takeLatest(GET_ACCOUNT_BALANCE_REQUEST, getAccountBalance);
+  yield takeLatest(GET_BILLS_REQUEST, getBills);
+  yield takeLatest(GET_RECENT_TRANSACTIONS_REQUEST, getRecentTransactions);
+  yield takeLatest(CREATE_NEW_BILL_REQUEST, createNewBill);
+  yield takeLatest(GET_CURRENCIES_REQUEST, getCurrencies);
 }

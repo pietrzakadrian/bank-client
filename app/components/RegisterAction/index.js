@@ -45,7 +45,7 @@ export default function RegisterAction({ form }) {
         onNextStep();
       }
     } catch (error) {
-      Error(error);
+      throw new Error(error);
     }
   };
 

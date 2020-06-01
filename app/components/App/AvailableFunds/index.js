@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Trend from 'react-trend';
 import { createStructuredSelector } from 'reselect';
 import {
@@ -8,25 +8,20 @@ import {
 } from 'containers/DashboardPage/selectors';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  getAmountMoneyAction,
-  getAccountBalanceHistoryAction,
-} from 'containers/DashboardPage/actions';
+
 import { colors } from 'utils';
 import Widget from 'components/App/Widget';
 import { FormattedMessage } from 'react-intl';
-import {
-  GET_AMOUNT_MONEY_REQUEST,
-  GET_ACCOUNT_BALANCE_HISTORY_REQUEST,
-} from 'containers/DashboardPage/constants';
+import { GET_AVAILABLE_FUNDS_REQUEST } from 'containers/DashboardPage/constants';
 import { getRequestName } from 'helpers';
+import { getAvailableFundsAction } from 'containers/DashboardPage/actions';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   amountMoney: makeSelectAmountMoney(),
   accountBalanceHistory: makeSelectAccountBalanceHistory(),
   currencyName: makeSelectCurrencyName(),
-  isLoading: makeSelectIsLoading(getRequestName(GET_AMOUNT_MONEY_REQUEST)),
+  isLoading: makeSelectIsLoading(getRequestName(GET_AVAILABLE_FUNDS_REQUEST)),
 });
 
 export default function AvailableFunds() {
@@ -38,12 +33,10 @@ export default function AvailableFunds() {
     isLoading,
   } = useSelector(stateSelector);
 
-  const getAmountMoney = () => dispatch(getAmountMoneyAction());
-  // const getAccountBalanceHistory = () =>
-  //   dispatch(getAccountBalanceHistoryAction());
+  const getAvailableFunds = () => dispatch(getAvailableFundsAction());
 
   useEffect(() => {
-    getAmountMoney();
+    getAvailableFunds();
   }, []);
 
   const trend = (

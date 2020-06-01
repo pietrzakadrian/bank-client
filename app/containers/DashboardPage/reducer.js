@@ -9,9 +9,8 @@ import { formatBill } from 'helpers';
 import {
   GET_CURRENCIES_SUCCESS,
   GET_BILLS_SUCCESS,
-  GET_AMOUNT_MONEY_SUCCESS,
+  GET_AVAILABLE_FUNDS_SUCCESS,
   GET_ACCOUNT_BALANCE_SUCCESS,
-  GET_ACCOUNT_BALANCE_HISTORY_SUCCESS,
   GET_RECENT_TRANSACTIONS_SUCCESS,
   CREATE_NEW_BILL_SUCCESS,
   SELECT_CURRENCY,
@@ -48,7 +47,7 @@ const dashboardPageReducer = produce((draft, action) => {
       draft.bills = [...draft.bills, formatBill(action.bill)];
       draft.currency = initialState.currency;
       break;
-    case GET_AMOUNT_MONEY_SUCCESS:
+    case GET_AVAILABLE_FUNDS_SUCCESS:
       draft.amountMoney = action.amountMoney;
       draft.currencyName = action.currencyName;
       draft.accountBalanceHistory =
@@ -62,12 +61,6 @@ const dashboardPageReducer = produce((draft, action) => {
       draft.savingsData = action.savingsData;
       draft.savingsColors = action.savingsColors;
       break;
-    // case GET_ACCOUNT_BALANCE_HISTORY_SUCCESS:
-    //   draft.accountBalanceHistory =
-    //     action.accountBalanceHistory.length === 1
-    //       ? [...action.accountBalanceHistory, 0]
-    //       : action.accountBalanceHistory;
-    //   break;
     case GET_RECENT_TRANSACTIONS_SUCCESS:
       draft.recentTransactions = action.recentTransactions;
       break;

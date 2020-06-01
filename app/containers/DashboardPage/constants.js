@@ -22,26 +22,12 @@ export const GET_BILLS_REQUEST = 'app/DashboardPage/GET_BILLS_REQUEST';
 export const GET_BILLS_SUCCESS = 'app/DashboardPage/GET_BILLS_SUCCESS';
 export const GET_BILLS_ERROR = 'app/DashboardPage/GET_BILLS_ERROR';
 
-export const GET_AMOUNT_MONEY_REQUEST =
-  'app/DashboardPage/GET_AMOUNT_MONEY_REQUEST';
-export const GET_AMOUNT_MONEY_SUCCESS =
-  'app/DashboardPage/GET_AMOUNT_MONEY_SUCCESS';
-export const GET_AMOUNT_MONEY_ERROR =
-  'app/DashboardPage/GET_AMOUNT_MONEY_ERROR';
-
 export const GET_ACCOUNT_BALANCE_REQUEST =
   'app/DashboardPage/GET_ACCOUNT_BALANCE_REQUEST';
 export const GET_ACCOUNT_BALANCE_SUCCESS =
   'app/DashboardPage/GET_ACCOUNT_BALANCE_SUCCESS';
 export const GET_ACCOUNT_BALANCE_ERROR =
   'app/DashboardPage/GET_ACCOUNT_BALANCE_ERROR';
-
-export const GET_ACCOUNT_BALANCE_HISTORY_REQUEST =
-  'app/DashboardPage/GET_ACCOUNT_BALANCE_HISTORY_REQUEST';
-export const GET_ACCOUNT_BALANCE_HISTORY_SUCCESS =
-  'app/DashboardPage/GET_ACCOUNT_BALANCE_HISTORY_SUCCESS';
-export const GET_ACCOUNT_BALANCE_HISTORY_ERROR =
-  'app/DashboardPage/GET_ACCOUNT_BALANCE_HISTORY_ERROR';
 
 export const GET_RECENT_TRANSACTIONS_REQUEST =
   'app/DashboardPage/GET_RECENT_TRANSACTIONS_REQUEST';
@@ -53,3 +39,10 @@ export const GET_RECENT_TRANSACTIONS_ERROR =
 export const CHANGE_LAYOUT = 'app/DashboardPage/CHANGE_LAYOUT';
 
 export const TOGGLE_MODAL = 'app/DashboardPage/TOGGLE_MODAL';
+
+export const GET_AVAILABLE_FUNDS_REQUEST =
+  'app/DashboardPage/GET_AVAILABLE_FUNDS_REQUEST';
+export const GET_AVAILABLE_FUNDS_SUCCESS =
+  'app/DashboardPage/GET_AVAILABLE_FUNDS_SUCCESS';
+export const GET_AVAILABLE_FUNDS_ERROR =
+  'app/DashboardPage/GET_AVAILABLE_FUNDS_ERROR';

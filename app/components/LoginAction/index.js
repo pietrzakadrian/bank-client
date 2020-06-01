@@ -48,7 +48,7 @@ export default function LoginAction({ form }) {
         onNextStep();
       }
     } catch (err) {
-      Error(error);
+      throw new Error(error);
     }
   };
 

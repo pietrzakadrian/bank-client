@@ -35,15 +35,15 @@ import { makeSelectCurrency } from './selectors';
 
 export function* getAvailableFunds() {
   try {
-    const [availableFunds, accountBalanceHistory] = yield all([
+    const [{ amountMoney, currencyName }, accountBalanceHistory] = yield all([
       call(getAmountMoney),
       call(getAccountBalanceHistory),
     ]);
 
     yield put(
       getAvailableFundsSuccessAction(
-        availableFunds.amountMoney,
-        availableFunds.currencyName,
+        amountMoney,
+        currencyName,
         accountBalanceHistory,
       ),
     );

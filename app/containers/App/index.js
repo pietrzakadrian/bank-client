@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
@@ -54,7 +54,7 @@ function App() {
           </Switch>
         </Layout>
 
-        <Route component={NotFoundPage} />
+        <PublicRoute component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
     </div>

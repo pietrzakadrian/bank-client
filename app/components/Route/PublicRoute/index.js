@@ -4,6 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectIsLogged } from 'containers/App/selectors';
 import { useSelector } from 'react-redux';
+import { routes } from 'utils';
 
 const stateSelector = createStructuredSelector({
   isLogged: makeSelectIsLogged(),
@@ -21,7 +22,7 @@ export default function PublicRoute({
       {...rest}
       render={(props) =>
         isLogged && restricted ? (
-          <Redirect to="/dashboard" />
+          <Redirect to={routes.home.path} />
         ) : (
           <Component {...props} />
         )

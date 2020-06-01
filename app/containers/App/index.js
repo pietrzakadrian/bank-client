@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
@@ -22,9 +22,9 @@ import 'antd/dist/antd.less';
 import 'sanitize.css/sanitize.css';
 import GlobalStyle from 'global-styles';
 import { useInjectSaga } from 'redux-injectors';
+import PrivateRoute from 'components/Route/PrivateRoute';
+import PublicRoute from 'components/Route/PublicRoute';
 import saga from './saga';
-import PrivateRoute from '../../components/Route/PrivateRoute';
-import PublicRoute from '../../components/Route/PublicRoute';
 
 function App() {
   useInjectSaga({ key: 'app', saga });
@@ -32,7 +32,7 @@ function App() {
   return (
     <div>
       <Switch>
-        <PublicRoute exact path={routes.home.path} component={HomePage} />
+        <Route restricted exact path={routes.home.path} component={HomePage} />
         <PublicRoute
           restricted
           path={routes.login.path}

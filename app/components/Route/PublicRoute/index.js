@@ -32,6 +32,6 @@ export default function PublicRoute({
 }
 
 PublicRoute.propTypes = {
-  component: PropTypes.element.isRequired,
-  restricted: PropTypes.bool.isRequired,
+  component: PropTypes.func.isRequired,
+  restricted: PropTypes.bool,
 };

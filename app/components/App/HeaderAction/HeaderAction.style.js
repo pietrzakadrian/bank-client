@@ -56,3 +56,7 @@ export const StyledMessageOutlined = styled(MessageOutlined)`
 export const StyledBellOutlined = styled(BellOutlined)`
   font-size: 19px;
 `;
+
+export const StyledHeaderWrapper = styled.div`
+  display: flex;
+`;

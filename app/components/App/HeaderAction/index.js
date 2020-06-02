@@ -1,7 +1,10 @@
+/* eslint-disable indent */
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logoutAction } from 'containers/App/actions';
 import { Popconfirm } from 'antd';
+import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
+import { useMediaQuery } from 'react-responsive';
 import {
   StyledHeaderAction,
   StyledHeaderActionItem,
@@ -9,41 +12,45 @@ import {
   StyledMessageOutlined,
   StyledBellOutlined,
   StyledPoweroffOutlined,
+  StyledHeaderWrapper,
 } from './HeaderAction.style';
+import messages from './messages';
 
 const actions = [
   {
     id: 1,
-    name: 'Messages',
+    name: <FormattedMessage {...messages.messages} />,
     icon: <StyledMessageOutlined />,
   },
   {
     id: 2,
-    name: 'Notifications',
+    name: <FormattedMessage {...messages.notifications} />,
     icon: <StyledBellOutlined />,
   },
   {
     id: 3,
-    name: 'Logout',
+    name: <FormattedMessage {...messages.logout} />,
     icon: <StyledPoweroffOutlined />,
   },
 ];
 
-export default function HeaderAction() {
+function HeaderAction({ intl }) {
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery({ maxWidth: 479 });
+
   const logout = () => dispatch(logoutAction());
 
   return (
     <StyledHeaderAction>
       {actions.map((action, index, arr) => (
-        <div style={{ display: 'flex' }} key={action.id}>
-          {arr.length - 1 === index ? (
+        <StyledHeaderWrapper key={action.id}>
+          {(!isMobile && arr.length - 1 === index && (
             <Popconfirm
               placement="bottomRight"
-              title="Are you sure you want to log out?"
+              title={intl.formatMessage(messages.popConfirmTitle)}
               onConfirm={logout}
-              okText="Yes"
-              cancelText="Cancel"
+              okText={intl.formatMessage(messages.popConfirmOk)}
+              cancelText={intl.formatMessage(messages.popConfirmCancel)}
             >
               <StyledHeaderActionItem type="link">
                 {action.icon}
@@ -52,16 +59,30 @@ export default function HeaderAction() {
                 </StyledHeaderActionItemName>
               </StyledHeaderActionItem>
             </Popconfirm>
-          ) : (
-            <StyledHeaderActionItem type="link">
-              {action.icon}
-              <StyledHeaderActionItemName>
-                {action.name}
-              </StyledHeaderActionItemName>
-            </StyledHeaderActionItem>
-          )}
-        </div>
+          )) ||
+            (arr.length - 1 === index && (
+              <StyledHeaderActionItem type="link" onClick={logout}>
+                {action.icon}
+                <StyledHeaderActionItemName>
+                  {action.name}
+                </StyledHeaderActionItemName>
+              </StyledHeaderActionItem>
+            )) || (
+              <StyledHeaderActionItem type="link">
+                {action.icon}
+                <StyledHeaderActionItemName>
+                  {action.name}
+                </StyledHeaderActionItemName>
+              </StyledHeaderActionItem>
+            )}
+        </StyledHeaderWrapper>
       ))}
     </StyledHeaderAction>
   );
 }
+
+HeaderAction.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(HeaderAction);

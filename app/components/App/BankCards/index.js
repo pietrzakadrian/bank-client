@@ -1,7 +1,6 @@
 import React from 'react';
 import { CreditCardOutlined } from '@ant-design/icons';
 import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
-
 import {
   StyledButton,
   StyledButtonContent,

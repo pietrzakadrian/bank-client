@@ -17,6 +17,10 @@ export default defineMessages({
     id: `${scope}.registration`,
     defaultMessage: 'Registration',
   },
+  emailUnique: {
+    id: `${scope}.email.unique`,
+    defaultMessage: `Email address already exists.`,
+  },
   serverError: {
     id: `${scope}.serverError`,
     defaultMessage: `Please try again in a moment.`,

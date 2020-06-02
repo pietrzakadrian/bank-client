@@ -58,7 +58,18 @@ export function* register() {
     } = yield call(request, requestURL, requestParameters);
     yield put(registerSuccessAction(pinCode));
   } catch (error) {
-    const message = <FormattedMessage {...messages.serverError} />;
+    let message;
+
+    switch (error.statusCode) {
+      case 409:
+        message = <FormattedMessage {...messages.emailUnique} />;
+        break;
+
+      default:
+        message = <FormattedMessage {...messages.serverError} />;
+        break;
+    }
+
     yield put(registerErrorAction(message));
   }
 }

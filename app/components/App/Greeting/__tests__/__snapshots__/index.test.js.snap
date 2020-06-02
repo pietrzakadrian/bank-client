@@ -2,7 +2,7 @@
 
 exports[`<Greeting /> should render a Greeting 1`] = `
 <section
-  class="Greetingstyle__StyledGreeting-r6yczo-0 idXROt"
+  class="Greetingstyle__StyledGreeting-r6yczo-0 gpylKs"
 >
   <div>
     <span>

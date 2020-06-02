@@ -2,7 +2,7 @@
 
 exports[`<LoadingIndicator /> should render a LoadingIndicator 1`] = `
 <div
-  class="ant-spin ant-spin-spinning LoadingIndicatorstyle__StyledSpin-sc-1hamj2j-0 jYctYG"
+  class="ant-spin ant-spin-spinning LoadingIndicatorstyle__StyledSpin-sc-1hamj2j-0 cVaifN"
 >
   <span
     aria-label="loading"

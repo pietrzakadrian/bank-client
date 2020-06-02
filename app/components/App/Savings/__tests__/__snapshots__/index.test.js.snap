@@ -5,7 +5,7 @@ exports[`<Savings /> should render a Savings 1`] = `
   class="Widgetstyle__StyledWidget-sc-1bl1ktb-0 kjDbLh"
 >
   <div
-    class="ant-spin ant-spin-spinning LoadingIndicatorstyle__StyledSpin-sc-1hamj2j-0 jYctYG"
+    class="ant-spin ant-spin-spinning LoadingIndicatorstyle__StyledSpin-sc-1hamj2j-0 cVaifN"
   >
     <span
       aria-label="loading"

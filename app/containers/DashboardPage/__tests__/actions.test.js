@@ -2,36 +2,30 @@ import {
   getBillsAction,
   getBillsSuccessAction,
   getBillsErrorAction,
-  getAmountMoneyAction,
-  getAmountMoneySuccessAction,
-  getAmountMoneyErrorAction,
   getAccountBalanceAction,
   getAccountBalanceSuccessAction,
   getAccountBalanceErrorAction,
-  getAccountBalanceHistoryAction,
-  getAccountBalanceHistorySuccessAction,
-  getAccountBalanceHistoryErrorAction,
+  getAvailableFundsAction,
+  getAvailableFundsSuccessAction,
+  getAvailableFundsErrorAction,
 } from '../actions';
 import {
-  GET_BILLS,
+  GET_ACCOUNT_BALANCE_REQUEST,
+  GET_AVAILABLE_FUNDS_SUCCESS,
   GET_BILLS_SUCCESS,
   GET_BILLS_ERROR,
-  GET_AMOUNT_MONEY,
-  GET_AMOUNT_MONEY_SUCCESS,
-  GET_AMOUNT_MONEY_ERROR,
-  GET_ACCOUNT_BALANCE,
   GET_ACCOUNT_BALANCE_SUCCESS,
   GET_ACCOUNT_BALANCE_ERROR,
-  GET_ACCOUNT_BALANCE_HISTORY,
-  GET_ACCOUNT_BALANCE_HISTORY_SUCCESS,
-  GET_ACCOUNT_BALANCE_HISTORY_ERROR,
+  GET_BILLS_REQUEST,
+  GET_AVAILABLE_FUNDS_ERROR,
+  GET_AVAILABLE_FUNDS_REQUEST,
 } from '../constants';
 
 describe('DashboardPage actions', () => {
   describe('getBillsAction', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: GET_BILLS,
+        type: GET_BILLS_REQUEST,
       };
       expect(getBillsAction()).toEqual(expectedResult);
     });
@@ -59,45 +53,51 @@ describe('DashboardPage actions', () => {
     });
   });
 
-  describe('getAmountMoneyAction', () => {
+  describe('getAvailableFundsAction', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: GET_AMOUNT_MONEY,
+        type: GET_AVAILABLE_FUNDS_REQUEST,
       };
-      expect(getAmountMoneyAction()).toEqual(expectedResult);
+      expect(getAvailableFundsAction()).toEqual(expectedResult);
     });
   });
 
-  describe('getAmountMoneySuccessAction', () => {
+  describe('getAvailableFundsSuccessAction', () => {
     it('should return the correct type', () => {
       const amountMoney = '0.00';
       const currencyName = 'PLN';
+      const accountBalanceHistory = [0, 0];
       const expectedResult = {
-        type: GET_AMOUNT_MONEY_SUCCESS,
+        type: GET_AVAILABLE_FUNDS_SUCCESS,
         amountMoney,
         currencyName,
+        accountBalanceHistory,
       };
-      expect(getAmountMoneySuccessAction(amountMoney, currencyName)).toEqual(
-        expectedResult,
-      );
+      expect(
+        getAvailableFundsSuccessAction(
+          amountMoney,
+          currencyName,
+          accountBalanceHistory,
+        ),
+      ).toEqual(expectedResult);
     });
   });
 
-  describe('getAmountMoneyErrorAction', () => {
+  describe('getAvailableFundsErrorAction', () => {
     it('should return the correct type', () => {
       const error = '';
       const expectedResult = {
-        type: GET_AMOUNT_MONEY_ERROR,
+        type: GET_AVAILABLE_FUNDS_ERROR,
         error,
       };
-      expect(getAmountMoneyErrorAction(error)).toEqual(expectedResult);
+      expect(getAvailableFundsErrorAction(error)).toEqual(expectedResult);
     });
   });
 
   describe('getAccountBalanceAction', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: GET_ACCOUNT_BALANCE,
+        type: GET_ACCOUNT_BALANCE_REQUEST,
       };
       expect(getAccountBalanceAction()).toEqual(expectedResult);
     });
@@ -135,41 +135,6 @@ describe('DashboardPage actions', () => {
         error,
       };
       expect(getAccountBalanceErrorAction(error)).toEqual(expectedResult);
-    });
-  });
-
-  describe('getAccountBalanceHistoryAction', () => {
-    it('should return the correct type', () => {
-      const expectedResult = {
-        type: GET_ACCOUNT_BALANCE_HISTORY,
-      };
-      expect(getAccountBalanceHistoryAction()).toEqual(expectedResult);
-    });
-  });
-
-  describe('getAccountBalanceHistorySuccessAction', () => {
-    it('should return the correct type', () => {
-      const accountBalanceHistory = [];
-      const expectedResult = {
-        type: GET_ACCOUNT_BALANCE_HISTORY_SUCCESS,
-        accountBalanceHistory,
-      };
-      expect(
-        getAccountBalanceHistorySuccessAction(accountBalanceHistory),
-      ).toEqual(expectedResult);
-    });
-  });
-
-  describe('getAccountBalanceHistoryErrorAction', () => {
-    it('should return the correct type', () => {
-      const error = '';
-      const expectedResult = {
-        type: GET_ACCOUNT_BALANCE_HISTORY_ERROR,
-        error,
-      };
-      expect(getAccountBalanceHistoryErrorAction(error)).toEqual(
-        expectedResult,
-      );
     });
   });
 });

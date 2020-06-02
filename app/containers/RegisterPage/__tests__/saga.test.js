@@ -1,10 +1,11 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import registerPageSaga, { getCurrencies, register, checkEmail } from '../saga';
-import { GET_CURRENCIES, REGISTER, CHECK_EMAIL } from '../constants';
 import {
-  getCurrenciesSuccessAction,
-  getCurrenciesErrorAction,
-} from '../actions';
+  GET_CURRENCIES_REQUEST,
+  REGISTER_REQUEST,
+  CHECK_EMAIL_REQUEST,
+} from '../constants';
+import { getCurrenciesSuccessAction } from '../actions';
 
 describe('getCurrencies Saga', () => {
   let getCurrenciesGenerator;
@@ -40,12 +41,6 @@ describe('getCurrencies Saga', () => {
     expect(putDescriptor).toEqual(
       put(getCurrenciesSuccessAction(response.data)),
     );
-  });
-
-  it('should call the getCurrenciesError action if the response errors', () => {
-    const response = new Error('Some error');
-    const putDescriptor = getCurrenciesGenerator.throw(response).value;
-    expect(putDescriptor).toEqual(put(getCurrenciesErrorAction(response)));
   });
 });
 
@@ -88,17 +83,21 @@ describe('registerPageSaga Saga', () => {
   it('should start task to watch for GET_CURRENCIES action', () => {
     const takeLatestDescriptor = registerPage.next().value;
     expect(takeLatestDescriptor).toEqual(
-      takeLatest(GET_CURRENCIES, getCurrencies),
+      takeLatest(GET_CURRENCIES_REQUEST, getCurrencies),
     );
   });
 
   it('should start task to watch for REGISTER action', () => {
     const takeLatestDescriptor = registerPage.next().value;
-    expect(takeLatestDescriptor).toEqual(takeLatest(REGISTER, register));
+    expect(takeLatestDescriptor).toEqual(
+      takeLatest(REGISTER_REQUEST, register),
+    );
   });
 
   it('should start task to watch for CHECK_EMAIL action', () => {
     const takeLatestDescriptor = registerPage.next().value;
-    expect(takeLatestDescriptor).toEqual(takeLatest(CHECK_EMAIL, checkEmail));
+    expect(takeLatestDescriptor).toEqual(
+      takeLatest(CHECK_EMAIL_REQUEST, checkEmail),
+    );
   });
 });

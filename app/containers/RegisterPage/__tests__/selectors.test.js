@@ -4,7 +4,6 @@ import {
   makeSelectPassword,
   makeSelectCurrency,
   makeSelectEmail,
-  makeSelectIsLoading,
   makeSelectPinCode,
   makeSelectCurrencies,
   makeSelectError,
@@ -93,19 +92,6 @@ describe('makeSelectEmail', () => {
       },
     };
     expect(emailSelector(mockedState)).toEqual(email);
-  });
-});
-
-describe('makeSelectIsLoading', () => {
-  const isLoadingSelector = makeSelectIsLoading();
-  it('should select the isLoading', () => {
-    const isLoading = true;
-    const mockedState = {
-      registerPage: {
-        isLoading,
-      },
-    };
-    expect(isLoadingSelector(mockedState)).toEqual(isLoading);
   });
 });
 

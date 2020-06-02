@@ -10,7 +10,7 @@ import {
 import {
   CHANGE_PINCODE,
   CHANGE_PASSWORD,
-  LOGIN,
+  LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   NEXT_STEP,
@@ -21,7 +21,7 @@ describe('LoginPage actions', () => {
   describe('loginAction', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: LOGIN,
+        type: LOGIN_REQUEST,
       };
       expect(loginAction()).toEqual(expectedResult);
     });

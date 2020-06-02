@@ -15,16 +15,16 @@ import {
   previousStepAction,
 } from '../actions';
 import {
-  GET_CURRENCIES,
+  GET_CURRENCIES_REQUEST,
   GET_CURRENCIES_SUCCESS,
   GET_CURRENCIES_ERROR,
   CHANGE_INPUT,
   SELECT_CURRENCY,
   CHECK_EMAIL_INVALID,
-  CHECK_EMAIL,
+  CHECK_EMAIL_REQUEST,
   CHECK_EMAIL_SUCCESS,
   CHECK_EMAIL_ERROR,
-  REGISTER,
+  REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_ERROR,
   NEXT_STEP,
@@ -35,7 +35,7 @@ describe('RegisterPage actions', () => {
   describe('getCurrenciesAction', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: GET_CURRENCIES,
+        type: GET_CURRENCIES_REQUEST,
       };
       expect(getCurrenciesAction()).toEqual(expectedResult);
     });
@@ -90,7 +90,7 @@ describe('RegisterPage actions', () => {
   describe('registerAction', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: REGISTER,
+        type: REGISTER_REQUEST,
       };
       expect(registerAction()).toEqual(expectedResult);
     });
@@ -124,7 +124,7 @@ describe('RegisterPage actions', () => {
       const reject = {};
       const resolve = {};
       const expectedResult = {
-        type: CHECK_EMAIL,
+        type: CHECK_EMAIL_REQUEST,
         value,
         reject,
         resolve,

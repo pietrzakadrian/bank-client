@@ -3,13 +3,13 @@ import {
   logoutSuccessAction,
   logoutErrorAction,
 } from '../actions';
-import { LOGOUT, LOGOUT_SUCCESS, LOGOUT_ERROR } from '../constants';
+import { LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_ERROR } from '../constants';
 
 describe('App actions', () => {
   describe('logoutAction', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: LOGOUT,
+        type: LOGOUT_REQUEST,
       };
       expect(logoutAction()).toEqual(expectedResult);
     });

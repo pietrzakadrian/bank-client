@@ -2,7 +2,6 @@ import {
   selectGlobalDomain,
   makeSelectLocation,
   makeSelectIsLogged,
-  makeSelectIsLoading,
   makeSelectToken,
   makeSelectUser,
 } from 'containers/App/selectors';
@@ -46,19 +45,6 @@ describe('makeSelectIsLogged', () => {
       },
     };
     expect(isLoggedSelector(mockedState)).toEqual(isLogged);
-  });
-});
-
-describe('makeSelectIsLoading', () => {
-  const isLoadingSelector = makeSelectIsLoading();
-  it('should select the is loading', () => {
-    const isLoading = false;
-    const mockedState = {
-      global: {
-        isLoading,
-      },
-    };
-    expect(isLoadingSelector(mockedState)).toEqual(isLoading);
   });
 });
 

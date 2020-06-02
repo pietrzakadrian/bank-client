@@ -19,7 +19,7 @@ export const initialState = {
   currentStep: 0,
 };
 
-/* eslint-disable default-case, no-param-reassign */
+/* eslint-disable default-case, no-param-reassign, consistent-return */
 const loginPageReducer = produce((draft, action) => {
   switch (action.type) {
     case CHANGE_PINCODE:

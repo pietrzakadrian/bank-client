@@ -4,9 +4,8 @@ import produce from 'immer';
 import dashboardPageReducer from '../reducer';
 import {
   getBillsSuccessAction,
-  getAmountMoneySuccessAction,
   getAccountBalanceSuccessAction,
-  getAccountBalanceHistorySuccessAction,
+  getAvailableFundsSuccessAction,
 } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
@@ -20,8 +19,11 @@ describe('dashboardPageReducer', () => {
       savingsData: [],
       savingsColors: [],
       bills: [],
-      accountBalanceHistory: [],
+      accountBalanceHistory: [0, 0],
       recentTransactions: [],
+      currencies: [],
+      currency: '',
+      isOpenedModal: false,
     };
   });
 
@@ -47,16 +49,22 @@ describe('dashboardPageReducer', () => {
     const fixture = {
       amountMoney: '1',
       currencyName: 'PLN',
+      accountBalanceHistory: [0, 2],
     };
     const expectedResult = produce(state, (draft) => {
       draft.amountMoney = fixture.amountMoney;
       draft.currencyName = fixture.currencyName;
+      draft.accountBalanceHistory = fixture.accountBalanceHistory;
     });
 
     expect(
       dashboardPageReducer(
         state,
-        getAmountMoneySuccessAction(fixture.amountMoney, fixture.currencyName),
+        getAvailableFundsSuccessAction(
+          fixture.amountMoney,
+          fixture.currencyName,
+          fixture.accountBalanceHistory,
+        ),
       ),
     ).toEqual(expectedResult);
   });
@@ -84,22 +92,6 @@ describe('dashboardPageReducer', () => {
           fixture.savingsData,
           fixture.savingsColors,
         ),
-      ),
-    ).toEqual(expectedResult);
-  });
-
-  it('should handle the getAccountBalanceHistorySuccessAction action correctly', () => {
-    const fixture = {
-      accountBalanceHistory: [],
-    };
-    const expectedResult = produce(state, (draft) => {
-      draft.accountBalanceHistory = fixture.accountBalanceHistory;
-    });
-
-    expect(
-      dashboardPageReducer(
-        state,
-        getAccountBalanceHistorySuccessAction(fixture.accountBalanceHistory),
       ),
     ).toEqual(expectedResult);
   });

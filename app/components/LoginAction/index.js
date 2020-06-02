@@ -31,7 +31,6 @@ const stateSelector = createStructuredSelector({
 
 export default function LoginAction({ form }) {
   const { isLoading, currentStep, error } = useSelector(stateSelector);
-
   const dispatch = useDispatch();
 
   const onPreviousStep = () => dispatch(previousStepAction());

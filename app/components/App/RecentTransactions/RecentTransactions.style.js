@@ -10,3 +10,7 @@ export const StyledUser = styled.span`
   display: contents;
   color: ${colors.primaryBlue};
 `;
+
+export const StyledTypography = styled.div`
+  display: inline;
+`;

@@ -14,11 +14,6 @@ import Footer from 'components/App/Footer';
 import { StyledSidebar } from './Sidebar.style';
 import Logo from '../Logo';
 
-// import Navigation from 'components/App/Navigation';
-// import Footer from 'components/App/Footer';
-// import SidebarWrapper from './SidebarWrapper';
-// import LogoWrapper from './LogoWrapper';
-
 const stateSelector = createStructuredSelector({
   isCollapsedSidebar: makeSelectIsCollapsedSidebar(),
 });

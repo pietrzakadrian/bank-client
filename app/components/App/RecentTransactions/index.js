@@ -15,10 +15,13 @@ import {
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { getRequestName } from 'helpers';
 import { GET_RECENT_TRANSACTIONS_REQUEST } from 'containers/DashboardPage/constants';
+import { FormattedMessage } from 'react-intl';
 import {
   StyledSenderAmountMoney,
   StyledUser,
+  StyledTypography,
 } from './RecentTransactions.style';
+import messages from './messages';
 
 const dateFormat = `dd.MM.yyyy`;
 const stateSelector = createStructuredSelector({
@@ -36,7 +39,7 @@ export default function RecentTransactions() {
   const getRecentTransactions = () => dispatch(getRecentTransactionsAction());
 
   useEffect(() => {
-    if (!recentTransactions.length) getRecentTransactions();
+    getRecentTransactions();
   }, []);
 
   const columns = [
@@ -46,7 +49,9 @@ export default function RecentTransactions() {
           <div>
             {senderAccountBill.user.uuid === user.uuid ? (
               <div>
-                <div style={{ display: 'inline' }}>to </div>
+                <StyledTypography>
+                  <FormattedMessage {...messages.to} />
+                </StyledTypography>
                 <StyledUser>
                   {recipientAccountBill.user.firstName}{' '}
                   {recipientAccountBill.user.lastName}
@@ -54,7 +59,9 @@ export default function RecentTransactions() {
               </div>
             ) : (
               <div>
-                <div style={{ display: 'inline' }}>from </div>
+                <StyledTypography>
+                  <FormattedMessage {...messages.from} />
+                </StyledTypography>
                 <StyledUser>
                   {senderAccountBill.user.firstName}{' '}
                   {senderAccountBill.user.lastName}
@@ -87,21 +94,25 @@ export default function RecentTransactions() {
   ];
 
   return (
-    <StyledCard loaded={isLoading ? 1 : 0} bordered title="Recent Transactions">
-      {isLoading ? (
-        <LoadingIndicator />
-      ) : (
-        <StyledTableWrapper onMouseDown={(e) => e.stopPropagation()}>
-          <StyledTable
-            minimaled="true"
-            showHeader={false}
-            pagination={false}
-            dataSource={recentTransactions}
-            columns={columns}
-            rowKey={(record) => record.uuid}
-          />
-        </StyledTableWrapper>
+    <FormattedMessage {...messages.title}>
+      {(title) => (
+        <StyledCard loaded={isLoading ? 1 : 0} bordered title={title}>
+          {isLoading ? (
+            <LoadingIndicator />
+          ) : (
+            <StyledTableWrapper onMouseDown={(e) => e.stopPropagation()}>
+              <StyledTable
+                minimaled="true"
+                showHeader={false}
+                pagination={false}
+                dataSource={recentTransactions}
+                columns={columns}
+                rowKey={(record) => record.uuid}
+              />
+            </StyledTableWrapper>
+          )}
+        </StyledCard>
       )}
-    </StyledCard>
+    </FormattedMessage>
   );
 }

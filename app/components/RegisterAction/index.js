@@ -8,27 +8,37 @@ import {
   nextStepAction,
   previousStepAction,
 } from 'containers/RegisterPage/actions';
+import { makeSelectError } from 'providers/ErrorProvider/selectors';
 import { makeSelectCurrentStep } from 'containers/RegisterPage/selectors';
-
 import steps from 'components/RegisterStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import {
   StyledFormActionsWrapper,
   StyledButton,
+  StyledError,
 } from 'components/Form/Form.style';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { getRequestName } from 'helpers';
-import { REGISTER_REQUEST } from 'containers/RegisterPage/constants';
+import {
+  REGISTER_REQUEST,
+  GET_CURRENCIES_REQUEST,
+  CHECK_EMAIL_REQUEST,
+} from 'containers/RegisterPage/constants';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),
   isLoading: makeSelectIsLoading(getRequestName(REGISTER_REQUEST)),
+  error: makeSelectError([
+    getRequestName(GET_CURRENCIES_REQUEST),
+    getRequestName(CHECK_EMAIL_REQUEST),
+    getRequestName(REGISTER_REQUEST),
+  ]),
 });
 
 export default function RegisterAction({ form }) {
-  const { isLoading, currentStep } = useSelector(stateSelector);
+  const { isLoading, currentStep, error } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
   const onRegister = () => dispatch(registerAction());
@@ -44,27 +54,29 @@ export default function RegisterAction({ form }) {
       } else {
         onNextStep();
       }
-    } catch (error) {
-      Error(error);
+    } catch (err) {
+      Error(err);
     }
   };
 
   return (
     <StyledFormActionsWrapper>
       <StyledButton
-        disabled={isLoading}
+        disabled={isLoading || !!error}
         type="primary"
         onClick={onValidateFields}
+        errored={error ? 1 : 0}
       >
-        {(currentStep < steps.length - 1 && (
-          <>
-            <FormattedMessage {...messages.next} /> <RightOutlined />
-          </>
-        )) ||
+        {(error && <StyledError>{error}</StyledError>) ||
+          (currentStep < steps.length - 1 && !error && (
+            <>
+              <FormattedMessage {...messages.next} /> <RightOutlined />
+            </>
+          )) ||
           (currentStep === steps.length - 1 && isLoading && (
             <LoadingIndicator />
           )) ||
-          (currentStep === steps.length - 1 && (
+          (currentStep === steps.length - 1 && !error && (
             <FormattedMessage {...messages.create} />
           ))}
       </StyledButton>

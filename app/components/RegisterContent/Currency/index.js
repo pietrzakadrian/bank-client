@@ -35,7 +35,10 @@ function Currency({ intl }) {
       label={intl.formatMessage(messages.label)}
       name="currency"
       rules={[
-        { required: true, message: intl.formatMessage(messages.validation) },
+        {
+          required: true,
+          message: intl.formatMessage(messages.validation),
+        },
       ]}
     >
       <Select

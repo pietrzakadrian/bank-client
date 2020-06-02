@@ -17,4 +17,8 @@ export default defineMessages({
     id: `${scope}.registration`,
     defaultMessage: 'Registration',
   },
+  serverError: {
+    id: `${scope}.serverError`,
+    defaultMessage: `Please try again in a moment.`,
+  },
 });

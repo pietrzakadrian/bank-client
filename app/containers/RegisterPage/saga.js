@@ -1,6 +1,9 @@
 import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
 import { api, request } from 'utils';
 import { emailValidation } from 'helpers';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 import {
   GET_CURRENCIES_REQUEST,
   REGISTER_REQUEST,
@@ -30,7 +33,8 @@ export function* getCurrencies() {
     const { data } = yield call(request, requestURL);
     yield put(getCurrenciesSuccessAction(data));
   } catch (error) {
-    yield put(getCurrenciesErrorAction(error));
+    const message = <FormattedMessage {...messages.serverError} />;
+    yield put(getCurrenciesErrorAction(message));
   }
 }
 
@@ -54,7 +58,8 @@ export function* register() {
     } = yield call(request, requestURL, requestParameters);
     yield put(registerSuccessAction(pinCode));
   } catch (error) {
-    yield put(registerErrorAction(error));
+    const message = <FormattedMessage {...messages.serverError} />;
+    yield put(registerErrorAction(message));
   }
 }
 
@@ -77,7 +82,9 @@ export function* checkEmail({ value, reject, resolve }) {
         yield call(resolve);
       }
     } catch (error) {
-      yield put(checkEmailErrorAction(error));
+      const message = <FormattedMessage {...messages.serverError} />;
+
+      yield put(checkEmailErrorAction(message));
     }
   } else {
     yield put(checkEmailInvalidAction());

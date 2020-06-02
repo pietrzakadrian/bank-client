@@ -16,7 +16,7 @@ const errorProviderReducer = produce((draft, action) => {
 
   const [, requestName, requestState] = matches;
 
-  draft[requestName] = requestState === 'ERROR' ? action.error : '';
+  draft[requestName] = requestState === 'ERROR' && action.error;
 }, initialState);
 
 export default errorProviderReducer;

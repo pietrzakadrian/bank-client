@@ -18,7 +18,9 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { getRequestName } from 'helpers';
 import { CREATE_NEW_BILL_REQUEST } from 'containers/DashboardPage/constants';
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import { StyledModal } from './Modal.style';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   currencies: makeSelectCurrencies(),
@@ -26,7 +28,7 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(getRequestName(CREATE_NEW_BILL_REQUEST)),
 });
 
-export default function Modal() {
+function Modal({ intl }) {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const { currencies, isOpenedModal, isLoading } = useSelector(stateSelector);
@@ -48,7 +50,7 @@ export default function Modal() {
 
   return (
     <StyledModal
-      title="Create a new bill"
+      title={intl.formatMessage(messages.title)}
       visible={isOpenedModal}
       onOk={onValidateFields}
       onCancel={toggleModal}
@@ -56,17 +58,16 @@ export default function Modal() {
       confirmLoading={isLoading}
       footer={[
         <Button key="back" onClick={toggleModal}>
-          Cancel
+          <FormattedMessage {...messages.cancel} />
         </Button>,
         <Button key="submit" type="primary" onClick={onValidateFields}>
-          Create
+          <FormattedMessage {...messages.create} />
         </Button>,
       ]}
     >
       <>
         <p>
-          You are currently trying to create a new bill. Creating a new bill is
-          free.
+          <FormattedMessage {...messages.descriptionTop} />
         </p>
 
         <StyledForm form={form} name="create-new-bill">
@@ -76,7 +77,7 @@ export default function Modal() {
             rules={[
               {
                 required: true,
-                message: 'Currency is required.',
+                message: intl.formatMessage(messages.currencyRequired),
               },
             ]}
           >
@@ -84,7 +85,7 @@ export default function Modal() {
               onClick={() => !currencies.length && getCurrencies()}
               notFoundContent={isLoading ? <LoadingIndicator /> : null}
               onSelect={(currency) => dispatch(selectCurrencyAction(currency))}
-              placeholder="Select currency"
+              placeholder={intl.formatMessage(messages.placeholder)}
             >
               {currencies.map((currency) => (
                 <Select.Option key={currency.uuid} value={currency.uuid}>
@@ -95,8 +96,16 @@ export default function Modal() {
           </StyledFormItem>
         </StyledForm>
 
-        <p>Remember that the number of bills you have is limited.</p>
+        <p>
+          <FormattedMessage {...messages.descriptionBottom} />
+        </p>
       </>
     </StyledModal>
   );
 }
+
+Modal.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(Modal);

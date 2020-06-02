@@ -6,6 +6,7 @@
 
 import produce from 'immer';
 import { formatBill } from 'helpers';
+import { LOGOUT_SUCCESS } from 'containers/App/constants';
 import {
   GET_CURRENCIES_SUCCESS,
   GET_BILLS_SUCCESS,
@@ -31,7 +32,7 @@ export const initialState = {
   currencies: [],
 };
 
-/* eslint-disable default-case, no-param-reassign */
+/* eslint-disable default-case, no-param-reassign, consistent-return */
 const dashboardPageReducer = produce((draft, action) => {
   switch (action.type) {
     case SELECT_CURRENCY:
@@ -67,6 +68,8 @@ const dashboardPageReducer = produce((draft, action) => {
     case TOGGLE_MODAL:
       draft.isOpenedModal = !draft.isOpenedModal;
       break;
+    case LOGOUT_SUCCESS:
+      return initialState;
   }
 }, initialState);
 

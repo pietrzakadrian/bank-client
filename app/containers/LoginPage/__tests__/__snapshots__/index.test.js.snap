@@ -230,7 +230,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
       class="Formstyle__StyledFormActionsWrapper-sc-7x4ylh-0 hCgvJp"
     >
       <button
-        class="ant-btn Formstyle__StyledButton-sc-7x4ylh-1 dCFKbl ant-btn-primary"
+        class="ant-btn Formstyle__StyledButton-sc-7x4ylh-1 kleyYu ant-btn-primary"
         errored="0"
         type="button"
       >

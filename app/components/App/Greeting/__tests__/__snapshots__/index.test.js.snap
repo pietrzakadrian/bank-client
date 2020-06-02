@@ -6,7 +6,7 @@ exports[`<Greeting /> should render a Greeting 1`] = `
 >
   <div>
     <span>
-      Good morning
+      Good evening
     </span>
     ,
      

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
@@ -30,3 +30,8 @@ export default function PublicRoute({
     />
   );
 }
+
+PublicRoute.propTypes = {
+  component: PropTypes.element.isRequired,
+  restricted: PropTypes.bool.isRequired,
+};

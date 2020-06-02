@@ -15,6 +15,7 @@ import LoginPage from 'containers/LoginPage/Loadable';
 import RegisterPage from 'containers/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import DashboardPage from 'containers/DashboardPage/Loadable';
+import PaymentPage from 'containers/PaymentPage/Loadable';
 import Layout from 'components/App/Layout';
 
 import { routes } from 'utils';
@@ -51,6 +52,7 @@ function App() {
               path={routes.dashboard.path}
               component={DashboardPage}
             />
+            <PrivateRoute path={routes.payment.path} component={PaymentPage} />
           </Switch>
         </Layout>
 

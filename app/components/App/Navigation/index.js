@@ -11,7 +11,10 @@ import {
   LineChartOutlined,
   BankOutlined,
 } from '@ant-design/icons';
-
+import { makeSelectLocation } from 'containers/App/selectors';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import { useSelector } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { StyledMenuItem } from './Navigation.style';
 
 const items = [
@@ -24,54 +27,66 @@ const items = [
   },
   {
     id: 2,
-    name: 'Payment',
-    path: routes.dashboard.path,
+    name: routes.payment.name,
+    path: routes.payment.path,
     icon: <WalletOutlined />,
-    disabled: true,
+    disabled: false,
   },
   {
     id: 3,
     name: 'History',
-    path: routes.dashboard.path,
+    path: '',
     icon: <HistoryOutlined />,
     disabled: true,
   },
   {
     id: 4,
     name: 'Cards',
-    path: routes.dashboard.path,
+    path: '',
     icon: <CreditCardOutlined />,
     disabled: true,
   },
   {
     id: 5,
     name: 'Credits',
-    path: routes.dashboard.path,
+    path: '',
     icon: <LineChartOutlined />,
     disabled: true,
   },
   {
     id: 6,
     name: 'Deposits',
-    path: routes.dashboard.path,
+    path: '',
     icon: <BankOutlined />,
     disabled: true,
   },
   {
     id: 7,
     name: 'Settings',
-    path: routes.dashboard.path,
+    path: '',
     icon: <SettingOutlined />,
     disabled: true,
   },
 ];
 
+const stateSelector = createStructuredSelector({
+  location: makeSelectLocation(),
+});
+
 export default function Navigation() {
+  const {
+    location: { pathname },
+  } = useSelector(stateSelector);
+
   return (
-    <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
+    <Menu theme="light" mode="inline" selectedKeys={[pathname]}>
       {items.map((item) => (
-        <StyledMenuItem key={item.id} icon={item.icon} disabled={item.disabled}>
-          {item.name}
+        <StyledMenuItem
+          key={item.path}
+          icon={item.icon}
+          disabled={item.disabled}
+        >
+          <NavLink to={item.path}>{item.name}</NavLink>
         </StyledMenuItem>
       ))}
     </Menu>

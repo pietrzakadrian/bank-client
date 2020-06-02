@@ -10,11 +10,7 @@ const stateSelector = createStructuredSelector({
   isLogged: makeSelectIsLogged(),
 });
 
-export default function PrivateRoute({
-  component: Component,
-  restricted,
-  ...rest
-}) {
+export default function PrivateRoute({ component: Component, ...rest }) {
   const { isLogged } = useSelector(stateSelector);
 
   return (
@@ -29,5 +25,4 @@ export default function PrivateRoute({
 
 PrivateRoute.propTypes = {
   component: PropTypes.object.isRequired,
-  restricted: PropTypes.bool,
 };

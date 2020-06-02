@@ -2,6 +2,8 @@ import React from 'react';
 import registerMessages from 'containers/RegisterPage/messages';
 import loginMessages from 'containers/LoginPage/messages';
 import dashboardMessages from 'containers/DashboardPage/messages';
+import paymentMessages from 'containers/PaymentPage/messages';
+
 import { FormattedMessage } from 'react-intl';
 
 export default {
@@ -20,6 +22,10 @@ export default {
   dashboard: {
     name: <FormattedMessage {...dashboardMessages.dashboard} />,
     path: '/dashboard',
+  },
+  payment: {
+    name: <FormattedMessage {...paymentMessages.payment} />,
+    path: '/payment',
   },
   privacy: {
     name: 'Privacy',

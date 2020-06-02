@@ -12,6 +12,7 @@ const stateSelector = createStructuredSelector({
   location: makeSelectLocation(),
   isCollapsedSidebar: makeSelectIsCollapsedSidebar(),
 });
+
 export default function HeaderName() {
   const {
     location: { pathname },

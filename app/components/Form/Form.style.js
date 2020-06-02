@@ -10,7 +10,7 @@ export const StyledFormActionsWrapper = styled.div`
 
 export const StyledButton = styled(Button)`
   &&& {
-    width: 100%;
+    width: ${({ type }) => type !== 'link' && '100%'};
     color: ${({ back }) => back && 'inherit'};
     background-color: ${({ errored }) => errored && colors.red};
   }

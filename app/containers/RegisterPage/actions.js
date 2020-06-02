@@ -19,6 +19,7 @@ import {
   REGISTER_REQUEST,
   CHECK_EMAIL_REQUEST,
   GET_CURRENCIES_REQUEST,
+  LOGIN_EXPRESS,
 } from './constants';
 
 export function getCurrenciesAction() {
@@ -113,5 +114,11 @@ export function nextStepAction() {
 export function previousStepAction() {
   return {
     type: PREVIOUS_STEP,
+  };
+}
+
+export function loginExpressAction() {
+  return {
+    type: LOGIN_EXPRESS,
   };
 }

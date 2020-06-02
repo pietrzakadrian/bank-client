@@ -1,13 +1,15 @@
 import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
-import { api, request } from 'utils';
+import { api, request, routes } from 'utils';
 import { emailValidation } from 'helpers';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { push } from 'connected-react-router';
 import messages from './messages';
 import {
   GET_CURRENCIES_REQUEST,
   REGISTER_REQUEST,
   CHECK_EMAIL_REQUEST,
+  LOGIN_EXPRESS,
 } from './constants';
 import {
   getCurrenciesSuccessAction,
@@ -24,7 +26,9 @@ import {
   makeSelectLastName,
   makeSelectPassword,
   makeSelectCurrency,
+  makeSelectPinCode,
 } from './selectors';
+import { loginSuccessAction, loginErrorAction } from '../LoginPage/actions';
 
 export function* getCurrencies() {
   const requestURL = api.currencies;
@@ -94,7 +98,6 @@ export function* checkEmail({ value, reject, resolve }) {
       }
     } catch (error) {
       const message = <FormattedMessage {...messages.serverError} />;
-
       yield put(checkEmailErrorAction(message));
     }
   } else {
@@ -103,8 +106,33 @@ export function* checkEmail({ value, reject, resolve }) {
   }
 }
 
+export function* loginExpress() {
+  const pinCode = yield select(makeSelectPinCode());
+  const password = yield select(makeSelectPassword());
+
+  const requestURL = api.auth.login;
+  const requestParameters = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ pinCode, password }),
+  };
+
+  try {
+    const { user, token } = yield call(request, requestURL, requestParameters);
+    yield put(loginSuccessAction(user, token));
+    yield put(push(routes.dashboard.path));
+  } catch (error) {
+    const message = <FormattedMessage {...messages.serverError} />;
+    yield put(loginErrorAction(message));
+  }
+}
+
 export default function* registerPageSaga() {
   yield takeLatest(GET_CURRENCIES_REQUEST, getCurrencies);
   yield takeLatest(REGISTER_REQUEST, register);
   yield takeLatest(CHECK_EMAIL_REQUEST, checkEmail);
+  yield takeLatest(LOGIN_EXPRESS, loginExpress);
 }

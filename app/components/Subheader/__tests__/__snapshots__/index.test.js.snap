@@ -15,9 +15,10 @@ exports[`<Subheader /> should render a information 1`] = `
       >
         <span
           class="ant-page-header-heading-title"
-          title="Registration"
         >
-          Registration
+          <span>
+            title
+          </span>
         </span>
       </div>
     </div>

@@ -2,13 +2,14 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
-import Navigation from '../index';
+import Deposits from '../index';
+import 'utils/__tests__/__mocks__/matchMedia';
 
-describe('<Navigation />', () => {
-  it('should match the snapshot', () => {
+describe('<Deposits />', () => {
+  it('should render a Deposits', () => {
     const { container } = render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <Navigation />
+        <Deposits />
       </IntlProvider>,
     );
     expect(container.firstChild).toMatchSnapshot();

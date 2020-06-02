@@ -5,7 +5,7 @@ exports[`<HeaderAction /> should render a HeaderAction 1`] = `
   class="HeaderActionstyle__StyledHeaderAction-sc-1v0240u-0 feaNdT"
 >
   <div
-    style="display: flex;"
+    class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 dKOdPR"
   >
     <button
       class="ant-btn HeaderActionstyle__StyledHeaderActionItem-sc-1v0240u-1 jUoLXo ant-btn-link"
@@ -34,12 +34,14 @@ exports[`<HeaderAction /> should render a HeaderAction 1`] = `
       <div
         class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 lhrZnf"
       >
-        Messages
+        <span>
+          Messages
+        </span>
       </div>
     </button>
   </div>
   <div
-    style="display: flex;"
+    class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 dKOdPR"
   >
     <button
       class="ant-btn HeaderActionstyle__StyledHeaderActionItem-sc-1v0240u-1 jUoLXo ant-btn-link"
@@ -68,12 +70,14 @@ exports[`<HeaderAction /> should render a HeaderAction 1`] = `
       <div
         class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 lhrZnf"
       >
-        Notifications
+        <span>
+          Notifications
+        </span>
       </div>
     </button>
   </div>
   <div
-    style="display: flex;"
+    class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 dKOdPR"
   >
     <button
       class="ant-btn HeaderActionstyle__StyledHeaderActionItem-sc-1v0240u-1 jUoLXo ant-btn-link"
@@ -102,7 +106,9 @@ exports[`<HeaderAction /> should render a HeaderAction 1`] = `
       <div
         class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 lhrZnf"
       >
-        Logout
+        <span>
+          Logout
+        </span>
       </div>
     </button>
   </div>

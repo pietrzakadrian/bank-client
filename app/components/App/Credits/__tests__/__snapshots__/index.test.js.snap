@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Credits /> should render a Credits 1`] = `
+<div
+  class="ant-card Cardstyle__StyledCard-s807iu-0 fTZSBs ant-card-bordered"
+  darker="true"
+  excluded="true"
+  shadowed="true"
+>
+  <div
+    class="ant-card-head"
+  >
+    <div
+      class="ant-card-head-wrapper"
+    >
+      <div
+        class="ant-card-head-title"
+      >
+        Credits
+      </div>
+      <div
+        class="ant-card-extra"
+      >
+        <button
+          class="ant-btn Buttonstyle__StyledButton-nh59mr-0 iSwWDL ant-btn-link"
+          type="button"
+        >
+          <div
+            class="Buttonstyle__StyledButtonContent-nh59mr-1 cBxojI"
+          >
+            <span
+              aria-label="line-chart"
+              class="anticon anticon-line-chart"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                class=""
+                data-icon="line-chart"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM305.8 637.7c3.1 3.1 8.1 3.1 11.3 0l138.3-137.6L583 628.5c3.1 3.1 8.2 3.1 11.3 0l275.4-275.3c3.1-3.1 3.1-8.2 0-11.3l-39.6-39.6a8.03 8.03 0 00-11.3 0l-230 229.9L461.4 404a8.03 8.03 0 00-11.3 0L266.3 586.7a8.03 8.03 0 000 11.3l39.5 39.7z"
+                />
+              </svg>
+            </span>
+             
+            <span>
+              New credit
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="ant-card-body"
+  >
+    <div
+      class="Cardstyle__StyledCardContent-s807iu-1 fnMJaW"
+    >
+      <span>
+        The credits function is disabled.
+      </span>
+    </div>
+  </div>
+</div>
+`;

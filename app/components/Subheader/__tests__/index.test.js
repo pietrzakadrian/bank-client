@@ -2,8 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
-import configureStore from '../../../configureStore';
-
+import { FormattedMessage, IntlProvider } from 'react-intl';
+import { DEFAULT_LOCALE } from 'locales';
+import configureStore from 'configureStore';
 import Subheader from '../index';
 
 describe('<Subheader />', () => {
@@ -11,9 +12,19 @@ describe('<Subheader />', () => {
   const store = configureStore({}, history);
 
   it('should render a information', () => {
+    const messages = {
+      title: {
+        id: `test.title`,
+        defaultMessage: 'title',
+      },
+    };
+
+    const pageTitle = <FormattedMessage {...messages.title} />;
     const { container } = render(
       <Provider store={store}>
-        <Subheader pageTitle="Registration" />
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <Subheader pageTitle={pageTitle} />
+        </IntlProvider>
       </Provider>,
     );
     expect(container.firstChild).toMatchSnapshot();

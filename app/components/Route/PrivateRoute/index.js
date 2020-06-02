@@ -28,6 +28,6 @@ export default function PrivateRoute({
 }
 
 PrivateRoute.propTypes = {
-  component: PropTypes.func.isRequired,
+  component: PropTypes.object.isRequired,
   restricted: PropTypes.bool,
 };

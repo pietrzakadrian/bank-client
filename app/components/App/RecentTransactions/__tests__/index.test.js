@@ -1,21 +1,22 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { createMemoryHistory } from 'history';
 import configureStore from 'configureStore';
+import { createMemoryHistory } from 'history';
+import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
-import Sidebar from '../index';
+import RecentTransactions from '../index';
+import 'utils/__tests__/__mocks__/matchMedia';
 
-describe('<Sidebar />', () => {
+describe('<RecentTransactions />', () => {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
 
-  it('should match the snapshot', () => {
+  it('should render a RecentTransactions', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
-          <Sidebar />
+          <RecentTransactions />
         </IntlProvider>
       </Provider>,
     );

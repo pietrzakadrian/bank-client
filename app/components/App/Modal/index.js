@@ -42,7 +42,7 @@ export default function Modal() {
       toggleModal();
       form.resetFields();
     } catch (error) {
-      throw new Error(error);
+      Error(error);
     }
   };
 

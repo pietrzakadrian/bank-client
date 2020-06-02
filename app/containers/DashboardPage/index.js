@@ -43,7 +43,7 @@ export default function DashboardPage() {
   const { layout, isOpenedModal } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const { ref } = useResizeObserver({ onResize });
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: 479 });
 
   useInjectReducer({ key: 'dashboardPage', reducer });
   useInjectSaga({ key: 'dashboardPage', saga });

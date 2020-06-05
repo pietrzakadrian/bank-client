@@ -19,7 +19,9 @@ import {
   REGISTER_REQUEST,
   CHECK_EMAIL_REQUEST,
   GET_CURRENCIES_REQUEST,
-  LOGIN_EXPRESS,
+  LOGIN_EXPRESS_REQUEST,
+  LOGIN_EXPRESS_SUCCESS,
+  LOGIN_EXPRESS_ERROR,
 } from './constants';
 
 export function getCurrenciesAction() {
@@ -119,6 +121,21 @@ export function previousStepAction() {
 
 export function loginExpressAction() {
   return {
-    type: LOGIN_EXPRESS,
+    type: LOGIN_EXPRESS_REQUEST,
+  };
+}
+
+export function loginExpressSuccessAction(user, token) {
+  return {
+    type: LOGIN_EXPRESS_SUCCESS,
+    user,
+    token,
+  };
+}
+
+export function loginExpressErrorAction(error) {
+  return {
+    type: LOGIN_EXPRESS_ERROR,
+    error,
   };
 }

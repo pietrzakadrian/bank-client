@@ -33,6 +33,7 @@ import reducer from './reducer';
 import { changeLayoutAction } from './actions';
 import { makeSelectIsOpenedModal } from './selectors';
 
+const key = 'dashboardPage';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const stateSelector = createStructuredSelector({
   layout: makeSelectLayout(),
@@ -45,8 +46,8 @@ export default function DashboardPage() {
   const { ref } = useResizeObserver({ onResize });
   const isMobile = useMediaQuery({ maxWidth: 479 });
 
-  useInjectReducer({ key: 'dashboardPage', reducer });
-  useInjectSaga({ key: 'dashboardPage', saga });
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
 
   return (
     <div>

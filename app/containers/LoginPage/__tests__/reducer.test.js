@@ -3,8 +3,8 @@ import produce from 'immer';
 import { onLocationChanged } from 'connected-react-router';
 import loginPageReducer from '../reducer';
 import {
-  changePinCodeAction,
-  changePasswordAction,
+  changeInputNumberAction,
+  changeInputAction,
   nextStepAction,
   previousStepAction,
 } from '../actions';
@@ -25,7 +25,7 @@ describe('registerPageReducer', () => {
     expect(loginPageReducer(undefined, {})).toEqual(expectedResult);
   });
 
-  it('should handle the changePinCode action correctly', () => {
+  it('should handle the changeInputNumber action correctly', () => {
     const fixture = {
       pinCode: 121,
     };
@@ -34,20 +34,24 @@ describe('registerPageReducer', () => {
     });
 
     expect(
-      loginPageReducer(state, changePinCodeAction(fixture.pinCode)),
+      loginPageReducer(state, changeInputNumberAction(fixture.pinCode)),
     ).toEqual(expectedResult);
   });
 
-  it('should handle the changePassword action correctly', () => {
+  it('should handle the changeInput action correctly', () => {
     const fixture = {
-      password: 'test',
+      name: 'test',
+      value: 'test',
     };
     const expectedResult = produce(state, (draft) => {
       draft.password = fixture.password;
     });
 
     expect(
-      loginPageReducer(state, changePasswordAction(fixture.password)),
+      loginPageReducer(
+        state,
+        changeInputAction({ name: fixture.name, value: fixture.value }),
+      ),
     ).toEqual(expectedResult);
   });
 

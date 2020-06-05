@@ -1,6 +1,6 @@
 import {
-  changePinCodeAction,
-  changePasswordAction,
+  changeInputAction,
+  changeInputNumberAction,
   loginAction,
   loginSuccessAction,
   loginErrorAction,
@@ -8,8 +8,8 @@ import {
   previousStepAction,
 } from '../actions';
 import {
-  CHANGE_PINCODE,
-  CHANGE_PASSWORD,
+  CHANGE_INPUT_NUMBER,
+  CHANGE_INPUT,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
@@ -65,25 +65,27 @@ describe('LoginPage actions', () => {
     });
   });
 
-  describe('changePinCodeAction', () => {
+  describe('changeInputNumberAction', () => {
     it('should return the correct type', () => {
-      const pinCode = 121;
+      const value = 121;
       const expectedResult = {
-        type: CHANGE_PINCODE,
-        pinCode,
+        type: CHANGE_INPUT_NUMBER,
+        value,
       };
-      expect(changePinCodeAction(pinCode)).toEqual(expectedResult);
+      expect(changeInputNumberAction(value)).toEqual(expectedResult);
     });
   });
 
-  describe('changePasswordAction', () => {
+  describe('changeInputAction', () => {
     it('should return the correct type', () => {
-      const password = 'password';
+      const name = 'password';
+      const value = 'test';
       const expectedResult = {
-        type: CHANGE_PASSWORD,
-        password,
+        type: CHANGE_INPUT,
+        name,
+        value,
       };
-      expect(changePasswordAction(password)).toEqual(expectedResult);
+      expect(changeInputAction({ name, value })).toEqual(expectedResult);
     });
   });
 });

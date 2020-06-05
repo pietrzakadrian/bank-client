@@ -2,43 +2,43 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Input } from 'antd';
-
-import { makeSelectPassword } from 'containers/LoginPage/selectors';
-import { changeInputAction } from 'containers/LoginPage/actions';
+import { makeSelectTransferTitle } from 'containers/PaymentPage/selectors';
+import { changeInputAction } from 'containers/PaymentPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
+
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
-  password: makeSelectPassword(),
+  transferTitle: makeSelectTransferTitle(),
 });
 
-function Password({ intl }) {
-  const { password } = useSelector(stateSelector);
+function TransferTitle({ intl }) {
+  const { transferTitle } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
-  const onChangePassword = (event) => dispatch(changeInputAction(event.target));
+  const onChangeInput = (event) => dispatch(changeInputAction(event.target));
 
   return (
     <StyledFormItem
       label={intl.formatMessage(messages.label)}
-      name="password"
+      name="transferTitle"
       rules={[
         { required: true, message: intl.formatMessage(messages.validation) },
       ]}
     >
-      <Input.Password
-        onChange={onChangePassword}
-        name="password"
-        value={password}
+      <Input
+        onChange={(event) => onChangeInput(event)}
+        name="transferTitle"
+        value={transferTitle}
         placeholder={intl.formatMessage(messages.placeholder)}
       />
     </StyledFormItem>
   );
 }
 
-Password.propTypes = {
+TransferTitle.propTypes = {
   intl: intlShape.isRequired,
 };
 
-export default injectIntl(Password);
+export default injectIntl(TransferTitle);

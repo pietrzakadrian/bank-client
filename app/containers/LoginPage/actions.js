@@ -5,8 +5,8 @@
  */
 
 import {
-  CHANGE_PINCODE,
-  CHANGE_PASSWORD,
+  CHANGE_INPUT_NUMBER,
+  CHANGE_INPUT,
   NEXT_STEP,
   PREVIOUS_STEP,
   LOGIN_REQUEST,
@@ -14,17 +14,19 @@ import {
   LOGIN_ERROR,
 } from './constants';
 
-export function changePinCodeAction(pinCode) {
+export function changeInputNumberAction({ name, value }) {
   return {
-    type: CHANGE_PINCODE,
-    pinCode,
+    type: CHANGE_INPUT_NUMBER,
+    name,
+    value,
   };
 }
 
-export function changePasswordAction(password) {
+export function changeInputAction({ name, value }) {
   return {
-    type: CHANGE_PASSWORD,
-    password,
+    type: CHANGE_INPUT,
+    name,
+    value,
   };
 }
 

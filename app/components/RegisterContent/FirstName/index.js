@@ -23,13 +23,13 @@ function FirstName({ intl }) {
   const checkStringConsistsLettersOnly = (_, value) => {
     if (value && !nameValidation(value)) {
       return Promise.reject(
-        new Error(intl.formatMessage(messages.validation_valid)),
+        new Error(intl.formatMessage(messages.validationValid)),
       );
     }
 
     if (!value && isStartedRegistration) {
       return Promise.reject(
-        new Error(intl.formatMessage(messages.validation_required)),
+        new Error(intl.formatMessage(messages.validationRequired)),
       );
     }
 

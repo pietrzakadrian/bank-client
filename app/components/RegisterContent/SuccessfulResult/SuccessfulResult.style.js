@@ -12,7 +12,7 @@ export const StyledSubTitle = styled.div`
 `;
 
 export const StyledAction = styled.div`
-  padding: 0 32px 48px;
+  padding: 0 0 28px;
 `;
 
 export const StyledPinCodeWrapper = styled.span`

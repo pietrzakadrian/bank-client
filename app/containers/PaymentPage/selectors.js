@@ -15,8 +15,47 @@ const selectPaymentPageDomain = (state) => state.paymentPage || initialState;
  * Default selector used by PaymentPage
  */
 
-const makeSelectPaymentPage = () =>
-  createSelector(selectPaymentPageDomain, (substate) => substate);
+const makeSelectBills = () =>
+  createSelector(selectPaymentPageDomain, (substate) => substate.bills);
 
-export default makeSelectPaymentPage;
-export { selectPaymentPageDomain };
+const makeSelectRecipients = () =>
+  createSelector(selectPaymentPageDomain, (substate) => substate.recipients);
+
+const makeSelectSenderBill = () =>
+  createSelector(selectPaymentPageDomain, (substate) => substate.senderBill);
+
+const makeSelectRecipientBill = () =>
+  createSelector(selectPaymentPageDomain, (substate) => substate.recipientBill);
+
+const makeSelectRecipientBillNumber = () =>
+  createSelector(
+    selectPaymentPageDomain,
+    (substate) => substate.recipientBillNumber,
+  );
+
+const makeSelectAmountMoney = () =>
+  createSelector(selectPaymentPageDomain, (substate) => substate.amountMoney);
+
+const makeSelectTransferTitle = () =>
+  createSelector(selectPaymentPageDomain, (substate) => substate.transferTitle);
+
+const makeSelectAuthorizationKey = () =>
+  createSelector(
+    selectPaymentPageDomain,
+    (substate) => substate.authorizationKey,
+  );
+
+const makeSelectCurrentStep = () =>
+  createSelector(selectPaymentPageDomain, (substate) => substate.currentStep);
+
+export {
+  makeSelectBills,
+  makeSelectRecipients,
+  makeSelectSenderBill,
+  makeSelectRecipientBill,
+  makeSelectRecipientBillNumber,
+  makeSelectAmountMoney,
+  makeSelectTransferTitle,
+  makeSelectAuthorizationKey,
+  makeSelectCurrentStep,
+};

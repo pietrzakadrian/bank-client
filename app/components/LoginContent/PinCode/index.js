@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectPinCode } from 'containers/LoginPage/selectors';
-import { changePinCodeAction } from 'containers/LoginPage/actions';
+import { changeInputNumberAction } from 'containers/LoginPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem, StyledInputNumber } from 'components/Form/Form.style';
 import messages from './messages';
@@ -15,7 +15,8 @@ function PinCode({ intl }) {
   const { pinCode } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
-  const onChangePinCode = (value) => dispatch(changePinCodeAction(value));
+  const onChangePinCode = (name, value) =>
+    dispatch(changeInputNumberAction({ name, value }));
 
   return (
     <StyledFormItem
@@ -26,7 +27,8 @@ function PinCode({ intl }) {
       ]}
     >
       <StyledInputNumber
-        onChange={onChangePinCode}
+        type="number"
+        onChange={(value) => onChangePinCode('pinCode', value)}
         name="pinCode"
         value={pinCode}
         placeholder={intl.formatMessage(messages.placeholder)}

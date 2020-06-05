@@ -5,15 +5,59 @@
  */
 
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import { LOCATION_CHANGE } from 'connected-react-router';
+import { formatBill } from 'helpers';
+import {
+  GET_BILLS_SUCCESS,
+  SEARCH_RECIPIENT_SUCCESS,
+  GET_AUTHORIZATION_KEY_SUCCESS,
+  CHANGE_INPUT,
+  CHANGE_INPUT_NUMBER,
+  NEXT_STEP,
+  SELECT_SENDER_BILL,
+  PREVIOUS_STEP,
+} from './constants';
 
-export const initialState = {};
+export const initialState = {
+  bills: [],
+  recipients: [],
+  senderBill: '',
+  recipientBill: '',
+  amountMoney: '',
+  transferTitle: '',
+  authorizationKey: '',
+  currentStep: 0,
+};
 
-/* eslint-disable default-case, no-param-reassign */
+/* eslint-disable default-case, no-param-reassign, consistent-return */
 const paymentPageReducer = produce((draft, action) => {
   switch (action.type) {
-    case DEFAULT_ACTION:
+    case CHANGE_INPUT:
+      draft[action.name] = action.value.trim();
       break;
+    case CHANGE_INPUT_NUMBER:
+      draft[action.name] = action.value;
+      break;
+    case NEXT_STEP:
+      draft.currentStep += 1;
+      break;
+    case PREVIOUS_STEP:
+      draft.currentStep -= 1;
+      break;
+    case GET_AUTHORIZATION_KEY_SUCCESS:
+      draft.authorizationKey = action.authorizationKey;
+      break;
+    case GET_BILLS_SUCCESS:
+      draft.bills = action.bills;
+      break;
+    case SEARCH_RECIPIENT_SUCCESS:
+      draft.recipients = action.recipients.map(formatBill);
+      break;
+    case SELECT_SENDER_BILL:
+      draft.senderBill = action.senderBill;
+      break;
+    case LOCATION_CHANGE:
+      return initialState;
   }
 }, initialState);
 

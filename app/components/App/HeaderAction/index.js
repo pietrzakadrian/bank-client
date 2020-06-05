@@ -61,14 +61,18 @@ function HeaderAction({ intl }) {
             </Popconfirm>
           )) ||
             (arr.length - 1 === index && (
-              <StyledHeaderActionItem type="link" onClick={logout}>
+              <StyledHeaderActionItem
+                type="link"
+                onClick={logout}
+                key={action.id}
+              >
                 {action.icon}
                 <StyledHeaderActionItemName>
                   {action.name}
                 </StyledHeaderActionItemName>
               </StyledHeaderActionItem>
             )) || (
-              <StyledHeaderActionItem type="link">
+              <StyledHeaderActionItem type="link" key={action.id}>
                 {action.icon}
                 <StyledHeaderActionItemName>
                   {action.name}

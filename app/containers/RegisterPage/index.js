@@ -20,9 +20,10 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
+const key = 'registerPage';
 function RegisterPage({ intl }) {
-  useInjectReducer({ key: 'registerPage', reducer });
-  useInjectSaga({ key: 'registerPage', saga });
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
 
   return (
     <>

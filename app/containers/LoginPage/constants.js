@@ -4,8 +4,8 @@
  *
  */
 
-export const CHANGE_PINCODE = 'app/LoginPage/CHANGE_PINCODE';
-export const CHANGE_PASSWORD = 'app/LoginPage/CHANGE_PASSWORD';
+export const CHANGE_INPUT_NUMBER = 'app/LoginPage/CHANGE_INPUT_NUMBER';
+export const CHANGE_INPUT = 'app/LoginPage/CHANGE_INPUT';
 
 export const NEXT_STEP = 'app/LoginPage/NEXT_STEP';
 export const PREVIOUS_STEP = 'app/LoginPage/PREVIOUS_STEP';

@@ -7,8 +7,8 @@
 import produce from 'immer';
 import { LOCATION_CHANGE } from 'connected-react-router';
 import {
-  CHANGE_PINCODE,
-  CHANGE_PASSWORD,
+  CHANGE_INPUT_NUMBER,
+  CHANGE_INPUT,
   PREVIOUS_STEP,
   NEXT_STEP,
 } from './constants';
@@ -22,11 +22,11 @@ export const initialState = {
 /* eslint-disable default-case, no-param-reassign, consistent-return */
 const loginPageReducer = produce((draft, action) => {
   switch (action.type) {
-    case CHANGE_PINCODE:
-      draft.pinCode = parseInt(action.pinCode, 10) || '';
+    case CHANGE_INPUT_NUMBER:
+      draft[action.name] = parseInt(action.value, 10) || '';
       break;
-    case CHANGE_PASSWORD:
-      draft.password = action.password;
+    case CHANGE_INPUT:
+      draft[action.name] = action.value;
       break;
     case NEXT_STEP:
       draft.currentStep += 1;

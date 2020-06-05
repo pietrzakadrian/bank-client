@@ -13,12 +13,12 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'First name',
   },
-  validation_valid: {
-    id: `${scope}.validation_valid`,
+  validationValid: {
+    id: `${scope}.validation.valid`,
     defaultMessage: 'The first name entered must be valid.',
   },
-  validation_required: {
-    id: `${scope}.validation_required`,
+  validationRequired: {
+    id: `${scope}.validation.required`,
     defaultMessage: 'First name is required.',
   },
   placeholder: {

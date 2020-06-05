@@ -1,4 +1,4 @@
-import { takeEvery, call, put, select } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
 import { makeSelectToken } from 'containers/App/selectors';
@@ -36,5 +36,5 @@ export function* logout() {
 }
 
 export default function* loginPageSaga() {
-  yield takeEvery(LOGOUT_REQUEST, logout);
+  yield takeLatest(LOGOUT_REQUEST, logout);
 }

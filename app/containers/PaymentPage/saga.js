@@ -1,8 +1,13 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
+import { takeLatest, debounce, call, put, select } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
 import { makeSelectToken } from 'containers/App/selectors';
-import { GET_BILLS_REQUEST, SEARCH_RECIPIENT_REQUEST } from './constants';
+import { makeSelectRecipients } from 'containers/PaymentPage/selectors';
+import {
+  GET_BILLS_REQUEST,
+  SEARCH_RECIPIENT_REQUEST,
+  CHECK_RECIPIENT_REQUEST,
+} from './constants';
 import {
   getBillsSuccessAction,
   getBillsErrorAction,
@@ -60,7 +65,21 @@ export function* searchRecipient({ value }) {
   }
 }
 
+export function* checkRecipient({ value, reject, resolve }) {
+  const recipients = yield select(makeSelectRecipients());
+  const isExist = recipients.find(
+    ({ accountBillNumber }) => accountBillNumber.replace(/ /g, '') === value,
+  );
+
+  if (isExist) {
+    yield call(resolve);
+  } else {
+    yield call(reject);
+  }
+}
+
 export default function* paymentPageSaga() {
   yield takeLatest(GET_BILLS_REQUEST, getBills);
-  yield takeLatest(SEARCH_RECIPIENT_REQUEST, searchRecipient);
+  yield debounce(400, SEARCH_RECIPIENT_REQUEST, searchRecipient);
+  yield takeLatest(CHECK_RECIPIENT_REQUEST, checkRecipient);
 }

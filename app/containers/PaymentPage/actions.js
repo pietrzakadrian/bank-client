@@ -25,6 +25,9 @@ import {
   SELECT_SENDER_BILL,
   NEXT_STEP,
   PREVIOUS_STEP,
+  CHECK_RECIPIENT_REQUEST,
+  CHECK_RECIPIENT_SUCCESS,
+  CHECK_RECIPIENT_ERROR,
 } from './constants';
 
 export function getBillsAction() {
@@ -47,12 +50,10 @@ export function getBillsErrorAction(error) {
   };
 }
 
-export function searchRecipientAction(value, reject, resolve) {
+export function searchRecipientAction(value) {
   return {
     type: SEARCH_RECIPIENT_REQUEST,
-    value,
-    reject,
-    resolve,
+    value: value.replace(/ /g, ''),
   };
 }
 
@@ -66,6 +67,29 @@ export function searchRecipientSuccessAction(recipients) {
 export function searchRecipientErrorAction(error) {
   return {
     type: SEARCH_RECIPIENT_ERROR,
+    error,
+  };
+}
+
+export function checkRecipientAction(value, reject, resolve) {
+  return {
+    type: CHECK_RECIPIENT_REQUEST,
+    value,
+    reject,
+    resolve,
+  };
+}
+
+export function checkRecipientSuccessAction(recipients) {
+  return {
+    type: CHECK_RECIPIENT_SUCCESS,
+    recipients,
+  };
+}
+
+export function checkRecipientErrorAction(error) {
+  return {
+    type: CHECK_RECIPIENT_ERROR,
     error,
   };
 }

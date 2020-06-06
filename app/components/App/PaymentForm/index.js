@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { makeSelectCurrentStep } from 'containers/PaymentPage/selectors';
@@ -21,16 +21,9 @@ export default function PaymentForm() {
   const { currentStep } = useSelector(stateSelector);
   const [form] = StyledForm.useForm();
 
-  //   useEffect(() => {
-  //     form.validateFields([
-  //       'firstName',
-  //       'lastName',
-  //       'password',
-  //       'currency',
-  //       'email',
-  //       'confirm-personal-data',
-  //     ]);
-  //   }, []);
+  useEffect(() => {
+    form.validateFields(['recipientBill']);
+  }, []);
 
   return (
     <>

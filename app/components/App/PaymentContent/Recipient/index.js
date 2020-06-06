@@ -6,7 +6,6 @@ import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import {
   makeSelectRecipients,
   makeSelectRecipientBill,
-  makeSelectRecipientBillNumber,
 } from 'containers/PaymentPage/selectors';
 import {
   searchRecipientAction,
@@ -22,7 +21,6 @@ import messages from './messages';
 const stateSelector = createStructuredSelector({
   recipients: makeSelectRecipients(),
   recipientBill: makeSelectRecipientBill(),
-  recipientBillNumber: makeSelectRecipientBillNumber(),
   isLoading: makeSelectIsLoading(getRequestName(SEARCH_RECIPIENT_REQUEST)),
 });
 
@@ -31,14 +29,15 @@ const stateSelector = createStructuredSelector({
 // }
 
 function Recipient({ intl }) {
-  const { recipients } = useSelector(stateSelector);
+  const { recipients, recipientBill } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
   const onChangeRecipientBill = (name, value) =>
     dispatch(changeInputAction({ name, value }));
-
-  const onSearchRecipient = (value, reject, resolve) =>
-    value && dispatch(searchRecipientAction(value, reject, resolve));
+  const onSearchRecipient = (value) =>
+    value && dispatch(searchRecipientAction(value));
+  // const onCheckRecipient = (value, reject, resolve) =>
+  //   value && dispatch(checkRecipientAction(value, reject, resolve));
 
   const options = recipients.map((recipient) => ({
     label: (
@@ -49,7 +48,7 @@ function Recipient({ intl }) {
         <div>{recipient.accountBillNumber}</div>
       </>
     ),
-    value: recipient.accountBillNumber,
+    value: recipient.accountBillNumber.replace(/ /g, ''),
   }));
 
   return (
@@ -57,10 +56,7 @@ function Recipient({ intl }) {
       label={intl.formatMessage(messages.label)}
       name="recipientBill"
       rules={[
-        {
-          required: true,
-          message: intl.formatMessage(messages.validation),
-        },
+        { required: true, message: intl.formatMessage(messages.validation) },
       ]}
     >
       <AutoComplete
@@ -69,6 +65,8 @@ function Recipient({ intl }) {
         options={options}
       >
         <Input
+          value={recipientBill}
+          maxLength="26"
           placeholder={intl.formatMessage(messages.placeholder)}
           suffix={
             <Tooltip title="Search for the recipient by entering the bill numbers">

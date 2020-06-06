@@ -17,7 +17,7 @@ export const emailValidation = (email) => {
 };
 
 export const getRequestName = (actionType) => {
-  const matches = /(.*)_(REQUEST|SUCCESS|ERROR)/.exec(actionType);
+  const matches = /(.*)_(REQUEST|SUCCESS|ERROR|INCORRECT)/.exec(actionType);
 
   if (!matches) return false;
 

@@ -16,6 +16,7 @@ import {
   NEXT_STEP,
   SELECT_SENDER_BILL,
   PREVIOUS_STEP,
+  CHECK_RECIPIENT_CORRECT,
 } from './constants';
 
 export const initialState = {
@@ -23,7 +24,7 @@ export const initialState = {
   recipients: [],
   senderBill: '',
   recipientBill: '',
-  recipient: {},
+  recipientAccountBillNumber: '',
   amountMoney: '',
   transferTitle: '',
   authorizationKey: '',
@@ -35,10 +36,19 @@ const paymentPageReducer = produce((draft, action) => {
   switch (action.type) {
     case CHANGE_INPUT:
       draft[action.name] = action.value.trim();
+
+      if (action.name === 'recipientAccountBillNumber') {
+        draft.recipientBill =
+          draft.recipients?.find(
+            (bill) => bill.accountBillNumber.replace(/ /g, '') === action.value,
+          )?.uuid || '';
+      }
+
       break;
     case CHANGE_INPUT_NUMBER:
       draft[action.name] = action.value;
       break;
+    case CHECK_RECIPIENT_CORRECT:
     case NEXT_STEP:
       draft.currentStep += 1;
       break;

@@ -6,6 +6,7 @@ import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import {
   makeSelectRecipients,
   makeSelectRecipientBill,
+  makeSelectRecipientAccountBillNumber,
 } from 'containers/PaymentPage/selectors';
 import {
   searchRecipientAction,
@@ -21,6 +22,7 @@ import messages from './messages';
 const stateSelector = createStructuredSelector({
   recipients: makeSelectRecipients(),
   recipientBill: makeSelectRecipientBill(),
+  recipientAccountBillNumber: makeSelectRecipientAccountBillNumber(),
   isLoading: makeSelectIsLoading(getRequestName(SEARCH_RECIPIENT_REQUEST)),
 });
 
@@ -29,10 +31,10 @@ const stateSelector = createStructuredSelector({
 // }
 
 function Recipient({ intl }) {
-  const { recipients, recipientBill } = useSelector(stateSelector);
+  const { recipients, recipientAccountBillNumber } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
-  const onChangeRecipientBill = (name, value) =>
+  const onChangeRecipientAccountBill = (name, value) =>
     dispatch(changeInputAction({ name, value }));
   const onSearchRecipient = (value) =>
     value && dispatch(searchRecipientAction(value));
@@ -61,11 +63,13 @@ function Recipient({ intl }) {
     >
       <AutoComplete
         onSearch={onSearchRecipient}
-        onChange={(value) => onChangeRecipientBill('recipientBill', value)}
+        onChange={(value) =>
+          onChangeRecipientAccountBill('recipientAccountBillNumber', value)
+        }
         options={options}
       >
         <Input
-          value={recipientBill}
+          value={recipientAccountBillNumber}
           maxLength="26"
           placeholder={intl.formatMessage(messages.placeholder)}
           suffix={

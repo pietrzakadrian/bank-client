@@ -48,6 +48,12 @@ const makeSelectAuthorizationKey = () =>
 const makeSelectCurrentStep = () =>
   createSelector(selectPaymentPageDomain, (substate) => substate.currentStep);
 
+const makeSelectRecipientAccountBillNumber = () =>
+  createSelector(
+    selectPaymentPageDomain,
+    (substate) => substate.recipientAccountBillNumber,
+  );
+
 export {
   makeSelectBills,
   makeSelectRecipients,
@@ -58,4 +64,5 @@ export {
   makeSelectTransferTitle,
   makeSelectAuthorizationKey,
   makeSelectCurrentStep,
+  makeSelectRecipientAccountBillNumber,
 };

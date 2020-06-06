@@ -2,17 +2,22 @@ import { takeLatest, debounce, call, put, select } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
 import { makeSelectToken } from 'containers/App/selectors';
-import { makeSelectRecipients } from 'containers/PaymentPage/selectors';
+import {
+  makeSelectRecipients,
+  makeSelectRecipientAccountBillNumber,
+} from 'containers/PaymentPage/selectors';
 import {
   GET_BILLS_REQUEST,
   SEARCH_RECIPIENT_REQUEST,
-  CHECK_RECIPIENT_REQUEST,
+  CHECK_RECIPIENT,
 } from './constants';
 import {
   getBillsSuccessAction,
   getBillsErrorAction,
   searchRecipientSuccessAction,
   searchRecipientErrorAction,
+  checkRecipientCorrectAction,
+  checkRecipientIncorrectAction,
 } from './actions';
 
 export function* getBills() {
@@ -65,21 +70,27 @@ export function* searchRecipient({ value }) {
   }
 }
 
-export function* checkRecipient({ value, reject, resolve }) {
+export function* checkRecipient() {
   const recipients = yield select(makeSelectRecipients());
+  const recipientAccountBillNumber = yield select(
+    makeSelectRecipientAccountBillNumber(),
+  );
   const isExist = recipients.find(
-    ({ accountBillNumber }) => accountBillNumber.replace(/ /g, '') === value,
+    ({ accountBillNumber }) =>
+      accountBillNumber.replace(/ /g, '') === recipientAccountBillNumber,
   );
 
   if (isExist) {
-    yield call(resolve);
+    yield put(checkRecipientCorrectAction());
   } else {
-    yield call(reject);
+    yield put(
+      checkRecipientIncorrectAction('The bill number entered is not valid.'),
+    );
   }
 }
 
 export default function* paymentPageSaga() {
   yield takeLatest(GET_BILLS_REQUEST, getBills);
   yield debounce(400, SEARCH_RECIPIENT_REQUEST, searchRecipient);
-  yield takeLatest(CHECK_RECIPIENT_REQUEST, checkRecipient);
+  yield takeLatest(CHECK_RECIPIENT, checkRecipient);
 }

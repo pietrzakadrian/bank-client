@@ -25,9 +25,9 @@ import {
   SELECT_SENDER_BILL,
   NEXT_STEP,
   PREVIOUS_STEP,
-  CHECK_RECIPIENT_REQUEST,
-  CHECK_RECIPIENT_SUCCESS,
-  CHECK_RECIPIENT_ERROR,
+  CHECK_RECIPIENT,
+  CHECK_RECIPIENT_CORRECT,
+  CHECK_RECIPIENT_INCORRECT,
 } from './constants';
 
 export function getBillsAction() {
@@ -71,25 +71,21 @@ export function searchRecipientErrorAction(error) {
   };
 }
 
-export function checkRecipientAction(value, reject, resolve) {
+export function checkRecipientAction() {
   return {
-    type: CHECK_RECIPIENT_REQUEST,
-    value,
-    reject,
-    resolve,
+    type: CHECK_RECIPIENT,
   };
 }
 
-export function checkRecipientSuccessAction(recipients) {
+export function checkRecipientCorrectAction() {
   return {
-    type: CHECK_RECIPIENT_SUCCESS,
-    recipients,
+    type: CHECK_RECIPIENT_CORRECT,
   };
 }
 
-export function checkRecipientErrorAction(error) {
+export function checkRecipientIncorrectAction(error) {
   return {
-    type: CHECK_RECIPIENT_ERROR,
+    type: CHECK_RECIPIENT_INCORRECT,
     error,
   };
 }

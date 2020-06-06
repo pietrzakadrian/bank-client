@@ -8,6 +8,7 @@ import {
   previousStepAction,
   changeInputAction,
   getAuthorizationKeyAction,
+  checkRecipientAction,
 } from 'containers/PaymentPage/actions';
 import { makeSelectError } from 'providers/ErrorProvider/selectors';
 import {
@@ -23,18 +24,25 @@ import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import {
   StyledFormActionsWrapper,
   StyledButton,
+  StyledError,
 } from 'components/Form/Form.style';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { getRequestName } from 'helpers';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import { GET_BILLS_REQUEST } from 'containers/PaymentPage/constants';
+import {
+  GET_BILLS_REQUEST,
+  CHECK_RECIPIENT_INCORRECT,
+} from 'containers/PaymentPage/constants';
 import { Input } from 'antd';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),
   isLoading: makeSelectIsLoading(getRequestName(GET_BILLS_REQUEST)),
-  error: makeSelectError([getRequestName(GET_BILLS_REQUEST)]),
+  error: makeSelectError([
+    getRequestName(GET_BILLS_REQUEST),
+    getRequestName(CHECK_RECIPIENT_INCORRECT),
+  ]),
   transferTitle: makeSelectTransferTitle(),
   amountMoney: makeSelectAmountMoney(),
   bills: makeSelectBills(),
@@ -60,6 +68,7 @@ export default function PaymentAction({ form }) {
   const onPreviousStep = () => dispatch(previousStepAction());
   const onNextStep = () => dispatch(nextStepAction());
   const onGetAuthorizationKey = () => dispatch(getAuthorizationKeyAction());
+  const onCheckRecipient = () => dispatch(checkRecipientAction());
 
   const onValidateFields = async () => {
     try {
@@ -67,6 +76,8 @@ export default function PaymentAction({ form }) {
 
       if (currentStep === steps.length - 1) {
         onNextStep();
+      } else if (currentStep === 1) {
+        onCheckRecipient();
       } else {
         onNextStep();
       }
@@ -84,13 +95,13 @@ export default function PaymentAction({ form }) {
           onClick={onValidateFields}
           errored={error ? 1 : 0}
         >
-          {isLoading ? (
-            <LoadingIndicator />
-          ) : (
-            <>
-              <FormattedMessage {...messages.next} /> <RightOutlined />
-            </>
-          )}
+          {(isLoading && <LoadingIndicator />) ||
+            (error && <StyledError>{error}</StyledError>) ||
+            (!error && !isLoading && (
+              <>
+                <FormattedMessage {...messages.next} /> <RightOutlined />
+              </>
+            ))}
         </StyledButton>
       )}
 

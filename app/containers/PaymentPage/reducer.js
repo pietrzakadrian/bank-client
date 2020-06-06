@@ -23,6 +23,7 @@ export const initialState = {
   recipients: [],
   senderBill: '',
   recipientBill: '',
+  recipient: {},
   amountMoney: '',
   transferTitle: '',
   authorizationKey: '',
@@ -34,6 +35,12 @@ const paymentPageReducer = produce((draft, action) => {
   switch (action.type) {
     case CHANGE_INPUT:
       draft[action.name] = action.value.trim();
+
+      if (action.name === 'recipientBill') {
+        draft.recipient = draft.recipients.find(
+          (recipient) => recipient.accountBillNumber === action.value,
+        );
+      }
       break;
     case CHANGE_INPUT_NUMBER:
       draft[action.name] = action.value;
@@ -48,7 +55,7 @@ const paymentPageReducer = produce((draft, action) => {
       draft.authorizationKey = action.authorizationKey;
       break;
     case GET_BILLS_SUCCESS:
-      draft.bills = action.bills;
+      draft.bills = action.bills.map(formatBill);
       break;
     case SEARCH_RECIPIENT_SUCCESS:
       draft.recipients = action.recipients.map(formatBill);

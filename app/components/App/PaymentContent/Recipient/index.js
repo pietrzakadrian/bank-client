@@ -13,7 +13,8 @@ import {
   changeInputAction,
 } from 'containers/PaymentPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
-import { AutoComplete } from 'antd';
+import { AutoComplete, Tooltip, Input } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import { getRequestName } from 'helpers';
 import { SEARCH_RECIPIENT_REQUEST } from 'containers/PaymentPage/constants';
 import messages from './messages';
@@ -25,6 +26,10 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(getRequestName(SEARCH_RECIPIENT_REQUEST)),
 });
 
+// function onSelect(value) {
+//   console.log('onSelect', value);
+// }
+
 function Recipient({ intl }) {
   const { recipients } = useSelector(stateSelector);
   const dispatch = useDispatch();
@@ -34,6 +39,18 @@ function Recipient({ intl }) {
 
   const onSearchRecipient = (value, reject, resolve) =>
     value && dispatch(searchRecipientAction(value, reject, resolve));
+
+  const options = recipients.map((recipient) => ({
+    label: (
+      <>
+        <div>
+          {recipient.user.firstName} {recipient.user.lastName}
+        </div>
+        <div>{recipient.accountBillNumber}</div>
+      </>
+    ),
+    value: recipient.accountBillNumber,
+  }));
 
   return (
     <StyledFormItem
@@ -49,18 +66,16 @@ function Recipient({ intl }) {
       <AutoComplete
         onSearch={onSearchRecipient}
         onChange={(value) => onChangeRecipientBill('recipientBill', value)}
-        placeholder={intl.formatMessage(messages.placeholder)}
+        options={options}
       >
-        {recipients.map((recipient) => (
-          <AutoComplete.Option key={recipient.uuid} value={recipient.uuid}>
-            <div>
-              <div>
-                {recipient.user.firstName} {recipient.user.lastName}
-              </div>
-              <div>{recipient.accountBillNumber}</div>
-            </div>
-          </AutoComplete.Option>
-        ))}
+        <Input
+          placeholder={intl.formatMessage(messages.placeholder)}
+          suffix={
+            <Tooltip title="Search for the recipient by entering the bill numbers">
+              <QuestionCircleOutlined />
+            </Tooltip>
+          }
+        />
       </AutoComplete>
     </StyledFormItem>
   );

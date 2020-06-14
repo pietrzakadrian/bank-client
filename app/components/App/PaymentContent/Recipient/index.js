@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { StyledFormItem } from 'components/Form/Form.style';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import {
-  makeSelectRecipients,
-  makeSelectRecipientBill,
-  makeSelectRecipientAccountBillNumber,
-} from 'containers/PaymentPage/selectors';
+import { makeSelectRecipients } from 'containers/PaymentPage/selectors';
 import {
   searchRecipientAction,
   changeInputAction,
@@ -21,8 +17,6 @@ import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   recipients: makeSelectRecipients(),
-  recipientBill: makeSelectRecipientBill(),
-  recipientAccountBillNumber: makeSelectRecipientAccountBillNumber(),
   isLoading: makeSelectIsLoading(getRequestName(SEARCH_RECIPIENT_REQUEST)),
 });
 
@@ -31,7 +25,7 @@ const stateSelector = createStructuredSelector({
 // }
 
 function Recipient({ intl }) {
-  const { recipients, recipientAccountBillNumber } = useSelector(stateSelector);
+  const { recipients } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
   const onChangeRecipientAccountBill = (name, value) =>
@@ -69,7 +63,6 @@ function Recipient({ intl }) {
         options={options}
       >
         <Input
-          value={recipientAccountBillNumber}
           maxLength="26"
           placeholder={intl.formatMessage(messages.placeholder)}
           suffix={

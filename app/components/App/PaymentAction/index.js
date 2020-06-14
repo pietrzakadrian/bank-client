@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,6 +9,7 @@ import {
   changeInputAction,
   getAuthorizationKeyAction,
   checkRecipientAction,
+  createTransactionAction,
 } from 'containers/PaymentPage/actions';
 import { makeSelectError } from 'providers/ErrorProvider/selectors';
 import {
@@ -16,8 +17,8 @@ import {
   makeSelectTransferTitle,
   makeSelectAmountMoney,
   makeSelectBills,
-  makeSelectSenderBill,
   makeSelectAuthorizationKey,
+  makeSelectHasCreatedTransaction,
 } from 'containers/PaymentPage/selectors';
 import steps from 'components/RegisterStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
@@ -46,8 +47,8 @@ const stateSelector = createStructuredSelector({
   transferTitle: makeSelectTransferTitle(),
   amountMoney: makeSelectAmountMoney(),
   bills: makeSelectBills(),
-  senderBill: makeSelectSenderBill(),
   authorizationKey: makeSelectAuthorizationKey(),
+  hasCreatedTransaction: makeSelectHasCreatedTransaction(),
 });
 
 export default function PaymentAction({ form }) {
@@ -55,20 +56,17 @@ export default function PaymentAction({ form }) {
     isLoading,
     currentStep,
     error,
-    amountMoney,
-    bills,
     authorizationKey,
-    senderBill,
+    hasCreatedTransaction,
   } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const [hasCreatedTransaction, setHasCreatedTransaction] = useState(false);
-  const selectedBill = bills.find((bill) => bill.uuid === senderBill);
 
   const onChangeInput = (event) => dispatch(changeInputAction(event.target));
   const onPreviousStep = () => dispatch(previousStepAction());
   const onNextStep = () => dispatch(nextStepAction());
   const onGetAuthorizationKey = () => dispatch(getAuthorizationKeyAction());
   const onCheckRecipient = () => dispatch(checkRecipientAction());
+  const onCreateTransaction = () => dispatch(createTransactionAction());
 
   const onValidateFields = async () => {
     try {
@@ -107,22 +105,8 @@ export default function PaymentAction({ form }) {
 
       {currentStep === steps.length - 1 && (
         <>
-          <div>
-            Przelew wykonujesz ze swojego rachunku:{' '}
-            {selectedBill.accountBillNumber} {selectedBill.amountMoney}{' '}
-            {selectedBill.currency.name}
-          </div>
-
-          <div>
-            Po wykonaniu przelewu, pozostanie Ci na koncie:{' '}
-            {Number(selectedBill.amountMoney) - Number(amountMoney)}{' '}
-            {selectedBill.currency.name}
-          </div>
-
-          <div>Wykonujesz przelew do:</div>
-
           <StyledButton
-            onClick={() => setHasCreatedTransaction(true)}
+            onClick={onCreateTransaction}
             type="primary"
             disabled={isLoading || !!error || hasCreatedTransaction}
             errored={error ? 1 : 0}

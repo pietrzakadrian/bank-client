@@ -4,7 +4,6 @@ import { createStructuredSelector } from 'reselect';
 import {
   makeSelectBills,
   makeSelectAmountMoney,
-  makeSelectSenderBill,
 } from 'containers/PaymentPage/selectors';
 import { changeInputNumberAction } from 'containers/PaymentPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
@@ -14,7 +13,6 @@ import messages from './messages';
 const stateSelector = createStructuredSelector({
   amountMoney: makeSelectAmountMoney(),
   bills: makeSelectBills(),
-  senderBill: makeSelectSenderBill(),
 });
 
 function AmountMoney({ intl }) {

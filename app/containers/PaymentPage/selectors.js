@@ -24,13 +24,19 @@ const makeSelectRecipients = () =>
 const makeSelectSenderBill = () =>
   createSelector(selectPaymentPageDomain, (substate) => substate.senderBill);
 
+const makeSelectSenderBillUuid = () =>
+  createSelector(
+    selectPaymentPageDomain,
+    (substate) => substate.senderBill?.uuid,
+  );
+
 const makeSelectRecipientBill = () =>
   createSelector(selectPaymentPageDomain, (substate) => substate.recipientBill);
 
-const makeSelectRecipientBillNumber = () =>
+const makeSelectRecipientBillUuid = () =>
   createSelector(
     selectPaymentPageDomain,
-    (substate) => substate.recipientBillNumber,
+    (substate) => substate.recipientBill?.uuid,
   );
 
 const makeSelectAmountMoney = () =>
@@ -48,21 +54,26 @@ const makeSelectAuthorizationKey = () =>
 const makeSelectCurrentStep = () =>
   createSelector(selectPaymentPageDomain, (substate) => substate.currentStep);
 
-const makeSelectRecipientAccountBillNumber = () =>
+const makeSelectHasCreatedTransaction = () =>
   createSelector(
     selectPaymentPageDomain,
-    (substate) => substate.recipientAccountBillNumber,
+    (substate) => substate.hasCreatedTransaction,
   );
+
+const makeSelectTransaction = () =>
+  createSelector(selectPaymentPageDomain, (substate) => substate.transaction);
 
 export {
   makeSelectBills,
   makeSelectRecipients,
   makeSelectSenderBill,
   makeSelectRecipientBill,
-  makeSelectRecipientBillNumber,
   makeSelectAmountMoney,
   makeSelectTransferTitle,
   makeSelectAuthorizationKey,
   makeSelectCurrentStep,
-  makeSelectRecipientAccountBillNumber,
+  makeSelectHasCreatedTransaction,
+  makeSelectTransaction,
+  makeSelectSenderBillUuid,
+  makeSelectRecipientBillUuid,
 };

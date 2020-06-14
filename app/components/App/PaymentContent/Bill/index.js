@@ -3,10 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Select } from 'antd';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import {
-  makeSelectSenderBill,
-  makeSelectBills,
-} from 'containers/PaymentPage/selectors';
+import { makeSelectBills } from 'containers/PaymentPage/selectors';
 import {
   getBillsAction,
   selectSenderBillAction,
@@ -19,13 +16,12 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
-  senderBill: makeSelectSenderBill(),
   bills: makeSelectBills(),
   isLoading: makeSelectIsLoading(getRequestName(GET_BILLS_REQUEST)),
 });
 
 function Bill({ intl }) {
-  const { senderBill, bills, isLoading } = useSelector(stateSelector);
+  const { sender, bills, isLoading } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
   const onGetBills = () => !bills.length && dispatch(getBillsAction());
@@ -47,7 +43,7 @@ function Bill({ intl }) {
         notFoundContent={isLoading ? <LoadingIndicator /> : null}
         onSelect={(bill) => onSelectSenderBill(bill)}
         placeholder={intl.formatMessage(messages.placeholder)}
-        value={senderBill}
+        value={sender}
       >
         {bills.map((bill) => (
           <Select.Option key={bill.uuid} value={bill.uuid}>

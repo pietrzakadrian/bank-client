@@ -96,9 +96,10 @@ export function createTransactionAction() {
   };
 }
 
-export function createTransactionSuccessAction() {
+export function createTransactionSuccessAction(uuid) {
   return {
     type: CREATE_TRANSACTION_SUCCESS,
+    uuid,
   };
 }
 
@@ -176,9 +177,9 @@ export function previousStepAction() {
   };
 }
 
-export function selectSenderBillAction(senderBill) {
+export function selectSenderBillAction(uuid) {
   return {
     type: SELECT_SENDER_BILL,
-    senderBill,
+    uuid,
   };
 }

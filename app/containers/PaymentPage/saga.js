@@ -4,12 +4,17 @@ import { push } from 'connected-react-router';
 import { makeSelectToken } from 'containers/App/selectors';
 import {
   makeSelectRecipients,
-  makeSelectRecipientAccountBillNumber,
+  makeSelectRecipientBill,
+  makeSelectRecipientBillUuid,
+  makeSelectSenderBillUuid,
+  makeSelectAmountMoney,
+  makeSelectTransferTitle,
 } from 'containers/PaymentPage/selectors';
 import {
   GET_BILLS_REQUEST,
   SEARCH_RECIPIENT_REQUEST,
   CHECK_RECIPIENT,
+  CREATE_TRANSACTION_REQUEST,
 } from './constants';
 import {
   getBillsSuccessAction,
@@ -18,6 +23,7 @@ import {
   searchRecipientErrorAction,
   checkRecipientCorrectAction,
   checkRecipientIncorrectAction,
+  createTransactionSuccessAction,
 } from './actions';
 
 export function* getBills() {
@@ -72,13 +78,8 @@ export function* searchRecipient({ value }) {
 
 export function* checkRecipient() {
   const recipients = yield select(makeSelectRecipients());
-  const recipientAccountBillNumber = yield select(
-    makeSelectRecipientAccountBillNumber(),
-  );
-  const isExist = recipients.find(
-    ({ accountBillNumber }) =>
-      accountBillNumber.replace(/ /g, '') === recipientAccountBillNumber,
-  );
+  const recipientBill = yield select(makeSelectRecipientBill());
+  const isExist = recipients.find(({ uuid }) => uuid === recipientBill.uuid);
 
   if (isExist) {
     yield put(checkRecipientCorrectAction());
@@ -89,8 +90,43 @@ export function* checkRecipient() {
   }
 }
 
+export function* createTransaction() {
+  const { accessToken } = yield select(makeSelectToken());
+  const senderBill = yield select(makeSelectSenderBillUuid());
+  const recipientBill = yield select(makeSelectRecipientBillUuid());
+  const amountMoney = yield select(makeSelectAmountMoney());
+  const transferTitle = yield select(makeSelectTransferTitle());
+  const requestURL = api.transactions('create');
+  const requestParameters = {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${accessToken}` },
+    body: JSON.stringify({
+      senderBill,
+      recipientBill,
+      amountMoney,
+      transferTitle,
+    }),
+  };
+
+  try {
+    const { uuid } = yield call(request, requestURL, requestParameters);
+    yield put(createTransactionSuccessAction(uuid));
+  } catch (error) {
+    // yield put(createTransactionErrorAction(error));
+    // switch (error.statusCode) {
+    //   case 401:
+    //     yield put(push(routes.login.path));
+    //     break;
+    //   default:
+    //     yield put(push(routes.login.path));
+    //     break;
+    // }
+  }
+}
+
 export default function* paymentPageSaga() {
   yield takeLatest(GET_BILLS_REQUEST, getBills);
   yield debounce(400, SEARCH_RECIPIENT_REQUEST, searchRecipient);
   yield takeLatest(CHECK_RECIPIENT, checkRecipient);
+  yield takeLatest(CREATE_TRANSACTION_REQUEST, createTransaction);
 }

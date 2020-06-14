@@ -17,31 +17,33 @@ import {
   SELECT_SENDER_BILL,
   PREVIOUS_STEP,
   CHECK_RECIPIENT_CORRECT,
+  CREATE_TRANSACTION_SUCCESS,
 } from './constants';
 
 export const initialState = {
+  transaction: '',
   bills: [],
   recipients: [],
-  senderBill: '',
-  recipientBill: '',
-  recipientAccountBillNumber: '',
+  senderBill: {},
+  recipientBill: {},
   amountMoney: '',
   transferTitle: '',
   authorizationKey: '',
   currentStep: 0,
+  hasCreatedTransaction: false,
 };
 
 /* eslint-disable default-case, no-param-reassign, consistent-return */
 const paymentPageReducer = produce((draft, action) => {
   switch (action.type) {
     case CHANGE_INPUT:
-      draft[action.name] = action.value.trim();
-
       if (action.name === 'recipientAccountBillNumber') {
         draft.recipientBill =
           draft.recipients?.find(
             (bill) => bill.accountBillNumber.replace(/ /g, '') === action.value,
-          )?.uuid || '';
+          ) || '';
+      } else {
+        draft[action.name] = action.value.trim();
       }
 
       break;
@@ -54,6 +56,7 @@ const paymentPageReducer = produce((draft, action) => {
       break;
     case PREVIOUS_STEP:
       draft.currentStep -= 1;
+      draft.hasCreatedTransaction = false;
       break;
     case GET_AUTHORIZATION_KEY_SUCCESS:
       draft.authorizationKey = action.authorizationKey;
@@ -65,7 +68,12 @@ const paymentPageReducer = produce((draft, action) => {
       draft.recipients = action.recipients.map(formatBill);
       break;
     case SELECT_SENDER_BILL:
-      draft.senderBill = action.senderBill;
+      draft.senderBill =
+        draft.bills?.find((bill) => bill.uuid === action.uuid) || '';
+      break;
+    case CREATE_TRANSACTION_SUCCESS:
+      draft.hasCreatedTransaction = true;
+      draft.transaction = action.uuid;
       break;
     case LOCATION_CHANGE:
       return initialState;

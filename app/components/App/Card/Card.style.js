@@ -30,6 +30,7 @@ export const StyledCard = styled(Card)`
            text-align: ${({ loaded, excluded }) =>
              (loaded || excluded) && 'center'};
            opacity: ${({ excluded }) => excluded && '0.3'};
+           text-align: left;
            
            height 100%;
            overflow-y: scroll;

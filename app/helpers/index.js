@@ -1,6 +1,8 @@
 export const formatBill = (bill) => ({
   ...bill,
-  amountMoney: bill.amountMoney?.replace(/\B(?=(\d{3})+(?!\d))/g, ' '),
+  amountMoney: bill.amountMoney?.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+  }),
   accountBillNumber: bill.accountBillNumber
     .replace(/(^\d{2}|\d{4})+?/g, '$1 ')
     .trim(),

@@ -50,7 +50,7 @@ export default function RecentTransactions() {
             {senderAccountBill.user.uuid === user.uuid ? (
               <div>
                 <StyledTypography>
-                  <FormattedMessage {...messages.to} />
+                  <FormattedMessage {...messages.to} />{' '}
                 </StyledTypography>
                 <StyledUser>
                   {recipientAccountBill.user.firstName}{' '}
@@ -60,7 +60,7 @@ export default function RecentTransactions() {
             ) : (
               <div>
                 <StyledTypography>
-                  <FormattedMessage {...messages.from} />
+                  <FormattedMessage {...messages.from} />{' '}
                 </StyledTypography>
                 <StyledUser>
                   {senderAccountBill.user.firstName}{' '}

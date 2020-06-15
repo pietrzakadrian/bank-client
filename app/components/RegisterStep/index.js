@@ -5,7 +5,7 @@ import {
   makeSelectPinCode,
   makeSelectCurrentStep,
 } from 'containers/RegisterPage/selectors';
-import { StyledSteps } from '../RegisterForm/RegisterForm.style';
+import { StyledSteps } from 'components/Steps/Steps.style';
 import steps from './Steps';
 
 const stateSelector = createStructuredSelector({

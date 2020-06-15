@@ -29,8 +29,8 @@ export default function PaymentForm() {
     <>
       <PaymentStep />
 
-      <StyledFormWrapper>
-        <StyledForm form={form} layout="vertical" name="register">
+      <StyledFormWrapper shadowed>
+        <StyledForm form={form} layout="vertical" name="payment">
           {steps[currentStep].content}
         </StyledForm>
 

@@ -9,12 +9,16 @@ import {
   makeSelectSenderBillUuid,
   makeSelectAmountMoney,
   makeSelectTransferTitle,
+  makeSelectTransaction,
+  makeSelectAuthorizationKey,
 } from 'containers/PaymentPage/selectors';
 import {
   GET_BILLS_REQUEST,
   SEARCH_RECIPIENT_REQUEST,
   CHECK_RECIPIENT,
   CREATE_TRANSACTION_REQUEST,
+  CONFIRM_TRANSACTION_REQUEST,
+  GET_AUTHORIZATION_KEY_REQUEST,
 } from './constants';
 import {
   getBillsSuccessAction,
@@ -24,6 +28,10 @@ import {
   checkRecipientCorrectAction,
   checkRecipientIncorrectAction,
   createTransactionSuccessAction,
+  getAuthorizationKeySuccessAction,
+  // getAuthorizationKeyErrorAction,
+  confirmTransactionSuccessAction,
+  // confirmTransactionErrorAction,
 } from './actions';
 
 export function* getBills() {
@@ -99,12 +107,16 @@ export function* createTransaction() {
   const requestURL = api.transactions('create');
   const requestParameters = {
     method: 'POST',
-    headers: { Authorization: `Bearer ${accessToken}` },
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
     body: JSON.stringify({
-      senderBill,
-      recipientBill,
       amountMoney,
       transferTitle,
+      senderBill,
+      recipientBill,
     }),
   };
 
@@ -124,9 +136,74 @@ export function* createTransaction() {
   }
 }
 
+export function* getAuthorizationKey() {
+  const { accessToken } = yield select(makeSelectToken());
+  const transaction = yield select(makeSelectTransaction());
+  const requestURL = api.transactions('authorizationKey')(transaction);
+  const requestParameters = {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+
+  try {
+    const { authorizationKey } = yield call(
+      request,
+      requestURL,
+      requestParameters,
+    );
+    yield put(getAuthorizationKeySuccessAction(authorizationKey));
+  } catch (error) {
+    // yield put(getAuthorizationKeyErrorAction(error));
+    // switch (error.statusCode) {
+    //   case 401:
+    //     yield put(push(routes.login.path));
+    //     break;
+    //   default:
+    //     yield put(push(routes.login.path));
+    //     break;
+    // }
+  }
+}
+
+export function* confirmTransaction() {
+  const { accessToken } = yield select(makeSelectToken());
+  const authorizationKey = yield select(makeSelectAuthorizationKey());
+  const requestURL = api.transactions('confirm');
+  const requestParameters = {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ authorizationKey }),
+  };
+
+  try {
+    yield call(request, requestURL, requestParameters);
+    yield put(confirmTransactionSuccessAction());
+  } catch (error) {
+    // yield put(confirmTransactionErrorAction(error));
+    // switch (error.statusCode) {
+    //   case 401:
+    //     yield put(push(routes.login.path));
+    //     break;
+    //   default:
+    //     yield put(push(routes.login.path));
+    //     break;
+    // }
+  }
+}
+
 export default function* paymentPageSaga() {
   yield takeLatest(GET_BILLS_REQUEST, getBills);
   yield debounce(400, SEARCH_RECIPIENT_REQUEST, searchRecipient);
   yield takeLatest(CHECK_RECIPIENT, checkRecipient);
   yield takeLatest(CREATE_TRANSACTION_REQUEST, createTransaction);
+  yield takeLatest(GET_AUTHORIZATION_KEY_REQUEST, getAuthorizationKey);
+  yield takeLatest(CONFIRM_TRANSACTION_REQUEST, confirmTransaction);
 }

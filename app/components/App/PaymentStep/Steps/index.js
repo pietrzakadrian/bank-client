@@ -4,6 +4,7 @@ import {
   Recipient,
   AmountMoney,
   TransferTitle,
+  Confirm,
 } from 'components/App/PaymentContent';
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -27,7 +28,7 @@ const steps = [
   },
   {
     title: 'Confirm data',
-    // content: <ConfirmData />,
+    content: <Confirm />,
   },
 ];
 

@@ -5,11 +5,11 @@ export const scope = 'app.components.RecentTransaction';
 export default defineMessages({
   to: {
     id: `${scope}.to`,
-    defaultMessage: 'To',
+    defaultMessage: 'to',
   },
   from: {
     id: `${scope}.from`,
-    defaultMessage: 'From',
+    defaultMessage: 'from',
   },
   title: {
     id: `${scope}.title`,

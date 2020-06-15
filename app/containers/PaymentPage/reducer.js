@@ -48,7 +48,7 @@ const paymentPageReducer = produce((draft, action) => {
 
       break;
     case CHANGE_INPUT_NUMBER:
-      draft[action.name] = action.value;
+      draft[action.name] = action.value || initialState.amountMoney;
       break;
     case CHECK_RECIPIENT_CORRECT:
     case NEXT_STEP:

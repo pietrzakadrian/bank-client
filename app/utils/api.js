@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://bank2.pietrzakadrian.com/api';
+const API_BASE_URL = 'http://localhost:4000/api';
 const AUTH = 'Auth';
 const USERS = 'Users';
 const CURRENCIES = 'Currencies';

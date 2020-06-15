@@ -18,6 +18,7 @@ import {
   PREVIOUS_STEP,
   CHECK_RECIPIENT_CORRECT,
   CREATE_TRANSACTION_SUCCESS,
+  CONFIRM_TRANSACTION_SUCCESS,
 } from './constants';
 
 export const initialState = {
@@ -31,6 +32,7 @@ export const initialState = {
   authorizationKey: '',
   currentStep: 0,
   hasCreatedTransaction: false,
+  hasConfirmedTransaction: false,
 };
 
 /* eslint-disable default-case, no-param-reassign, consistent-return */
@@ -57,6 +59,7 @@ const paymentPageReducer = produce((draft, action) => {
     case PREVIOUS_STEP:
       draft.currentStep -= 1;
       draft.hasCreatedTransaction = false;
+      draft.authorizationKey = initialState.authorizationKey;
       break;
     case GET_AUTHORIZATION_KEY_SUCCESS:
       draft.authorizationKey = action.authorizationKey;
@@ -74,6 +77,9 @@ const paymentPageReducer = produce((draft, action) => {
     case CREATE_TRANSACTION_SUCCESS:
       draft.hasCreatedTransaction = true;
       draft.transaction = action.uuid;
+      break;
+    case CONFIRM_TRANSACTION_SUCCESS:
+      draft.hasConfirmedTransaction = true;
       break;
     case LOCATION_CHANGE:
       return initialState;

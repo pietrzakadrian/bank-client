@@ -42,19 +42,19 @@ export default function RecentTransactions() {
     getRecentTransactions();
   }, []);
 
+  // todo!: cos tu sie zjebalo i popraw Successresult do jednego komponentu
   const columns = [
     {
-      render: ({ transferTitle, senderAccountBill, recipientAccountBill }) => (
+      render: ({ transferTitle, senderBill, recipientBill }) => (
         <>
           <div>
-            {senderAccountBill.user.uuid === user.uuid ? (
+            {senderBill.user.uuid === user.uuid ? (
               <div>
                 <StyledTypography>
                   <FormattedMessage {...messages.to} />{' '}
                 </StyledTypography>
                 <StyledUser>
-                  {recipientAccountBill.user.firstName}{' '}
-                  {recipientAccountBill.user.lastName}
+                  {recipientBill.user.firstName} {recipientBill.user.lastName}
                 </StyledUser>
               </div>
             ) : (
@@ -63,8 +63,7 @@ export default function RecentTransactions() {
                   <FormattedMessage {...messages.from} />{' '}
                 </StyledTypography>
                 <StyledUser>
-                  {senderAccountBill.user.firstName}{' '}
-                  {senderAccountBill.user.lastName}
+                  {recipientBill.user.firstName} {recipientBill.user.lastName}
                 </StyledUser>
               </div>
             )}
@@ -74,17 +73,17 @@ export default function RecentTransactions() {
       ),
     },
     {
-      render: ({ updatedAt, amountMoney, senderAccountBill }) => (
+      render: ({ updatedAt, amountMoney, senderBill }) => (
         <div>
           <div>{format(new Date(updatedAt), dateFormat)}</div>
           <div>
-            {senderAccountBill.user.uuid === user.uuid ? (
+            {senderBill.user.uuid === user.uuid ? (
               <StyledSenderAmountMoney>
-                -{amountMoney} {senderAccountBill.currency.name}
+                -{amountMoney} {senderBill.currency.name}
               </StyledSenderAmountMoney>
             ) : (
               <>
-                {amountMoney} {senderAccountBill.currency.name}
+                {amountMoney} {senderBill.currency.name}
               </>
             )}
           </div>

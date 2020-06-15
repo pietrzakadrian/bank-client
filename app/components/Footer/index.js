@@ -48,7 +48,7 @@ export default function Footer() {
         <FormattedMessage {...messages.footer} />{' '}
         <StyledButton
           type="link"
-          onClick={() => dispatch(push(routes.privacy))}
+          onClick={() => dispatch(push(routes.privacy.path))}
         >
           <FormattedMessage {...messages.buttonContent} />
         </StyledButton>

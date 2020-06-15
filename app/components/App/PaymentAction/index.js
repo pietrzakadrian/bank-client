@@ -10,6 +10,7 @@ import {
   getAuthorizationKeyAction,
   checkRecipientAction,
   createTransactionAction,
+  confirmTransactionAction,
 } from 'containers/PaymentPage/actions';
 import { makeSelectError } from 'providers/ErrorProvider/selectors';
 import {
@@ -67,6 +68,7 @@ export default function PaymentAction({ form }) {
   const onGetAuthorizationKey = () => dispatch(getAuthorizationKeyAction());
   const onCheckRecipient = () => dispatch(checkRecipientAction());
   const onCreateTransaction = () => dispatch(createTransactionAction());
+  const onConfirmTransaction = () => dispatch(confirmTransactionAction());
 
   const onValidateFields = async () => {
     try {
@@ -111,14 +113,18 @@ export default function PaymentAction({ form }) {
             disabled={isLoading || !!error || hasCreatedTransaction}
             errored={error ? 1 : 0}
           >
-            <FormattedMessage {...messages.receive} /> <RightOutlined />
+            {hasCreatedTransaction ? (
+              'The authorization key has been sent'
+            ) : (
+              <>
+                <FormattedMessage {...messages.receive} /> <RightOutlined />
+              </>
+            )}
           </StyledButton>
 
           {hasCreatedTransaction && (
             <>
-              <p>The authorization key has been sent</p>
-
-              <div style={{ display: 'flex' }}>
+              <div style={{ marginTop: 10, display: 'flex' }}>
                 <Input
                   onChange={(event) => onChangeInput(event)}
                   name="authorizationKey"
@@ -132,12 +138,13 @@ export default function PaymentAction({ form }) {
                   disabled={isLoading || !!error}
                   errored={error ? 1 : 0}
                   style={{ marginLeft: 5 }}
+                  onClick={onConfirmTransaction}
                 >
                   <FormattedMessage {...messages.make} />
                 </StyledButton>
               </div>
 
-              <div>
+              <div style={{ textAlign: 'left' }}>
                 <StyledButton
                   type="link"
                   onClick={onGetAuthorizationKey}

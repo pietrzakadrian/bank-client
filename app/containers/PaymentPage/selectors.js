@@ -60,6 +60,12 @@ const makeSelectHasCreatedTransaction = () =>
     (substate) => substate.hasCreatedTransaction,
   );
 
+const makeSelectHasConfirmedTransaction = () =>
+  createSelector(
+    selectPaymentPageDomain,
+    (substate) => substate.hasConfirmedTransaction,
+  );
+
 const makeSelectTransaction = () =>
   createSelector(selectPaymentPageDomain, (substate) => substate.transaction);
 
@@ -73,6 +79,7 @@ export {
   makeSelectAuthorizationKey,
   makeSelectCurrentStep,
   makeSelectHasCreatedTransaction,
+  makeSelectHasConfirmedTransaction,
   makeSelectTransaction,
   makeSelectSenderBillUuid,
   makeSelectRecipientBillUuid,

@@ -4,6 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import {
   makeSelectBills,
   makeSelectAmountMoney,
+  makeSelectSenderBill,
 } from 'containers/PaymentPage/selectors';
 import { changeInputNumberAction } from 'containers/PaymentPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
@@ -12,31 +13,30 @@ import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   amountMoney: makeSelectAmountMoney(),
+  senderBill: makeSelectSenderBill(),
   bills: makeSelectBills(),
 });
 
 function AmountMoney({ intl }) {
-  const { amountMoney } = useSelector(stateSelector);
+  const { amountMoney, senderBill } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  // const selectedBill = bills.find((bill) => bill.uuid === senderBill);
 
   const onChangeAmountMoney = (name, value) =>
     dispatch(changeInputNumberAction({ name, value }));
 
-  // eslint-disable-next-line consistent-return
-  // const checkCorrectAmountMoney = (_, value) => {
-  //   if (value && value > Number(selectedBill.amountMoney)) {
-  //     return Promise.reject(new Error(`You don't have that amount of money.`));
-  //   }
+  const checkCorrectAmountMoney = (_, value) => {
+    if (value && value > Number(senderBill.amountMoney)) {
+      return Promise.reject(new Error(`You don't have that amount of money.`));
+    }
 
-  //   // if (value === 0 || value < 0) {
-  //   //   return Promise.reject(
-  //   //     new Error(`You cannot transfer an amount less than or equal to 0.`),
-  //   //   );
-  //   // }
+    if (value === 0 || value < 0) {
+      return Promise.reject(
+        new Error(`You cannot transfer an amount less than or equal to 0.`),
+      );
+    }
 
-  //   Promise.resolve();
-  // };
+    return Promise.resolve();
+  };
 
   return (
     <StyledFormItem
@@ -44,8 +44,7 @@ function AmountMoney({ intl }) {
       name="amountMoney"
       rules={[
         {
-          required: true,
-          message: intl.formatMessage(messages.validation),
+          validator: checkCorrectAmountMoney,
         },
       ]}
     >

@@ -1,7 +1,11 @@
 import { takeLatest, debounce, call, put, select } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
-import { makeSelectToken } from 'containers/App/selectors';
+import { notification } from 'antd';
+import {
+  makeSelectToken,
+  makeSelectIsCollapsedSidebar,
+} from 'containers/App/selectors';
 import {
   makeSelectRecipients,
   makeSelectRecipientBill,
@@ -172,6 +176,7 @@ export function* getAuthorizationKey() {
 export function* confirmTransaction() {
   const { accessToken } = yield select(makeSelectToken());
   const authorizationKey = yield select(makeSelectAuthorizationKey());
+  const isCollapsedSidebar = yield select(makeSelectIsCollapsedSidebar());
   const requestURL = api.transactions('confirm');
   const requestParameters = {
     method: 'PATCH',
@@ -182,10 +187,21 @@ export function* confirmTransaction() {
     },
     body: JSON.stringify({ authorizationKey }),
   };
+  const style = { width: 400, marginLeft: isCollapsedSidebar ? 80 : 250 };
+  const placement = 'bottomLeft';
 
   try {
     yield call(request, requestURL, requestParameters);
     yield put(confirmTransactionSuccessAction());
+
+    notification.success({
+      message: 'Przelew zrobiony',
+      description: 'najak',
+      style,
+      placement,
+    });
+
+    yield put(push(routes.dashboard.path));
   } catch (error) {
     // yield put(confirmTransactionErrorAction(error));
     // switch (error.statusCode) {

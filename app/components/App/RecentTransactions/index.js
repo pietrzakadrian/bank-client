@@ -42,7 +42,6 @@ export default function RecentTransactions() {
     getRecentTransactions();
   }, []);
 
-  // todo!: cos tu sie zjebalo i popraw Successresult do jednego komponentu
   const columns = [
     {
       render: ({ transferTitle, senderBill, recipientBill }) => (

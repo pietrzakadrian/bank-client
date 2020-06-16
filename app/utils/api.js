@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:4000/api';
+const API_BASE_URL = 'https://bank2.pietrzakadrian.com/api';
 const AUTH = 'Auth';
 const USERS = 'Users';
 const CURRENCIES = 'Currencies';
@@ -52,23 +52,4 @@ export default {
         return `${API_BASE_URL}/${TRANSACTIONS}`;
     }
   },
-
-  // transactions: {
-  //   create: `${API_BASE_URL}/${TRANSACTIONS}/create`,
-  //   confirm: `${API_BASE_URL}/${TRANSACTIONS}/confirm`,
-  //   authorizationKey: (uuid) =>
-  //     `${API_BASE_URL}/${TRANSACTIONS}/${uuid}/authorizationKey`,
-  // },
-  // users: {
-  //   checkEmail: (email) => `${API_BASE_URL}${USERS}/${email}/checkEmail`,
-  //   notifications: `${API_BASE_URL}${USERS}/notifications`,
-  //   messages: `${API_BASE_URL}${USERS}/messages`,
-  // },
-  // bills: {
-  //   amountMoney: `${API_BASE_URL}/${BILLS}/amountMoney`,
-  //   accountBalance: `${API_BASE_URL}/${BILLS}/accountBalance`,
-  //   accountBalanceHistory: `${API_BASE_URL}/${BILLS}/accountBalanceHistory`,
-  //   search: (accountBillNumber) =>
-  //     `${API_BASE_URL}/${BILLS}/${accountBillNumber}/search`,
-  // },
 };

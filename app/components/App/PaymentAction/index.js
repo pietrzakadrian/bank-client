@@ -1,3 +1,4 @@
+/* eslint no-nested-ternary: "error" */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
@@ -35,6 +36,7 @@ import {
   GET_BILLS_REQUEST,
   CHECK_RECIPIENT_INCORRECT,
   CONFIRM_TRANSACTION_REQUEST,
+  CREATE_TRANSACTION_REQUEST,
 } from 'containers/PaymentPage/constants';
 import { Input } from 'antd';
 import {
@@ -46,6 +48,7 @@ import messages from './messages';
 const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),
   isLoading: makeSelectIsLoading([
+    getRequestName(CREATE_TRANSACTION_REQUEST),
     getRequestName(GET_BILLS_REQUEST),
     getRequestName(CONFIRM_TRANSACTION_REQUEST),
   ]),
@@ -121,30 +124,35 @@ export default function PaymentAction({ form }) {
             disabled={isLoading || !!error || hasCreatedTransaction}
             errored={error ? 1 : 0}
           >
-            {hasCreatedTransaction ? (
-              'The authorization key has been sent'
-            ) : (
-              <>
-                <FormattedMessage {...messages.receive} /> <RightOutlined />
-              </>
-            )}
+            {(hasCreatedTransaction && (
+              <FormattedMessage {...messages.authorizationKeySent} />
+            )) ||
+              (!hasCreatedTransaction && isLoading && <LoadingIndicator />) ||
+              (!hasCreatedTransaction && (
+                <>
+                  <FormattedMessage {...messages.receive} /> <RightOutlined />
+                </>
+              ))}
           </StyledButton>
 
           {hasCreatedTransaction && (
             <>
               <CreatedTransactionWrapper>
-                <Input
-                  onChange={(event) => onChangeInput(event)}
-                  name="authorizationKey"
-                  value={authorizationKey}
-                  placeholder="Authorization key"
-                />
+                <FormattedMessage {...messages.placeholder}>
+                  {(placeholder) => (
+                    <Input
+                      onChange={(event) => onChangeInput(event)}
+                      name="authorizationKey"
+                      value={authorizationKey}
+                      placeholder={placeholder}
+                    />
+                  )}
+                </FormattedMessage>
 
                 <StyledButton
                   type="primary"
                   disabled={isLoading || !!error}
                   errored={error ? 1 : 0}
-                  style={{ marginLeft: 5 }}
                   onClick={onConfirmTransaction}
                 >
                   {isLoading ? (
@@ -161,7 +169,7 @@ export default function PaymentAction({ form }) {
                   onClick={onGetAuthorizationKey}
                   disabled={authorizationKey}
                 >
-                  I did not receive an email with a code
+                  <FormattedMessage {...messages.dontGetAuthrozationKey} />
                 </StyledButton>
               </AuthorizationKeyWrapper>
             </>

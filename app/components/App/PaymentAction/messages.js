@@ -25,4 +25,16 @@ export default defineMessages({
     id: `${scope}.previous`,
     defaultMessage: 'Previous',
   },
+  dontGetAuthrozationKey: {
+    id: `${scope}.dont.get.authrozation.key`,
+    defaultMessage: 'I did not receive an email with a code',
+  },
+  authorizationKeySent: {
+    id: `${scope}.authorization.key.sent`,
+    defaultMessage: 'The authorization key has been sent',
+  },
+  placeholder: {
+    id: `${scope}.placeholder`,
+    defaultMessage: 'Authorization key',
+  },
 });

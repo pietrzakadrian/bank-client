@@ -20,10 +20,6 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(getRequestName(SEARCH_RECIPIENT_REQUEST)),
 });
 
-// function onSelect(value) {
-//   console.log('onSelect', value);
-// }
-
 function Recipient({ intl }) {
   const { recipients } = useSelector(stateSelector);
   const dispatch = useDispatch();
@@ -32,8 +28,6 @@ function Recipient({ intl }) {
     dispatch(changeInputAction({ name, value }));
   const onSearchRecipient = (value) =>
     value && dispatch(searchRecipientAction(value));
-  // const onCheckRecipient = (value, reject, resolve) =>
-  //   value && dispatch(checkRecipientAction(value, reject, resolve));
 
   const options = recipients.map((recipient) => ({
     label: (
@@ -66,7 +60,7 @@ function Recipient({ intl }) {
           maxLength="26"
           placeholder={intl.formatMessage(messages.placeholder)}
           suffix={
-            <Tooltip title="Search for the recipient by entering the bill numbers">
+            <Tooltip title={intl.formatMessage(messages.tooltip)}>
               <QuestionCircleOutlined />
             </Tooltip>
           }

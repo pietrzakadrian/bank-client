@@ -6,28 +6,33 @@ import {
   TransferTitle,
   Confirm,
 } from 'components/App/PaymentContent';
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 const steps = [
   {
-    title: `Bill`,
+    id: 1,
+    title: <FormattedMessage {...messages.bill} />,
     content: <Bill />,
   },
   {
-    title: `Recipient`,
+    id: 2,
+    title: <FormattedMessage {...messages.recipient} />,
     content: <Recipient />,
   },
   {
-    title: 'Amount money',
+    id: 3,
+    title: <FormattedMessage {...messages.amountMoney} />,
     content: <AmountMoney />,
   },
   {
-    title: 'Transfer title',
+    id: 4,
+    title: <FormattedMessage {...messages.transferTitle} />,
     content: <TransferTitle />,
   },
   {
-    title: 'Confirm data',
+    id: 5,
+    title: <FormattedMessage {...messages.confirmData} />,
     content: <Confirm />,
   },
 ];

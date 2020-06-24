@@ -1,3 +1,4 @@
+import React from 'react';
 import { takeLatest, debounce, call, put, select } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
@@ -16,6 +17,7 @@ import {
   makeSelectTransaction,
   makeSelectAuthorizationKey,
 } from 'containers/PaymentPage/selectors';
+import { FormattedMessage } from 'react-intl';
 import {
   GET_BILLS_REQUEST,
   SEARCH_RECIPIENT_REQUEST,
@@ -37,6 +39,7 @@ import {
   confirmTransactionSuccessAction,
   // confirmTransactionErrorAction,
 } from './actions';
+import messages from './messages';
 
 export function* getBills() {
   const { accessToken } = yield select(makeSelectToken());
@@ -97,7 +100,9 @@ export function* checkRecipient() {
     yield put(checkRecipientCorrectAction());
   } else {
     yield put(
-      checkRecipientIncorrectAction('The bill number entered is not valid.'),
+      checkRecipientIncorrectAction(
+        <FormattedMessage {...messages.billNotValid} />,
+      ),
     );
   }
 }
@@ -195,8 +200,10 @@ export function* confirmTransaction() {
     yield put(confirmTransactionSuccessAction());
 
     notification.success({
-      message: 'Przelew zrobiony',
-      description: 'najak',
+      message: <FormattedMessage {...messages.transferConfirmedTitle} />,
+      description: (
+        <FormattedMessage {...messages.transferConfirmedDescription} />
+      ),
       style,
       placement,
     });

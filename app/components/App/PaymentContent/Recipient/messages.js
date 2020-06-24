@@ -21,4 +21,8 @@ export default defineMessages({
     id: `${scope}.placeholder`,
     defaultMessage: 'Search recipient...',
   },
+  tooltip: {
+    id: `${scope}.tooltip`,
+    defaultMessage: 'Search for the recipient by entering the bill numbers',
+  },
 });

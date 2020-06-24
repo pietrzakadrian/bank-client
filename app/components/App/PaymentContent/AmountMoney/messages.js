@@ -21,4 +21,16 @@ export default defineMessages({
     id: `${scope}.placeholder`,
     defaultMessage: 'Enter amount money',
   },
+  requiredValidation: {
+    id: `${scope}.required.validation`,
+    defaultMessage: 'Amout money is required.',
+  },
+  valueValidation: {
+    id: `${scope}.value.validation`,
+    defaultMessage: `You don't have that amount of money.`,
+  },
+  zeroLessValidation: {
+    id: `${scope}.zero.less.validation`,
+    defaultMessage: 'You cannot transfer an amount less than or equal to 0.',
+  },
 });

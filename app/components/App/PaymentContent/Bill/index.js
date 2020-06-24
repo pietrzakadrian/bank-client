@@ -48,6 +48,9 @@ function Bill({ intl }) {
         {bills.map((bill) => (
           <Select.Option key={bill.uuid} value={bill.uuid}>
             <div>{bill.accountBillNumber}</div>
+            <div>
+              {bill.amountMoney} {bill.currency.name}
+            </div>
           </Select.Option>
         ))}
       </Select>

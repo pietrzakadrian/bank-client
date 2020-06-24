@@ -7,6 +7,7 @@
 import produce from 'immer';
 import { formatBill } from 'helpers';
 import { LOGOUT_SUCCESS, LOGOUT_ERROR } from 'containers/App/constants';
+import { LOCATION_CHANGE } from 'connected-react-router';
 import {
   GET_CURRENCIES_SUCCESS,
   GET_BILLS_SUCCESS,
@@ -68,6 +69,7 @@ const dashboardPageReducer = produce((draft, action) => {
     case TOGGLE_MODAL:
       draft.isOpenedModal = !draft.isOpenedModal;
       break;
+    case LOCATION_CHANGE:
     case LOGOUT_SUCCESS:
     case LOGOUT_ERROR:
       return initialState;

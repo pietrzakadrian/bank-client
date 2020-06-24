@@ -25,17 +25,21 @@ function AmountMoney({ intl }) {
     dispatch(changeInputNumberAction({ name, value }));
 
   const checkCorrectAmountMoney = (_, value) => {
-    if (!value) {
-      return Promise.reject(new Error(`Amout money is required.`));
+    if (!value && value !== 0) {
+      return Promise.reject(
+        new Error(intl.formatMessage(messages.requiredValidation)),
+      );
     }
 
     if (value && value > Number(senderBill.amountMoney)) {
-      return Promise.reject(new Error(`You don't have that amount of money.`));
+      return Promise.reject(
+        new Error(intl.formatMessage(messages.valueValidation)),
+      );
     }
 
     if (value === 0 || value < 0) {
       return Promise.reject(
-        new Error(`You cannot transfer an amount less than or equal to 0.`),
+        new Error(intl.formatMessage(messages.zeroLessValidation)),
       );
     }
 

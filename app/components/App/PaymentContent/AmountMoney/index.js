@@ -25,6 +25,10 @@ function AmountMoney({ intl }) {
     dispatch(changeInputNumberAction({ name, value }));
 
   const checkCorrectAmountMoney = (_, value) => {
+    if (!value) {
+      return Promise.reject(new Error(`Amout money is required.`));
+    }
+
     if (value && value > Number(senderBill.amountMoney)) {
       return Promise.reject(new Error(`You don't have that amount of money.`));
     }

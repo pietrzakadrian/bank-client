@@ -7,7 +7,7 @@
 import {
   CREATE_NEW_BILL_REQUEST,
   CREATE_NEW_BILL_SUCCESS,
-  CREATE_NEW_BILL_ERROR,
+  CREATE_NEW_BILL_INCORRECT,
   GET_BILLS_REQUEST,
   GET_BILLS_SUCCESS,
   GET_BILLS_ERROR,
@@ -100,9 +100,9 @@ export function createNewBillSuccessAction(bill) {
   };
 }
 
-export function createNewBillErrorAction(error) {
+export function createNewBillIncorrectAction(error) {
   return {
-    type: CREATE_NEW_BILL_ERROR,
+    type: CREATE_NEW_BILL_INCORRECT,
     error,
   };
 }

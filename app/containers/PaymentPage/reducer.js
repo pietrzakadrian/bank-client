@@ -6,6 +6,8 @@
 
 import produce from 'immer';
 import { LOCATION_CHANGE } from 'connected-react-router';
+import { LOGOUT_SUCCESS, LOGOUT_ERROR } from 'containers/App/constants';
+
 import { formatBill } from 'helpers';
 import {
   GET_BILLS_SUCCESS,
@@ -81,6 +83,8 @@ const paymentPageReducer = produce((draft, action) => {
     case CONFIRM_TRANSACTION_SUCCESS:
       draft.hasConfirmedTransaction = true;
       break;
+    case LOGOUT_SUCCESS:
+    case LOGOUT_ERROR:
     case LOCATION_CHANGE:
       return initialState;
   }

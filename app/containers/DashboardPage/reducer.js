@@ -6,7 +6,7 @@
 
 import produce from 'immer';
 import { formatBill } from 'helpers';
-import { LOGOUT_SUCCESS } from 'containers/App/constants';
+import { LOGOUT_SUCCESS, LOGOUT_ERROR } from 'containers/App/constants';
 import {
   GET_CURRENCIES_SUCCESS,
   GET_BILLS_SUCCESS,
@@ -69,6 +69,7 @@ const dashboardPageReducer = produce((draft, action) => {
       draft.isOpenedModal = !draft.isOpenedModal;
       break;
     case LOGOUT_SUCCESS:
+    case LOGOUT_ERROR:
       return initialState;
   }
 }, initialState);

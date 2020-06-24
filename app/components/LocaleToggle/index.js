@@ -10,10 +10,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Toggle from 'components/Toggle';
 
+import { appLocales } from 'locales';
+import { changeLocale } from 'providers/LanguageProvider/actions';
+import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
 import messages from './messages';
-import { appLocales } from '../../locales';
-import { changeLocale } from '../../providers/LanguageProvider/actions';
-import { makeSelectLocale } from '../../providers/LanguageProvider/selectors';
 
 const stateSelector = createSelector(makeSelectLocale(), (locale) => ({
   locale,

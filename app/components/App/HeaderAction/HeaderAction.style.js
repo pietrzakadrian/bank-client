@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { media } from 'utils';
+import { media, colors } from 'utils';
 import {
   PoweroffOutlined,
   MessageOutlined,
@@ -38,6 +38,7 @@ export const StyledHeaderActionItem = styled(Button)`
 
 export const StyledHeaderActionItemName = styled.div`
   display: none;
+  color: ${colors.black};
 
   ${media.tablet`
     margin-left: 5px;
@@ -59,4 +60,12 @@ export const StyledBellOutlined = styled(BellOutlined)`
 
 export const StyledHeaderWrapper = styled.div`
   display: flex;
+  border-radius: 5px;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  ${media.tablet`
+    &:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+  `}
 `;

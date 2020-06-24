@@ -27,7 +27,7 @@ import {
   getCurrenciesSuccessAction,
   getCurrenciesErrorAction,
   createNewBillSuccessAction,
-  createNewBillErrorAction,
+  createNewBillIncorrectAction,
   getAvailableFundsErrorAction,
   getAvailableFundsSuccessAction,
 } from './actions';
@@ -242,6 +242,7 @@ export function* createNewBill() {
     delete bill.user;
 
     yield put(createNewBillSuccessAction(bill));
+
     notification.success({
       message: <FormattedMessage {...messages.billHasBeenCreated} />,
       description: (
@@ -251,7 +252,7 @@ export function* createNewBill() {
       placement,
     });
   } catch (error) {
-    yield put(createNewBillErrorAction(message));
+    yield put(createNewBillIncorrectAction(message));
 
     let message;
     let description;

@@ -34,13 +34,21 @@ import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import {
   GET_BILLS_REQUEST,
   CHECK_RECIPIENT_INCORRECT,
+  CONFIRM_TRANSACTION_REQUEST,
 } from 'containers/PaymentPage/constants';
 import { Input } from 'antd';
+import {
+  AuthorizationKeyWrapper,
+  CreatedTransactionWrapper,
+} from './PaymentAction.style';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),
-  isLoading: makeSelectIsLoading(getRequestName(GET_BILLS_REQUEST)),
+  isLoading: makeSelectIsLoading([
+    getRequestName(GET_BILLS_REQUEST),
+    getRequestName(CONFIRM_TRANSACTION_REQUEST),
+  ]),
   error: makeSelectError([
     getRequestName(GET_BILLS_REQUEST),
     getRequestName(CHECK_RECIPIENT_INCORRECT),
@@ -124,13 +132,12 @@ export default function PaymentAction({ form }) {
 
           {hasCreatedTransaction && (
             <>
-              <div style={{ marginTop: 10, display: 'flex' }}>
+              <CreatedTransactionWrapper>
                 <Input
                   onChange={(event) => onChangeInput(event)}
                   name="authorizationKey"
                   value={authorizationKey}
                   placeholder="Authorization key"
-                  style={{ marginRight: 5 }}
                 />
 
                 <StyledButton
@@ -140,11 +147,15 @@ export default function PaymentAction({ form }) {
                   style={{ marginLeft: 5 }}
                   onClick={onConfirmTransaction}
                 >
-                  <FormattedMessage {...messages.make} />
+                  {isLoading ? (
+                    <LoadingIndicator />
+                  ) : (
+                    <FormattedMessage {...messages.make} />
+                  )}
                 </StyledButton>
-              </div>
+              </CreatedTransactionWrapper>
 
-              <div style={{ textAlign: 'left' }}>
+              <AuthorizationKeyWrapper>
                 <StyledButton
                   type="link"
                   onClick={onGetAuthorizationKey}
@@ -152,7 +163,7 @@ export default function PaymentAction({ form }) {
                 >
                   I did not receive an email with a code
                 </StyledButton>
-              </div>
+              </AuthorizationKeyWrapper>
             </>
           )}
         </>

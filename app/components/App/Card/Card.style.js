@@ -15,7 +15,13 @@ export const StyledCard = styled(Card)`
            height: ${cardHeaderHeight}px;
 
            .ant-card-extra {
-             padding: 0;
+              padding: 5px;
+              border-radius: 5px;
+              transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+              
+              &:hover {
+                 background: rgba(0, 0, 0, 0.08);
+              }
            }
          }
 
@@ -31,14 +37,13 @@ export const StyledCard = styled(Card)`
              (loaded || excluded) && 'center'};
            opacity: ${({ excluded }) => excluded && '0.3'};
            text-align: left;
-           
            height 100%;
-           overflow-y: scroll;
 
            &:hover {
              cursor: auto;
            }
          }
+         
        `;
 
 export const StyledCardContent = styled.div`

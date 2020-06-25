@@ -79,7 +79,7 @@ exports[`<EmailAddress /> should render a information 1`] = `
     </div>
   </div>
   <div
-    class="RegisterFormstyle__StyledInformation-fqluwk-1 eOITGO"
+    class="RegisterFormstyle__StyledInformation-fqluwk-0 gxwSj"
   >
     <span>
       Registration does not require confirmation by the email.

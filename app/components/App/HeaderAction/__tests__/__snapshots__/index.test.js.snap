@@ -5,7 +5,7 @@ exports[`<HeaderAction /> should render a HeaderAction 1`] = `
   class="HeaderActionstyle__StyledHeaderAction-sc-1v0240u-0 feaNdT"
 >
   <div
-    class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 dKOdPR"
+    class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 iptmRw"
   >
     <button
       class="ant-btn HeaderActionstyle__StyledHeaderActionItem-sc-1v0240u-1 jUoLXo ant-btn-link"
@@ -32,7 +32,7 @@ exports[`<HeaderAction /> should render a HeaderAction 1`] = `
         </svg>
       </span>
       <div
-        class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 lhrZnf"
+        class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 EactB"
       >
         <span>
           Messages
@@ -41,7 +41,7 @@ exports[`<HeaderAction /> should render a HeaderAction 1`] = `
     </button>
   </div>
   <div
-    class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 dKOdPR"
+    class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 iptmRw"
   >
     <button
       class="ant-btn HeaderActionstyle__StyledHeaderActionItem-sc-1v0240u-1 jUoLXo ant-btn-link"
@@ -68,7 +68,7 @@ exports[`<HeaderAction /> should render a HeaderAction 1`] = `
         </svg>
       </span>
       <div
-        class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 lhrZnf"
+        class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 EactB"
       >
         <span>
           Notifications
@@ -77,7 +77,7 @@ exports[`<HeaderAction /> should render a HeaderAction 1`] = `
     </button>
   </div>
   <div
-    class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 dKOdPR"
+    class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 iptmRw"
   >
     <button
       class="ant-btn HeaderActionstyle__StyledHeaderActionItem-sc-1v0240u-1 jUoLXo ant-btn-link"
@@ -104,7 +104,7 @@ exports[`<HeaderAction /> should render a HeaderAction 1`] = `
         </svg>
       </span>
       <div
-        class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 lhrZnf"
+        class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 EactB"
       >
         <span>
           Logout

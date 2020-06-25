@@ -2,22 +2,21 @@
 
 exports[`<Header /> should match the snapshot 1`] = `
 <header
-  class="ant-layout-header Headerstyle__StyledHeader-k18jp7-0 hlDNXb"
-  open=""
+  class="ant-layout-header Headerstyle__StyledHeader-k18jp7-0 VZhLh"
 >
   <div
     class="Headerstyle__StyledHeaderWrapper-k18jp7-4 laEUUb"
   >
     <span
-      aria-label="menu-unfold"
-      class="anticon anticon-menu-unfold Headerstyle__StyledMenuUnfoldOutlined-k18jp7-1 cHrQqE"
+      aria-label="menu-fold"
+      class="anticon anticon-menu-fold Headerstyle__StyledMenuFoldOutlined-k18jp7-2 bNRkwo"
       role="img"
       tabindex="-1"
     >
       <svg
         aria-hidden="true"
         class=""
-        data-icon="menu-unfold"
+        data-icon="menu-fold"
         fill="currentColor"
         focusable="false"
         height="1em"
@@ -25,7 +24,7 @@ exports[`<Header /> should match the snapshot 1`] = `
         width="1em"
       >
         <path
-          d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519a8.84 8.84 0 000-13.9L142.4 381.9c-5.8-4.6-14.4-.5-14.4 6.9v246.3a8.9 8.9 0 0014.4 7z"
+          d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 000 13.8z"
         />
       </svg>
     </span>
@@ -51,8 +50,7 @@ exports[`<Header /> should match the snapshot 1`] = `
       </svg>
     </span>
     <span
-      class="HeaderNamestyle__StyledHeaderName-sc-106aplm-0 fA-DgPO"
-      open=""
+      class="HeaderNamestyle__StyledHeaderName-sc-106aplm-0 ibPeml"
     >
       <div>
         Home
@@ -63,7 +61,7 @@ exports[`<Header /> should match the snapshot 1`] = `
     class="HeaderActionstyle__StyledHeaderAction-sc-1v0240u-0 feaNdT"
   >
     <div
-      class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 dKOdPR"
+      class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 iptmRw"
     >
       <button
         class="ant-btn HeaderActionstyle__StyledHeaderActionItem-sc-1v0240u-1 jUoLXo ant-btn-link"
@@ -90,7 +88,7 @@ exports[`<Header /> should match the snapshot 1`] = `
           </svg>
         </span>
         <div
-          class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 lhrZnf"
+          class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 EactB"
         >
           <span>
             Messages
@@ -99,7 +97,7 @@ exports[`<Header /> should match the snapshot 1`] = `
       </button>
     </div>
     <div
-      class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 dKOdPR"
+      class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 iptmRw"
     >
       <button
         class="ant-btn HeaderActionstyle__StyledHeaderActionItem-sc-1v0240u-1 jUoLXo ant-btn-link"
@@ -126,7 +124,7 @@ exports[`<Header /> should match the snapshot 1`] = `
           </svg>
         </span>
         <div
-          class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 lhrZnf"
+          class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 EactB"
         >
           <span>
             Notifications
@@ -135,7 +133,7 @@ exports[`<Header /> should match the snapshot 1`] = `
       </button>
     </div>
     <div
-      class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 dKOdPR"
+      class="HeaderActionstyle__StyledHeaderWrapper-sc-1v0240u-6 iptmRw"
     >
       <button
         class="ant-btn HeaderActionstyle__StyledHeaderActionItem-sc-1v0240u-1 jUoLXo ant-btn-link"
@@ -162,7 +160,7 @@ exports[`<Header /> should match the snapshot 1`] = `
           </svg>
         </span>
         <div
-          class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 lhrZnf"
+          class="HeaderActionstyle__StyledHeaderActionItemName-sc-1v0240u-2 EactB"
         >
           <span>
             Logout

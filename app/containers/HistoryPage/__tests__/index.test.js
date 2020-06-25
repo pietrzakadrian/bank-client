@@ -1,6 +1,6 @@
 /**
  *
- * Tests for PaymentPage
+ * Tests for HistoryPage
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -8,14 +8,12 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
-import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 
-import PaymentPage from '../index';
-import { DEFAULT_LOCALE } from '../../../locales';
+import HistoryPage from '../index';
 import configureStore from '../../../configureStore';
 
-describe('<PaymentPage />', () => {
+describe('<HistoryPage />', () => {
   let store;
 
   beforeEach(() => {
@@ -26,9 +24,7 @@ describe('<PaymentPage />', () => {
     const spy = jest.spyOn(global.console, 'error');
     render(
       <Provider store={store}>
-        <IntlProvider locale={DEFAULT_LOCALE}>
-          <PaymentPage />
-        </IntlProvider>
+        <HistoryPage />
       </Provider>,
     );
     expect(spy).not.toHaveBeenCalled();
@@ -48,9 +44,7 @@ describe('<PaymentPage />', () => {
       container: { firstChild },
     } = render(
       <Provider store={store}>
-        <IntlProvider locale={DEFAULT_LOCALE}>
-          <PaymentPage />
-        </IntlProvider>
+        <HistoryPage />
       </Provider>,
     );
     expect(firstChild).toMatchSnapshot();

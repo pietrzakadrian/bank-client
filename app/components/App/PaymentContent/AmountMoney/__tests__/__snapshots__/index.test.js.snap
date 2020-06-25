@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PinCode /> should render a PinCode 1`] = `
+exports[`<AmountMoney /> should render a AmountMoney 1`] = `
 <form
   class="ant-form ant-form-horizontal"
 >
@@ -11,11 +11,11 @@ exports[`<PinCode /> should render a PinCode 1`] = `
       class="ant-col ant-form-item-label"
     >
       <label
-        class="ant-form-item-required"
-        for="pinCode"
-        title="Pin code"
+        class=""
+        for="amountMoney"
+        title="Amount money"
       >
-        Pin code
+        Amount money
       </label>
     </div>
     <div
@@ -95,10 +95,10 @@ exports[`<PinCode /> should render a PinCode 1`] = `
                 aria-valuemin="-9007199254740991"
                 autocomplete="off"
                 class="ant-input-number-input"
-                id="pinCode"
+                id="amountMoney"
                 min="-9007199254740991"
-                name="pinCode"
-                placeholder="Enter pin code"
+                name="amountMoney"
+                placeholder="Enter amount money"
                 role="spinbutton"
                 step="1"
                 type="number"

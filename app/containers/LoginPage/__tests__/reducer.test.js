@@ -2,12 +2,7 @@ import produce from 'immer';
 
 import { onLocationChanged } from 'connected-react-router';
 import loginPageReducer from '../reducer';
-import {
-  changeInputNumberAction,
-  changeInputAction,
-  nextStepAction,
-  previousStepAction,
-} from '../actions';
+import { nextStepAction, previousStepAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
 describe('registerPageReducer', () => {
@@ -23,36 +18,6 @@ describe('registerPageReducer', () => {
   it('should return the initial state', () => {
     const expectedResult = state;
     expect(loginPageReducer(undefined, {})).toEqual(expectedResult);
-  });
-
-  it('should handle the changeInputNumber action correctly', () => {
-    const fixture = {
-      pinCode: 121,
-    };
-    const expectedResult = produce(state, (draft) => {
-      draft.pinCode = parseInt(fixture.pinCode, 10) || '';
-    });
-
-    expect(
-      loginPageReducer(state, changeInputNumberAction(fixture.pinCode)),
-    ).toEqual(expectedResult);
-  });
-
-  it('should handle the changeInput action correctly', () => {
-    const fixture = {
-      name: 'test',
-      value: 'test',
-    };
-    const expectedResult = produce(state, (draft) => {
-      draft.password = fixture.password;
-    });
-
-    expect(
-      loginPageReducer(
-        state,
-        changeInputAction({ name: fixture.name, value: fixture.value }),
-      ),
-    ).toEqual(expectedResult);
   });
 
   it('should handle the nextStep action correctly', () => {

@@ -1,4 +1,3 @@
-/* eslint no-nested-ternary: "error" */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';

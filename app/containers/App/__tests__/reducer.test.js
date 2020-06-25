@@ -10,7 +10,7 @@ describe('registerPageReducer', () => {
   beforeEach(() => {
     state = {
       isCollapsedDrawer: false,
-      isCollapsedSidebar: true,
+      isCollapsedSidebar: false,
       isLogged: false,
       token: {},
       user: {},

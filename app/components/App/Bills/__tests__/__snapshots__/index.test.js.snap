@@ -2,7 +2,7 @@
 
 exports[`<Bills /> should render a Bills 1`] = `
 <div
-  class="ant-card Cardstyle__StyledCard-s807iu-0 hpITZx"
+  class="ant-card Cardstyle__StyledCard-s807iu-0 heNqZU"
   darker="true"
   loaded="1"
   shadowed="true"

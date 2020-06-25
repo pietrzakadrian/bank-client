@@ -70,6 +70,7 @@ const makeSelectTransaction = () =>
   createSelector(selectPaymentPageDomain, (substate) => substate.transaction);
 
 export {
+  selectPaymentPageDomain,
   makeSelectBills,
   makeSelectRecipients,
   makeSelectSenderBill,

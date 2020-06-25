@@ -49,15 +49,7 @@ export function* getAvailableFunds() {
     );
   } catch (error) {
     yield put(getAvailableFundsErrorAction(error));
-
-    switch (error.statusCode) {
-      case 401:
-        yield put(push(routes.login.path));
-        break;
-      default:
-        yield put(push(routes.login.path));
-        break;
-    }
+    yield put(push(routes.login.path));
   }
 }
 
@@ -145,15 +137,7 @@ export function* getAccountBalance() {
     );
   } catch (error) {
     yield put(getAccountBalanceErrorAction(error));
-
-    switch (error.statusCode) {
-      case 401:
-        yield put(push(routes.login.path));
-        break;
-      default:
-        yield put(push(routes.login.path));
-        break;
-    }
+    yield put(push(routes.login.path));
   }
 }
 
@@ -170,15 +154,7 @@ export function* getBills() {
     yield put(getBillsSuccessAction(data));
   } catch (error) {
     yield put(getBillsErrorAction(error));
-
-    switch (error.statusCode) {
-      case 401:
-        yield put(push(routes.login.path));
-        break;
-      default:
-        yield put(push(routes.login.path));
-        break;
-    }
+    yield put(push(routes.login.path));
   }
 }
 
@@ -195,15 +171,7 @@ export function* getRecentTransactions() {
     yield put(getRecentTransactionsSuccessAction(data));
   } catch (error) {
     yield put(getRecentTransactionsErrorAction(error));
-
-    switch (error.statusCode) {
-      case 401:
-        yield put(push(routes.login.path));
-        break;
-      default:
-        yield put(push(routes.login.path));
-        break;
-    }
+    yield put(push(routes.login.path));
   }
 }
 

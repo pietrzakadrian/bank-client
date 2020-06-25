@@ -7,4 +7,13 @@ export const StyledModal = styled(Modal)`
       margin-bottom: 0;
     }
   }
+
+  .ant-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      width: 78px;
+    }
+  }
 `;

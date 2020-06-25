@@ -2,7 +2,7 @@
 
 exports[`<RecentTransactions /> should render a RecentTransactions 1`] = `
 <div
-  class="ant-card Cardstyle__StyledCard-s807iu-0 BYTlU ant-card-bordered"
+  class="ant-card Cardstyle__StyledCard-s807iu-0 kIxAuJ ant-card-bordered"
   loaded="1"
 >
   <div

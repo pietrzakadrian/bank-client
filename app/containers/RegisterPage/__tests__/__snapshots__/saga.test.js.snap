@@ -6,7 +6,7 @@ Object {
   "combinator": false,
   "payload": Object {
     "args": Array [
-      "https://bank2.pietrzakadrian.com/api/Currencies",
+      "http://localhost:4000/api/Currencies",
     ],
     "context": null,
     "fn": [Function],

@@ -1,9 +1,9 @@
 // import produce from 'immer';
-import paymentPageReducer from '../reducer';
+import historyPageReducer from '../reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
-describe('paymentPageReducer', () => {
+describe('historyPageReducer', () => {
   let state;
   beforeEach(() => {
     state = {
@@ -13,7 +13,7 @@ describe('paymentPageReducer', () => {
 
   it('returns the initial state', () => {
     const expectedResult = state;
-    expect(paymentPageReducer(undefined, {})).toEqual(expectedResult);
+    expect(historyPageReducer(undefined, {})).toEqual(expectedResult);
   });
 
   /**

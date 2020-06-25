@@ -1,23 +1,25 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import 'utils/__tests__/__mocks__/matchMedia';
+import { Form } from 'antd';
 import { createMemoryHistory } from 'history';
-import configureStore from 'configureStore';
+import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE } from 'locales';
-import Layout from '../index';
+import configureStore from 'configureStore';
+import AmountMoney from '../index';
 
-describe('<Layout />', () => {
+describe('<AmountMoney />', () => {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
 
-  it('should match the snapshot', () => {
+  it('should render a AmountMoney', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
-          <Layout>
-            <div>test</div>
-          </Layout>
+          <Form>
+            <AmountMoney />
+          </Form>
         </IntlProvider>
       </Provider>,
     );

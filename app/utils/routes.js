@@ -3,6 +3,7 @@ import registerMessages from 'containers/RegisterPage/messages';
 import loginMessages from 'containers/LoginPage/messages';
 import dashboardMessages from 'containers/DashboardPage/messages';
 import paymentMessages from 'containers/PaymentPage/messages';
+import historyMessages from 'containers/HistoryPage/messages';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -26,6 +27,10 @@ export default {
   payment: {
     name: <FormattedMessage {...paymentMessages.payment} />,
     path: '/payment',
+  },
+  history: {
+    name: <FormattedMessage {...historyMessages.history} />,
+    path: '/history',
   },
   privacy: {
     name: 'Privacy',

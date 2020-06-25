@@ -55,13 +55,21 @@ function Modal({ intl }) {
       onOk={onValidateFields}
       onCancel={toggleModal}
       centered
-      confirmLoading={isLoading}
       footer={[
         <Button key="back" onClick={toggleModal}>
           <FormattedMessage {...messages.cancel} />
         </Button>,
-        <Button key="submit" type="primary" onClick={onValidateFields}>
-          <FormattedMessage {...messages.create} />
+        <Button
+          key="submit"
+          disabled={isLoading}
+          type="primary"
+          onClick={onValidateFields}
+        >
+          {isLoading ? (
+            <LoadingIndicator />
+          ) : (
+            <FormattedMessage {...messages.create} />
+          )}
         </Button>,
       ]}
     >

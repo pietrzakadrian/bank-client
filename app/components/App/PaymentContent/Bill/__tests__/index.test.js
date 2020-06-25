@@ -1,24 +1,26 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import 'utils/__tests__/__mocks__/matchMedia';
+import { Form } from 'antd';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
-
+import { IntlProvider } from 'react-intl';
+import { DEFAULT_LOCALE } from 'locales';
 import configureStore from 'configureStore';
-import { ConnectedRouter } from 'connected-react-router';
-import PrivateRoute from '../index';
+import Bill from '../index';
 
-describe('<PrivateRoute />', () => {
+describe('<Bill />', () => {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
 
-  it('should render a PrivateRoute', () => {
-    const component = <div />;
+  it('should render a Bill', () => {
     const { container } = render(
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <PrivateRoute component={component} restricted />
-        </ConnectedRouter>
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <Form>
+            <Bill />
+          </Form>
+        </IntlProvider>
       </Provider>,
     );
     expect(container.firstChild).toMatchSnapshot();

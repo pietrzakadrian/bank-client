@@ -16,8 +16,8 @@ import RegisterPage from 'containers/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import DashboardPage from 'containers/DashboardPage/Loadable';
 import PaymentPage from 'containers/PaymentPage/Loadable';
+import HistoryPage from 'containers/HistoryPage/Loadable';
 import Layout from 'components/App/Layout';
-
 import { routes } from 'utils';
 import 'antd/dist/antd.less';
 import 'sanitize.css/sanitize.css';
@@ -53,6 +53,7 @@ function App() {
               component={DashboardPage}
             />
             <PrivateRoute path={routes.payment.path} component={PaymentPage} />
+            <PrivateRoute path={routes.history.path} component={HistoryPage} />
           </Switch>
         </Layout>
 

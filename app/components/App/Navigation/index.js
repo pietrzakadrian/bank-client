@@ -12,7 +12,7 @@ import {
   BankOutlined,
 } from '@ant-design/icons';
 import { makeSelectLocation } from 'containers/App/selectors';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { StyledMenuItem } from './Navigation.style';
@@ -34,10 +34,10 @@ const items = [
   },
   {
     id: 3,
-    name: 'History',
-    path: '3',
+    name: routes.history.name,
+    path: routes.history.path,
     icon: <HistoryOutlined />,
-    disabled: true,
+    disabled: false,
   },
   {
     id: 4,

@@ -2,7 +2,7 @@
 
 exports[`<Deposits /> should render a Deposits 1`] = `
 <div
-  class="ant-card Cardstyle__StyledCard-s807iu-0 fTZSBs ant-card-bordered"
+  class="ant-card Cardstyle__StyledCard-s807iu-0 egrUQF ant-card-bordered"
   darker="true"
   excluded="true"
   shadowed="true"

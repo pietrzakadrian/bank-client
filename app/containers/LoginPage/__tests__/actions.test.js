@@ -68,11 +68,13 @@ describe('LoginPage actions', () => {
   describe('changeInputNumberAction', () => {
     it('should return the correct type', () => {
       const value = 121;
+      const name = 'login';
       const expectedResult = {
         type: CHANGE_INPUT_NUMBER,
+        name,
         value,
       };
-      expect(changeInputNumberAction(value)).toEqual(expectedResult);
+      expect(changeInputNumberAction({ name, value })).toEqual(expectedResult);
     });
   });
 

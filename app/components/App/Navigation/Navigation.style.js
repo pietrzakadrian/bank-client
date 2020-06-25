@@ -12,5 +12,11 @@ export const StyledMenuItem = styled(Menu.Item)`
       font-size: 19px;
       margin: 0 20px 0 10px;
     }
+
+    a {
+      &.active {
+        pointer-events: none;
+      }
+    }
   }
 `;

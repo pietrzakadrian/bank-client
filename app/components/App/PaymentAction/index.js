@@ -150,7 +150,7 @@ export default function PaymentAction({ form }) {
 
                 <StyledButton
                   type="primary"
-                  disabled={isLoading || !!error}
+                  disabled={isLoading || !!error || !authorizationKey}
                   errored={error ? 1 : 0}
                   onClick={onConfirmTransaction}
                 >

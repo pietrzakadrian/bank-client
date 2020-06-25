@@ -5,27 +5,28 @@
  */
 
 import {
-  GET_TRANSFER_HISTORY_REQUEST,
-  GET_TRANSFER_HISTORY_SUCCESS,
-  GET_TRANSFER_HISTORY_ERROR,
+  GET_TRANSACTION_HISTORY_REQUEST,
+  GET_TRANSACTION_HISTORY_ERROR,
+  GET_TRANSACTION_HISTORY_SUCCESS,
 } from './constants';
 
-export function getTransferHistoryAction() {
+export function getTransactionHistoryAction(currentPage) {
   return {
-    type: GET_TRANSFER_HISTORY_REQUEST,
+    type: GET_TRANSACTION_HISTORY_REQUEST,
+    currentPage,
   };
 }
 
-export function getTransferHistorySuccessAction(data) {
+export function getTransactionHistorySuccessAction(transactions) {
   return {
-    type: GET_TRANSFER_HISTORY_SUCCESS,
-    data,
+    type: GET_TRANSACTION_HISTORY_SUCCESS,
+    transactions,
   };
 }
 
-export function getTransferHistoryErrorAction(error) {
+export function getTransactionHistoryErrorAction(error) {
   return {
-    type: GET_TRANSFER_HISTORY_ERROR,
+    type: GET_TRANSACTION_HISTORY_ERROR,
     error,
   };
 }

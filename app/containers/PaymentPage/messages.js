@@ -23,11 +23,11 @@ export default defineMessages({
   },
   transferConfirmedTitle: {
     id: `${scope}.transfer.confirmed.title`,
-    defaultMessage: 'The transfer has been made.',
+    defaultMessage: 'The transfer has been made',
   },
   transferConfirmedDescription: {
     id: `${scope}.transfer.confirmed.description`,
     defaultMessage:
-      'Your balance has been updated. Check your transfer history in the History tab.',
+      'Your balance has been updated. Check your transfer history in the History tab',
   },
 });

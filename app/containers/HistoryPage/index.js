@@ -7,6 +7,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+import TransactionHistory from 'components/App/TransactionHistory';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -23,7 +24,7 @@ export default function HistoryPage() {
         <meta name="description" content="Description of HistoryPage" />
       </Helmet>
 
-      <div>witam</div>
+      <TransactionHistory />
     </div>
   );
 }

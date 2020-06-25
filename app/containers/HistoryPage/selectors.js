@@ -15,10 +15,7 @@ const selectHistoryPageDomain = (state) => state.historyPage || initialState;
  * Default selector used by HistoryPage
  */
 
-const makeSelectTransferHistory = () =>
-  createSelector(
-    selectHistoryPageDomain,
-    (substate) => substate.transferHistory,
-  );
+const makeSelectTransactions = () =>
+  createSelector(selectHistoryPageDomain, (substate) => substate.transactions);
 
-export { makeSelectTransferHistory };
+export { makeSelectTransactions };

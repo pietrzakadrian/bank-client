@@ -8,7 +8,6 @@ import {
 } from 'containers/DashboardPage/selectors';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { colors } from 'utils';
 import Widget from 'components/App/Widget';
 import { FormattedMessage } from 'react-intl';

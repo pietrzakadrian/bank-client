@@ -6,7 +6,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { getRequestName } from 'helpers';
+import { getRequestName, dateFormat } from 'helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionHistoryAction } from 'containers/HistoryPage/actions';
 import { Table } from 'antd';
@@ -14,9 +14,18 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectTransactions } from 'containers/HistoryPage/selectors';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import { GET_TRANSACTION_HISTORY_REQUEST } from '../../../containers/HistoryPage/constants';
+import { GET_TRANSACTION_HISTORY_REQUEST } from 'containers/HistoryPage/constants';
+import { makeSelectUser } from 'containers/App/selectors';
+import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
+import {
+  StyledSenderAmountMoney,
+  StyledUser,
+} from 'components/App/Transactions/Transactions.style';
+import { format } from 'date-fns';
 
 const stateSelector = createStructuredSelector({
+  locale: makeSelectLocale(),
+  user: makeSelectUser(),
   transactions: makeSelectTransactions(),
   isLoading: makeSelectIsLoading(
     getRequestName(GET_TRANSACTION_HISTORY_REQUEST),
@@ -25,10 +34,13 @@ const stateSelector = createStructuredSelector({
 
 export default function TransactionHistory() {
   const {
+    locale,
     transactions: { data, meta },
     isLoading,
+    user,
   } = useSelector(stateSelector);
   const dispatch = useDispatch();
+
   const onGetTransactionHistory = (currentPage = 1) =>
     dispatch(getTransactionHistoryAction(currentPage));
 
@@ -51,9 +63,9 @@ export default function TransactionHistory() {
       title: 'Sender',
       render: ({ senderBill }) => (
         <div>
-          <div>
+          <StyledUser>
             {senderBill.user.firstName} {senderBill.user.lastName}
-          </div>
+          </StyledUser>
           <div>{senderBill.accountBillNumber}</div>
         </div>
       ),
@@ -62,9 +74,9 @@ export default function TransactionHistory() {
       title: 'Recipient',
       render: ({ recipientBill }) => (
         <div>
-          <div>
+          <StyledUser>
             {recipientBill.user.firstName} {recipientBill.user.lastName}
-          </div>
+          </StyledUser>
           <div>{recipientBill.accountBillNumber}</div>
         </div>
       ),
@@ -73,7 +85,15 @@ export default function TransactionHistory() {
       title: 'Amount money',
       render: ({ amountMoney, senderBill }) => (
         <div>
-          {amountMoney} {senderBill.currency.name}
+          {senderBill.user.uuid === user.uuid ? (
+            <StyledSenderAmountMoney>
+              -{amountMoney} {senderBill.currency.name}
+            </StyledSenderAmountMoney>
+          ) : (
+            <>
+              {amountMoney} {senderBill.currency.name}
+            </>
+          )}
         </div>
       ),
     },
@@ -81,11 +101,22 @@ export default function TransactionHistory() {
       title: 'Transfer Title',
       render: ({ transferTitle }) => <div>{transferTitle}</div>,
     },
+    {
+      title: 'Date',
+      render: ({ updatedAt }) => (
+        <div>
+          {format(
+            new Date(updatedAt),
+            locale === 'en' ? dateFormat(12) : dateFormat(24),
+          )}
+        </div>
+      ),
+    },
   ];
 
   return (
     <Table
-      rowKey={(record) => record.uuid}
+      rowKey={({ uuid }) => uuid}
       loading={tableLoading}
       dataSource={data}
       columns={columns}

@@ -89,7 +89,7 @@ export default function Bills() {
               pagination={false}
               dataSource={bills}
               columns={columns}
-              rowKey={(record) => record.uuid}
+              rowKey={({ uuid }) => uuid}
             />
           </StyledTableWrapper>
         )}

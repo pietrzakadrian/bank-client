@@ -28,6 +28,6 @@ export default defineMessages({
   transferConfirmedDescription: {
     id: `${scope}.transfer.confirmed.description`,
     defaultMessage:
-      'Your balance has been updated. Check your transfer history in the History tab',
+      'Your balance has been updated. Check your transfer history in the History tab.',
   },
 });

@@ -13,17 +13,16 @@ import {
   StyledTableWrapper,
 } from 'components/App/Table/Table.style';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import { getRequestName } from 'helpers';
+import { getRequestName, dateFormat } from 'helpers';
 import { GET_RECENT_TRANSACTIONS_REQUEST } from 'containers/DashboardPage/constants';
 import { FormattedMessage } from 'react-intl';
 import {
   StyledSenderAmountMoney,
   StyledUser,
   StyledTypography,
-} from './RecentTransactions.style';
+} from 'components/App/Transactions/Transactions.style';
 import messages from './messages';
 
-const dateFormat = `dd.MM.yyyy`;
 const stateSelector = createStructuredSelector({
   user: makeSelectUser(),
   recentTransactions: makeSelectRecentTransactions(),
@@ -74,7 +73,7 @@ export default function RecentTransactions() {
     {
       render: ({ updatedAt, amountMoney, senderBill }) => (
         <div>
-          <div>{format(new Date(updatedAt), dateFormat)}</div>
+          <div>{format(new Date(updatedAt), dateFormat())}</div>
           <div>
             {senderBill.user.uuid === user.uuid ? (
               <StyledSenderAmountMoney>
@@ -105,7 +104,7 @@ export default function RecentTransactions() {
                 pagination={false}
                 dataSource={recentTransactions}
                 columns={columns}
-                rowKey={(record) => record.uuid}
+                rowKey={({ uuid }) => uuid}
               />
             </StyledTableWrapper>
           )}

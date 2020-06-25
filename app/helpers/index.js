@@ -26,3 +26,16 @@ export const getRequestName = (actionType) => {
   const [, requestName] = matches;
   return requestName;
 };
+
+export const dateFormat = (type = '') => {
+  switch (type) {
+    case 12: {
+      return `dd.MM.yyyy, hh:mm aa`;
+    }
+    case 24: {
+      return `dd.MM.yyyy, HH:mm`;
+    }
+    default:
+      return `dd.MM.yyyy`;
+  }
+};

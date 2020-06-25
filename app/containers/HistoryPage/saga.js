@@ -10,7 +10,7 @@ import {
 
 export function* getTransactionHistory({ currentPage }) {
   const { accessToken } = yield select(makeSelectToken());
-  const requestURL = `${api.transactions()}?page=${currentPage}`;
+  const requestURL = `${api.transactions()}?page=${currentPage}&order=DESC`;
   const requestParameters = {
     method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}` },

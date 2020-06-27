@@ -52,6 +52,10 @@ export const StyledFormItem = styled(Form.Item)`
   .ant-form-item-label {
     padding-bottom: 0;
 
+    label.ant-form-item-required {
+      font-size: 14px;
+    }
+
     .ant-form-item-required {
       font-size: 15.5px;
 

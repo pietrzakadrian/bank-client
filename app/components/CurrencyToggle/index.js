@@ -13,6 +13,7 @@ import { intlShape, injectIntl } from 'react-intl';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { GET_CURRENCIES_REQUEST } from 'containers/App/constants';
 import { getRequestName } from 'helpers';
+import { StyledFormItem } from 'components/Form/Form.style';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
@@ -20,7 +21,12 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(getRequestName(GET_CURRENCIES_REQUEST)),
 });
 
-function CurrencyToggle({ intl, defaultValue }) {
+/*
+  This component should not be wrapped in Form.Item, but it must stay so because validation then works.
+  Dependent variables have been moved to props.
+  */
+
+function CurrencyToggle({ intl, defaultValue, label, tailed }) {
   const { isLoading, currencies } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
@@ -30,26 +36,40 @@ function CurrencyToggle({ intl, defaultValue }) {
     dispatch(selectCurrencyAction(currency));
 
   return (
-    <Select
-      onClick={onGetCurrencies}
-      notFoundContent={isLoading ? <LoadingIndicator /> : null}
-      onSelect={onSelectCurrency}
-      placeholder={intl.formatMessage(messages.placeholder)}
-      defaultValue={defaultValue}
+    <StyledFormItem
+      label={label}
+      tailed={tailed}
       name="currency"
+      rules={[
+        {
+          required: true,
+          message: intl.formatMessage(messages.validation),
+        },
+      ]}
     >
-      {currencies?.map((currency) => (
-        <Select.Option key={currency.uuid} value={currency.uuid}>
-          {currency.name}
-        </Select.Option>
-      ))}
-    </Select>
+      <Select
+        onClick={onGetCurrencies}
+        notFoundContent={isLoading ? <LoadingIndicator /> : null}
+        onSelect={onSelectCurrency}
+        placeholder={intl.formatMessage(messages.placeholder)}
+        defaultValue={defaultValue}
+        name="currency"
+      >
+        {currencies?.map((currency) => (
+          <Select.Option key={currency.uuid} value={currency.uuid}>
+            {currency.name}
+          </Select.Option>
+        ))}
+      </Select>
+    </StyledFormItem>
   );
 }
 
 CurrencyToggle.propTypes = {
   intl: intlShape.isRequired,
   defaultValue: PropTypes.string,
+  label: PropTypes.string,
+  tailed: PropTypes.bool,
 };
 
 export default injectIntl(CurrencyToggle);

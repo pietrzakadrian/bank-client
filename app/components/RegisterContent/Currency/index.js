@@ -1,36 +1,16 @@
 import React from 'react';
 import { intlShape, injectIntl } from 'react-intl';
-import { StyledFormItem } from 'components/Form/Form.style';
 import CurrencyToggle from 'components/CurrencyToggle';
-import { createStructuredSelector } from 'reselect';
-import { makeSelectCurrency } from 'containers/RegisterPage/selectors';
-import { useSelector } from 'react-redux';
 import messages from './messages';
 
-const stateSelector = createStructuredSelector({
-  currency: makeSelectCurrency(),
-});
+/*
+  This should be wrapped in Form.Item, but then validation of this field does not work.
+  That's why Form.Item has been added to CurrencyToggle.
+  This component was created because I wanted to keep the component structure.
+  */
 
 function Currency({ intl }) {
-  const { currency } = useSelector(stateSelector);
-
-  const checkCurrencySelected = () => {
-    if (currency) {
-      return Promise.resolve();
-    }
-
-    return Promise.reject(new Error(intl.formatMessage(messages.validation)));
-  };
-
-  return (
-    <StyledFormItem
-      label={intl.formatMessage(messages.label)}
-      name="currency"
-      rules={[{ validator: checkCurrencySelected }]}
-    >
-      <CurrencyToggle defaultValue={currency} />
-    </StyledFormItem>
-  );
+  return <CurrencyToggle label={intl.formatMessage(messages.label)} />;
 }
 
 Currency.propTypes = {

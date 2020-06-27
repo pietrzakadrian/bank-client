@@ -1,7 +1,7 @@
 /*
- * CurrencyForm Messages
+ * Currency Messages
  *
- * This contains all the text for the CurrencyForm component.
+ * This contains all the text for the CurrencyToggle component.
  */
 
 import { defineMessages } from 'react-intl';
@@ -12,9 +12,5 @@ export default defineMessages({
   label: {
     id: `${scope}.label`,
     defaultMessage: 'Currency',
-  },
-  validation: {
-    id: `${scope}.validation`,
-    defaultMessage: 'Currency is required.',
   },
 });

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button, Form } from 'antd';
-import { StyledForm, StyledFormItem } from 'components/Form/Form.style';
+import { StyledForm } from 'components/Form/Form.style';
 import { createStructuredSelector } from 'reselect';
 import {
   makeSelectIsOpenedModal,
@@ -29,7 +29,7 @@ const stateSelector = createStructuredSelector({
 function Modal({ intl }) {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const { currency, isOpenedModal, isLoading } = useSelector(stateSelector);
+  const { isOpenedModal, isLoading } = useSelector(stateSelector);
 
   useEffect(() => {
     form.validateFields(['currency']);
@@ -38,21 +38,12 @@ function Modal({ intl }) {
   const toggleModal = () => dispatch(toggleModalAction());
   const createNewBill = () => dispatch(createNewBillAction());
 
-  const checkCurrencySelected = () => {
-    if (currency) {
-      return Promise.resolve();
-    }
-
-    return Promise.reject(
-      new Error(intl.formatMessage(messages.currencyRequired)),
-    );
-  };
-
   const onValidateFields = async () => {
     try {
       await form.validateFields();
       createNewBill();
       toggleModal();
+      form.resetFields();
     } catch (error) {
       Error(error);
     }
@@ -89,13 +80,7 @@ function Modal({ intl }) {
         </p>
 
         <StyledForm form={form} name="create-new-bill">
-          <StyledFormItem
-            tailed="true"
-            name="currency"
-            rules={[{ validator: checkCurrencySelected }]}
-          >
-            <CurrencyToggle />
-          </StyledFormItem>
+          <CurrencyToggle tailed />
         </StyledForm>
 
         <p>

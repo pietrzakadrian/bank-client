@@ -12,7 +12,9 @@ import { getUserDataAction } from 'containers/SettingsPage/actions';
 import {
   StyledFormWrapper,
   StyledForm,
+  StyledFormActionsWrapper,
   StyledFormItem,
+  StyledButton,
 } from 'components/Form/Form.style';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { Input } from 'antd';
@@ -39,32 +41,52 @@ export default function SettingsForm() {
 
   return (
     <StyledFormWrapper shadowed>
-      {isLoading ? (
-        <LoadingIndicator />
-      ) : (
-        <StyledForm layout="vertical" name="settings">
-          <StyledFormItem label="firstName" name="firstName">
-            <Input name="firstName" defaultValue={user.firstName} />
-          </StyledFormItem>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        {isLoading ? (
+          <LoadingIndicator />
+        ) : (
+          <>
+            <StyledForm
+              style={{ margin: 20 }}
+              layout="vertical"
+              name="settings"
+            >
+              <StyledFormItem label="First Name" name="firstName">
+                <Input name="firstName" defaultValue={user.firstName} />
+              </StyledFormItem>
 
-          <StyledFormItem tailed label="lastName" name="lastName">
-            <Input name="lastName" defaultValue={user.lastName} />
-          </StyledFormItem>
+              <StyledFormItem tailed label="Last Name" name="lastName">
+                <Input name="lastName" defaultValue={user.lastName} />
+              </StyledFormItem>
 
-          <StyledFormItem tailed label="email" name="email">
-            <Input name="email" defaultValue={user.email} />
-          </StyledFormItem>
+              <StyledFormItem tailed label="E-Mail address" name="email">
+                <Input name="email" defaultValue={user.email} />
+              </StyledFormItem>
 
-          <StyledFormItem tailed label="password" name="password">
-            <Input.Password name="password" />
-          </StyledFormItem>
+              <StyledFormItem tailed label="Password" name="password">
+                <Input.Password name="password" placeholder="New password" />
+              </StyledFormItem>
 
-          <CurrencyToggle defaultValue={user.userConfig?.currency?.name} />
-        </StyledForm>
-      )}
+              <StyledFormActionsWrapper>
+                <StyledButton type="primary">Save data</StyledButton>
+              </StyledFormActionsWrapper>
+            </StyledForm>
 
-      <div>
-        <LocaleToggle />
+            <StyledForm
+              style={{ margin: 20 }}
+              layout="vertical"
+              name="settings-currency"
+            >
+              <CurrencyToggle
+                label="Default currency"
+                defaultValue={user.userConfig?.currency?.name}
+              />
+              <StyledFormItem tailed label="Language">
+                <LocaleToggle />
+              </StyledFormItem>
+            </StyledForm>
+          </>
+        )}
       </div>
     </StyledFormWrapper>
   );

@@ -45,7 +45,7 @@ export default function RegisterForm() {
           <SuccessfulResult />
         ) : (
           <>
-            <StyledForm form={form} layout="vertical" name="register">
+            <StyledForm centered form={form} layout="vertical" name="register">
               {steps[currentStep].content}
             </StyledForm>
 

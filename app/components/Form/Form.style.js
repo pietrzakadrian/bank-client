@@ -34,7 +34,8 @@ export const StyledFormWrapper = styled.div`
 
 export const StyledForm = styled(Form)`
   max-width: 300px;
-  margin: 0 auto;
+  margin: ${({ centered }) => (centered ? '0 auto' : 0)};
+  width: 100%;
 `;
 
 export const StyledInputNumber = styled(InputNumber)`

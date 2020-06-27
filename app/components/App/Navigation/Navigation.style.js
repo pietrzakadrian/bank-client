@@ -16,6 +16,7 @@ export const StyledMenuItem = styled(Menu.Item)`
     a {
       &.active {
         pointer-events: none;
+        user-select: none;
       }
     }
   }

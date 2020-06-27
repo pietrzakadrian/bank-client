@@ -79,7 +79,7 @@ function Modal({ intl }) {
           <FormattedMessage {...messages.descriptionTop} />
         </p>
 
-        <StyledForm form={form} name="create-new-bill">
+        <StyledForm centered form={form} name="create-new-bill">
           <CurrencyToggle tailed />
         </StyledForm>
 

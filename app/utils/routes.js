@@ -4,6 +4,7 @@ import loginMessages from 'containers/LoginPage/messages';
 import dashboardMessages from 'containers/DashboardPage/messages';
 import paymentMessages from 'containers/PaymentPage/messages';
 import historyMessages from 'containers/HistoryPage/messages';
+import settingsMessages from 'containers/SettingsPage/messages';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -31,6 +32,10 @@ export default {
   history: {
     name: <FormattedMessage {...historyMessages.history} />,
     path: '/history',
+  },
+  settings: {
+    name: <FormattedMessage {...settingsMessages.settings} />,
+    path: '/settings',
   },
   privacy: {
     name: 'Privacy',

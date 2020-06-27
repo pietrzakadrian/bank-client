@@ -14,7 +14,6 @@ import {
   GET_ACCOUNT_BALANCE_REQUEST,
   GET_RECENT_TRANSACTIONS_REQUEST,
   CREATE_NEW_BILL_REQUEST,
-  GET_CURRENCIES_REQUEST,
   GET_AVAILABLE_FUNDS_REQUEST,
 } from './constants';
 import {
@@ -24,8 +23,6 @@ import {
   getAccountBalanceErrorAction,
   getRecentTransactionsSuccessAction,
   getRecentTransactionsErrorAction,
-  getCurrenciesSuccessAction,
-  getCurrenciesErrorAction,
   createNewBillSuccessAction,
   createNewBillIncorrectAction,
   getAvailableFundsErrorAction,
@@ -175,17 +172,6 @@ export function* getRecentTransactions() {
   }
 }
 
-export function* getCurrencies() {
-  const requestURL = api.currencies;
-
-  try {
-    const { data } = yield call(request, requestURL);
-    yield put(getCurrenciesSuccessAction(data));
-  } catch (error) {
-    yield put(getCurrenciesErrorAction(error));
-  }
-}
-
 export function* createNewBill() {
   const currency = yield select(makeSelectCurrency());
   const isCollapsedSidebar = yield select(makeSelectIsCollapsedSidebar());
@@ -253,5 +239,4 @@ export default function* dashboardPageSaga() {
   yield takeLatest(GET_BILLS_REQUEST, getBills);
   yield takeLatest(GET_RECENT_TRANSACTIONS_REQUEST, getRecentTransactions);
   yield takeLatest(CREATE_NEW_BILL_REQUEST, createNewBill);
-  yield takeLatest(GET_CURRENCIES_REQUEST, getCurrencies);
 }

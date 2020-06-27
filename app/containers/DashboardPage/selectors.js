@@ -52,9 +52,6 @@ const makeSelectRecentTransactions = () =>
     (substate) => substate.recentTransactions,
   );
 
-const makeSelectCurrencies = () =>
-  createSelector(selectDashboardPageDomain, (substate) => substate.currencies);
-
 const makeSelectCurrency = () =>
   createSelector(selectDashboardPageDomain, (substate) => substate.currency);
 
@@ -74,7 +71,6 @@ export {
   makeSelectBills,
   makeSelectAccountBalanceHistory,
   makeSelectRecentTransactions,
-  makeSelectCurrencies,
   makeSelectCurrency,
   makeSelectIsOpenedModal,
 };

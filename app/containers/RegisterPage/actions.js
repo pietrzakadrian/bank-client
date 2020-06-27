@@ -5,10 +5,7 @@
  */
 
 import {
-  GET_CURRENCIES_SUCCESS,
-  GET_CURRENCIES_ERROR,
   CHANGE_INPUT,
-  SELECT_CURRENCY,
   REGISTER_SUCCESS,
   REGISTER_ERROR,
   CHECK_EMAIL_SUCCESS,
@@ -18,44 +15,16 @@ import {
   PREVIOUS_STEP,
   REGISTER_REQUEST,
   CHECK_EMAIL_REQUEST,
-  GET_CURRENCIES_REQUEST,
   LOGIN_EXPRESS_REQUEST,
   LOGIN_EXPRESS_SUCCESS,
   LOGIN_EXPRESS_ERROR,
 } from './constants';
-
-export function getCurrenciesAction() {
-  return {
-    type: GET_CURRENCIES_REQUEST,
-  };
-}
-
-export function getCurrenciesSuccessAction(data) {
-  return {
-    type: GET_CURRENCIES_SUCCESS,
-    data,
-  };
-}
-
-export function getCurrenciesErrorAction(error) {
-  return {
-    type: GET_CURRENCIES_ERROR,
-    error,
-  };
-}
 
 export function changeInputAction({ name, value }) {
   return {
     type: CHANGE_INPUT,
     name,
     value,
-  };
-}
-
-export function selectCurrencyAction(currency) {
-  return {
-    type: SELECT_CURRENCY,
-    currency,
   };
 }
 

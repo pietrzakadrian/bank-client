@@ -2,8 +2,16 @@ import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
 import { makeSelectToken } from 'containers/App/selectors';
-import { LOGOUT_REQUEST } from './constants';
-import { logoutSuccessAction, logoutErrorAction } from './actions';
+import { FormattedMessage } from 'react-intl';
+import React from 'react';
+import { LOGOUT_REQUEST, GET_CURRENCIES_REQUEST } from './constants';
+import {
+  logoutSuccessAction,
+  logoutErrorAction,
+  getCurrenciesSuccessAction,
+  getCurrenciesErrorAction,
+} from './actions';
+import messages from './messages';
 
 export function* logout() {
   const { accessToken } = yield select(makeSelectToken());
@@ -35,6 +43,19 @@ export function* logout() {
   }
 }
 
+export function* getCurrencies() {
+  const requestURL = api.currencies;
+
+  try {
+    const { data } = yield call(request, requestURL);
+    yield put(getCurrenciesSuccessAction(data));
+  } catch (error) {
+    const message = <FormattedMessage {...messages.serverError} />;
+    yield put(getCurrenciesErrorAction(message));
+  }
+}
+
 export default function* loginPageSaga() {
   yield takeLatest(LOGOUT_REQUEST, logout);
+  yield takeLatest(GET_CURRENCIES_REQUEST, getCurrencies);
 }

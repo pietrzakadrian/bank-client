@@ -13,4 +13,24 @@ export default defineMessages({
     id: `${scope}.header`,
     defaultMessage: 'This is the TransactionHistory component!',
   },
+  sender: {
+    id: `${scope}.sender`,
+    defaultMessage: 'Sender',
+  },
+  recipient: {
+    id: `${scope}.recipient`,
+    defaultMessage: 'Recipient',
+  },
+  date: {
+    id: `${scope}.date`,
+    defaultMessage: 'Date',
+  },
+  amountMoney: {
+    id: `${scope}.amountMoney`,
+    defaultMessage: 'Amount Money',
+  },
+  transferTitle: {
+    id: `${scope}.transferTitle`,
+    defaultMessage: 'Transfer Title',
+  },
 });

@@ -62,10 +62,10 @@ const items = [
   },
   {
     id: 7,
-    name: 'Settings',
-    path: '7',
+    name: routes.settings.name,
+    path: routes.settings.path,
     icon: <SettingOutlined />,
-    disabled: true,
+    disabled: false,
   },
 ];
 

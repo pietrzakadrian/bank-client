@@ -31,7 +31,6 @@ export default function RegisterForm() {
       'firstName',
       'lastName',
       'password',
-      'currency',
       'email',
       'confirm-personal-data',
     ]);

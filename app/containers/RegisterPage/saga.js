@@ -6,14 +6,11 @@ import { FormattedMessage } from 'react-intl';
 import { push } from 'connected-react-router';
 import messages from './messages';
 import {
-  GET_CURRENCIES_REQUEST,
   REGISTER_REQUEST,
   CHECK_EMAIL_REQUEST,
   LOGIN_EXPRESS_REQUEST,
 } from './constants';
 import {
-  getCurrenciesSuccessAction,
-  getCurrenciesErrorAction,
   registerSuccessAction,
   registerErrorAction,
   checkEmailSuccessAction,
@@ -30,18 +27,6 @@ import {
   makeSelectCurrency,
   makeSelectPinCode,
 } from './selectors';
-
-export function* getCurrencies() {
-  const requestURL = api.currencies;
-
-  try {
-    const { data } = yield call(request, requestURL);
-    yield put(getCurrenciesSuccessAction(data));
-  } catch (error) {
-    const message = <FormattedMessage {...messages.serverError} />;
-    yield put(getCurrenciesErrorAction(message));
-  }
-}
 
 export function* register() {
   const firstName = yield select(makeSelectFirstName());
@@ -132,7 +117,6 @@ export function* loginExpress() {
 }
 
 export default function* registerPageSaga() {
-  yield takeLatest(GET_CURRENCIES_REQUEST, getCurrencies);
   yield takeLatest(REGISTER_REQUEST, register);
   yield takeLatest(CHECK_EMAIL_REQUEST, checkEmail);
   yield takeLatest(LOGIN_EXPRESS_REQUEST, loginExpress);

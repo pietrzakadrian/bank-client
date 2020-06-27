@@ -17,8 +17,4 @@ export default defineMessages({
     id: `${scope}.validation`,
     defaultMessage: 'Currency is required.',
   },
-  placeholder: {
-    id: `${scope}.placeholder`,
-    defaultMessage: 'Select currency',
-  },
 });

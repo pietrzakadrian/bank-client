@@ -6,10 +6,9 @@
 
 import produce from 'immer';
 import { LOCATION_CHANGE } from 'connected-react-router';
+import { SELECT_CURRENCY } from 'containers/App/constants';
 import {
-  GET_CURRENCIES_SUCCESS,
   CHANGE_INPUT,
-  SELECT_CURRENCY,
   REGISTER_SUCCESS,
   NEXT_STEP,
   PREVIOUS_STEP,
@@ -18,20 +17,16 @@ import {
 export const initialState = {
   firstName: '',
   lastName: '',
-  currency: '',
+  currency: null,
   email: '',
   password: '',
   pinCode: '',
-  currencies: [],
   currentStep: 0,
 };
 
 /* eslint-disable default-case, no-param-reassign, consistent-return */
 const registerPageReducer = produce((draft, action) => {
   switch (action.type) {
-    case GET_CURRENCIES_SUCCESS:
-      draft.currencies = action.data;
-      break;
     case REGISTER_SUCCESS:
       draft.pinCode = action.pinCode;
       break;

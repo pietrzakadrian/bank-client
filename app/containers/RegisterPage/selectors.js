@@ -29,9 +29,6 @@ const makeSelectEmail = () =>
 const makeSelectPinCode = () =>
   createSelector(selectRegisterPageDomain, (substate) => substate.pinCode);
 
-const makeSelectCurrencies = () =>
-  createSelector(selectRegisterPageDomain, (substate) => substate.currencies);
-
 const makeSelectError = () =>
   createSelector(selectRegisterPageDomain, (substate) => substate.error);
 
@@ -50,7 +47,6 @@ export {
   makeSelectCurrency,
   makeSelectEmail,
   makeSelectPinCode,
-  makeSelectCurrencies,
   makeSelectError,
   makeSelectCurrentStep,
 };

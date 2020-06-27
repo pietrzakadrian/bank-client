@@ -1,58 +1,34 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { Select } from 'antd';
-import { makeSelectCurrencies } from 'containers/RegisterPage/selectors';
-import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import {
-  getCurrenciesAction,
-  selectCurrencyAction,
-} from 'containers/RegisterPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
-
 import { StyledFormItem } from 'components/Form/Form.style';
-import LoadingIndicator from 'components/LoadingIndicator';
-import { GET_CURRENCIES_REQUEST } from 'containers/RegisterPage/constants';
-import { getRequestName } from 'helpers';
+import CurrencyToggle from 'components/CurrencyToggle';
+import { createStructuredSelector } from 'reselect';
+import { makeSelectCurrency } from 'containers/RegisterPage/selectors';
+import { useSelector } from 'react-redux';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
-  currencies: makeSelectCurrencies(),
-  isLoading: makeSelectIsLoading(getRequestName(GET_CURRENCIES_REQUEST)),
+  currency: makeSelectCurrency(),
 });
 
 function Currency({ intl }) {
-  const { isLoading, currencies } = useSelector(stateSelector);
-  const dispatch = useDispatch();
+  const { currency } = useSelector(stateSelector);
 
-  const onGetCurrencies = () =>
-    !currencies.length && dispatch(getCurrenciesAction());
-  const onSelectCurrency = (currency) =>
-    dispatch(selectCurrencyAction(currency));
+  const checkCurrencySelected = () => {
+    if (currency) {
+      return Promise.resolve();
+    }
+
+    return Promise.reject(new Error(intl.formatMessage(messages.validation)));
+  };
 
   return (
     <StyledFormItem
       label={intl.formatMessage(messages.label)}
       name="currency"
-      rules={[
-        {
-          required: true,
-          message: intl.formatMessage(messages.validation),
-        },
-      ]}
+      rules={[{ validator: checkCurrencySelected }]}
     >
-      <Select
-        onClick={onGetCurrencies}
-        notFoundContent={isLoading ? <LoadingIndicator /> : null}
-        onSelect={onSelectCurrency}
-        placeholder={intl.formatMessage(messages.placeholder)}
-      >
-        {currencies.map((currency) => (
-          <Select.Option key={currency.uuid} value={currency.uuid}>
-            {currency.name}
-          </Select.Option>
-        ))}
-      </Select>
+      <CurrencyToggle defaultValue={currency} />
     </StyledFormItem>
   );
 }

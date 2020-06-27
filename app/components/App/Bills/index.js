@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import {
-  makeSelectBills,
-  makeSelectCurrencies,
-  makeSelectCurrency,
-} from 'containers/DashboardPage/selectors';
+import { makeSelectBills } from 'containers/DashboardPage/selectors';
 import {
   getBillsAction,
   toggleModalAction,
 } from 'containers/DashboardPage/actions';
-import { makeSelectIsCollapsedSidebar } from 'containers/App/selectors';
+
 import { StyledCard } from 'components/App/Card/Card.style';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
@@ -30,9 +26,6 @@ import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   bills: makeSelectBills(),
-  currencies: makeSelectCurrencies(),
-  currency: makeSelectCurrency(),
-  isCollapsedSidebar: makeSelectIsCollapsedSidebar(),
   isLoading: makeSelectIsLoading(getRequestName(GET_BILLS_REQUEST)),
 });
 

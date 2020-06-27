@@ -18,10 +18,6 @@ import {
   GET_RECENT_TRANSACTIONS_SUCCESS,
   GET_RECENT_TRANSACTIONS_ERROR,
   CHANGE_LAYOUT,
-  GET_CURRENCIES_REQUEST,
-  GET_CURRENCIES_SUCCESS,
-  GET_CURRENCIES_ERROR,
-  SELECT_CURRENCY,
   TOGGLE_MODAL,
   GET_AVAILABLE_FUNDS_REQUEST,
   GET_AVAILABLE_FUNDS_SUCCESS,
@@ -57,33 +53,6 @@ export function getAvailableFundsErrorAction(error) {
 export function toggleModalAction() {
   return {
     type: TOGGLE_MODAL,
-  };
-}
-
-export function getCurrenciesAction() {
-  return {
-    type: GET_CURRENCIES_REQUEST,
-  };
-}
-
-export function getCurrenciesSuccessAction(data) {
-  return {
-    type: GET_CURRENCIES_SUCCESS,
-    data,
-  };
-}
-
-export function getCurrenciesErrorAction(error) {
-  return {
-    type: GET_CURRENCIES_ERROR,
-    error,
-  };
-}
-
-export function selectCurrencyAction(currency) {
-  return {
-    type: SELECT_CURRENCY,
-    currency,
   };
 }
 

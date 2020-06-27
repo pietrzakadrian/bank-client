@@ -66,12 +66,6 @@ export const StyledTable = styled(Table)`
           padding: ${({ minimaled }) => minimaled && '5px 24px 5px 0px'};
         }
       }
-
-      // &:last-child {
-      //   .ant-table-cell {
-      //     border-bottom: 0;
-      //   }
-      // }
     }
 
     .ant-table-tbody {

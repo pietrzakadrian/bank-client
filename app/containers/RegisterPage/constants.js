@@ -4,12 +4,7 @@
  *
  */
 
-export const GET_CURRENCIES_REQUEST = 'app/RegisterPage/GET_CURRENCIES_REQUEST';
-export const GET_CURRENCIES_SUCCESS = 'app/RegisterPage/GET_CURRENCIES_SUCCESS';
-export const GET_CURRENCIES_ERROR = 'app/RegisterPage/GET_CURRENCIES_ERROR';
-
 export const CHANGE_INPUT = 'app/RegisterPage/CHANGE_INPUT';
-export const SELECT_CURRENCY = 'app/RegisterPage/SELECT_CURRENCY';
 
 export const NEXT_STEP = 'app/RegisterPage/NEXT_STEP';
 export const PREVIOUS_STEP = 'app/RegisterPage/PREVIOUS_STEP';

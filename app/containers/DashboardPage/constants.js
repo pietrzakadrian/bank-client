@@ -4,14 +4,6 @@
  *
  */
 
-export const GET_CURRENCIES_REQUEST =
-  'app/DashboardPage/GET_CURRENCIES_REQUEST';
-export const GET_CURRENCIES_SUCCESS =
-  'app/DashboardPage/GET_CURRENCIES_SUCCESS';
-export const GET_CURRENCIES_ERROR = 'app/DashboardPage/GET_CURRENCIES_ERROR';
-
-export const SELECT_CURRENCY = 'app/DashboardPage/SELECT_CURRENCY';
-
 export const CREATE_NEW_BILL_REQUEST =
   'app/DashboardPage/CREATE_NEW_BILL_REQUEST';
 export const CREATE_NEW_BILL_SUCCESS =

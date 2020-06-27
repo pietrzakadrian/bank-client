@@ -29,6 +29,9 @@ const makeSelectIsCollapsedDrawer = () =>
 const makeSelectLayout = () =>
   createSelector(selectGlobalDomain, (globalState) => globalState.layout);
 
+const makeSelectCurrencies = () =>
+  createSelector(selectGlobalDomain, (globalState) => globalState.currencies);
+
 const makeSelectLocation = () =>
   createSelector(selectRouter, (routerState) => routerState.location);
 
@@ -41,4 +44,5 @@ export {
   makeSelectIsCollapsedSidebar,
   makeSelectIsCollapsedDrawer,
   makeSelectLayout,
+  makeSelectCurrencies,
 };

@@ -13,6 +13,7 @@ import {
   LOGOUT_SUCCESS,
   COLLAPSED_SIDEBAR,
   COLLAPSED_DRAWER,
+  GET_CURRENCIES_SUCCESS,
 } from './constants';
 
 export const initialState = {
@@ -21,6 +22,7 @@ export const initialState = {
   isLogged: false,
   token: {},
   user: {},
+  currencies: [],
 };
 
 /* eslint-disable default-case, no-param-reassign, consistent-return */
@@ -44,6 +46,9 @@ const appReducer = produce((draft, action) => {
       break;
     case CHANGE_LAYOUT:
       draft.layout = JSON.parse(JSON.stringify(action.layout));
+      break;
+    case GET_CURRENCIES_SUCCESS:
+      draft.currencies = action.data;
       break;
     case LOCATION_CHANGE:
       draft.isCollapsedDrawer = false;

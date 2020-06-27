@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors } from 'utils';
+import { Table } from 'antd';
 
 export const StyledSenderAmountMoney = styled.div`
   display: contents;
@@ -13,4 +14,10 @@ export const StyledUser = styled.span`
 
 export const StyledTypography = styled.div`
   display: inline;
+`;
+
+export const StyledTable = styled(Table)`
+  .ant-empty {
+    visibility: hidden;
+  }
 `;

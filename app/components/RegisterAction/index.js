@@ -21,10 +21,10 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import { getRequestName } from 'helpers';
 import {
   REGISTER_REQUEST,
-  GET_CURRENCIES_REQUEST,
   CHECK_EMAIL_REQUEST,
 } from 'containers/RegisterPage/constants';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
+import { GET_CURRENCIES_REQUEST } from 'containers/App/constants';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

@@ -1,16 +1,14 @@
-import React from 'react';
-
-import { Select, Button, Form } from 'antd';
+import React, { useEffect } from 'react';
+import { Button, Form } from 'antd';
 import { StyledForm, StyledFormItem } from 'components/Form/Form.style';
 import { createStructuredSelector } from 'reselect';
 import {
-  makeSelectCurrencies,
   makeSelectIsOpenedModal,
+  makeSelectCurrency,
 } from 'containers/DashboardPage/selectors';
 import { useSelector, useDispatch } from 'react-redux';
+import CurrencyToggle from 'components/CurrencyToggle';
 import {
-  getCurrenciesAction,
-  selectCurrencyAction,
   createNewBillAction,
   toggleModalAction,
 } from 'containers/DashboardPage/actions';
@@ -23,7 +21,7 @@ import { StyledModal } from './Modal.style';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
-  currencies: makeSelectCurrencies(),
+  currency: makeSelectCurrency(),
   isOpenedModal: makeSelectIsOpenedModal(),
   isLoading: makeSelectIsLoading(getRequestName(CREATE_NEW_BILL_REQUEST)),
 });
@@ -31,18 +29,30 @@ const stateSelector = createStructuredSelector({
 function Modal({ intl }) {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const { currencies, isOpenedModal, isLoading } = useSelector(stateSelector);
+  const { currency, isOpenedModal, isLoading } = useSelector(stateSelector);
+
+  useEffect(() => {
+    form.validateFields(['currency']);
+  }, []);
 
   const toggleModal = () => dispatch(toggleModalAction());
-  const getCurrencies = () => dispatch(getCurrenciesAction());
   const createNewBill = () => dispatch(createNewBillAction());
+
+  const checkCurrencySelected = () => {
+    if (currency) {
+      return Promise.resolve();
+    }
+
+    return Promise.reject(
+      new Error(intl.formatMessage(messages.currencyRequired)),
+    );
+  };
 
   const onValidateFields = async () => {
     try {
-      await form.validateFields(['currency']);
+      await form.validateFields();
       createNewBill();
       toggleModal();
-      form.resetFields();
     } catch (error) {
       Error(error);
     }
@@ -82,25 +92,9 @@ function Modal({ intl }) {
           <StyledFormItem
             tailed="true"
             name="currency"
-            rules={[
-              {
-                required: true,
-                message: intl.formatMessage(messages.currencyRequired),
-              },
-            ]}
+            rules={[{ validator: checkCurrencySelected }]}
           >
-            <Select
-              onClick={() => !currencies.length && getCurrencies()}
-              notFoundContent={isLoading ? <LoadingIndicator /> : null}
-              onSelect={(currency) => dispatch(selectCurrencyAction(currency))}
-              placeholder={intl.formatMessage(messages.placeholder)}
-            >
-              {currencies.map((currency) => (
-                <Select.Option key={currency.uuid} value={currency.uuid}>
-                  {currency.name}
-                </Select.Option>
-              ))}
-            </Select>
+            <CurrencyToggle />
           </StyledFormItem>
         </StyledForm>
 

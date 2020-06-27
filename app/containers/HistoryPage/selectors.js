@@ -18,4 +18,4 @@ const selectHistoryPageDomain = (state) => state.historyPage || initialState;
 const makeSelectTransactions = () =>
   createSelector(selectHistoryPageDomain, (substate) => substate.transactions);
 
-export { makeSelectTransactions };
+export { selectHistoryPageDomain, makeSelectTransactions };

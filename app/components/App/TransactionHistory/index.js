@@ -9,7 +9,7 @@ import React, { useEffect } from 'react';
 import { getRequestName, dateFormat } from 'helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionHistoryAction } from 'containers/HistoryPage/actions';
-import { Table } from 'antd';
+
 import LoadingIndicator from 'components/LoadingIndicator';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectTransactions } from 'containers/HistoryPage/selectors';
@@ -20,8 +20,11 @@ import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
 import {
   StyledSenderAmountMoney,
   StyledUser,
+  StyledTable,
 } from 'components/App/Transactions/Transactions.style';
 import { format } from 'date-fns';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   locale: makeSelectLocale(),
@@ -60,7 +63,7 @@ export default function TransactionHistory() {
 
   const columns = [
     {
-      title: 'Sender',
+      title: <FormattedMessage {...messages.sender} />,
       render: ({ senderBill }) => (
         <div>
           <StyledUser>
@@ -71,7 +74,7 @@ export default function TransactionHistory() {
       ),
     },
     {
-      title: 'Recipient',
+      title: <FormattedMessage {...messages.recipient} />,
       render: ({ recipientBill }) => (
         <div>
           <StyledUser>
@@ -82,7 +85,7 @@ export default function TransactionHistory() {
       ),
     },
     {
-      title: 'Amount money',
+      title: <FormattedMessage {...messages.amountMoney} />,
       render: ({ amountMoney, senderBill }) => (
         <div>
           {senderBill.user.uuid === user.uuid ? (
@@ -98,11 +101,11 @@ export default function TransactionHistory() {
       ),
     },
     {
-      title: 'Transfer Title',
+      title: <FormattedMessage {...messages.transferTitle} />,
       render: ({ transferTitle }) => <div>{transferTitle}</div>,
     },
     {
-      title: 'Date',
+      title: <FormattedMessage {...messages.date} />,
       render: ({ updatedAt }) => (
         <div>
           {format(
@@ -115,7 +118,7 @@ export default function TransactionHistory() {
   ];
 
   return (
-    <Table
+    <StyledTable
       rowKey={({ uuid }) => uuid}
       loading={tableLoading}
       dataSource={data}

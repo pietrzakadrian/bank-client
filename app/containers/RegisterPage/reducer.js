@@ -27,33 +27,26 @@ export const initialState = {
 
 /* eslint-disable default-case, no-param-reassign, consistent-return */
 const registerPageReducer = produce((draft, action) => {
+  if (window.location.pathname === routes.register.path) {
+    switch (action.type) {
+      case CHANGE_INPUT:
+        draft[action.name] = action.value.trim();
+        break;
+      case SELECT_CURRENCY:
+        draft.currency = action.currency;
+        break;
+      case NEXT_STEP:
+        draft.currentStep += 1;
+        break;
+      case PREVIOUS_STEP:
+        draft.currentStep -= 1;
+        break;
+    }
+  }
+
   switch (action.type) {
     case REGISTER_SUCCESS:
       draft.pinCode = action.pinCode;
-      break;
-    case CHANGE_INPUT:
-      if (window.location.pathname === routes.register.path) {
-        draft[action.name] = action.value.trim();
-      }
-
-      break;
-    case SELECT_CURRENCY:
-      if (window.location.pathname === routes.register.path) {
-        draft.currency = action.currency;
-      }
-
-      break;
-    case NEXT_STEP:
-      if (window.location.pathname === routes.register.path) {
-        draft.currentStep += 1;
-      }
-
-      break;
-    case PREVIOUS_STEP:
-      if (window.location.pathname === routes.register.path) {
-        draft.currentStep -= 1;
-      }
-
       break;
     case LOCATION_CHANGE:
       return initialState;

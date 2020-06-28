@@ -42,9 +42,9 @@ export const initialState = {
 
 /* eslint-disable default-case, no-param-reassign, consistent-return */
 const paymentPageReducer = produce((draft, action) => {
-  switch (action.type) {
-    case CHANGE_INPUT:
-      if (window.location.pathname === routes.payment.path) {
+  if (window.location.pathname === routes.payment.path) {
+    switch (action.type) {
+      case CHANGE_INPUT:
         if (action.name === 'recipientAccountBillNumber') {
           draft.recipientBill =
             draft.recipients?.find(
@@ -54,30 +54,23 @@ const paymentPageReducer = produce((draft, action) => {
         } else {
           draft[action.name] = action.value.trim();
         }
-      }
-
-      break;
-    case CHANGE_INPUT_NUMBER:
-      if (window.location.pathname === routes.payment.path) {
+        break;
+      case CHANGE_INPUT_NUMBER:
         draft[action.name] = action.value || initialState.amountMoney;
-      }
-
-      break;
-    case CHECK_RECIPIENT_CORRECT:
-    case NEXT_STEP:
-      if (window.location.pathname === routes.payment.path) {
+        break;
+      case CHECK_RECIPIENT_CORRECT:
+      case NEXT_STEP:
         draft.currentStep += 1;
-      }
-
-      break;
-    case PREVIOUS_STEP:
-      if (window.location.pathname === routes.payment.path) {
+        break;
+      case PREVIOUS_STEP:
         draft.currentStep -= 1;
         draft.hasCreatedTransaction = false;
         draft.authorizationKey = initialState.authorizationKey;
-      }
+        break;
+    }
+  }
 
-      break;
+  switch (action.type) {
     case GET_AUTHORIZATION_KEY_SUCCESS:
       draft.authorizationKey = action.authorizationKey;
       break;

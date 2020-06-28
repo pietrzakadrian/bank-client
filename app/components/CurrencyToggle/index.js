@@ -69,7 +69,7 @@ CurrencyToggle.propTypes = {
   intl: intlShape.isRequired,
   defaultValue: PropTypes.string,
   label: PropTypes.string,
-  tailed: PropTypes.bool,
+  tailed: PropTypes.string,
 };
 
 export default injectIntl(CurrencyToggle);

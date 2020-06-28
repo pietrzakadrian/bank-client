@@ -37,13 +37,15 @@ export const initialState = {
 
 /* eslint-disable default-case, no-param-reassign, consistent-return */
 const dashboardPageReducer = produce((draft, action) => {
-  switch (action.type) {
-    case SELECT_CURRENCY:
-      if (window.location.pathname === routes.dashboard.path) {
+  if (window.location.pathname === routes.dashboard.path) {
+    switch (action.type) {
+      case SELECT_CURRENCY:
         draft.currency = action.currency;
-      }
+        break;
+    }
+  }
 
-      break;
+  switch (action.type) {
     case GET_BILLS_SUCCESS:
       draft.bills = action.bills.map(formatBill);
       break;

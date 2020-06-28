@@ -22,31 +22,24 @@ export const initialState = {
 
 /* eslint-disable default-case, no-param-reassign, consistent-return */
 const loginPageReducer = produce((draft, action) => {
-  switch (action.type) {
-    case CHANGE_INPUT_NUMBER:
-      if (window.location.pathname === routes.login.path) {
+  if (window.location.pathname === routes.login.path) {
+    switch (action.type) {
+      case CHANGE_INPUT_NUMBER:
         draft[action.name] = parseInt(action.value, 10) || '';
-      }
-
-      break;
-    case CHANGE_INPUT:
-      if (window.location.pathname === routes.login.path) {
+        break;
+      case CHANGE_INPUT:
         draft[action.name] = action.value;
-      }
-
-      break;
-    case NEXT_STEP:
-      if (window.location.pathname === routes.login.path) {
+        break;
+      case NEXT_STEP:
         draft.currentStep += 1;
-      }
-
-      break;
-    case PREVIOUS_STEP:
-      if (window.location.pathname === routes.login.path) {
+        break;
+      case PREVIOUS_STEP:
         draft.currentStep -= 1;
-      }
+        break;
+    }
+  }
 
-      break;
+  switch (action.type) {
     case LOCATION_CHANGE:
       return initialState;
   }

@@ -8,7 +8,7 @@ import {
   getUserDataErrorAction,
   setUserDataSuccessAction,
 } from './actions';
-import { makeSelectUser } from './selectors';
+import { makeSelectNewData } from './selectors';
 
 export function* getUserData() {
   const { accessToken } = yield select(makeSelectToken());
@@ -29,7 +29,7 @@ export function* getUserData() {
 
 export function* setUserData() {
   const { accessToken } = yield select(makeSelectToken());
-  const newData = yield select(makeSelectUser());
+  const newData = yield select(makeSelectNewData());
   const requestURL = api.users();
   const requestParameters = {
     method: 'PATCH',

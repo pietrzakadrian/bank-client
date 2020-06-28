@@ -5,24 +5,39 @@
  */
 
 import produce from 'immer';
-import { SELECT_CURRENCY, CHANGE_INPUT } from 'containers/App/constants';
+import {
+  SELECT_CURRENCY,
+  CHANGE_INPUT,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERROR,
+  TOGGLE_MODAL,
+} from 'containers/App/constants';
 import { routes } from 'utils';
+import { LOCATION_CHANGE } from 'connected-react-router';
 import { GET_USER_DATA_SUCCESS, SET_USER_DATA_SUCCESS } from './constants';
 
 export const initialState = {
+  isOpenedModal: false,
   user: {},
   newData: {},
 };
 
-/* eslint-disable default-case, no-param-reassign */
+/* eslint-disable default-case, no-param-reassign, consistent-return */
 const settingsPageReducer = produce((draft, action) => {
   if (window.location.pathname === routes.settings.path) {
     switch (action.type) {
       case SELECT_CURRENCY:
-        draft.newData.currency = action.currency;
+        if (action.currency !== draft.user.userConfig.currency.uuid) {
+          draft.newData.currency = action.currency;
+          draft.isOpenedModal = true;
+        }
         break;
       case CHANGE_INPUT:
         draft.newData[action.name] = action.value;
+        break;
+      case TOGGLE_MODAL:
+        draft.isOpenedModal = !draft.isOpenedModal;
+        delete draft.newData.currency;
         break;
     }
   }
@@ -32,7 +47,12 @@ const settingsPageReducer = produce((draft, action) => {
     case SET_USER_DATA_SUCCESS:
       draft.user = action.userData;
       draft.newData = initialState.newData;
+      draft.isOpenedModal = false;
       break;
+    case LOCATION_CHANGE:
+    case LOGOUT_SUCCESS:
+    case LOGOUT_ERROR:
+      return initialState;
   }
 }, initialState);
 

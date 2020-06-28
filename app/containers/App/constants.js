@@ -22,3 +22,5 @@ export const PREVIOUS_STEP = 'app/App/PREVIOUS_STEP';
 
 export const CHANGE_INPUT_NUMBER = 'app/App/CHANGE_INPUT_NUMBER';
 export const CHANGE_INPUT = 'app/App/CHANGE_INPUT';
+
+export const TOGGLE_MODAL = 'app/DashboardPage/TOGGLE_MODAL';

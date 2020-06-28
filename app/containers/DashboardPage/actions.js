@@ -18,7 +18,6 @@ import {
   GET_RECENT_TRANSACTIONS_SUCCESS,
   GET_RECENT_TRANSACTIONS_ERROR,
   CHANGE_LAYOUT,
-  TOGGLE_MODAL,
   GET_AVAILABLE_FUNDS_REQUEST,
   GET_AVAILABLE_FUNDS_SUCCESS,
   GET_AVAILABLE_FUNDS_ERROR,
@@ -47,12 +46,6 @@ export function getAvailableFundsErrorAction(error) {
   return {
     type: GET_AVAILABLE_FUNDS_ERROR,
     error,
-  };
-}
-
-export function toggleModalAction() {
-  return {
-    type: TOGGLE_MODAL,
   };
 }
 

@@ -11,6 +11,7 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_ERROR,
   SELECT_CURRENCY,
+  TOGGLE_MODAL,
 } from 'containers/App/constants';
 import { LOCATION_CHANGE } from 'connected-react-router';
 import {
@@ -19,7 +20,6 @@ import {
   GET_ACCOUNT_BALANCE_SUCCESS,
   GET_RECENT_TRANSACTIONS_SUCCESS,
   CREATE_NEW_BILL_SUCCESS,
-  TOGGLE_MODAL,
 } from './constants';
 
 export const initialState = {
@@ -41,6 +41,9 @@ const dashboardPageReducer = produce((draft, action) => {
     switch (action.type) {
       case SELECT_CURRENCY:
         draft.currency = action.currency;
+        break;
+      case TOGGLE_MODAL:
+        draft.isOpenedModal = !draft.isOpenedModal;
         break;
     }
   }
@@ -70,9 +73,7 @@ const dashboardPageReducer = produce((draft, action) => {
     case GET_RECENT_TRANSACTIONS_SUCCESS:
       draft.recentTransactions = action.recentTransactions;
       break;
-    case TOGGLE_MODAL:
-      draft.isOpenedModal = !draft.isOpenedModal;
-      break;
+
     case LOCATION_CHANGE:
     case LOGOUT_SUCCESS:
     case LOGOUT_ERROR:

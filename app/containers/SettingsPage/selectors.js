@@ -21,4 +21,15 @@ const makeSelectUser = () =>
 const makeSelectNewData = () =>
   createSelector(selectSettingsPageDomain, (substate) => substate.newData);
 
-export { selectSettingsPageDomain, makeSelectUser, makeSelectNewData };
+const makeSelectIsOpenedModal = () =>
+  createSelector(
+    selectSettingsPageDomain,
+    (substate) => substate.isOpenedModal,
+  );
+
+export {
+  selectSettingsPageDomain,
+  makeSelectUser,
+  makeSelectNewData,
+  makeSelectIsOpenedModal,
+};

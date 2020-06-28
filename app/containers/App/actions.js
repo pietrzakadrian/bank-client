@@ -18,6 +18,7 @@ import {
   PREVIOUS_STEP,
   CHANGE_INPUT_NUMBER,
   CHANGE_INPUT,
+  TOGGLE_MODAL,
 } from './constants';
 
 export function logoutAction() {
@@ -103,5 +104,11 @@ export function changeInputAction({ name, value }) {
     type: CHANGE_INPUT,
     name,
     value,
+  };
+}
+
+export function toggleModalAction() {
+  return {
+    type: TOGGLE_MODAL,
   };
 }

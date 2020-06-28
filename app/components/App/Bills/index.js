@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectBills } from 'containers/DashboardPage/selectors';
-import {
-  getBillsAction,
-  toggleModalAction,
-} from 'containers/DashboardPage/actions';
-
+import { getBillsAction } from 'containers/DashboardPage/actions';
 import { StyledCard } from 'components/App/Card/Card.style';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
@@ -17,7 +13,7 @@ import {
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
 import Modal from 'components/App/Modal';
-
+import { toggleModalAction } from 'containers/App/actions';
 import { getRequestName } from 'helpers';
 import { GET_BILLS_REQUEST } from 'containers/DashboardPage/constants';
 import { StyledBillAmountMoney } from './Bills.style';

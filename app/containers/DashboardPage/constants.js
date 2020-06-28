@@ -31,8 +31,6 @@ export const GET_RECENT_TRANSACTIONS_ERROR =
 
 export const CHANGE_LAYOUT = 'app/DashboardPage/CHANGE_LAYOUT';
 
-export const TOGGLE_MODAL = 'app/DashboardPage/TOGGLE_MODAL';
-
 export const GET_AVAILABLE_FUNDS_REQUEST =
   'app/DashboardPage/GET_AVAILABLE_FUNDS_REQUEST';
 export const GET_AVAILABLE_FUNDS_SUCCESS =

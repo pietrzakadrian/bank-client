@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Form } from 'antd';
+import { Button } from 'antd';
 import { StyledForm } from 'components/Form/Form.style';
 import { createStructuredSelector } from 'reselect';
 import {
@@ -8,15 +8,13 @@ import {
 } from 'containers/DashboardPage/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import CurrencyToggle from 'components/CurrencyToggle';
-import {
-  createNewBillAction,
-  toggleModalAction,
-} from 'containers/DashboardPage/actions';
+import { createNewBillAction } from 'containers/DashboardPage/actions';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { getRequestName } from 'helpers';
 import { CREATE_NEW_BILL_REQUEST } from 'containers/DashboardPage/constants';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { toggleModalAction } from 'containers/App/actions';
 import { StyledModal } from './Modal.style';
 import messages from './messages';
 
@@ -27,7 +25,7 @@ const stateSelector = createStructuredSelector({
 });
 
 function Modal({ intl }) {
-  const [form] = Form.useForm();
+  const [form] = StyledForm.useForm();
   const dispatch = useDispatch();
   const { isOpenedModal, isLoading } = useSelector(stateSelector);
 
@@ -55,7 +53,7 @@ function Modal({ intl }) {
       visible={isOpenedModal}
       onOk={onValidateFields}
       onCancel={toggleModal}
-      centered
+      centered="true"
       footer={[
         <Button key="back" onClick={toggleModal}>
           <FormattedMessage {...messages.cancel} />

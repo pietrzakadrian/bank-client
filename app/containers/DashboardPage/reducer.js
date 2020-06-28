@@ -6,6 +6,7 @@
 
 import produce from 'immer';
 import { formatBill } from 'helpers';
+import { routes } from 'utils';
 import {
   LOGOUT_SUCCESS,
   LOGOUT_ERROR,
@@ -38,7 +39,10 @@ export const initialState = {
 const dashboardPageReducer = produce((draft, action) => {
   switch (action.type) {
     case SELECT_CURRENCY:
-      draft.currency = action.currency;
+      if (window.location.pathname === routes.dashboard.path) {
+        draft.currency = action.currency;
+      }
+
       break;
     case GET_BILLS_SUCCESS:
       draft.bills = action.bills.map(formatBill);

@@ -6,18 +6,21 @@
 
 import produce from 'immer';
 import { LOCATION_CHANGE } from 'connected-react-router';
-import { LOGOUT_SUCCESS, LOGOUT_ERROR } from 'containers/App/constants';
-
-import { formatBill } from 'helpers';
 import {
-  GET_BILLS_SUCCESS,
-  SEARCH_RECIPIENT_SUCCESS,
-  GET_AUTHORIZATION_KEY_SUCCESS,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERROR,
   CHANGE_INPUT,
   CHANGE_INPUT_NUMBER,
   NEXT_STEP,
-  SELECT_SENDER_BILL,
   PREVIOUS_STEP,
+} from 'containers/App/constants';
+import { formatBill } from 'helpers';
+import { routes } from 'utils';
+import {
+  SELECT_SENDER_BILL,
+  GET_BILLS_SUCCESS,
+  SEARCH_RECIPIENT_SUCCESS,
+  GET_AUTHORIZATION_KEY_SUCCESS,
   CHECK_RECIPIENT_CORRECT,
   CREATE_TRANSACTION_SUCCESS,
   CONFIRM_TRANSACTION_SUCCESS,
@@ -41,27 +44,39 @@ export const initialState = {
 const paymentPageReducer = produce((draft, action) => {
   switch (action.type) {
     case CHANGE_INPUT:
-      if (action.name === 'recipientAccountBillNumber') {
-        draft.recipientBill =
-          draft.recipients?.find(
-            (bill) => bill.accountBillNumber.replace(/ /g, '') === action.value,
-          ) || '';
-      } else {
-        draft[action.name] = action.value.trim();
+      if (window.location.pathname === routes.payment.path) {
+        if (action.name === 'recipientAccountBillNumber') {
+          draft.recipientBill =
+            draft.recipients?.find(
+              (bill) =>
+                bill.accountBillNumber.replace(/ /g, '') === action.value,
+            ) || '';
+        } else {
+          draft[action.name] = action.value.trim();
+        }
       }
 
       break;
     case CHANGE_INPUT_NUMBER:
-      draft[action.name] = action.value || initialState.amountMoney;
+      if (window.location.pathname === routes.payment.path) {
+        draft[action.name] = action.value || initialState.amountMoney;
+      }
+
       break;
     case CHECK_RECIPIENT_CORRECT:
     case NEXT_STEP:
-      draft.currentStep += 1;
+      if (window.location.pathname === routes.payment.path) {
+        draft.currentStep += 1;
+      }
+
       break;
     case PREVIOUS_STEP:
-      draft.currentStep -= 1;
-      draft.hasCreatedTransaction = false;
-      draft.authorizationKey = initialState.authorizationKey;
+      if (window.location.pathname === routes.payment.path) {
+        draft.currentStep -= 1;
+        draft.hasCreatedTransaction = false;
+        draft.authorizationKey = initialState.authorizationKey;
+      }
+
       break;
     case GET_AUTHORIZATION_KEY_SUCCESS:
       draft.authorizationKey = action.authorizationKey;

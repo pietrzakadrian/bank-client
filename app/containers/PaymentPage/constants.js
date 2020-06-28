@@ -41,9 +41,4 @@ export const CONFIRM_TRANSACTION_SUCCESS =
 export const CONFIRM_TRANSACTION_ERROR =
   'app/PaymentPage/CONFIRM_TRANSACTION_ERROR';
 
-export const CHANGE_INPUT = 'app/PaymentPage/CHANGE_INPUT';
-export const CHANGE_INPUT_NUMBER = 'app/PaymentPage/CHANGE_INPUT_NUMBER';
 export const SELECT_SENDER_BILL = 'app/PaymentPage/SELECT_SENDER_BILL';
-
-export const NEXT_STEP = 'app/PaymentPage/NEXT_STEP';
-export const PREVIOUS_STEP = 'app/PaymentPage/PREVIOUS_STEP';

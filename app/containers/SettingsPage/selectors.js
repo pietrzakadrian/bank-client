@@ -18,7 +18,7 @@ const selectSettingsPageDomain = (state) => state.settingsPage || initialState;
 const makeSelectUser = () =>
   createSelector(selectSettingsPageDomain, (substate) => substate.user);
 
-const makeSelectCurrency = () =>
-  createSelector(selectSettingsPageDomain, (substate) => substate.currency);
+const makeSelectNewData = () =>
+  createSelector(selectSettingsPageDomain, (substate) => substate.newData);
 
-export { selectSettingsPageDomain, makeSelectUser, makeSelectCurrency };
+export { selectSettingsPageDomain, makeSelectUser, makeSelectNewData };

@@ -16,3 +16,9 @@ export const GET_CURRENCIES_SUCCESS = 'app/App/GET_CURRENCIES_SUCCESS';
 export const GET_CURRENCIES_ERROR = 'app/SettingsPage/GET_CURRENCIES_ERROR';
 
 export const SELECT_CURRENCY = 'app/App/SELECT_CURRENCY';
+
+export const NEXT_STEP = 'app/App/NEXT_STEP';
+export const PREVIOUS_STEP = 'app/App/PREVIOUS_STEP';
+
+export const CHANGE_INPUT_NUMBER = 'app/App/CHANGE_INPUT_NUMBER';
+export const CHANGE_INPUT = 'app/App/CHANGE_INPUT';

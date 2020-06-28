@@ -14,6 +14,10 @@ import {
   GET_CURRENCIES_REQUEST,
   GET_CURRENCIES_SUCCESS,
   GET_CURRENCIES_ERROR,
+  NEXT_STEP,
+  PREVIOUS_STEP,
+  CHANGE_INPUT_NUMBER,
+  CHANGE_INPUT,
 } from './constants';
 
 export function logoutAction() {
@@ -71,5 +75,33 @@ export function getCurrenciesErrorAction(error) {
   return {
     type: GET_CURRENCIES_ERROR,
     error,
+  };
+}
+
+export function nextStepAction() {
+  return {
+    type: NEXT_STEP,
+  };
+}
+
+export function previousStepAction() {
+  return {
+    type: PREVIOUS_STEP,
+  };
+}
+
+export function changeInputNumberAction({ name, value }) {
+  return {
+    type: CHANGE_INPUT_NUMBER,
+    name,
+    value,
+  };
+}
+
+export function changeInputAction({ name, value }) {
+  return {
+    type: CHANGE_INPUT,
+    name,
+    value,
   };
 }

@@ -7,6 +7,8 @@ import {
   nextStepAction,
   previousStepAction,
   changeInputAction,
+} from 'containers/App/actions';
+import {
   getAuthorizationKeyAction,
   checkRecipientAction,
   createTransactionAction,
@@ -21,7 +23,7 @@ import {
   makeSelectAuthorizationKey,
   makeSelectHasCreatedTransaction,
 } from 'containers/PaymentPage/selectors';
-import steps from 'components/RegisterStep/Steps';
+import steps from 'components/App/PaymentStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import {
   StyledFormActionsWrapper,

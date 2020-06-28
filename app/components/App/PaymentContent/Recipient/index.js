@@ -4,10 +4,8 @@ import { createStructuredSelector } from 'reselect';
 import { StyledFormItem } from 'components/Form/Form.style';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { makeSelectRecipients } from 'containers/PaymentPage/selectors';
-import {
-  searchRecipientAction,
-  changeInputAction,
-} from 'containers/PaymentPage/actions';
+import { changeInputAction } from 'containers/App/actions';
+import { searchRecipientAction } from 'containers/PaymentPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { AutoComplete, Tooltip, Input } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';

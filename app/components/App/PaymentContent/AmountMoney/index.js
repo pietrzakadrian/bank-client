@@ -6,7 +6,7 @@ import {
   makeSelectAmountMoney,
   makeSelectSenderBill,
 } from 'containers/PaymentPage/selectors';
-import { changeInputNumberAction } from 'containers/PaymentPage/actions';
+import { changeInputNumberAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem, StyledInputNumber } from 'components/Form/Form.style';
 import messages from './messages';

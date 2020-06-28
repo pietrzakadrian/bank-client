@@ -80,7 +80,7 @@ function Modal({ intl }) {
         </p>
 
         <StyledForm centered form={form} name="create-new-bill">
-          <CurrencyToggle tailed />
+          <CurrencyToggle tailed="true" />
         </StyledForm>
 
         <p>

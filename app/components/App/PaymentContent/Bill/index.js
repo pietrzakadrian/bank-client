@@ -8,6 +8,7 @@ import {
   getBillsAction,
   selectSenderBillAction,
 } from 'containers/PaymentPage/actions';
+
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
 import { getRequestName } from 'helpers';

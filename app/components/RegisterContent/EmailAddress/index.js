@@ -3,10 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Input, Checkbox } from 'antd';
 import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
-import {
-  changeInputAction,
-  checkEmailAction,
-} from 'containers/RegisterPage/actions';
+import { checkEmailAction } from 'containers/RegisterPage/actions';
+import { changeInputAction } from 'containers/App/actions';
 import { makeSelectEmail } from 'containers/RegisterPage/selectors';
 import { StyledInformation } from 'components/RegisterForm/RegisterForm.style';
 import { StyledFormItem } from 'components/Form/Form.style';

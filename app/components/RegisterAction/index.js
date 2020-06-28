@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import {
-  registerAction,
-  nextStepAction,
-  previousStepAction,
-} from 'containers/RegisterPage/actions';
+import { nextStepAction, previousStepAction } from 'containers/App/actions';
+import { registerAction } from 'containers/RegisterPage/actions';
 import { makeSelectError } from 'providers/ErrorProvider/selectors';
 import { makeSelectCurrentStep } from 'containers/RegisterPage/selectors';
 import steps from 'components/RegisterStep/Steps';

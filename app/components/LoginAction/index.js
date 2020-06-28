@@ -9,11 +9,8 @@ import {
   StyledButton,
 } from 'components/Form/Form.style';
 import LoadingIndicator from 'components/LoadingIndicator';
-import {
-  nextStepAction,
-  previousStepAction,
-  loginAction,
-} from 'containers/LoginPage/actions';
+import { nextStepAction, previousStepAction } from 'containers/App/actions';
+import { loginAction } from 'containers/LoginPage/actions';
 import { makeSelectCurrentStep } from 'containers/LoginPage/selectors';
 import { makeSelectError } from 'providers/ErrorProvider/selectors';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';

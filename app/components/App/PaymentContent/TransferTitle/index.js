@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Input } from 'antd';
 import { makeSelectTransferTitle } from 'containers/PaymentPage/selectors';
-import { changeInputAction } from 'containers/PaymentPage/actions';
+import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
 import messages from './messages';

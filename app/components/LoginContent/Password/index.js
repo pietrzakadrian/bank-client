@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import { Input } from 'antd';
 
 import { makeSelectPassword } from 'containers/LoginPage/selectors';
-import { changeInputAction } from 'containers/LoginPage/actions';
+import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
 import messages from './messages';

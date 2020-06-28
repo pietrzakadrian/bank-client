@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Input } from 'antd';
 import { makeSelectLastName } from 'containers/RegisterPage/selectors';
-import { changeInputAction } from 'containers/RegisterPage/actions';
+import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
 import { nameValidation } from 'helpers';

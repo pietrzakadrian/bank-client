@@ -22,7 +22,7 @@ export default function LoginForm() {
 
   return (
     <StyledFormWrapper>
-      <StyledForm form={form} layout="vertical" name="register">
+      <StyledForm centered="true" form={form} layout="vertical" name="login">
         {steps[currentStep].content}
       </StyledForm>
 

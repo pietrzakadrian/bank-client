@@ -4,11 +4,6 @@
  *
  */
 
-export const CHANGE_INPUT = 'app/RegisterPage/CHANGE_INPUT';
-
-export const NEXT_STEP = 'app/RegisterPage/NEXT_STEP';
-export const PREVIOUS_STEP = 'app/RegisterPage/PREVIOUS_STEP';
-
 export const CHECK_EMAIL_INVALID = 'app/RegisterPage/CHECK_EMAIL_INVALID';
 export const CHECK_EMAIL_REQUEST = 'app/RegisterPage/CHECK_EMAIL_REQUEST';
 export const CHECK_EMAIL_SUCCESS = 'app/RegisterPage/CHECK_EMAIL_SUCCESS';

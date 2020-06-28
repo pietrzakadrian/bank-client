@@ -8,6 +8,9 @@ import {
   GET_USER_DATA_REQUEST,
   GET_USER_DATA_SUCCESS,
   GET_USER_DATA_ERROR,
+  SET_USER_DATA_REQUEST,
+  SET_USER_DATA_SUCCESS,
+  SET_USER_DATA_ERROR,
 } from './constants';
 
 export function getUserDataAction() {
@@ -26,6 +29,26 @@ export function getUserDataSuccessAction(userData) {
 export function getUserDataErrorAction(error) {
   return {
     type: GET_USER_DATA_ERROR,
+    error,
+  };
+}
+
+export function setUserDataAction() {
+  return {
+    type: SET_USER_DATA_REQUEST,
+  };
+}
+
+export function setUserDataSuccessAction(userData) {
+  return {
+    type: SET_USER_DATA_SUCCESS,
+    userData,
+  };
+}
+
+export function setUserDataErrorAction(error) {
+  return {
+    type: SET_USER_DATA_ERROR,
     error,
   };
 }

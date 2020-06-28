@@ -20,14 +20,10 @@ import {
   CONFIRM_TRANSACTION_REQUEST,
   CONFIRM_TRANSACTION_SUCCESS,
   CONFIRM_TRANSACTION_ERROR,
-  CHANGE_INPUT,
-  CHANGE_INPUT_NUMBER,
-  SELECT_SENDER_BILL,
-  NEXT_STEP,
-  PREVIOUS_STEP,
   CHECK_RECIPIENT,
   CHECK_RECIPIENT_CORRECT,
   CHECK_RECIPIENT_INCORRECT,
+  SELECT_SENDER_BILL,
 } from './constants';
 
 export function getBillsAction() {
@@ -146,34 +142,6 @@ export function confirmTransactionErrorAction(error) {
   return {
     type: CONFIRM_TRANSACTION_ERROR,
     error,
-  };
-}
-
-export function changeInputAction({ name, value }) {
-  return {
-    type: CHANGE_INPUT,
-    name,
-    value,
-  };
-}
-
-export function changeInputNumberAction({ name, value }) {
-  return {
-    type: CHANGE_INPUT_NUMBER,
-    name,
-    value,
-  };
-}
-
-export function nextStepAction() {
-  return {
-    type: NEXT_STEP,
-  };
-}
-
-export function previousStepAction() {
-  return {
-    type: PREVIOUS_STEP,
   };
 }
 

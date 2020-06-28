@@ -5,28 +5,17 @@
  */
 
 import {
-  CHANGE_INPUT,
   REGISTER_SUCCESS,
   REGISTER_ERROR,
   CHECK_EMAIL_SUCCESS,
   CHECK_EMAIL_ERROR,
   CHECK_EMAIL_INVALID,
-  NEXT_STEP,
-  PREVIOUS_STEP,
   REGISTER_REQUEST,
   CHECK_EMAIL_REQUEST,
   LOGIN_EXPRESS_REQUEST,
   LOGIN_EXPRESS_SUCCESS,
   LOGIN_EXPRESS_ERROR,
 } from './constants';
-
-export function changeInputAction({ name, value }) {
-  return {
-    type: CHANGE_INPUT,
-    name,
-    value,
-  };
-}
 
 export function registerAction() {
   return {
@@ -73,18 +62,6 @@ export function checkEmailErrorAction(error) {
   return {
     type: CHECK_EMAIL_ERROR,
     error,
-  };
-}
-
-export function nextStepAction() {
-  return {
-    type: NEXT_STEP,
-  };
-}
-
-export function previousStepAction() {
-  return {
-    type: PREVIOUS_STEP,
   };
 }
 

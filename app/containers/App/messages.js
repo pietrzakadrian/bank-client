@@ -1,7 +1,7 @@
 /*
- * DashboardPage Messages
+ * App Messages
  *
- * This contains all the text for the DashboardPage container.
+ * This contains all the text for the App container.
  */
 
 import { defineMessages } from 'react-intl';

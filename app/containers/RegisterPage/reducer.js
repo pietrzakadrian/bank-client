@@ -6,13 +6,14 @@
 
 import produce from 'immer';
 import { LOCATION_CHANGE } from 'connected-react-router';
-import { SELECT_CURRENCY } from 'containers/App/constants';
 import {
-  CHANGE_INPUT,
-  REGISTER_SUCCESS,
+  SELECT_CURRENCY,
   NEXT_STEP,
+  CHANGE_INPUT,
   PREVIOUS_STEP,
-} from './constants';
+} from 'containers/App/constants';
+import { routes } from 'utils';
+import { REGISTER_SUCCESS } from './constants';
 
 export const initialState = {
   firstName: '',
@@ -31,16 +32,28 @@ const registerPageReducer = produce((draft, action) => {
       draft.pinCode = action.pinCode;
       break;
     case CHANGE_INPUT:
-      draft[action.name] = action.value.trim();
+      if (window.location.pathname === routes.register.path) {
+        draft[action.name] = action.value.trim();
+      }
+
       break;
     case SELECT_CURRENCY:
-      draft.currency = action.currency;
+      if (window.location.pathname === routes.register.path) {
+        draft.currency = action.currency;
+      }
+
       break;
     case NEXT_STEP:
-      draft.currentStep += 1;
+      if (window.location.pathname === routes.register.path) {
+        draft.currentStep += 1;
+      }
+
       break;
     case PREVIOUS_STEP:
-      draft.currentStep -= 1;
+      if (window.location.pathname === routes.register.path) {
+        draft.currentStep -= 1;
+      }
+
       break;
     case LOCATION_CHANGE:
       return initialState;

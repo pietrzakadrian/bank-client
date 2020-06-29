@@ -16,12 +16,13 @@ import {
 } from 'components/Form/Form.style';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { getRequestName } from 'helpers';
+import { REGISTER_REQUEST } from 'containers/RegisterPage/constants';
 import {
-  REGISTER_REQUEST,
   CHECK_EMAIL_REQUEST,
-} from 'containers/RegisterPage/constants';
+  GET_CURRENCIES_REQUEST,
+} from 'containers/App/constants';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import { GET_CURRENCIES_REQUEST } from 'containers/App/constants';
+
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

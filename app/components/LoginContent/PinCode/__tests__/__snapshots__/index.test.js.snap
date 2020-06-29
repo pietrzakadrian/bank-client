@@ -5,7 +5,7 @@ exports[`<PinCode /> should render a PinCode 1`] = `
   class="ant-form ant-form-horizontal"
 >
   <div
-    class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 ePwRJs"
+    class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 hnNRbx"
   >
     <div
       class="ant-col ant-form-item-label"

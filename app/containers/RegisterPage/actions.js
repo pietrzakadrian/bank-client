@@ -7,11 +7,7 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_ERROR,
-  CHECK_EMAIL_SUCCESS,
-  CHECK_EMAIL_ERROR,
-  CHECK_EMAIL_INVALID,
   REGISTER_REQUEST,
-  CHECK_EMAIL_REQUEST,
   LOGIN_EXPRESS_REQUEST,
   LOGIN_EXPRESS_SUCCESS,
   LOGIN_EXPRESS_ERROR,
@@ -33,34 +29,6 @@ export function registerSuccessAction(pinCode) {
 export function registerErrorAction(error) {
   return {
     type: REGISTER_ERROR,
-    error,
-  };
-}
-
-export function checkEmailAction(value, reject, resolve) {
-  return {
-    type: CHECK_EMAIL_REQUEST,
-    value,
-    reject,
-    resolve,
-  };
-}
-
-export function checkEmailInvalidAction() {
-  return {
-    type: CHECK_EMAIL_INVALID,
-  };
-}
-
-export function checkEmailSuccessAction() {
-  return {
-    type: CHECK_EMAIL_SUCCESS,
-  };
-}
-
-export function checkEmailErrorAction(error) {
-  return {
-    type: CHECK_EMAIL_ERROR,
     error,
   };
 }

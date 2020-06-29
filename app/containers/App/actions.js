@@ -19,6 +19,10 @@ import {
   CHANGE_INPUT_NUMBER,
   CHANGE_INPUT,
   TOGGLE_MODAL,
+  CHECK_EMAIL_REQUEST,
+  CHECK_EMAIL_INVALID,
+  CHECK_EMAIL_SUCCESS,
+  CHECK_EMAIL_ERROR,
 } from './constants';
 
 export function logoutAction() {
@@ -110,5 +114,33 @@ export function changeInputAction({ name, value }) {
 export function toggleModalAction() {
   return {
     type: TOGGLE_MODAL,
+  };
+}
+
+export function checkEmailAction(value, reject, resolve) {
+  return {
+    type: CHECK_EMAIL_REQUEST,
+    value,
+    reject,
+    resolve,
+  };
+}
+
+export function checkEmailInvalidAction() {
+  return {
+    type: CHECK_EMAIL_INVALID,
+  };
+}
+
+export function checkEmailSuccessAction() {
+  return {
+    type: CHECK_EMAIL_SUCCESS,
+  };
+}
+
+export function checkEmailErrorAction(error) {
+  return {
+    type: CHECK_EMAIL_ERROR,
+    error,
   };
 }

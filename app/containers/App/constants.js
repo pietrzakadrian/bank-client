@@ -23,4 +23,9 @@ export const PREVIOUS_STEP = 'app/App/PREVIOUS_STEP';
 export const CHANGE_INPUT_NUMBER = 'app/App/CHANGE_INPUT_NUMBER';
 export const CHANGE_INPUT = 'app/App/CHANGE_INPUT';
 
-export const TOGGLE_MODAL = 'app/DashboardPage/TOGGLE_MODAL';
+export const TOGGLE_MODAL = 'app/App/TOGGLE_MODAL';
+
+export const CHECK_EMAIL_INVALID = 'app/App/CHECK_EMAIL_INVALID';
+export const CHECK_EMAIL_REQUEST = 'app/App/CHECK_EMAIL_REQUEST';
+export const CHECK_EMAIL_SUCCESS = 'app/App/CHECK_EMAIL_SUCCESS';
+export const CHECK_EMAIL_ERROR = 'app/App/CHECK_EMAIL_ERROR';

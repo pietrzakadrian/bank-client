@@ -1,15 +1,23 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
+import { takeLatest, call, put, select, delay } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
 import { makeSelectToken } from 'containers/App/selectors';
 import { FormattedMessage } from 'react-intl';
+import { emailValidation } from 'helpers';
 import React from 'react';
-import { LOGOUT_REQUEST, GET_CURRENCIES_REQUEST } from './constants';
+import {
+  LOGOUT_REQUEST,
+  GET_CURRENCIES_REQUEST,
+  CHECK_EMAIL_REQUEST,
+} from './constants';
 import {
   logoutSuccessAction,
   logoutErrorAction,
   getCurrenciesSuccessAction,
   getCurrenciesErrorAction,
+  checkEmailSuccessAction,
+  checkEmailErrorAction,
+  checkEmailInvalidAction,
 } from './actions';
 import messages from './messages';
 
@@ -55,7 +63,36 @@ export function* getCurrencies() {
   }
 }
 
+export function* checkEmail({ value, reject, resolve }) {
+  const requestURL = api.users('checkEmail')(value);
+
+  if (!value) {
+    yield call(resolve);
+  }
+
+  if (emailValidation(value)) {
+    try {
+      yield delay(400);
+      const { exist } = yield call(request, requestURL);
+      yield put(checkEmailSuccessAction(exist));
+
+      if (exist) {
+        yield call(reject);
+      } else {
+        yield call(resolve);
+      }
+    } catch (error) {
+      const message = <FormattedMessage {...messages.serverError} />;
+      yield put(checkEmailErrorAction(message));
+    }
+  } else {
+    yield put(checkEmailInvalidAction());
+    yield call(resolve);
+  }
+}
+
 export default function* loginPageSaga() {
   yield takeLatest(LOGOUT_REQUEST, logout);
   yield takeLatest(GET_CURRENCIES_REQUEST, getCurrencies);
+  yield takeLatest(CHECK_EMAIL_REQUEST, checkEmail);
 }

@@ -10,7 +10,7 @@ import {
   GET_USER_DATA_ERROR,
   SET_USER_DATA_REQUEST,
   SET_USER_DATA_SUCCESS,
-  SET_USER_DATA_ERROR,
+  SET_USER_DATA_INCORRECT,
 } from './constants';
 
 export function getUserDataAction() {
@@ -46,9 +46,9 @@ export function setUserDataSuccessAction(userData) {
   };
 }
 
-export function setUserDataErrorAction(error) {
+export function setUserDataIncorrectAction(error) {
   return {
-    type: SET_USER_DATA_ERROR,
+    type: SET_USER_DATA_INCORRECT,
     error,
   };
 }

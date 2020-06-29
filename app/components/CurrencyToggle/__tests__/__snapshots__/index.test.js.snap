@@ -5,19 +5,8 @@ exports[`<Currency /> should render a information 1`] = `
   class="ant-form ant-form-horizontal"
 >
   <div
-    class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 ePwRJs"
+    class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 hnNRbx"
   >
-    <div
-      class="ant-col ant-form-item-label"
-    >
-      <label
-        class="ant-form-item-required"
-        for="currency"
-        title="Currency"
-      >
-        Currency
-      </label>
-    </div>
     <div
       class="ant-col ant-form-item-control"
     >
@@ -29,6 +18,7 @@ exports[`<Currency /> should render a information 1`] = `
         >
           <div
             class="ant-select ant-select-single ant-select-show-arrow"
+            name="currency"
           >
             <div
               class="ant-select-selector"

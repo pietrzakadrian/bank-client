@@ -14,7 +14,11 @@ import {
 } from 'containers/App/constants';
 import { routes } from 'utils';
 import { LOCATION_CHANGE } from 'connected-react-router';
-import { GET_USER_DATA_SUCCESS, SET_USER_DATA_SUCCESS } from './constants';
+import {
+  GET_USER_DATA_SUCCESS,
+  SET_USER_DATA_SUCCESS,
+  SET_USER_DATA_INCORRECT,
+} from './constants';
 
 export const initialState = {
   isOpenedModal: false,
@@ -27,13 +31,18 @@ const settingsPageReducer = produce((draft, action) => {
   if (window.location.pathname === routes.settings.path) {
     switch (action.type) {
       case SELECT_CURRENCY:
-        if (action.currency !== draft.user.userConfig.currency.uuid) {
+        if (draft.user.userConfig.currency.uuid !== action?.currency) {
           draft.newData.currency = action.currency;
           draft.isOpenedModal = true;
         }
         break;
       case CHANGE_INPUT:
-        draft.newData[action.name] = action.value;
+        if (draft.user[action.name] === action.value) {
+          delete draft.newData[action.name];
+        } else {
+          draft.newData[action.name] = action.value;
+        }
+
         break;
       case TOGGLE_MODAL:
         draft.isOpenedModal = !draft.isOpenedModal;
@@ -47,6 +56,9 @@ const settingsPageReducer = produce((draft, action) => {
     case SET_USER_DATA_SUCCESS:
       draft.user = action.userData;
       draft.newData = initialState.newData;
+      draft.isOpenedModal = false;
+      break;
+    case SET_USER_DATA_INCORRECT:
       draft.isOpenedModal = false;
       break;
     case LOCATION_CHANGE:

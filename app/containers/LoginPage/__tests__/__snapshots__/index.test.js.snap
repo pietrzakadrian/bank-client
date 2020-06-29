@@ -117,18 +117,19 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
     class="Formstyle__StyledFormWrapper-sc-7x4ylh-3 bnUxii"
   >
     <form
-      class="ant-form ant-form-vertical Formstyle__StyledForm-sc-7x4ylh-4 iTcOQt"
-      id="register"
+      centered="true"
+      class="ant-form ant-form-vertical Formstyle__StyledForm-sc-7x4ylh-4 lpgLAZ"
+      id="login"
     >
       <div
-        class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 ePwRJs"
+        class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 hnNRbx"
       >
         <div
           class="ant-col ant-form-item-label"
         >
           <label
             class="ant-form-item-required"
-            for="register_pinCode"
+            for="login_pinCode"
             title="Pin code"
           >
             Pin code
@@ -211,7 +212,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
                     aria-valuemin="-9007199254740991"
                     autocomplete="off"
                     class="ant-input-number-input"
-                    id="register_pinCode"
+                    id="login_pinCode"
                     min="-9007199254740991"
                     name="pinCode"
                     placeholder="Enter pin code"

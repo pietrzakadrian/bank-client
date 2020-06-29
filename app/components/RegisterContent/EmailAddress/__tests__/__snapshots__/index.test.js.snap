@@ -5,7 +5,7 @@ exports[`<EmailAddress /> should render a information 1`] = `
   class="ant-form ant-form-horizontal"
 >
   <div
-    class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 ePwRJs"
+    class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 hnNRbx"
   >
     <div
       class="ant-col ant-form-item-label"
@@ -40,7 +40,7 @@ exports[`<EmailAddress /> should render a information 1`] = `
     </div>
   </div>
   <div
-    class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 eHMGva"
+    class="ant-row ant-form-item Formstyle__StyledFormItem-sc-7x4ylh-6 cHmqRL"
     tailed="true"
   >
     <div

@@ -39,3 +39,11 @@ export const dateFormat = (type = '') => {
       return `dd.MM.yyyy`;
   }
 };
+
+export const hasOwnProperties = (inputObject, properties) => {
+  if (properties.some(inputObject.hasOwnProperty, inputObject)) {
+    return true;
+  }
+
+  return false;
+};

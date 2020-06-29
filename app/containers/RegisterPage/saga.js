@@ -1,21 +1,13 @@
-import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
-import { emailValidation } from 'helpers';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { push } from 'connected-react-router';
 import messages from './messages';
-import {
-  REGISTER_REQUEST,
-  CHECK_EMAIL_REQUEST,
-  LOGIN_EXPRESS_REQUEST,
-} from './constants';
+import { REGISTER_REQUEST, LOGIN_EXPRESS_REQUEST } from './constants';
 import {
   registerSuccessAction,
   registerErrorAction,
-  checkEmailSuccessAction,
-  checkEmailErrorAction,
-  checkEmailInvalidAction,
   loginExpressErrorAction,
   loginExpressSuccessAction,
 } from './actions';
@@ -64,34 +56,6 @@ export function* register() {
   }
 }
 
-export function* checkEmail({ value, reject, resolve }) {
-  const requestURL = api.users('checkEmail')(value);
-
-  if (!value) {
-    yield call(resolve);
-  }
-
-  if (emailValidation(value)) {
-    try {
-      yield delay(400);
-      const { exist } = yield call(request, requestURL);
-      yield put(checkEmailSuccessAction(exist));
-
-      if (exist) {
-        yield call(reject);
-      } else {
-        yield call(resolve);
-      }
-    } catch (error) {
-      const message = <FormattedMessage {...messages.serverError} />;
-      yield put(checkEmailErrorAction(message));
-    }
-  } else {
-    yield put(checkEmailInvalidAction());
-    yield call(resolve);
-  }
-}
-
 export function* loginExpress() {
   const pinCode = yield select(makeSelectPinCode());
   const password = yield select(makeSelectPassword());
@@ -118,6 +82,5 @@ export function* loginExpress() {
 
 export default function* registerPageSaga() {
   yield takeLatest(REGISTER_REQUEST, register);
-  yield takeLatest(CHECK_EMAIL_REQUEST, checkEmail);
   yield takeLatest(LOGIN_EXPRESS_REQUEST, loginExpress);
 }

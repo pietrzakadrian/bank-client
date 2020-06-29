@@ -7,6 +7,7 @@ import {
   getUserDataSuccessAction,
   getUserDataErrorAction,
   setUserDataSuccessAction,
+  setUserDataIncorrectAction,
 } from './actions';
 import { makeSelectNewData } from './selectors';
 
@@ -45,7 +46,7 @@ export function* setUserData() {
     const userData = yield call(request, requestURL, requestParameters);
     yield put(setUserDataSuccessAction(userData));
   } catch (error) {
-    // yield setUserDataErrorAction(error);
+    yield put(setUserDataIncorrectAction(error));
   }
 }
 

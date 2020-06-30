@@ -12,7 +12,7 @@ import {
 } from 'components/App/Table/Table.style';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
-import Modal from 'components/App/Modal';
+import Modal from 'components/App/Bills/Modal';
 import { toggleModalAction } from 'containers/App/actions';
 import { getRequestName } from 'helpers';
 import { GET_BILLS_REQUEST } from 'containers/DashboardPage/constants';

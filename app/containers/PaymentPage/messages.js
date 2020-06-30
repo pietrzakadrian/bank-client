@@ -30,4 +30,8 @@ export default defineMessages({
     defaultMessage:
       'Your balance has been updated. Check your transfer history in the History tab.',
   },
+  authorizationKeyIncorrect: {
+    id: `${scope}.authorization.key.incorrect`,
+    defaultMessage: 'Invalid code',
+  },
 });

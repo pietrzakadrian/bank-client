@@ -19,7 +19,7 @@ import {
   GET_AUTHORIZATION_KEY_ERROR,
   CONFIRM_TRANSACTION_REQUEST,
   CONFIRM_TRANSACTION_SUCCESS,
-  CONFIRM_TRANSACTION_ERROR,
+  CONFIRM_TRANSACTION_INCORRECT,
   CHECK_RECIPIENT,
   CHECK_RECIPIENT_CORRECT,
   CHECK_RECIPIENT_INCORRECT,
@@ -138,9 +138,9 @@ export function confirmTransactionSuccessAction() {
   };
 }
 
-export function confirmTransactionErrorAction(error) {
+export function confirmTransactionIncorrectAction(error) {
   return {
-    type: CONFIRM_TRANSACTION_ERROR,
+    type: CONFIRM_TRANSACTION_INCORRECT,
     error,
   };
 }

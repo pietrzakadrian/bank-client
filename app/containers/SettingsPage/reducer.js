@@ -37,7 +37,7 @@ const settingsPageReducer = produce((draft, action) => {
         }
         break;
       case CHANGE_INPUT:
-        if (draft.user[action.name] === action.value) {
+        if (draft.user[action.name] === action.value || !action.value.length) {
           delete draft.newData[action.name];
         } else {
           draft.newData[action.name] = action.value;

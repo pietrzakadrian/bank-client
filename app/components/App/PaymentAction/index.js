@@ -38,6 +38,7 @@ import {
   CHECK_RECIPIENT_INCORRECT,
   CONFIRM_TRANSACTION_REQUEST,
   CREATE_TRANSACTION_REQUEST,
+  CONFIRM_TRANSACTION_INCORRECT,
 } from 'containers/PaymentPage/constants';
 import { Input } from 'antd';
 import {
@@ -56,6 +57,7 @@ const stateSelector = createStructuredSelector({
   error: makeSelectError([
     getRequestName(GET_BILLS_REQUEST),
     getRequestName(CHECK_RECIPIENT_INCORRECT),
+    getRequestName(CONFIRM_TRANSACTION_INCORRECT),
   ]),
   transferTitle: makeSelectTransferTitle(),
   amountMoney: makeSelectAmountMoney(),
@@ -123,7 +125,7 @@ export default function PaymentAction({ form }) {
             onClick={onCreateTransaction}
             type="primary"
             disabled={isLoading || !!error || hasCreatedTransaction}
-            errored={error ? 1 : 0}
+            errored={error && !authorizationKey ? 1 : 0}
           >
             {(hasCreatedTransaction && (
               <FormattedMessage {...messages.authorizationKeySent} />
@@ -156,11 +158,13 @@ export default function PaymentAction({ form }) {
                   errored={error ? 1 : 0}
                   onClick={onConfirmTransaction}
                 >
-                  {isLoading ? (
-                    <LoadingIndicator />
-                  ) : (
-                    <FormattedMessage {...messages.make} />
-                  )}
+                  {(isLoading && <LoadingIndicator />) ||
+                    (!isLoading && error && authorizationKey && (
+                      <StyledError>{error}</StyledError>
+                    )) ||
+                    (!error && !isLoading && (
+                      <FormattedMessage {...messages.make} />
+                    ))}
                 </StyledButton>
               </CreatedTransactionWrapper>
 

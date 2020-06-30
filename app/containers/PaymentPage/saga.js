@@ -3,6 +3,7 @@ import { takeLatest, debounce, call, put, select } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
 import { notification } from 'antd';
+import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
 import {
   makeSelectToken,
   makeSelectIsCollapsedSidebar,
@@ -36,8 +37,8 @@ import {
   createTransactionSuccessAction,
   getAuthorizationKeySuccessAction,
   // getAuthorizationKeyErrorAction,
+  confirmTransactionIncorrectAction,
   confirmTransactionSuccessAction,
-  // confirmTransactionErrorAction,
 } from './actions';
 import messages from './messages';
 
@@ -109,6 +110,7 @@ export function* checkRecipient() {
 
 export function* createTransaction() {
   const { accessToken } = yield select(makeSelectToken());
+  const locale = yield select(makeSelectLocale());
   const senderBill = yield select(makeSelectSenderBillUuid());
   const recipientBill = yield select(makeSelectRecipientBillUuid());
   const amountMoney = yield select(makeSelectAmountMoney());
@@ -126,6 +128,7 @@ export function* createTransaction() {
       transferTitle,
       senderBill,
       recipientBill,
+      locale,
     }),
   };
 
@@ -210,15 +213,17 @@ export function* confirmTransaction() {
 
     yield put(push(routes.dashboard.path));
   } catch (error) {
-    // yield put(confirmTransactionErrorAction(error));
-    // switch (error.statusCode) {
-    //   case 401:
-    //     yield put(push(routes.login.path));
-    //     break;
-    //   default:
-    //     yield put(push(routes.login.path));
-    //     break;
-    // }
+    let message;
+
+    switch (error.statusCode) {
+      case 404:
+        message = <FormattedMessage {...messages.authorizationKeyIncorrect} />;
+        break;
+      default:
+        break;
+    }
+
+    yield put(confirmTransactionIncorrectAction(message));
   }
 }
 

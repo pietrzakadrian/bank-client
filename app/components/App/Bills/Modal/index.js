@@ -15,7 +15,7 @@ import { getRequestName } from 'helpers';
 import { CREATE_NEW_BILL_REQUEST } from 'containers/DashboardPage/constants';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import { toggleModalAction } from 'containers/App/actions';
-import { StyledModal } from './Modal.style';
+import { StyledModal } from 'components/App/Modal/Modal.style';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

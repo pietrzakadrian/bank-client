@@ -41,7 +41,7 @@ function EmailAddress({ intl }) {
   return (
     <>
       <StyledFormItem
-        label="E-Mail address" // todo: snippet
+        label={intl.formatMessage(messages.label)}
         name="email"
         hasFeedback
         rules={[

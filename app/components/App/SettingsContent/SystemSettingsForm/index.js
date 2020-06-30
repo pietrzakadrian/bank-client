@@ -16,7 +16,8 @@ import { Button } from 'antd';
 import { toggleModalAction } from 'containers/App/actions';
 import { setUserDataAction } from 'containers/SettingsPage/actions';
 import { makeSelectCurrencies } from 'containers/App/selectors';
-import { StyledModal } from '../../Modal/Modal.style';
+import { StyledModal } from 'components/App/Modal/Modal.style';
+import LoadingIndicator from 'components/LoadingIndicator';
 
 const stateSelector = createStructuredSelector({
   currencies: makeSelectCurrencies(),
@@ -51,6 +52,7 @@ export default function SystemSettingsForm() {
       </StyledFormItem>
 
       <StyledModal
+        centered="true"
         title="Change the default currency"
         visible={isOpenedModal}
         onOk={onSetUserData}
@@ -65,7 +67,7 @@ export default function SystemSettingsForm() {
             type="primary"
             onClick={onSetUserData}
           >
-            Confirm
+            {isLoading ? <LoadingIndicator /> : 'Confirm'}
           </Button>,
         ]}
       >

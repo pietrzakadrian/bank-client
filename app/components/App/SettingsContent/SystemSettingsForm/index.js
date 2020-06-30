@@ -44,7 +44,7 @@ export default function SystemSettingsForm() {
     <StyledForm form={form} layout="vertical" name="settings-currency">
       <CurrencyToggle
         label="Default currency"
-        defaultValue={user.userConfig?.currency?.name}
+        defaultValue={user?.userConfig?.currency?.name}
       />
 
       <StyledFormItem tailed="true" label="Language">
@@ -75,8 +75,9 @@ export default function SystemSettingsForm() {
           You are trying to change your default currency to{' '}
           <strong>
             {
-              currencies.find((currency) => currency.uuid === newData?.currency)
-                ?.name
+              currencies.find(
+                (currency) => currency?.uuid === newData?.currency,
+              )?.name
             }
           </strong>
           ? This will convert the available funds in the dashboard.

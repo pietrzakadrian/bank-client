@@ -1,10 +1,12 @@
 /* eslint-disable indent */
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from 'containers/App/actions';
-import { Popconfirm } from 'antd';
+import { Popconfirm, Badge } from 'antd';
 import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import { useMediaQuery } from 'react-responsive';
+import { createStructuredSelector } from 'reselect';
+import { makeSelectUser } from 'containers/App/selectors';
 import {
   StyledHeaderAction,
   StyledHeaderActionItem,
@@ -13,28 +15,19 @@ import {
   StyledBellOutlined,
   StyledPoweroffOutlined,
   StyledHeaderWrapper,
+  StyledBellFilled,
+  StyledMessageFilled,
 } from './HeaderAction.style';
 import messages from './messages';
 
-const actions = [
-  {
-    id: 1,
-    name: <FormattedMessage {...messages.messages} />,
-    icon: <StyledMessageOutlined />,
-  },
-  {
-    id: 2,
-    name: <FormattedMessage {...messages.notifications} />,
-    icon: <StyledBellOutlined />,
-  },
-  {
-    id: 3,
-    name: <FormattedMessage {...messages.logout} />,
-    icon: <StyledPoweroffOutlined />,
-  },
-];
+const stateSelector = createStructuredSelector({
+  user: makeSelectUser(),
+});
 
 function HeaderAction({ intl }) {
+  const {
+    user: { userConfig },
+  } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ maxWidth: 479 });
 
@@ -42,45 +35,57 @@ function HeaderAction({ intl }) {
 
   return (
     <StyledHeaderAction>
-      {actions.map((action, index, arr) => (
-        <StyledHeaderWrapper key={action.id}>
-          {(!isMobile && arr.length - 1 === index && (
-            <Popconfirm
-              placement="bottomRight"
-              title={intl.formatMessage(messages.popConfirmTitle)}
-              onConfirm={logout}
-              okText={intl.formatMessage(messages.popConfirmOk)}
-              cancelText={intl.formatMessage(messages.popConfirmCancel)}
-            >
-              <StyledHeaderActionItem type="link">
-                {action.icon}
-                <StyledHeaderActionItemName>
-                  {action.name}
-                </StyledHeaderActionItemName>
-              </StyledHeaderActionItem>
-            </Popconfirm>
-          )) ||
-            (arr.length - 1 === index && (
-              <StyledHeaderActionItem
-                type="link"
-                onClick={logout}
-                key={action.id}
-              >
-                {action.icon}
-                <StyledHeaderActionItemName>
-                  {action.name}
-                </StyledHeaderActionItemName>
-              </StyledHeaderActionItem>
-            )) || (
-              <StyledHeaderActionItem type="link" key={action.id}>
-                {action.icon}
-                <StyledHeaderActionItemName>
-                  {action.name}
-                </StyledHeaderActionItemName>
-              </StyledHeaderActionItem>
+      <StyledHeaderWrapper>
+        <StyledHeaderActionItem type="link">
+          <Badge count={userConfig?.messagesCount}>
+            {userConfig?.messageStatus ? (
+              <StyledMessageFilled />
+            ) : (
+              <StyledMessageOutlined />
             )}
-        </StyledHeaderWrapper>
-      ))}
+          </Badge>
+          <StyledHeaderActionItemName>
+            <FormattedMessage {...messages.messages} />
+          </StyledHeaderActionItemName>
+        </StyledHeaderActionItem>
+
+        <StyledHeaderActionItem type="link">
+          <Badge count={userConfig?.notificationCount}>
+            {userConfig?.notificationStatus ? (
+              <StyledBellFilled />
+            ) : (
+              <StyledBellOutlined />
+            )}
+          </Badge>
+          <StyledHeaderActionItemName>
+            <FormattedMessage {...messages.notifications} />
+          </StyledHeaderActionItemName>
+        </StyledHeaderActionItem>
+
+        {isMobile ? (
+          <StyledHeaderActionItem type="link" onClick={logout}>
+            <StyledPoweroffOutlined />
+            <StyledHeaderActionItemName>
+              <FormattedMessage {...messages.logout} />
+            </StyledHeaderActionItemName>
+          </StyledHeaderActionItem>
+        ) : (
+          <Popconfirm
+            placement="bottomRight"
+            title={intl.formatMessage(messages.popConfirmTitle)}
+            onConfirm={logout}
+            okText={intl.formatMessage(messages.popConfirmOk)}
+            cancelText={intl.formatMessage(messages.popConfirmCancel)}
+          >
+            <StyledHeaderActionItem type="link">
+              <StyledPoweroffOutlined />
+              <StyledHeaderActionItemName>
+                <FormattedMessage {...messages.logout} />
+              </StyledHeaderActionItemName>
+            </StyledHeaderActionItem>
+          </Popconfirm>
+        )}
+      </StyledHeaderWrapper>
     </StyledHeaderAction>
   );
 }

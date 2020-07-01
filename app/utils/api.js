@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:4000/api';
+const API_BASE_URL = 'http://localhost:4000/bank';
 const AUTH = 'Auth';
 const USERS = 'Users';
 const CURRENCIES = 'Currencies';

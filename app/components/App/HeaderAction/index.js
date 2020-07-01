@@ -38,7 +38,7 @@ function HeaderAction({ intl }) {
       <StyledHeaderWrapper>
         <StyledHeaderActionItem type="link">
           <Badge count={userConfig?.messagesCount}>
-            {userConfig?.messageStatus ? (
+            {userConfig?.messagesCount ? (
               <StyledMessageFilled />
             ) : (
               <StyledMessageOutlined />
@@ -51,7 +51,7 @@ function HeaderAction({ intl }) {
 
         <StyledHeaderActionItem type="link">
           <Badge count={userConfig?.notificationCount}>
-            {userConfig?.notificationStatus ? (
+            {userConfig?.notificationCount ? (
               <StyledBellFilled />
             ) : (
               <StyledBellOutlined />

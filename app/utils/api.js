@@ -4,6 +4,7 @@ const USERS = 'Users';
 const CURRENCIES = 'Currencies';
 const BILLS = 'Bills';
 const TRANSACTIONS = 'Transactions';
+const MESSAGES = 'Messages';
 
 export default {
   auth: {
@@ -13,10 +14,6 @@ export default {
   },
   users: (path = '') => {
     switch (path) {
-      case 'messages':
-        return `${API_BASE_URL}/${USERS}/messages`;
-      case 'notifications':
-        return `${API_BASE_URL}/${USERS}/notifications`;
       case 'checkEmail':
         return (email) => `${API_BASE_URL}/${USERS}/${email}/checkEmail`;
       default:
@@ -24,6 +21,7 @@ export default {
     }
   },
   currencies: `${API_BASE_URL}/${CURRENCIES}`,
+  messages: `${API_BASE_URL}/${MESSAGES}`,
   bills: (path = '') => {
     switch (path) {
       case 'amountMoney':

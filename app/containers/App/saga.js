@@ -9,6 +9,7 @@ import {
   LOGOUT_REQUEST,
   GET_CURRENCIES_REQUEST,
   CHECK_EMAIL_REQUEST,
+  GET_MESSAGES_REQUEST,
 } from './constants';
 import {
   logoutSuccessAction,
@@ -18,6 +19,8 @@ import {
   checkEmailSuccessAction,
   checkEmailErrorAction,
   checkEmailInvalidAction,
+  getMessagesSuccessAction,
+  getMessagesErrorAction,
 } from './actions';
 import messages from './messages';
 
@@ -91,8 +94,26 @@ export function* checkEmail({ value, reject, resolve }) {
   }
 }
 
+export function* getMessages() {
+  const { accessToken } = yield select(makeSelectToken());
+  const requestURL = api.messages;
+  const requestParameters = {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${accessToken}` },
+  };
+
+  try {
+    const { data } = yield call(request, requestURL, requestParameters);
+    yield put(getMessagesSuccessAction(data));
+  } catch (error) {
+    yield put(getMessagesErrorAction(error));
+    yield put(push(routes.login.path));
+  }
+}
+
 export default function* loginPageSaga() {
   yield takeLatest(LOGOUT_REQUEST, logout);
   yield takeLatest(GET_CURRENCIES_REQUEST, getCurrencies);
   yield takeLatest(CHECK_EMAIL_REQUEST, checkEmail);
+  yield takeLatest(GET_MESSAGES_REQUEST, getMessages);
 }

@@ -32,6 +32,9 @@ const makeSelectLayout = () =>
 const makeSelectCurrencies = () =>
   createSelector(selectGlobalDomain, (globalState) => globalState.currencies);
 
+const makeSelectMessages = () =>
+  createSelector(selectGlobalDomain, (globalState) => globalState.messages);
+
 const makeSelectLocation = () =>
   createSelector(selectRouter, (routerState) => routerState.location);
 
@@ -45,4 +48,5 @@ export {
   makeSelectIsCollapsedDrawer,
   makeSelectLayout,
   makeSelectCurrencies,
+  makeSelectMessages,
 };

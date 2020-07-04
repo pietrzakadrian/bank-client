@@ -23,6 +23,9 @@ import {
   CHECK_EMAIL_INVALID,
   CHECK_EMAIL_SUCCESS,
   CHECK_EMAIL_ERROR,
+  GET_MESSAGES_REQUEST,
+  GET_MESSAGES_SUCCESS,
+  GET_MESSAGES_ERROR,
 } from './constants';
 
 export function logoutAction() {
@@ -141,6 +144,26 @@ export function checkEmailSuccessAction() {
 export function checkEmailErrorAction(error) {
   return {
     type: CHECK_EMAIL_ERROR,
+    error,
+  };
+}
+
+export function getMessagesAction() {
+  return {
+    type: GET_MESSAGES_REQUEST,
+  };
+}
+
+export function getMessagesSuccessAction(data) {
+  return {
+    type: GET_MESSAGES_SUCCESS,
+    data,
+  };
+}
+
+export function getMessagesErrorAction(error) {
+  return {
+    type: GET_MESSAGES_ERROR,
     error,
   };
 }

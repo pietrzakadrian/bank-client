@@ -16,6 +16,7 @@ import {
   COLLAPSED_DRAWER,
   GET_CURRENCIES_SUCCESS,
   LOGOUT_ERROR,
+  GET_MESSAGES_SUCCESS,
 } from './constants';
 
 export const initialState = {
@@ -25,6 +26,7 @@ export const initialState = {
   token: {},
   user: {},
   currencies: [],
+  messages: [],
 };
 
 /* eslint-disable default-case, no-param-reassign, consistent-return */
@@ -54,6 +56,9 @@ const appReducer = produce((draft, action) => {
       break;
     case GET_CURRENCIES_SUCCESS:
       draft.currencies = action.data;
+      break;
+    case GET_MESSAGES_SUCCESS:
+      draft.messages = action.data;
       break;
     case LOCATION_CHANGE:
       draft.isCollapsedDrawer = false;

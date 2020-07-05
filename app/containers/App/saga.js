@@ -103,8 +103,8 @@ export function* getMessages() {
   };
 
   try {
-    const { data } = yield call(request, requestURL, requestParameters);
-    yield put(getMessagesSuccessAction(data));
+    const response = yield call(request, requestURL, requestParameters);
+    yield put(getMessagesSuccessAction(response));
   } catch (error) {
     yield put(getMessagesErrorAction(error));
     yield put(push(routes.login.path));

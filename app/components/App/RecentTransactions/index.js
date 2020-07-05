@@ -13,7 +13,7 @@ import {
   StyledTableWrapper,
 } from 'components/App/Table/Table.style';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import { getRequestName, dateFormat } from 'helpers';
+import { getRequestName } from 'helpers';
 import { GET_RECENT_TRANSACTIONS_REQUEST } from 'containers/DashboardPage/constants';
 import { FormattedMessage } from 'react-intl';
 import {
@@ -73,7 +73,7 @@ export default function RecentTransactions() {
     {
       render: ({ updatedAt, amountMoney, senderBill }) => (
         <div>
-          <div>{format(new Date(updatedAt), dateFormat())}</div>
+          <div>{format(new Date(updatedAt), 'dd.MM.yyyy')}</div>
           <div>
             {senderBill.user.uuid === user.uuid ? (
               <StyledSenderAmountMoney>

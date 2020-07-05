@@ -27,23 +27,16 @@ export const getRequestName = (actionType) => {
   return requestName;
 };
 
-export const dateFormat = (type = '') => {
-  switch (type) {
-    case 12: {
-      return `dd.MM.yyyy, hh:mm aa`;
-    }
-    case 24: {
-      return `dd.MM.yyyy, HH:mm`;
-    }
-    default:
-      return `dd.MM.yyyy`;
-  }
-};
-
 export const hasOwnProperties = (inputObject, properties) => {
   if (properties.some(inputObject.hasOwnProperty, inputObject)) {
     return true;
   }
 
   return false;
+};
+
+export const truncateString = (string, maxLength = 190) => {
+  if (!string) return null;
+  if (string.length <= maxLength) return string;
+  return `${string.substring(0, maxLength)}...`;
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button } from 'antd';
 import { StyledForm } from 'components/Form/Form.style';
 import { createStructuredSelector } from 'reselect';
@@ -28,10 +28,6 @@ function Modal({ intl }) {
   const [form] = StyledForm.useForm();
   const dispatch = useDispatch();
   const { isOpenedModal, isLoading } = useSelector(stateSelector);
-
-  useEffect(() => {
-    form.validateFields(['currency']);
-  }, []);
 
   const toggleModal = () => dispatch(toggleModalAction());
   const createNewBill = () => dispatch(createNewBillAction());

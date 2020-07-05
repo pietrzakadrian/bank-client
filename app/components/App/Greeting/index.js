@@ -3,9 +3,8 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectUser } from 'containers/App/selectors';
 import { useSelector } from 'react-redux';
 import { format, getHours } from 'date-fns';
-import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
+import { makeSelectDateFormat } from 'providers/LanguageProvider/selectors';
 import { FormattedMessage } from 'react-intl';
-import { dateFormat } from 'helpers';
 import {
   StyledGreeting,
   StyledNameWrapper,
@@ -15,12 +14,12 @@ import {
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
-  locale: makeSelectLocale(),
   user: makeSelectUser(),
+  dateFormat: makeSelectDateFormat(),
 });
 
 export default function Greeting() {
-  const { user, locale } = useSelector(stateSelector);
+  const { user, dateFormat } = useSelector(stateSelector);
 
   return (
     <StyledGreeting>
@@ -42,7 +41,7 @@ export default function Greeting() {
           <StyledLastSuccessfulLoggedDateWrapper>
             {format(
               new Date(user?.userAuth?.lastSuccessfulLoggedDate),
-              locale === 'en' ? dateFormat(12) : dateFormat(24),
+              dateFormat,
             )}
           </StyledLastSuccessfulLoggedDateWrapper>
         </div>
@@ -52,10 +51,7 @@ export default function Greeting() {
         <div>
           <FormattedMessage {...messages.lastFailedLogin} />{' '}
           <StyledLastFailedLoggedDate>
-            {format(
-              new Date(user?.userAuth?.lastFailedLoggedDate),
-              locale === 'en' ? dateFormat(12) : dateFormat(24),
-            )}
+            {format(new Date(user?.userAuth?.lastFailedLoggedDate), dateFormat)}
           </StyledLastFailedLoggedDate>
         </div>
       )}

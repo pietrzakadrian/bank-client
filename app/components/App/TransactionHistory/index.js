@@ -6,7 +6,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { getRequestName, dateFormat } from 'helpers';
+import { getRequestName } from 'helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionHistoryAction } from 'containers/HistoryPage/actions';
 
@@ -16,7 +16,7 @@ import { makeSelectTransactions } from 'containers/HistoryPage/selectors';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { GET_TRANSACTION_HISTORY_REQUEST } from 'containers/HistoryPage/constants';
 import { makeSelectUser } from 'containers/App/selectors';
-import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
+import { makeSelectDateFormat } from 'providers/LanguageProvider/selectors';
 import {
   StyledSenderAmountMoney,
   StyledUser,
@@ -27,7 +27,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
-  locale: makeSelectLocale(),
+  dateFormat: makeSelectDateFormat(),
   user: makeSelectUser(),
   transactions: makeSelectTransactions(),
   isLoading: makeSelectIsLoading(
@@ -37,7 +37,7 @@ const stateSelector = createStructuredSelector({
 
 export default function TransactionHistory() {
   const {
-    locale,
+    dateFormat,
     transactions: { data, meta },
     isLoading,
     user,
@@ -107,12 +107,7 @@ export default function TransactionHistory() {
     {
       title: <FormattedMessage {...messages.date} />,
       render: ({ updatedAt }) => (
-        <div>
-          {format(
-            new Date(updatedAt),
-            locale === 'en' ? dateFormat(12) : dateFormat(24),
-          )}
-        </div>
+        <div>{format(new Date(updatedAt), dateFormat)}</div>
       ),
     },
   ];

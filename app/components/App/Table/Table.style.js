@@ -15,6 +15,10 @@ export const StyledTable = styled(Table)`
     height: 100%;
     max-height: 218px;
 
+    br {
+      display: none;
+    }
+
     .ant-spin-nested-loading {
       height: 100%;
 
@@ -83,7 +87,7 @@ export const StyledTable = styled(Table)`
           height: 100%;
           padding: ${(props) => (props.minimaled ? '5px 24px' : '16px 24px;')};
           white-space: nowrap;
-          display: ${({ dataSource }) => !dataSource.lenght && 'none'};
+          display: ${({ dataSource }) => !dataSource.length && 'none'};
 
           &:last-child {
             text-align: right;

@@ -26,6 +26,7 @@ import {
   GET_MESSAGES_REQUEST,
   GET_MESSAGES_SUCCESS,
   GET_MESSAGES_ERROR,
+  TOGGLE_MESSAGE,
 } from './constants';
 
 export function logoutAction() {
@@ -165,5 +166,12 @@ export function getMessagesErrorAction(error) {
   return {
     type: GET_MESSAGES_ERROR,
     error,
+  };
+}
+
+export function toggleMessageAction(uuid) {
+  return {
+    type: TOGGLE_MESSAGE,
+    uuid,
   };
 }

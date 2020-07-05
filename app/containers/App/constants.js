@@ -33,3 +33,5 @@ export const CHECK_EMAIL_ERROR = 'app/App/CHECK_EMAIL_ERROR';
 export const GET_MESSAGES_REQUEST = 'app/App/GET_MESSAGES_REQUEST';
 export const GET_MESSAGES_SUCCESS = 'app/App/GET_MESSAGES_SUCCESS';
 export const GET_MESSAGES_ERROR = 'app/App/GET_MESSAGES_ERROR';
+
+export const TOGGLE_MESSAGE = 'app/App/TOGGLE_MESSAGE';

@@ -17,6 +17,7 @@ import {
   GET_CURRENCIES_SUCCESS,
   LOGOUT_ERROR,
   GET_MESSAGES_SUCCESS,
+  TOGGLE_MESSAGE,
 } from './constants';
 
 export const initialState = {
@@ -27,6 +28,8 @@ export const initialState = {
   user: {},
   currencies: [],
   messages: [],
+  isOpenedMessage: false,
+  openedMessage: '',
 };
 
 /* eslint-disable default-case, no-param-reassign, consistent-return */
@@ -59,6 +62,10 @@ const appReducer = produce((draft, action) => {
       break;
     case GET_MESSAGES_SUCCESS:
       draft.messages = action.data;
+      break;
+    case TOGGLE_MESSAGE:
+      draft.isOpenedMessage = !draft.isOpenedMessage;
+      draft.openedMessage = action?.uuid || initialState.openedMessage;
       break;
     case LOCATION_CHANGE:
       draft.isCollapsedDrawer = false;

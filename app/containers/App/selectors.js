@@ -35,6 +35,18 @@ const makeSelectCurrencies = () =>
 const makeSelectMessages = () =>
   createSelector(selectGlobalDomain, (globalState) => globalState.messages);
 
+const makeSelectIsOpenedMessage = () =>
+  createSelector(
+    selectGlobalDomain,
+    (globalState) => globalState.isOpenedMessage,
+  );
+
+const makeSelectOpenedMessage = () =>
+  createSelector(
+    selectGlobalDomain,
+    (globalState) => globalState.openedMessage,
+  );
+
 const makeSelectLocation = () =>
   createSelector(selectRouter, (routerState) => routerState.location);
 
@@ -49,4 +61,6 @@ export {
   makeSelectLayout,
   makeSelectCurrencies,
   makeSelectMessages,
+  makeSelectIsOpenedMessage,
+  makeSelectOpenedMessage,
 };

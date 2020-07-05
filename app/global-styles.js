@@ -25,7 +25,10 @@ const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
   }
 
-  
+  .ant-dropdown {
+    z-index: 999;
+  }
+
   @media screen and (max-width: 480px) {
     .ant-notification {
       &.ant-notification-bottomLeft {

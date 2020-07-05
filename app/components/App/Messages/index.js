@@ -33,6 +33,7 @@ export default function Messages() {
 
   return (
     <StyledList
+      rowKey={({ uuid }) => uuid}
       style={{ background: 'white' }}
       header={
         <div
@@ -48,7 +49,6 @@ export default function Messages() {
           </div>
         </div>
       }
-      bordered
       dataSource={data}
       renderItem={(message) => (
         <StyledListItem readed={message.readed.toString()}>

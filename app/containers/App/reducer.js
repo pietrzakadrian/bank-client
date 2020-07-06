@@ -19,6 +19,9 @@ import {
   GET_MESSAGES_SUCCESS,
   OPEN_MESSAGE_MODAL,
   CLOSE_MESSAGE_MODAL,
+  GET_NOTIFICATIONS_SUCCESS,
+  READ_MESSAGE_SUCCESS,
+  READ_ALL_MESSAGES_SUCCESS,
 } from './constants';
 
 export const initialState = {
@@ -29,6 +32,7 @@ export const initialState = {
   user: {},
   currencies: [],
   messages: [],
+  notifications: [],
   isOpenedMessage: false,
   openedMessage: '',
 };
@@ -64,15 +68,30 @@ const appReducer = produce((draft, action) => {
     case GET_MESSAGES_SUCCESS:
       draft.messages = action.data;
       break;
+    case GET_NOTIFICATIONS_SUCCESS:
+      draft.notifications = action.data;
+      break;
     case OPEN_MESSAGE_MODAL:
       draft.isOpenedMessage = true;
       draft.openedMessage = action.uuid;
+      break;
+    case READ_MESSAGE_SUCCESS:
       draft.messages.data.find(
-        ({ uuid }) => uuid === action.uuid,
+        ({ uuid }) => uuid === draft.openedMessage,
       ).readed = true;
 
       if (draft.user.userConfig.messageCount) {
         draft.user.userConfig.messageCount -= 1;
+      }
+      break;
+    case READ_ALL_MESSAGES_SUCCESS:
+      draft.messages.data = draft.messages.data.map((message) => ({
+        ...message,
+        readed: true,
+      }));
+
+      if (draft.user.userConfig.messageCount) {
+        draft.user.userConfig.messageCount = 0;
       }
       break;
     case CLOSE_MESSAGE_MODAL:

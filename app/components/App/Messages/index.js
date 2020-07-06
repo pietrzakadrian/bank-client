@@ -13,7 +13,10 @@ import {
   makeSelectLocale,
   makeSelectDateFormat,
 } from 'providers/LanguageProvider/selectors';
-import { openMessageModalAction } from 'containers/App/actions';
+import {
+  openMessageModalAction,
+  readAllMessagesAction,
+} from 'containers/App/actions';
 import { StyledListItem, StyledList } from '../List/List.style';
 import { StyledListItemBottom } from './Messages.style';
 import Modal from './Modal';
@@ -36,6 +39,7 @@ export default function Messages() {
   const dispatch = useDispatch();
 
   const onOpenMessageModal = (uuid) => dispatch(openMessageModalAction(uuid));
+  const onReadAllMessages = () => dispatch(readAllMessagesAction());
 
   return (
     <>
@@ -43,9 +47,11 @@ export default function Messages() {
         rowKey={({ uuid }) => uuid}
         header={
           <>
-            <div>{`New messages: ${user.userConfig.messageCount}`}</div>
+            <div>{`New messages: ${user?.userConfig?.messageCount}`}</div>
             <div>
-              <StyledButton type="link">Mark everything as read</StyledButton>
+              <StyledButton onClick={onReadAllMessages} type="link">
+                Mark everything as read
+              </StyledButton>
             </div>
           </>
         }

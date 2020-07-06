@@ -31,6 +31,12 @@ import {
   READ_ALL_MESSAGES_REQUEST,
   READ_ALL_MESSAGES_SUCCESS,
   READ_ALL_MESSAGES_ERROR,
+  GET_NOTIFICATIONS_REQUEST,
+  GET_NOTIFICATIONS_SUCCESS,
+  GET_NOTIFICATIONS_ERROR,
+  READ_MESSAGE_REQUEST,
+  READ_MESSAGE_SUCCESS,
+  READ_MESSAGE_ERROR,
 } from './constants';
 
 export function logoutAction() {
@@ -186,6 +192,25 @@ export function closeMessageModalAction() {
   };
 }
 
+export function readMessageAction() {
+  return {
+    type: READ_MESSAGE_REQUEST,
+  };
+}
+
+export function readMessageSuccessAction() {
+  return {
+    type: READ_MESSAGE_SUCCESS,
+  };
+}
+
+export function readMessageErrorAction(error) {
+  return {
+    type: READ_MESSAGE_ERROR,
+    error,
+  };
+}
+
 export function readAllMessagesAction() {
   return {
     type: READ_ALL_MESSAGES_REQUEST,
@@ -201,6 +226,26 @@ export function readAllMessagesSuccessAction() {
 export function readAllMessagesErrorAction(error) {
   return {
     type: READ_ALL_MESSAGES_ERROR,
+    error,
+  };
+}
+
+export function getNotificationsAction() {
+  return {
+    type: GET_NOTIFICATIONS_REQUEST,
+  };
+}
+
+export function getNotificationsSuccessAction(data) {
+  return {
+    type: GET_NOTIFICATIONS_SUCCESS,
+    data,
+  };
+}
+
+export function getNotificationsErrorAction(error) {
+  return {
+    type: GET_NOTIFICATIONS_ERROR,
     error,
   };
 }

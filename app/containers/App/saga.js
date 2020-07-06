@@ -1,7 +1,11 @@
 import { takeLatest, call, put, select, delay } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
-import { makeSelectToken } from 'containers/App/selectors';
+import {
+  makeSelectToken,
+  makeSelectOpenedMessage,
+  makeSelectMessages,
+} from 'containers/App/selectors';
 import { FormattedMessage } from 'react-intl';
 import { emailValidation } from 'helpers';
 import React from 'react';
@@ -25,6 +29,9 @@ import {
   getMessagesErrorAction,
   readAllMessagesSuccessAction,
   readAllMessagesErrorAction,
+  readMessageSuccessAction,
+  readMessageErrorAction,
+  readMessageAction,
 } from './actions';
 import messages from './messages';
 
@@ -136,8 +143,18 @@ export function* readAllMessages() {
   }
 }
 
-export function* readMessage({ uuid }) {
+export function* openMessageModal({ uuid }) {
+  const { data } = yield select(makeSelectMessages());
+  const isReadedMessage = data.find((message) => message.uuid === uuid).readed;
+
+  if (!isReadedMessage) {
+    yield call(readMessage);
+  }
+}
+
+export function* readMessage() {
   const { accessToken } = yield select(makeSelectToken());
+  const openedMessage = yield select(makeSelectOpenedMessage());
   const requestURL = api.messages;
   const requestParameters = {
     method: 'PATCH',
@@ -146,14 +163,15 @@ export function* readMessage({ uuid }) {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify({ uuid }),
+    body: JSON.stringify({ uuid: openedMessage }),
   };
 
   try {
+    yield put(readMessageAction());
     yield call(request, requestURL, requestParameters);
-    yield put(readAllMessagesSuccessAction());
+    yield put(readMessageSuccessAction());
   } catch (error) {
-    yield put(readAllMessagesErrorAction(error));
+    yield put(readMessageErrorAction(error));
     yield put(push(routes.login.path));
   }
 }
@@ -164,5 +182,5 @@ export default function* loginPageSaga() {
   yield takeLatest(CHECK_EMAIL_REQUEST, checkEmail);
   yield takeLatest(GET_MESSAGES_REQUEST, getMessages);
   yield takeLatest(READ_ALL_MESSAGES_REQUEST, readAllMessages);
-  yield takeLatest(OPEN_MESSAGE_MODAL, readMessage);
+  yield takeLatest(OPEN_MESSAGE_MODAL, openMessageModal);
 }

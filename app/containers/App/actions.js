@@ -26,7 +26,11 @@ import {
   GET_MESSAGES_REQUEST,
   GET_MESSAGES_SUCCESS,
   GET_MESSAGES_ERROR,
-  TOGGLE_MESSAGE,
+  OPEN_MESSAGE_MODAL,
+  CLOSE_MESSAGE_MODAL,
+  READ_ALL_MESSAGES_REQUEST,
+  READ_ALL_MESSAGES_SUCCESS,
+  READ_ALL_MESSAGES_ERROR,
 } from './constants';
 
 export function logoutAction() {
@@ -169,9 +173,34 @@ export function getMessagesErrorAction(error) {
   };
 }
 
-export function toggleMessageAction(uuid) {
+export function openMessageModalAction(uuid) {
   return {
-    type: TOGGLE_MESSAGE,
+    type: OPEN_MESSAGE_MODAL,
     uuid,
+  };
+}
+
+export function closeMessageModalAction() {
+  return {
+    type: CLOSE_MESSAGE_MODAL,
+  };
+}
+
+export function readAllMessagesAction() {
+  return {
+    type: READ_ALL_MESSAGES_REQUEST,
+  };
+}
+
+export function readAllMessagesSuccessAction() {
+  return {
+    type: READ_ALL_MESSAGES_SUCCESS,
+  };
+}
+
+export function readAllMessagesErrorAction(error) {
+  return {
+    type: READ_ALL_MESSAGES_ERROR,
+    error,
   };
 }

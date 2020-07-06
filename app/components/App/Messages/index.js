@@ -2,12 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { createStructuredSelector } from 'reselect';
-import {
-  makeSelectMessages,
-  makeSelectUser,
-  makeSelectIsOpenedMessage,
-  makeSelectOpenedMessage,
-} from 'containers/App/selectors';
+import { makeSelectMessages, makeSelectUser } from 'containers/App/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { getRequestName, truncateString } from 'helpers';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
@@ -18,14 +13,12 @@ import {
   makeSelectLocale,
   makeSelectDateFormat,
 } from 'providers/LanguageProvider/selectors';
-import Modal from 'antd/lib/modal/Modal';
-import { toggleMessageAction } from 'containers/App/actions';
+import { openMessageModalAction } from 'containers/App/actions';
 import { StyledListItem, StyledList } from '../List/List.style';
 import { StyledListItemBottom } from './Messages.style';
+import Modal from './Modal';
 
 const stateSelector = createStructuredSelector({
-  isOpenedMessage: makeSelectIsOpenedMessage(),
-  openedMessage: makeSelectOpenedMessage(),
   messages: makeSelectMessages(),
   isLoading: makeSelectIsLoading(getRequestName(GET_MESSAGES_REQUEST)),
   locale: makeSelectLocale(),
@@ -35,8 +28,6 @@ const stateSelector = createStructuredSelector({
 
 export default function Messages() {
   const {
-    isOpenedMessage,
-    openedMessage,
     messages: { data },
     locale,
     dateFormat,
@@ -44,7 +35,7 @@ export default function Messages() {
   } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
-  const onToggleMessageModal = (uuid) => dispatch(toggleMessageAction(uuid));
+  const onOpenMessageModal = (uuid) => dispatch(openMessageModalAction(uuid));
 
   return (
     <>
@@ -61,8 +52,9 @@ export default function Messages() {
         dataSource={data}
         renderItem={(message) => (
           <StyledListItem
-            onClick={() => onToggleMessageModal(message.uuid)}
-            readed={message.readed.toString()}
+            key={message.uuid}
+            onClick={() => onOpenMessageModal(message.uuid)}
+            readed={message.readed ? 1 : 0}
           >
             <div>
               <div
@@ -96,27 +88,7 @@ export default function Messages() {
         )}
       />
 
-      <Modal
-        title={
-          data
-            .find((message) => message.uuid === openedMessage)
-            ?.templates.find((template) => template.language.code === locale)
-            .subject
-        }
-        visible={isOpenedMessage}
-        onOk={() => console.log('ok')}
-        onCancel={() => console.log('bye')}
-      >
-        <div
-          dangerouslySetInnerHTML={{
-            __html: data
-              .find((message) => message.uuid)
-              ?.templates.find((template) => template.language.code === locale)
-              .content,
-          }}
-        />
-        {/* todo: actions */}
-      </Modal>
+      <Modal />
     </>
   );
 }

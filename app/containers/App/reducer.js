@@ -17,7 +17,8 @@ import {
   GET_CURRENCIES_SUCCESS,
   LOGOUT_ERROR,
   GET_MESSAGES_SUCCESS,
-  TOGGLE_MESSAGE,
+  OPEN_MESSAGE_MODAL,
+  CLOSE_MESSAGE_MODAL,
 } from './constants';
 
 export const initialState = {
@@ -63,12 +64,25 @@ const appReducer = produce((draft, action) => {
     case GET_MESSAGES_SUCCESS:
       draft.messages = action.data;
       break;
-    case TOGGLE_MESSAGE:
-      draft.isOpenedMessage = !draft.isOpenedMessage;
-      draft.openedMessage = action?.uuid || initialState.openedMessage;
+    case OPEN_MESSAGE_MODAL:
+      draft.isOpenedMessage = true;
+      draft.openedMessage = action.uuid;
+      draft.messages.data.find(
+        ({ uuid }) => uuid === action.uuid,
+      ).readed = true;
+
+      if (draft.user.userConfig.messageCount) {
+        draft.user.userConfig.messageCount -= 1;
+      }
+      break;
+    case CLOSE_MESSAGE_MODAL:
+      draft.isOpenedMessage = initialState.isOpenedMessage;
+      draft.openedMessage = initialState.openedMessage;
       break;
     case LOCATION_CHANGE:
-      draft.isCollapsedDrawer = false;
+      draft.isCollapsedDrawer = initialState.isCollapsedDrawer;
+      draft.isOpenedMessage = initialState.isOpenedMessage;
+      draft.openedMessage = initialState.openedMessage;
       break;
     case LOGOUT_ERROR:
     case LOGOUT_SUCCESS:

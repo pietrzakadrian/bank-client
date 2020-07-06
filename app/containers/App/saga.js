@@ -10,6 +10,8 @@ import {
   GET_CURRENCIES_REQUEST,
   CHECK_EMAIL_REQUEST,
   GET_MESSAGES_REQUEST,
+  READ_ALL_MESSAGES_REQUEST,
+  OPEN_MESSAGE_MODAL,
 } from './constants';
 import {
   logoutSuccessAction,
@@ -21,6 +23,8 @@ import {
   checkEmailInvalidAction,
   getMessagesSuccessAction,
   getMessagesErrorAction,
+  readAllMessagesSuccessAction,
+  readAllMessagesErrorAction,
 } from './actions';
 import messages from './messages';
 
@@ -111,9 +115,54 @@ export function* getMessages() {
   }
 }
 
+export function* readAllMessages() {
+  const { accessToken } = yield select(makeSelectToken());
+  const requestURL = api.messages;
+  const requestParameters = {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+
+  try {
+    yield call(request, requestURL, requestParameters);
+    yield put(readAllMessagesSuccessAction());
+  } catch (error) {
+    yield put(readAllMessagesErrorAction(error));
+    yield put(push(routes.login.path));
+  }
+}
+
+export function* readMessage({ uuid }) {
+  const { accessToken } = yield select(makeSelectToken());
+  const requestURL = api.messages;
+  const requestParameters = {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ uuid }),
+  };
+
+  try {
+    yield call(request, requestURL, requestParameters);
+    yield put(readAllMessagesSuccessAction());
+  } catch (error) {
+    yield put(readAllMessagesErrorAction(error));
+    yield put(push(routes.login.path));
+  }
+}
+
 export default function* loginPageSaga() {
   yield takeLatest(LOGOUT_REQUEST, logout);
   yield takeLatest(GET_CURRENCIES_REQUEST, getCurrencies);
   yield takeLatest(CHECK_EMAIL_REQUEST, checkEmail);
   yield takeLatest(GET_MESSAGES_REQUEST, getMessages);
+  yield takeLatest(READ_ALL_MESSAGES_REQUEST, readAllMessages);
+  yield takeLatest(OPEN_MESSAGE_MODAL, readMessage);
 }

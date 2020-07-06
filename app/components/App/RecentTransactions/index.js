@@ -61,7 +61,7 @@ export default function RecentTransactions() {
                   <FormattedMessage {...messages.from} />{' '}
                 </StyledTypography>
                 <StyledUser>
-                  {recipientBill.user.firstName} {recipientBill.user.lastName}
+                  {senderBill.user.firstName} {senderBill.user.lastName}
                 </StyledUser>
               </div>
             )}

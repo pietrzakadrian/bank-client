@@ -18,7 +18,7 @@ export const StyledList = styled(List)`
 export const StyledListItem = styled(List.Item)`
   &&& {
     padding: 10px 15px;
-    background-color: ${({ readed }) => (readed ? '#e6f7ff' : 'white')};
+    background-color: ${({ readed }) => (!readed ? '#e6f7ff' : 'white')};
 
     br {
       display: none;

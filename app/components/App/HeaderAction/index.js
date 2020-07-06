@@ -43,6 +43,7 @@ function HeaderAction({ intl }) {
           overlay={<Messages />}
           placement="bottomCenter"
           arrow
+          getPopupContainer={(trigger) => trigger.parentNode}
         >
           <StyledHeaderActionItem type="link" onClick={onGetMessages}>
             <Badge count={userConfig?.messageCount}>

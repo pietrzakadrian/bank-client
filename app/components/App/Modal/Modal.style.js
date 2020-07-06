@@ -11,9 +11,5 @@ export const StyledModal = styled(Modal)`
   .ant-modal-footer {
     display: flex;
     justify-content: flex-end;
-
-    button {
-      width: 78px;
-    }
   }
 `;

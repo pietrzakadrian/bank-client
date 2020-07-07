@@ -5,6 +5,7 @@ import {
   makeSelectToken,
   makeSelectOpenedMessage,
   makeSelectMessages,
+  makeSelectUser,
 } from 'containers/App/selectors';
 import { FormattedMessage } from 'react-intl';
 import { emailValidation } from 'helpers';
@@ -16,6 +17,7 @@ import {
   GET_MESSAGES_REQUEST,
   READ_ALL_MESSAGES_REQUEST,
   OPEN_MESSAGE_MODAL,
+  GET_NOTIFICATIONS_REQUEST,
 } from './constants';
 import {
   logoutSuccessAction,
@@ -32,6 +34,8 @@ import {
   readMessageSuccessAction,
   readMessageErrorAction,
   readMessageAction,
+  getNotificationsSuccessAction,
+  getNotificationsErrorAction,
 } from './actions';
 import messages from './messages';
 
@@ -176,6 +180,25 @@ export function* readMessage() {
   }
 }
 
+export function* getNotifications() {
+  const { accessToken } = yield select(makeSelectToken());
+  const user = yield select(makeSelectUser());
+  const requestURL = `${api.notifications}?take=${user?.userConfig?.notificationCount}&order=DESC`;
+
+  const requestParameters = {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${accessToken}` },
+  };
+
+  try {
+    const response = yield call(request, requestURL, requestParameters);
+    yield put(getNotificationsSuccessAction(response));
+  } catch (error) {
+    yield put(getNotificationsErrorAction(error));
+    yield put(push(routes.login.path));
+  }
+}
+
 export default function* loginPageSaga() {
   yield takeLatest(LOGOUT_REQUEST, logout);
   yield takeLatest(GET_CURRENCIES_REQUEST, getCurrencies);
@@ -183,4 +206,5 @@ export default function* loginPageSaga() {
   yield takeLatest(GET_MESSAGES_REQUEST, getMessages);
   yield takeLatest(READ_ALL_MESSAGES_REQUEST, readAllMessages);
   yield takeLatest(OPEN_MESSAGE_MODAL, openMessageModal);
+  yield takeLatest(GET_NOTIFICATIONS_REQUEST, getNotifications);
 }

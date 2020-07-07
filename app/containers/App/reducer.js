@@ -70,6 +70,10 @@ const appReducer = produce((draft, action) => {
       break;
     case GET_NOTIFICATIONS_SUCCESS:
       draft.notifications = action.data;
+
+      if (draft.user.userConfig.notificationCount) {
+        draft.user.userConfig.notificationCount = 0;
+      }
       break;
     case OPEN_MESSAGE_MODAL:
       draft.isOpenedMessage = true;

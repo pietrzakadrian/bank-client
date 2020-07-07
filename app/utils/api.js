@@ -5,6 +5,7 @@ const CURRENCIES = 'Currencies';
 const BILLS = 'Bills';
 const TRANSACTIONS = 'Transactions';
 const MESSAGES = 'Messages';
+const NOTIFICATIONS = 'Notifications';
 
 export default {
   auth: {
@@ -22,6 +23,7 @@ export default {
   },
   currencies: `${API_BASE_URL}/${CURRENCIES}`,
   messages: `${API_BASE_URL}/${MESSAGES}`,
+  notifications: `${API_BASE_URL}/${NOTIFICATIONS}`,
   bills: (path = '') => {
     switch (path) {
       case 'amountMoney':

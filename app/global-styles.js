@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { media } from 'utils';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -29,6 +30,13 @@ const GlobalStyle = createGlobalStyle`
     z-index: 999;
   }
 
+  ${media.tablet`
+    .ant-dropdown {
+      max-width: 340px;
+      width: 340px;
+    }
+  `}
+
   @media screen and (max-width: 480px) {
     .ant-notification {
       &.ant-notification-bottomLeft {
@@ -42,11 +50,6 @@ const GlobalStyle = createGlobalStyle`
         }
       }
     }
-
-    // .ant-modal {
-    //   top: 50%;
-    //   transform: translateY(-50%);
-    // }
   }
 `;
 

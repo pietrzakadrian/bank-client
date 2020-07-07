@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { List } from 'antd';
+import { colors } from 'utils';
 
 export const StyledList = styled(List)`
   background-color: white;
@@ -12,6 +13,11 @@ export const StyledList = styled(List)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .ant-list-items {
+    max-height: 350px;
+    overflow-y: auto;
   }
 `;
 
@@ -32,4 +38,14 @@ export const StyledListItem = styled(List.Item)`
       cursor: pointer;
     }
   }
+`;
+
+export const StyledListItemBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const StyledListItemSender = styled.span`
+  color: ${colors.primaryBlue};
 `;

@@ -13,12 +13,18 @@ import {
   makeSelectLocale,
   makeSelectDateFormat,
 } from 'providers/LanguageProvider/selectors';
+import LoadingIndicator from 'components/LoadingIndicator';
 import {
   openMessageModalAction,
   readAllMessagesAction,
 } from 'containers/App/actions';
-import { StyledListItem, StyledList } from '../List/List.style';
-import { StyledListItemBottom } from './Messages.style';
+import {
+  StyledListItem,
+  StyledList,
+  StyledListItemBottom,
+  StyledListItemSender,
+} from '../List/List.style';
+import { StyledSubject } from './Messages.style';
 import Modal from './Modal';
 
 const stateSelector = createStructuredSelector({
@@ -33,6 +39,7 @@ export default function Messages() {
   const {
     messages: { data },
     locale,
+    isLoading,
     dateFormat,
     user,
   } = useSelector(stateSelector);
@@ -43,56 +50,73 @@ export default function Messages() {
 
   return (
     <>
-      <StyledList
-        rowKey={({ uuid }) => uuid}
-        header={
-          <>
-            <div>{`New messages: ${user?.userConfig?.messageCount}`}</div>
-            <div>
-              <StyledButton onClick={onReadAllMessages} type="link">
+      {isLoading || (!isLoading && !data?.length) ? (
+        <StyledList>
+          <StyledListItem readed="1">
+            {isLoading ? (
+              <LoadingIndicator />
+            ) : (
+              <div style={{ margin: 'auto' }}>Brak wiadomości.</div>
+            )}
+          </StyledListItem>
+        </StyledList>
+      ) : (
+        <StyledList
+          rowKey={({ uuid }) => uuid}
+          header={
+            <>
+              <div>{`New messages: ${user?.userConfig?.messageCount}`}</div>
+
+              <StyledButton
+                onClick={onReadAllMessages}
+                disabled={!user?.userConfig?.messageCount}
+                type="link"
+              >
                 Mark everything as read
               </StyledButton>
-            </div>
-          </>
-        }
-        dataSource={data}
-        renderItem={(message) => (
-          <StyledListItem
-            key={message.uuid}
-            onClick={() => onOpenMessageModal(message.uuid)}
-            readed={message.readed ? 1 : 0}
-          >
-            <div>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: truncateString(
-                    message.templates.find(
-                      (template) => template.language.code === locale,
-                    ).subject,
-                  ),
-                }}
-              />
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: truncateString(
-                    message.templates.find(
-                      (template) => template.language.code === locale,
-                    ).content,
-                  ),
-                }}
-              />
+            </>
+          }
+          dataSource={data}
+          renderItem={(message) => (
+            <StyledListItem
+              key={message.uuid}
+              onClick={() => onOpenMessageModal(message.uuid)}
+              readed={message.readed ? 1 : 0}
+            >
+              <div>
+                <StyledSubject
+                  dangerouslySetInnerHTML={{
+                    __html: truncateString(
+                      message.templates.find(
+                        (template) => template.language.code === locale,
+                      ).subject,
+                    ),
+                  }}
+                />
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: truncateString(
+                      message.templates.find(
+                        (template) => template.language.code === locale,
+                      ).content,
+                    ),
+                  }}
+                />
 
-              <StyledListItemBottom>
-                <div>
-                  {message.sender.uuid === user.uuid ? 'to' : 'from'}{' '}
-                  {message.sender.firstName} {message.sender.lastName}
-                </div>
-                <div>{format(new Date(message.createdAt), dateFormat)}</div>
-              </StyledListItemBottom>
-            </div>
-          </StyledListItem>
-        )}
-      />
+                <StyledListItemBottom>
+                  <div>
+                    {message.sender.uuid === user.uuid ? 'to' : 'from'}{' '}
+                    <StyledListItemSender>
+                      {message.sender.firstName} {message.sender.lastName}
+                    </StyledListItemSender>
+                  </div>
+                  <div>{format(new Date(message.createdAt), dateFormat)}</div>
+                </StyledListItemBottom>
+              </div>
+            </StyledListItem>
+          )}
+        />
+      )}
 
       <Modal />
     </>

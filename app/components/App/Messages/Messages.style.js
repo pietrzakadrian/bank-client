@@ -1,7 +1,6 @@
 import styled from 'styled-components';
+import { typography } from 'utils';
 
-export const StyledListItemBottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+export const StyledSubject = styled.div`
+  font-weight: ${typography.fontWeightBold};
 `;

@@ -1,12 +1,16 @@
 /* eslint-disable indent */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutAction, getMessagesAction } from 'containers/App/actions';
+import {
+  logoutAction,
+  getMessagesAction,
+  getNotificationsAction,
+} from 'containers/App/actions';
 import { Popconfirm, Badge, Dropdown } from 'antd';
 import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import { useMediaQuery } from 'react-responsive';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectUser } from 'containers/App/selectors';
+import { makeSelectUser, makeSelectMessages } from 'containers/App/selectors';
 import {
   StyledHeaderAction,
   StyledHeaderActionItem,
@@ -20,13 +24,16 @@ import {
 } from './HeaderAction.style';
 import messages from './messages';
 import Messages from '../Messages';
+import Notifications from '../Notifications';
 
 const stateSelector = createStructuredSelector({
   user: makeSelectUser(),
+  messages: makeSelectMessages(),
 });
 
 function HeaderAction({ intl }) {
   const {
+    messages: { data },
     user: { userConfig },
   } = useSelector(stateSelector);
   const dispatch = useDispatch();
@@ -34,6 +41,7 @@ function HeaderAction({ intl }) {
 
   const logout = () => dispatch(logoutAction());
   const onGetMessages = () => dispatch(getMessagesAction());
+  const onGetNotifications = () => dispatch(getNotificationsAction());
 
   return (
     <StyledHeaderAction>
@@ -42,10 +50,13 @@ function HeaderAction({ intl }) {
           trigger={['click']}
           overlay={<Messages />}
           placement="bottomCenter"
-          arrow
+          arrow={!isMobile}
           getPopupContainer={(trigger) => trigger.parentNode}
         >
-          <StyledHeaderActionItem type="link" onClick={onGetMessages}>
+          <StyledHeaderActionItem
+            type="link"
+            onClick={!data?.length && onGetMessages}
+          >
             <Badge count={userConfig?.messageCount}>
               {userConfig?.messageCount ? (
                 <StyledMessageFilled />
@@ -59,18 +70,29 @@ function HeaderAction({ intl }) {
           </StyledHeaderActionItem>
         </Dropdown>
 
-        <StyledHeaderActionItem type="link">
-          <Badge count={userConfig?.notificationCount}>
-            {userConfig?.notificationCount ? (
-              <StyledBellFilled />
-            ) : (
-              <StyledBellOutlined />
-            )}
-          </Badge>
-          <StyledHeaderActionItemName>
-            <FormattedMessage {...messages.notifications} />
-          </StyledHeaderActionItemName>
-        </StyledHeaderActionItem>
+        <Dropdown
+          trigger={['click']}
+          overlay={<Notifications />}
+          placement="bottomCenter"
+          arrow={!isMobile}
+          getPopupContainer={(trigger) => trigger.parentNode}
+        >
+          <StyledHeaderActionItem
+            type="link"
+            onClick={userConfig?.notificationCount && onGetNotifications}
+          >
+            <Badge count={userConfig?.notificationCount}>
+              {userConfig?.notificationCount ? (
+                <StyledBellFilled />
+              ) : (
+                <StyledBellOutlined />
+              )}
+            </Badge>
+            <StyledHeaderActionItemName>
+              <FormattedMessage {...messages.notifications} />
+            </StyledHeaderActionItemName>
+          </StyledHeaderActionItem>
+        </Dropdown>
 
         {isMobile ? (
           <StyledHeaderActionItem type="link" onClick={logout}>

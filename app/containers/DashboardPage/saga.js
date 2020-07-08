@@ -107,8 +107,10 @@ export function* getAccountBalance() {
       requestParameters,
     );
 
-    const expensesPercent = (expenses * 100) / revenues;
-    const revenuesPercent = 100 - expensesPercent || 0;
+    const expensesPercent = (Number(expenses) * 100) / Number(revenues);
+    const revenuesPercent = Number.isFinite(expensesPercent)
+      ? 100 - expensesPercent
+      : 0;
 
     let savingsData;
     let savingsColors;

@@ -83,13 +83,13 @@ export default function Messages() {
               onClick={() => onOpenMessageModal(message.uuid)}
               readed={message.readed ? 1 : 0}
             >
-              <div>
+              <div style={{ width: '100%' }}>
                 <StyledSubject
                   dangerouslySetInnerHTML={{
                     __html: truncateString(
                       message.templates.find(
                         (template) => template.language.code === locale,
-                      ).subject,
+                      )?.subject,
                     ),
                   }}
                 />
@@ -98,7 +98,7 @@ export default function Messages() {
                     __html: truncateString(
                       message.templates.find(
                         (template) => template.language.code === locale,
-                      ).content,
+                      )?.content,
                     ),
                   }}
                 />

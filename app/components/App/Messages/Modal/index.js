@@ -35,10 +35,10 @@ export default function Modal() {
 
   const subject = data
     ?.find((message) => message.uuid === openedMessage)
-    ?.templates.find((template) => template.language.code === locale).subject;
+    ?.templates.find((template) => template.language.code === locale)?.subject;
   const content = data
     ?.find((message) => message.uuid === openedMessage)
-    ?.templates.find((template) => template.language.code === locale).content;
+    ?.templates.find((template) => template.language.code === locale)?.content;
 
   return (
     <StyledModal

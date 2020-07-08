@@ -31,7 +31,7 @@ const settingsPageReducer = produce((draft, action) => {
   if (window.location.pathname === routes.settings.path) {
     switch (action.type) {
       case SELECT_CURRENCY:
-        if (draft.user.userConfig.currency.uuid !== action?.currency) {
+        if (draft.user?.userConfig?.currency?.uuid !== action?.currency) {
           draft.newData.currency = action.currency;
           draft.isOpenedModal = true;
         }

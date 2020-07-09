@@ -2,7 +2,7 @@ import React from 'react';
 import { createStructuredSelector } from 'reselect';
 import { getRequestName, truncateString } from 'helpers';
 import { format } from 'date-fns';
-
+import { FormattedMessage } from 'react-intl';
 import {
   makeSelectLocale,
   makeSelectDateFormat,
@@ -15,6 +15,7 @@ import {
 import { GET_NOTIFICATIONS_REQUEST } from 'containers/App/constants';
 import { useSelector } from 'react-redux';
 import LoadingIndicator from 'components/LoadingIndicator';
+import messages from './messages';
 import {
   StyledList,
   StyledListItem,
@@ -43,7 +44,9 @@ export default function Notifications() {
             {isLoading ? (
               <LoadingIndicator />
             ) : (
-              <StyledListItemNoData>Brak powiadomień.</StyledListItemNoData>
+              <StyledListItemNoData>
+                <FormattedMessage {...messages.noNotifications} />
+              </StyledListItemNoData>
             )}
           </StyledListItem>
         </StyledList>
@@ -53,12 +56,12 @@ export default function Notifications() {
           renderItem={(notification) => (
             <StyledListItem readed="1">
               <div style={{ width: '100%' }}>
-                You have received a new transfer from{' '}
+                <FormattedMessage {...messages.newNotification} />
                 <StyledListItemSender>
                   {truncateString(notification.senderBill.user.firstName, 50)}{' '}
                   {truncateString(notification.senderBill.user.lastName, 50)}
                 </StyledListItemSender>{' '}
-                worth{' '}
+                <FormattedMessage {...messages.worth} />{' '}
                 <StyledListItemAmount>
                   {notification.amountMoney}{' '}
                   {notification.senderBill.currency.name}

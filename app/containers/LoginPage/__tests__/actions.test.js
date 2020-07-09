@@ -1,21 +1,5 @@
-import {
-  changeInputAction,
-  changeInputNumberAction,
-  loginAction,
-  loginSuccessAction,
-  loginErrorAction,
-  nextStepAction,
-  previousStepAction,
-} from '../actions';
-import {
-  CHANGE_INPUT_NUMBER,
-  CHANGE_INPUT,
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_ERROR,
-  NEXT_STEP,
-  PREVIOUS_STEP,
-} from '../constants';
+import { loginAction, loginSuccessAction, loginErrorAction } from '../actions';
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from '../constants';
 
 describe('LoginPage actions', () => {
   describe('loginAction', () => {
@@ -44,50 +28,6 @@ describe('LoginPage actions', () => {
         error,
       };
       expect(loginErrorAction(error)).toEqual(expectedResult);
-    });
-  });
-
-  describe('nextStepAction', () => {
-    it('should return the correct type', () => {
-      const expectedResult = {
-        type: NEXT_STEP,
-      };
-      expect(nextStepAction()).toEqual(expectedResult);
-    });
-  });
-
-  describe('previousStepAction', () => {
-    it('should return the correct type', () => {
-      const expectedResult = {
-        type: PREVIOUS_STEP,
-      };
-      expect(previousStepAction()).toEqual(expectedResult);
-    });
-  });
-
-  describe('changeInputNumberAction', () => {
-    it('should return the correct type', () => {
-      const value = 121;
-      const name = 'login';
-      const expectedResult = {
-        type: CHANGE_INPUT_NUMBER,
-        name,
-        value,
-      };
-      expect(changeInputNumberAction({ name, value })).toEqual(expectedResult);
-    });
-  });
-
-  describe('changeInputAction', () => {
-    it('should return the correct type', () => {
-      const name = 'password';
-      const value = 'test';
-      const expectedResult = {
-        type: CHANGE_INPUT,
-        name,
-        value,
-      };
-      expect(changeInputAction({ name, value })).toEqual(expectedResult);
     });
   });
 });

@@ -31,6 +31,7 @@ exports[`<Subheader /> should render a information 1`] = `
     >
       <span
         class="ant-select-selection-search"
+        title="EN"
       >
         <input
           aria-activedescendant="rc_select_TEST_OR_SSR_list_0"
@@ -62,7 +63,7 @@ exports[`<Subheader /> should render a information 1`] = `
     >
       <span
         aria-label="down"
-        class="anticon anticon-down"
+        class="anticon anticon-down ant-select-suffix"
         role="img"
       >
         <svg

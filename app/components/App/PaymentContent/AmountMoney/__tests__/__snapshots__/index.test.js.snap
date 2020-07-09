@@ -92,10 +92,12 @@ exports[`<AmountMoney /> should render a AmountMoney 1`] = `
               class="ant-input-number-input-wrap"
             >
               <input
+                aria-valuemax="9007199254740991"
                 aria-valuemin="-9007199254740991"
                 autocomplete="off"
                 class="ant-input-number-input"
                 id="amountMoney"
+                max="9007199254740991"
                 min="-9007199254740991"
                 name="amountMoney"
                 placeholder="Enter amount money"

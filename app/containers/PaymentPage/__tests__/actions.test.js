@@ -13,15 +13,11 @@ import {
   getAuthorizationKeyErrorAction,
   confirmTransactionAction,
   confirmTransactionSuccessAction,
-  confirmTransactionErrorAction,
-  changeInputAction,
-  changeInputNumberAction,
   selectSenderBillAction,
-  nextStepAction,
-  previousStepAction,
   checkRecipientAction,
   checkRecipientCorrectAction,
   checkRecipientIncorrectAction,
+  confirmTransactionIncorrectAction,
 } from '../actions';
 import {
   GET_BILLS_REQUEST,
@@ -38,15 +34,11 @@ import {
   GET_AUTHORIZATION_KEY_ERROR,
   CONFIRM_TRANSACTION_REQUEST,
   CONFIRM_TRANSACTION_SUCCESS,
-  CONFIRM_TRANSACTION_ERROR,
-  CHANGE_INPUT,
-  CHANGE_INPUT_NUMBER,
   SELECT_SENDER_BILL,
-  NEXT_STEP,
-  PREVIOUS_STEP,
   CHECK_RECIPIENT,
   CHECK_RECIPIENT_CORRECT,
   CHECK_RECIPIENT_INCORRECT,
+  CONFIRM_TRANSACTION_INCORRECT,
 } from '../constants';
 
 describe('Payment actions', () => {
@@ -196,72 +188,14 @@ describe('Payment actions', () => {
     });
   });
 
-  describe('confirmTransactionErrorAction', () => {
+  describe('confirmTransactionIncorrectAction', () => {
     it('should return the correct type', () => {
       const error = 'err';
       const expectedResult = {
-        type: CONFIRM_TRANSACTION_ERROR,
+        type: CONFIRM_TRANSACTION_INCORRECT,
         error,
       };
-      expect(confirmTransactionErrorAction(error)).toEqual(expectedResult);
-    });
-  });
-
-  describe('changeInputAction', () => {
-    it('should return the correct type', () => {
-      const fixture = {
-        name: 'name',
-        value: 'value',
-      };
-      const expectedResult = {
-        type: CHANGE_INPUT,
-        name: fixture.name,
-        value: fixture.value,
-      };
-      expect(
-        changeInputAction({
-          name: fixture.name,
-          value: fixture.value,
-        }),
-      ).toEqual(expectedResult);
-    });
-  });
-
-  describe('changeInputNumberAction', () => {
-    it('should return the correct type', () => {
-      const fixture = {
-        name: 'name',
-        value: 'value',
-      };
-      const expectedResult = {
-        type: CHANGE_INPUT_NUMBER,
-        name: fixture.name,
-        value: fixture.value,
-      };
-      expect(
-        changeInputNumberAction({
-          name: fixture.name,
-          value: fixture.value,
-        }),
-      ).toEqual(expectedResult);
-    });
-  });
-
-  describe('nextStepAction', () => {
-    it('should return the correct type', () => {
-      const expectedResult = {
-        type: NEXT_STEP,
-      };
-      expect(nextStepAction()).toEqual(expectedResult);
-    });
-  });
-
-  describe('previousStepAction', () => {
-    it('should return the correct type', () => {
-      const expectedResult = {
-        type: PREVIOUS_STEP,
-      };
-      expect(previousStepAction()).toEqual(expectedResult);
+      expect(confirmTransactionIncorrectAction(error)).toEqual(expectedResult);
     });
   });
 

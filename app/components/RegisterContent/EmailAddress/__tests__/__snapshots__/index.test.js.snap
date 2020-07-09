@@ -13,9 +13,9 @@ exports[`<EmailAddress /> should render a information 1`] = `
       <label
         class="ant-form-item-required"
         for="email"
-        title="E-Mail address"
+        title="E-Mail Address"
       >
-        E-Mail address
+        E-Mail Address
       </label>
     </div>
     <div

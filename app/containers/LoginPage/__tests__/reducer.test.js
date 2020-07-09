@@ -2,7 +2,6 @@ import produce from 'immer';
 
 import { onLocationChanged } from 'connected-react-router';
 import loginPageReducer from '../reducer';
-import { nextStepAction, previousStepAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
 describe('registerPageReducer', () => {
@@ -18,24 +17,6 @@ describe('registerPageReducer', () => {
   it('should return the initial state', () => {
     const expectedResult = state;
     expect(loginPageReducer(undefined, {})).toEqual(expectedResult);
-  });
-
-  it('should handle the nextStep action correctly', () => {
-    const expectedResult = produce(state, (draft) => {
-      draft.currentStep += 1;
-    });
-
-    expect(loginPageReducer(state, nextStepAction())).toEqual(expectedResult);
-  });
-
-  it('should handle the previousStep action correctly', () => {
-    const expectedResult = produce(state, (draft) => {
-      draft.currentStep -= 1;
-    });
-
-    expect(loginPageReducer(state, previousStepAction())).toEqual(
-      expectedResult,
-    );
   });
 
   it('should handle the LocationChangeAction action correctly', () => {

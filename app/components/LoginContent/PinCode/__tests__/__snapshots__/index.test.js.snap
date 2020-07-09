@@ -92,10 +92,12 @@ exports[`<PinCode /> should render a PinCode 1`] = `
               class="ant-input-number-input-wrap"
             >
               <input
+                aria-valuemax="9007199254740991"
                 aria-valuemin="-9007199254740991"
                 autocomplete="off"
                 class="ant-input-number-input"
                 id="pinCode"
+                max="9007199254740991"
                 min="-9007199254740991"
                 name="pinCode"
                 placeholder="Enter pin code"

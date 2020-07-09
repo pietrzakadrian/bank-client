@@ -13,6 +13,7 @@ describe('dashboardPageReducer', () => {
   let state;
   beforeEach(() => {
     state = {
+      isOpenedModal: false,
       amountMoney: '',
       currencyName: '',
       savings: '',
@@ -21,9 +22,7 @@ describe('dashboardPageReducer', () => {
       bills: [],
       accountBalanceHistory: [0, 0],
       recentTransactions: [],
-      currencies: [],
-      currency: '',
-      isOpenedModal: false,
+      currency: null,
     };
   });
 

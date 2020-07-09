@@ -5,7 +5,6 @@ import {
   makeSelectCurrency,
   makeSelectEmail,
   makeSelectPinCode,
-  makeSelectCurrencies,
   makeSelectError,
   makeSelectCurrentStep,
   selectRegisterPageDomain,
@@ -105,19 +104,6 @@ describe('makeSelectPinCode', () => {
       },
     };
     expect(pinCodeSelector(mockedState)).toEqual(pinCode);
-  });
-});
-
-describe('makeSelectCurrencies', () => {
-  const currenciesSelector = makeSelectCurrencies();
-  it('should select the currencies', () => {
-    const currencies = [{ name: 'USD' }];
-    const mockedState = {
-      registerPage: {
-        currencies,
-      },
-    };
-    expect(currenciesSelector(mockedState)).toEqual(currencies);
   });
 });
 

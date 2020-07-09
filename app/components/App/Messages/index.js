@@ -18,6 +18,7 @@ import {
   openMessageModalAction,
   readAllMessagesAction,
 } from 'containers/App/actions';
+import { FormattedMessage } from 'react-intl';
 import {
   StyledListItem,
   StyledList,
@@ -27,6 +28,7 @@ import {
   StyledListItemSenderWrapper,
 } from '../List/List.style';
 import { StyledSubject } from './Messages.style';
+import messagesIntl from './messages';
 import Modal from './Modal';
 
 const stateSelector = createStructuredSelector({
@@ -54,7 +56,9 @@ export default function Messages() {
             {isLoading ? (
               <LoadingIndicator />
             ) : (
-              <StyledListItemNoData>Brak wiadomości.</StyledListItemNoData>
+              <StyledListItemNoData>
+                <FormattedMessage {...messagesIntl.noMessages} />
+              </StyledListItemNoData>
             )}
           </StyledListItem>
         </StyledList>
@@ -63,14 +67,17 @@ export default function Messages() {
           rowKey={({ uuid }) => uuid}
           header={
             <>
-              <div>{`New messages: ${user?.userConfig?.messageCount}`}</div>
+              <div>
+                <FormattedMessage {...messagesIntl.newMessages} />{' '}
+                {user?.userConfig?.messageCount}
+              </div>
 
               <StyledButton
                 onClick={onReadAllMessages}
                 disabled={!user?.userConfig?.messageCount}
                 type="link"
               >
-                Mark everything as read
+                <FormattedMessage {...messagesIntl.readed} />
               </StyledButton>
             </>
           }

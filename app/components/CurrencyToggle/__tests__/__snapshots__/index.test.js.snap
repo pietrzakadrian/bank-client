@@ -56,7 +56,7 @@ exports[`<Currency /> should render a information 1`] = `
             >
               <span
                 aria-label="down"
-                class="anticon anticon-down"
+                class="anticon anticon-down ant-select-suffix"
                 role="img"
               >
                 <svg

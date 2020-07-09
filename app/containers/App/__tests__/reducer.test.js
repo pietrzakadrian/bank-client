@@ -14,6 +14,11 @@ describe('registerPageReducer', () => {
       isLogged: false,
       token: {},
       user: {},
+      currencies: [],
+      isOpenedMessage: false,
+      messages: [],
+      notifications: [],
+      openedMessage: '',
     };
   });
 

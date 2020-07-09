@@ -54,6 +54,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
       >
         <span
           class="ant-select-selection-search"
+          title="EN"
         >
           <input
             aria-activedescendant="rc_select_TEST_OR_SSR_list_0"
@@ -85,7 +86,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
       >
         <span
           aria-label="down"
-          class="anticon anticon-down"
+          class="anticon anticon-down ant-select-suffix"
           role="img"
         >
           <svg
@@ -209,10 +210,12 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
                   class="ant-input-number-input-wrap"
                 >
                   <input
+                    aria-valuemax="9007199254740991"
                     aria-valuemin="-9007199254740991"
                     autocomplete="off"
                     class="ant-input-number-input"
                     id="login_pinCode"
+                    max="9007199254740991"
                     min="-9007199254740991"
                     name="pinCode"
                     placeholder="Enter pin code"

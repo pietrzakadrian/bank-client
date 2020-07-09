@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStructuredSelector } from 'reselect';
-import { getRequestName } from 'helpers';
+import { getRequestName, truncateString } from 'helpers';
 import { format } from 'date-fns';
+
 import {
   makeSelectLocale,
   makeSelectDateFormat,
@@ -14,7 +15,14 @@ import {
 import { GET_NOTIFICATIONS_REQUEST } from 'containers/App/constants';
 import { useSelector } from 'react-redux';
 import LoadingIndicator from 'components/LoadingIndicator';
-import { StyledList, StyledListItem } from '../List/List.style';
+import {
+  StyledList,
+  StyledListItem,
+  StyledListItemSender,
+  StyledListItemAmount,
+  StyledListItemDate,
+  StyledListItemNoData,
+} from '../List/List.style';
 
 const stateSelector = createStructuredSelector({
   notifications: makeSelectNotifications(),
@@ -25,38 +33,39 @@ const stateSelector = createStructuredSelector({
 });
 
 export default function Notifications() {
-  const {
-    notifications: { data },
-    isLoading,
-    dateFormat,
-  } = useSelector(stateSelector);
+  const { notifications, isLoading, dateFormat } = useSelector(stateSelector);
 
   return (
     <>
-      {isLoading || (!isLoading && !data?.length) ? (
+      {isLoading || (!isLoading && !notifications?.data?.length) ? (
         <StyledList>
-          <StyledListItem readed="1">
+          <StyledListItem hovered="false" readed="1">
             {isLoading ? (
               <LoadingIndicator />
             ) : (
-              <div style={{ margin: 'auto' }}>Brak powiadomień.</div>
+              <StyledListItemNoData>Brak powiadomień.</StyledListItemNoData>
             )}
           </StyledListItem>
         </StyledList>
       ) : (
         <StyledList
-          dataSource={data}
+          dataSource={notifications.data}
           renderItem={(notification) => (
-            <StyledListItem>
-              <div>
+            <StyledListItem readed="1">
+              <div style={{ width: '100%' }}>
                 You have received a new transfer from{' '}
-                {notification.senderBill.user.firstName}{' '}
-                {notification.senderBill.user.lastName} worth{' '}
-                {notification.amountMoney}{' '}
-                {notification.senderBill.currency.name}
-                <div>
+                <StyledListItemSender>
+                  {truncateString(notification.senderBill.user.firstName, 50)}{' '}
+                  {truncateString(notification.senderBill.user.lastName, 50)}
+                </StyledListItemSender>{' '}
+                worth{' '}
+                <StyledListItemAmount>
+                  {notification.amountMoney}{' '}
+                  {notification.senderBill.currency.name}
+                </StyledListItemAmount>
+                <StyledListItemDate>
                   {format(new Date(notification.updatedAt), dateFormat)}
-                </div>
+                </StyledListItemDate>
               </div>
             </StyledListItem>
           )}

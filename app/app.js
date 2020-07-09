@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
+import omit from 'lodash/omit';
 
 // Import root app
 import App from 'containers/App';
@@ -45,7 +46,13 @@ store.subscribe(
   throttle(() => {
     saveState({
       language: store.getState().language,
-      global: store.getState().global,
+      global: omit(store.getState().global, [
+        'messages',
+        'notifications',
+        'currencies',
+        'openedMessage',
+        'isOpenedMessage',
+      ]),
     });
   }, 1000),
 );

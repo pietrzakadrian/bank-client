@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { media } from 'utils';
 
 export const SettingsFormWrapper = styled.div`
+  min-height: 497px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
   form {
     margin: 0 auto;
     padding: 0 10px;
@@ -12,8 +18,10 @@ export const SettingsFormWrapper = styled.div`
   }
 
   ${media.tablet`
-    display: flex;
-    justify-content: center;
+    min-height: 306px;
+    flex-direction: row;
+    align-items: ${({ loaded }) => (loaded ? 'center' : 'end')};
+
 
     form {
       margin: 0;

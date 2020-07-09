@@ -75,7 +75,7 @@ export default function SystemSettingsForm() {
           You are trying to change your default currency to{' '}
           <strong>
             {
-              currencies.find(
+              currencies?.find(
                 (currency) => currency?.uuid === newData?.currency,
               )?.name
             }

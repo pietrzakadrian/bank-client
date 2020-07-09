@@ -28,14 +28,11 @@ import Notifications from '../Notifications';
 
 const stateSelector = createStructuredSelector({
   user: makeSelectUser(),
-  messages: makeSelectMessages(),
+  messagesData: makeSelectMessages(),
 });
 
 function HeaderAction({ intl }) {
-  const {
-    messages: { data },
-    user: { userConfig },
-  } = useSelector(stateSelector);
+  const { messagesData, user } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ maxWidth: 479 });
 
@@ -55,10 +52,10 @@ function HeaderAction({ intl }) {
         >
           <StyledHeaderActionItem
             type="link"
-            onClick={!data?.length && onGetMessages}
+            onClick={!messagesData?.data?.length && onGetMessages}
           >
-            <Badge count={userConfig?.messageCount}>
-              {userConfig?.messageCount ? (
+            <Badge count={user?.userConfig?.messageCount}>
+              {user?.userConfig?.messageCount ? (
                 <StyledMessageFilled />
               ) : (
                 <StyledMessageOutlined />
@@ -79,10 +76,10 @@ function HeaderAction({ intl }) {
         >
           <StyledHeaderActionItem
             type="link"
-            onClick={userConfig?.notificationCount && onGetNotifications}
+            onClick={user?.userConfig?.notificationCount && onGetNotifications}
           >
-            <Badge count={userConfig?.notificationCount}>
-              {userConfig?.notificationCount ? (
+            <Badge count={user?.userConfig?.notificationCount}>
+              {user?.userConfig?.notificationCount ? (
                 <StyledBellFilled />
               ) : (
                 <StyledBellOutlined />

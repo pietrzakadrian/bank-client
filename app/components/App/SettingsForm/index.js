@@ -32,8 +32,8 @@ export default function SettingsForm() {
   }, []);
 
   return (
-    <StyledFormWrapper shadowed>
-      <SettingsFormWrapper>
+    <StyledFormWrapper shadowed="true">
+      <SettingsFormWrapper loaded={isLoading ? 1 : 0}>
         {isLoading ? (
           <LoadingIndicator />
         ) : (

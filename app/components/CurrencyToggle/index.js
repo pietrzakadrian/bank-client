@@ -31,7 +31,7 @@ function CurrencyToggle({ intl, defaultValue, label, tailed }) {
   const dispatch = useDispatch();
 
   const onGetCurrencies = () =>
-    !currencies.length && dispatch(getCurrenciesAction());
+    !currencies?.length && dispatch(getCurrenciesAction());
   const onSelectCurrency = (currency) =>
     dispatch(selectCurrencyAction(currency));
 

@@ -28,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
 
   .ant-dropdown {
     z-index: 999;
+    width: 100%;
   }
 
   ${media.tablet`

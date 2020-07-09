@@ -6,10 +6,9 @@
  */
 
 import React, { useEffect } from 'react';
-import { getRequestName } from 'helpers';
+import { getRequestName, truncateString } from 'helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionHistoryAction } from 'containers/HistoryPage/actions';
-
 import LoadingIndicator from 'components/LoadingIndicator';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectTransactions } from 'containers/HistoryPage/selectors';
@@ -36,12 +35,9 @@ const stateSelector = createStructuredSelector({
 });
 
 export default function TransactionHistory() {
-  const {
-    dateFormat,
-    transactions: { data, meta },
-    isLoading,
-    user,
-  } = useSelector(stateSelector);
+  const { dateFormat, transactions, isLoading, user } = useSelector(
+    stateSelector,
+  );
   const dispatch = useDispatch();
 
   const onGetTransactionHistory = (currentPage = 1) =>
@@ -56,9 +52,9 @@ export default function TransactionHistory() {
     indicator: <LoadingIndicator />,
   };
   const pagination = {
-    current: meta?.page,
-    pageSize: meta?.take,
-    total: meta?.itemCount,
+    current: transactions?.meta?.page,
+    pageSize: transactions?.meta?.take,
+    total: transactions?.meta?.itemCount,
   };
 
   const columns = [
@@ -67,7 +63,10 @@ export default function TransactionHistory() {
       render: ({ senderBill }) => (
         <div>
           <StyledUser>
-            {senderBill.user.firstName} {senderBill.user.lastName}
+            {truncateString(
+              `${senderBill.user.firstName} ${senderBill.user.lastName}`,
+              15,
+            )}
           </StyledUser>
           <div>{senderBill.accountBillNumber}</div>
         </div>
@@ -78,7 +77,10 @@ export default function TransactionHistory() {
       render: ({ recipientBill }) => (
         <div>
           <StyledUser>
-            {recipientBill.user.firstName} {recipientBill.user.lastName}
+            {truncateString(
+              `${recipientBill.user.firstName} ${recipientBill.user.lastName}`,
+              15,
+            )}
           </StyledUser>
           <div>{recipientBill.accountBillNumber}</div>
         </div>
@@ -116,7 +118,7 @@ export default function TransactionHistory() {
     <StyledTable
       rowKey={({ uuid }) => uuid}
       loading={tableLoading}
-      dataSource={data}
+      dataSource={transactions.data}
       columns={columns}
       pagination={pagination}
       onChange={({ current }) => onGetTransactionHistory(current)}

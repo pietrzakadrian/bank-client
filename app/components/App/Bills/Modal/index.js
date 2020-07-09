@@ -29,8 +29,11 @@ function Modal({ intl }) {
   const dispatch = useDispatch();
   const { isOpenedModal, isLoading } = useSelector(stateSelector);
 
-  const toggleModal = () => dispatch(toggleModalAction());
   const createNewBill = () => dispatch(createNewBillAction());
+  const toggleModal = () => {
+    dispatch(toggleModalAction());
+    form.resetFields();
+  };
 
   const onValidateFields = async () => {
     try {

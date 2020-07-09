@@ -23,20 +23,17 @@ const stateSelector = createStructuredSelector({
 });
 
 export default function Modal() {
-  const {
-    isOpenedMessage,
-    openedMessage,
-    messages: { data },
-    locale,
-  } = useSelector(stateSelector);
+  const { isOpenedMessage, openedMessage, messages, locale } = useSelector(
+    stateSelector,
+  );
   const dispatch = useDispatch();
 
   const onCloseMessageModal = () => dispatch(closeMessageModalAction());
 
-  const subject = data
+  const subject = messages?.data
     ?.find((message) => message.uuid === openedMessage)
     ?.templates.find((template) => template.language.code === locale)?.subject;
-  const content = data
+  const content = messages?.data
     ?.find((message) => message.uuid === openedMessage)
     ?.templates.find((template) => template.language.code === locale)?.content;
 

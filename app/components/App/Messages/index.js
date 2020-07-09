@@ -23,6 +23,8 @@ import {
   StyledList,
   StyledListItemBottom,
   StyledListItemSender,
+  StyledListItemNoData,
+  StyledListItemSenderWrapper,
 } from '../List/List.style';
 import { StyledSubject } from './Messages.style';
 import Modal from './Modal';
@@ -36,13 +38,9 @@ const stateSelector = createStructuredSelector({
 });
 
 export default function Messages() {
-  const {
-    messages: { data },
-    locale,
-    isLoading,
-    dateFormat,
-    user,
-  } = useSelector(stateSelector);
+  const { messages, locale, isLoading, dateFormat, user } = useSelector(
+    stateSelector,
+  );
   const dispatch = useDispatch();
 
   const onOpenMessageModal = (uuid) => dispatch(openMessageModalAction(uuid));
@@ -50,13 +48,13 @@ export default function Messages() {
 
   return (
     <>
-      {isLoading || (!isLoading && !data?.length) ? (
+      {isLoading || (!isLoading && !messages?.data?.length) ? (
         <StyledList>
-          <StyledListItem readed="1">
+          <StyledListItem hovered="false" readed="1">
             {isLoading ? (
               <LoadingIndicator />
             ) : (
-              <div style={{ margin: 'auto' }}>Brak wiadomości.</div>
+              <StyledListItemNoData>Brak wiadomości.</StyledListItemNoData>
             )}
           </StyledListItem>
         </StyledList>
@@ -76,7 +74,7 @@ export default function Messages() {
               </StyledButton>
             </>
           }
-          dataSource={data}
+          dataSource={messages?.data}
           renderItem={(message) => (
             <StyledListItem
               key={message.uuid}
@@ -104,12 +102,12 @@ export default function Messages() {
                 />
 
                 <StyledListItemBottom>
-                  <div>
+                  <StyledListItemSenderWrapper>
                     {message.sender.uuid === user.uuid ? 'to' : 'from'}{' '}
                     <StyledListItemSender>
                       {message.sender.firstName} {message.sender.lastName}
                     </StyledListItemSender>
-                  </div>
+                  </StyledListItemSenderWrapper>
                   <div>{format(new Date(message.createdAt), dateFormat)}</div>
                 </StyledListItemBottom>
               </div>

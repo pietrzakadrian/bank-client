@@ -1,5 +1,5 @@
 import React from 'react';
-import { takeLatest, debounce, call, put, select } from 'redux-saga/effects';
+import { takeLatest, delay, call, put, select } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
 import { push } from 'connected-react-router';
 import { notification } from 'antd';
@@ -74,6 +74,10 @@ export function* searchRecipient({ value }) {
     method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}` },
   };
+
+  if (value.length > 1) {
+    yield delay(300);
+  }
 
   try {
     const { data } = yield call(request, requestURL, requestParameters);
@@ -229,7 +233,7 @@ export function* confirmTransaction() {
 
 export default function* paymentPageSaga() {
   yield takeLatest(GET_BILLS_REQUEST, getBills);
-  yield debounce(400, SEARCH_RECIPIENT_REQUEST, searchRecipient);
+  yield takeLatest(SEARCH_RECIPIENT_REQUEST, searchRecipient);
   yield takeLatest(CHECK_RECIPIENT, checkRecipient);
   yield takeLatest(CREATE_TRANSACTION_REQUEST, createTransaction);
   yield takeLatest(GET_AUTHORIZATION_KEY_REQUEST, getAuthorizationKey);

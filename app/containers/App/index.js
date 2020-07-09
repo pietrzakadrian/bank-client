@@ -23,7 +23,7 @@ import Layout from 'components/App/Layout';
 import { routes } from 'utils';
 import 'antd/dist/antd.less';
 import 'sanitize.css/sanitize.css';
-import GlobalStyle from 'global-styles';
+import GlobalStyle from 'utils/styles';
 import { useInjectSaga } from 'redux-injectors';
 import PrivateRoute from 'components/Route/PrivateRoute';
 import PublicRoute from 'components/Route/PublicRoute';

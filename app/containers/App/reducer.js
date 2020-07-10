@@ -22,6 +22,7 @@ import {
   GET_NOTIFICATIONS_SUCCESS,
   READ_MESSAGE_SUCCESS,
   READ_ALL_MESSAGES_SUCCESS,
+  TOGGLE_CONFIRM_MODAL,
 } from './constants';
 
 export const initialState = {
@@ -34,6 +35,7 @@ export const initialState = {
   messages: [],
   notifications: [],
   isOpenedMessage: false,
+  isOpenedModal: false,
   openedMessage: '',
 };
 
@@ -61,6 +63,9 @@ const appReducer = produce((draft, action) => {
       break;
     case SET_USER_DATA_SUCCESS:
       draft.user = action.userData;
+      break;
+    case TOGGLE_CONFIRM_MODAL:
+      draft.isOpenedModal = !draft.isOpenedModal;
       break;
     case GET_CURRENCIES_SUCCESS:
       draft.currencies = action.data;

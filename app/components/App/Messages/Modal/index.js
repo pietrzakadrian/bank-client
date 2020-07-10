@@ -9,10 +9,7 @@ import {
   makeSelectOpenedMessage,
   makeSelectMessages,
 } from 'containers/App/selectors';
-import {
-  StyledButton,
-  StyledButtonContent,
-} from 'components/App/Button/Button.style';
+import { StyledButton } from 'components/App/Button/Button.style';
 import { closeMessageModalAction } from 'containers/App/actions';
 
 const stateSelector = createStructuredSelector({
@@ -36,6 +33,9 @@ export default function Modal() {
   const content = messages?.data
     ?.find((message) => message.uuid === openedMessage)
     ?.templates.find((template) => template.language.code === locale)?.content;
+  const actions = messages?.data
+    ?.find((message) => message.uuid === openedMessage)
+    ?.templates.find((template) => template.language.code === locale)?.actions;
 
   return (
     <StyledModal
@@ -44,17 +44,18 @@ export default function Modal() {
       onOk={onCloseMessageModal}
       onCancel={onCloseMessageModal}
       centered="true"
-      footer={[
-        <StyledButton type="link" onClick={onCloseMessageModal}>
-          <StyledButtonContent>Ok, wyślę teraz</StyledButtonContent>
-        </StyledButton>,
-        <StyledButton type="link" onClick={onCloseMessageModal}>
-          Ok, wyślę potem
-        </StyledButton>,
-      ]}
+      footer={actions?.map((action, index) => (
+        <StyledButton
+          key={index}
+          hovered="true"
+          type="link"
+          onClick={onCloseMessageModal}
+        >
+          <div dangerouslySetInnerHTML={{ __html: action }}></div>
+        </StyledButton>
+      ))}
     >
       <div dangerouslySetInnerHTML={{ __html: content }} />
-      {/* todo: actions */}
     </StyledModal>
   );
 }

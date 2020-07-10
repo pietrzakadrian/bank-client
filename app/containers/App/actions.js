@@ -37,6 +37,7 @@ import {
   READ_MESSAGE_REQUEST,
   READ_MESSAGE_SUCCESS,
   READ_MESSAGE_ERROR,
+  TOGGLE_CONFIRM_MODAL,
 } from './constants';
 
 export function logoutAction() {
@@ -128,6 +129,12 @@ export function changeInputAction({ name, value }) {
 export function toggleModalAction() {
   return {
     type: TOGGLE_MODAL,
+  };
+}
+
+export function toggleConfirmModalAction() {
+  return {
+    type: TOGGLE_CONFIRM_MODAL,
   };
 }
 

@@ -56,7 +56,7 @@ export default function Notifications() {
           renderItem={(notification) => (
             <StyledListItem readed="1">
               <div style={{ width: '100%' }}>
-                <FormattedMessage {...messages.newNotification} />
+                <FormattedMessage {...messages.newNotification} />{' '}
                 <StyledListItemSender>
                   {truncateString(notification.senderBill.user.firstName, 50)}{' '}
                   {truncateString(notification.senderBill.user.lastName, 50)}

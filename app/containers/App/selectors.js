@@ -53,6 +53,12 @@ const makeSelectNotifications = () =>
     (globalState) => globalState.notifications,
   );
 
+const makeSelectIsOpenedModal = () =>
+  createSelector(
+    selectGlobalDomain,
+    (globalState) => globalState.isOpenedModal,
+  );
+
 const makeSelectLocation = () =>
   createSelector(selectRouter, (routerState) => routerState.location);
 
@@ -70,4 +76,5 @@ export {
   makeSelectIsOpenedMessage,
   makeSelectOpenedMessage,
   makeSelectNotifications,
+  makeSelectIsOpenedModal,
 };

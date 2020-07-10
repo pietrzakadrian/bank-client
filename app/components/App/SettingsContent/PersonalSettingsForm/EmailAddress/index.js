@@ -31,7 +31,7 @@ function EmailAddress({ intl }) {
 
   return (
     <StyledFormItem
-      label="E-Mail address"
+      label={intl.formatMessage(messages.label)}
       name="email"
       tailed="true"
       hasFeedback
@@ -49,7 +49,6 @@ function EmailAddress({ intl }) {
         onChange={(event) => onChangeInput(event)}
         name="email"
         placeholder={intl.formatMessage(messages.placeholder)}
-        defaultValue={user.email}
       />
     </StyledFormItem>
   );

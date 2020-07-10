@@ -18,6 +18,8 @@ import { setUserDataAction } from 'containers/SettingsPage/actions';
 import { makeSelectCurrencies } from 'containers/App/selectors';
 import { StyledModal } from 'components/App/Modal/Modal.style';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   currencies: makeSelectCurrencies(),
@@ -41,49 +43,73 @@ export default function SystemSettingsForm() {
   const onSetUserData = () => dispatch(setUserDataAction());
 
   return (
-    <StyledForm form={form} layout="vertical" name="settings-currency">
-      <CurrencyToggle
-        label="Default currency"
-        defaultValue={user?.userConfig?.currency?.name}
-      />
+    <StyledForm
+      initialValues={{ currency: user.userConfig?.currency.name }}
+      form={form}
+      layout="vertical"
+      name="settings-currency"
+    >
+      <FormattedMessage {...messages.currencyLabel}>
+        {(label) => <CurrencyToggle label={label} />}
+      </FormattedMessage>
 
-      <StyledFormItem tailed="true" label="Language">
-        <LocaleToggle />
-      </StyledFormItem>
+      <FormattedMessage {...messages.languageLabel}>
+        {(label) => (
+          <StyledFormItem tailed="true" label={label}>
+            <LocaleToggle />
+          </StyledFormItem>
+        )}
+      </FormattedMessage>
 
-      <StyledModal
-        centered="true"
-        title="Change the default currency"
-        visible={isOpenedModal}
-        onOk={onSetUserData}
-        onCancel={onToggleModal}
-        footer={[
-          <Button key="back" onClick={onToggleModal}>
-            Cancel
-          </Button>,
-          <Button
-            key="submit"
-            disabled={isLoading}
-            type="primary"
-            onClick={onSetUserData}
+      <FormattedMessage {...messages.title}>
+        {(title) => (
+          <StyledModal
+            centered="true"
+            title={title}
+            visible={isOpenedModal}
+            onOk={onSetUserData}
+            onCancel={onToggleModal}
+            footer={[
+              <Button key="back" onClick={onToggleModal}>
+                <FormattedMessage {...messages.cancel} />
+              </Button>,
+              <Button
+                key="submit"
+                disabled={isLoading}
+                type="primary"
+                onClick={onSetUserData}
+              >
+                {isLoading ? (
+                  <LoadingIndicator />
+                ) : (
+                  <FormattedMessage {...messages.confirm} />
+                )}
+              </Button>,
+            ]}
           >
-            {isLoading ? <LoadingIndicator /> : 'Confirm'}
-          </Button>,
-        ]}
-      >
-        <p>
-          You are trying to change your default currency to{' '}
-          <strong>
-            {
-              currencies?.find(
-                (currency) => currency?.uuid === newData?.currency,
-              )?.name
-            }
-          </strong>
-          ? This will convert the available funds in the dashboard.
-        </p>
-        <p>Do you confirm the change approval?</p>
-      </StyledModal>
+            <p>
+              <FormattedMessage
+                {...messages.tryingChangeDefaultCurrencyPartOne}
+              />{' '}
+              <strong>
+                {
+                  currencies?.find(
+                    (currency) => currency?.uuid === newData?.currency,
+                  )?.name
+                }
+              </strong>
+              <FormattedMessage
+                {...messages.tryingChangeDefaultCurrencyPartTwo}
+              />
+            </p>
+            <p>
+              <FormattedMessage
+                {...messages.tryingChangeDefaultCurrencyConfirm}
+              />
+            </p>
+          </StyledModal>
+        )}
+      </FormattedMessage>
     </StyledForm>
   );
 }

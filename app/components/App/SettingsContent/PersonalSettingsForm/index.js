@@ -15,9 +15,11 @@ import {
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { getRequestName, hasOwnProperties } from 'helpers';
 import { SET_USER_DATA_REQUEST } from 'containers/SettingsPage/constants';
+import { FormattedMessage } from 'react-intl';
 import LastName from './LastName';
 import EmailAddress from './EmailAddress';
 import Password from './Password';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   user: makeSelectUser(),
@@ -27,7 +29,7 @@ const stateSelector = createStructuredSelector({
 
 export default function PersonalSettings() {
   const [form] = StyledForm.useForm();
-  const { isLoading, newData } = useSelector(stateSelector);
+  const { isLoading, newData, user } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
   const onSetUserData = () => dispatch(setUserDataAction());
@@ -42,28 +44,29 @@ export default function PersonalSettings() {
   };
 
   return (
-    <StyledForm form={form} layout="vertical" name="settings">
+    <StyledForm
+      form={form}
+      initialValues={{ lastName: user.lastName, email: user.email }}
+      layout="vertical"
+      name="settings"
+    >
       <LastName />
-
-      <EmailAddress />
-
+      <EmailAddress /> currency: user.userConfig?.currency?.name,
       <Password />
-
       <StyledFormActionsWrapper>
         <StyledButton
           disabled={
             isLoading ||
-            !hasOwnProperties(newData, [
-              'firstName',
-              'lastName',
-              'email',
-              'password',
-            ])
+            !hasOwnProperties(newData, ['lastName', 'email', 'password'])
           }
           onClick={onValidateFields}
           type="primary"
         >
-          {isLoading ? <LoadingIndicator /> : 'Save data'}
+          {isLoading ? (
+            <LoadingIndicator />
+          ) : (
+            <FormattedMessage {...messages.save} />
+          )}
         </StyledButton>
       </StyledFormActionsWrapper>
     </StyledForm>

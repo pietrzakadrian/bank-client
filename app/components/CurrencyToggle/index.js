@@ -26,7 +26,7 @@ const stateSelector = createStructuredSelector({
   Dependent variables have been moved to props.
   */
 
-function CurrencyToggle({ intl, defaultValue, label, tailed }) {
+function CurrencyToggle({ intl, label, tailed }) {
   const { isLoading, currencies } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
@@ -52,7 +52,6 @@ function CurrencyToggle({ intl, defaultValue, label, tailed }) {
         notFoundContent={isLoading ? <LoadingIndicator /> : null}
         onSelect={onSelectCurrency}
         placeholder={intl.formatMessage(messages.placeholder)}
-        defaultValue={defaultValue}
         name="currency"
       >
         {currencies?.map((currency) => (
@@ -67,7 +66,6 @@ function CurrencyToggle({ intl, defaultValue, label, tailed }) {
 
 CurrencyToggle.propTypes = {
   intl: intlShape.isRequired,
-  defaultValue: PropTypes.string,
   label: PropTypes.string,
   tailed: PropTypes.string,
 };

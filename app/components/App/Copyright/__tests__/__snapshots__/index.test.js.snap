@@ -2,10 +2,17 @@
 
 exports[`<Copyright /> should render a Copyright 1`] = `
 <div
-  class="Copyrightstyle__StyledCopyright-sc-1dw2rfe-0 hMsPGk"
+  class="Copyrightstyle__StyledCopyright-sc-1dw2rfe-0 jItQaK"
 >
   Copyright © 
   2020
-  . Made by Adrian Pietrzak
+  . Made by
+   
+  <a
+    href="https://github.com/pietrzakadrian"
+    target="_blank"
+  >
+    Adrian Pietrzak
+  </a>
 </div>
 `;

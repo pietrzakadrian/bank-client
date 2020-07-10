@@ -22,7 +22,7 @@ exports[`<Deposits /> should render a Deposits 1`] = `
         class="ant-card-extra"
       >
         <button
-          class="ant-btn Buttonstyle__StyledButton-nh59mr-0 iSwWDL ant-btn-link"
+          class="ant-btn Buttonstyle__StyledButton-nh59mr-0 bcqyjQ ant-btn-link"
           type="button"
         >
           <div

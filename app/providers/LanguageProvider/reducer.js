@@ -22,7 +22,7 @@ const languageProviderReducer = produce((draft, action) => {
       draft.dateFormat =
         action.locale === DEFAULT_LOCALE
           ? `dd.MM.yyyy, hh:mm aa`
-          : `dd.MM.yyyy, hh:mm`;
+          : `dd.MM.yyyy, HH:mm`;
       break;
   }
 }, initialState);

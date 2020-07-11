@@ -213,7 +213,6 @@ export function* confirmTransaction() {
       ),
       style,
       placement,
-      duration: 100,
     });
 
     yield put(push(routes.dashboard.path));

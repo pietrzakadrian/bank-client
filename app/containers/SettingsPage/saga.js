@@ -1,7 +1,14 @@
 import { takeLatest, select, put, call } from 'redux-saga/effects';
 import { api, request, routes } from 'utils';
-import { makeSelectToken } from 'containers/App/selectors';
+import {
+  makeSelectToken,
+  makeSelectIsCollapsedSidebar,
+} from 'containers/App/selectors';
 import { push } from 'connected-react-router';
+import { notification } from 'antd';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 import { GET_USER_DATA_REQUEST, SET_USER_DATA_REQUEST } from './constants';
 import {
   getUserDataSuccessAction,
@@ -31,6 +38,8 @@ export function* getUserData() {
 export function* setUserData() {
   const { accessToken } = yield select(makeSelectToken());
   const newData = yield select(makeSelectNewData());
+  const isCollapsedSidebar = yield select(makeSelectIsCollapsedSidebar());
+
   const requestURL = api.users();
   const requestParameters = {
     method: 'PATCH',
@@ -41,10 +50,19 @@ export function* setUserData() {
     },
     body: JSON.stringify(newData),
   };
+  const style = { width: 400, marginLeft: isCollapsedSidebar ? 80 : 250 };
+  const placement = 'bottomLeft';
 
   try {
     const userData = yield call(request, requestURL, requestParameters);
     yield put(setUserDataSuccessAction(userData));
+
+    notification.success({
+      message: <FormattedMessage {...messages.saveDataTitle} />,
+      description: <FormattedMessage {...messages.saveDataDescription} />,
+      style,
+      placement,
+    });
   } catch (error) {
     yield put(setUserDataIncorrectAction(error));
   }

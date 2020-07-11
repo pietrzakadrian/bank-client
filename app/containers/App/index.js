@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable default-case */
 /**
  *
  * App
@@ -18,7 +20,7 @@ import DashboardPage from 'containers/DashboardPage/Loadable';
 import PaymentPage from 'containers/PaymentPage/Loadable';
 import HistoryPage from 'containers/HistoryPage/Loadable';
 import SettingsPage from 'containers/SettingsPage/Loadable';
-
+import { ConfigProvider } from 'antd';
 import Layout from 'components/App/Layout';
 import { routes } from 'utils';
 import 'antd/dist/antd.less';
@@ -27,46 +29,82 @@ import GlobalStyle from 'utils/styles';
 import { useInjectSaga } from 'redux-injectors';
 import PrivateRoute from 'components/Route/PrivateRoute';
 import PublicRoute from 'components/Route/PublicRoute';
+import enUS from 'antd/es/locale/en_US';
+import plPL from 'antd/es/locale/pl_PL';
+import deDE from 'antd/es/locale/de_DE';
+import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
+import { createStructuredSelector } from 'reselect';
+import { useSelector } from 'react-redux';
 import saga from './saga';
+
+const stateSelector = createStructuredSelector({
+  locale: makeSelectLocale(),
+});
 
 function App() {
   useInjectSaga({ key: 'app', saga });
 
+  const { locale } = useSelector(stateSelector);
+
+  const getLocale = (language) => {
+    switch (language) {
+      case 'de':
+        return deDE;
+      case 'pl':
+        return plPL;
+      case 'en':
+        return enUS;
+    }
+  };
+
   return (
-    <div>
-      <Switch>
-        <Route restricted exact path={routes.home.path} component={HomePage} />
-        <PublicRoute
-          restricted
-          path={routes.login.path}
-          component={LoginPage}
-        />
-        <PublicRoute
-          restricted
-          path={routes.register.path}
-          component={RegisterPage}
-        />
+    <ConfigProvider locale={getLocale(locale)}>
+      <div>
+        <Switch>
+          <Route
+            restricted
+            exact
+            path={routes.home.path}
+            component={HomePage}
+          />
+          <PublicRoute
+            restricted
+            path={routes.login.path}
+            component={LoginPage}
+          />
+          <PublicRoute
+            restricted
+            path={routes.register.path}
+            component={RegisterPage}
+          />
 
-        <Layout>
-          <Switch>
-            <PrivateRoute
-              exact
-              path={routes.dashboard.path}
-              component={DashboardPage}
-            />
-            <PrivateRoute path={routes.payment.path} component={PaymentPage} />
-            <PrivateRoute path={routes.history.path} component={HistoryPage} />
-            <PrivateRoute
-              path={routes.settings.path}
-              component={SettingsPage}
-            />
-          </Switch>
-        </Layout>
+          <Layout>
+            <Switch>
+              <PrivateRoute
+                exact
+                path={routes.dashboard.path}
+                component={DashboardPage}
+              />
+              <PrivateRoute
+                path={routes.payment.path}
+                component={PaymentPage}
+              />
+              <PrivateRoute
+                path={routes.history.path}
+                component={HistoryPage}
+              />
+              <PrivateRoute
+                path={routes.settings.path}
+                component={SettingsPage}
+              />
+            </Switch>
+          </Layout>
 
-        <PublicRoute component={NotFoundPage} />
-      </Switch>
-      <GlobalStyle />
-    </div>
+          <PublicRoute component={NotFoundPage} />
+        </Switch>
+        <GlobalStyle />
+      </div>
+    </ConfigProvider>
   );
 }
 

@@ -55,34 +55,39 @@ export default function Bills() {
 
   return (
     <>
-      <StyledCard
-        darker="true"
-        loaded={isLoading ? 1 : 0}
-        bordered={false}
-        shadowed="true"
-        title="Bills"
-        extra={
-          <StyledButton type="link" onClick={toggleModal}>
-            <StyledButtonContent onMouseDown={(e) => e.stopPropagation()}>
-              <PlusCircleOutlined /> <FormattedMessage {...messages.action} />
-            </StyledButtonContent>
-          </StyledButton>
-        }
-      >
-        {isLoading ? (
-          <LoadingIndicator />
-        ) : (
-          <StyledTableWrapper onMouseDown={(e) => e.stopPropagation()}>
-            <StyledTable
-              showHeader={false}
-              pagination={false}
-              dataSource={bills}
-              columns={columns}
-              rowKey={({ uuid }) => uuid}
-            />
-          </StyledTableWrapper>
+      <FormattedMessage {...messages.title}>
+        {(title) => (
+          <StyledCard
+            darker="true"
+            loaded={isLoading ? 1 : 0}
+            bordered={false}
+            shadowed="true"
+            title={title}
+            extra={
+              <StyledButton type="link" onClick={toggleModal}>
+                <StyledButtonContent onMouseDown={(e) => e.stopPropagation()}>
+                  <PlusCircleOutlined />{' '}
+                  <FormattedMessage {...messages.action} />
+                </StyledButtonContent>
+              </StyledButton>
+            }
+          >
+            {isLoading ? (
+              <LoadingIndicator />
+            ) : (
+              <StyledTableWrapper onMouseDown={(e) => e.stopPropagation()}>
+                <StyledTable
+                  showHeader={false}
+                  pagination={false}
+                  dataSource={bills}
+                  columns={columns}
+                  rowKey={({ uuid }) => uuid}
+                />
+              </StyledTableWrapper>
+            )}
+          </StyledCard>
         )}
-      </StyledCard>
+      </FormattedMessage>
 
       <Modal />
     </>

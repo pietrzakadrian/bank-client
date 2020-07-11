@@ -1,4 +1,5 @@
-/* eslint-disable indent */
+/* eslint-disable consistent-return */
+/* eslint-disable default-case */
 import styled from 'styled-components';
 import { colors } from 'utils';
 import { Table } from 'antd';
@@ -16,6 +17,49 @@ export const StyledUser = styled.span`
 export const StyledTypography = styled.div`
   display: inline;
 `;
+
+function getColumnName(locale, child) {
+  if (locale === 'en') {
+    switch (child) {
+      case 1:
+        return 'Sender';
+      case 2:
+        return 'Recipient';
+      case 3:
+        return 'Amount money';
+      case 4:
+        return 'Transfer title';
+      case 5:
+        return 'Date';
+    }
+  } else if (locale === 'de') {
+    switch (child) {
+      case 1:
+        return 'Absender';
+      case 2:
+        return 'Empfänger';
+      case 3:
+        return 'Geldbetrag';
+      case 4:
+        return 'Übertragungstitel';
+      case 5:
+        return 'Datum';
+    }
+  } else if (locale === 'pl') {
+    switch (child) {
+      case 1:
+        return 'Nadawca';
+      case 2:
+        return 'Odbiorca';
+      case 3:
+        return 'Kwota pieniędzy';
+      case 4:
+        return 'Tytuł przelewu';
+      case 5:
+        return 'Data';
+    }
+  }
+}
 
 export const StyledTable = styled(Table)`
   @media only screen and (max-width: 768px) {
@@ -54,36 +98,31 @@ export const StyledTable = styled(Table)`
 
         &:nth-child(1) {
           &::before {
-            content: ${({ columns }) =>
-              `'${columns[0].title.props.defaultMessage}'`};
+            content: ${({ locale }) => `'${getColumnName(locale, 1)}'`};
           }
         }
 
         &:nth-child(2) {
           &::before {
-            content: ${({ columns }) =>
-              `'${columns[1].title.props.defaultMessage}'`};
+            content: ${({ locale }) => `'${getColumnName(locale, 2)}'`};
           }
         }
 
         &:nth-child(3) {
           &::before {
-            content: ${({ columns }) =>
-              `'${columns[2].title.props.defaultMessage}'`};
+            content: ${({ locale }) => `'${getColumnName(locale, 3)}'`};
           }
         }
 
         &:nth-child(4) {
           &::before {
-            content: ${({ columns }) =>
-              `'${columns[3].title.props.defaultMessage}'`};
+            content: ${({ locale }) => `'${getColumnName(locale, 4)}'`};
           }
         }
 
         &:nth-child(5) {
           &::before {
-            content: ${({ columns }) =>
-              `'${columns[4].title.props.defaultMessage}'`};
+            content: ${({ locale }) => `'${getColumnName(locale, 5)}'`};
           }
         }
 

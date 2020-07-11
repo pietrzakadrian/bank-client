@@ -15,7 +15,10 @@ import { makeSelectTransactions } from 'containers/HistoryPage/selectors';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { GET_TRANSACTION_HISTORY_REQUEST } from 'containers/HistoryPage/constants';
 import { makeSelectUser } from 'containers/App/selectors';
-import { makeSelectDateFormat } from 'providers/LanguageProvider/selectors';
+import {
+  makeSelectDateFormat,
+  makeSelectLocale,
+} from 'providers/LanguageProvider/selectors';
 import {
   StyledSenderAmountMoney,
   StyledUser,
@@ -32,10 +35,11 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(
     getRequestName(GET_TRANSACTION_HISTORY_REQUEST),
   ),
+  locale: makeSelectLocale(),
 });
 
 export default function TransactionHistory() {
-  const { dateFormat, transactions, isLoading, user } = useSelector(
+  const { dateFormat, transactions, isLoading, user, locale } = useSelector(
     stateSelector,
   );
   const dispatch = useDispatch();
@@ -116,6 +120,7 @@ export default function TransactionHistory() {
 
   return (
     <StyledTable
+      locale={locale}
       rowKey={({ uuid }) => uuid}
       loading={tableLoading}
       dataSource={transactions.data}

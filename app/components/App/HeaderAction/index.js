@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -7,20 +6,12 @@ import {
   getNotificationsAction,
   toggleConfirmModalAction,
 } from 'containers/App/actions';
-import { Popconfirm, Badge, Dropdown, Button } from 'antd';
+import { Popconfirm, Badge, Dropdown } from 'antd';
 import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import { useMediaQuery } from 'react-responsive';
 import { createStructuredSelector } from 'reselect';
-import {
-  makeSelectUser,
-  makeSelectMessages,
-  makeSelectIsOpenedModal,
-} from 'containers/App/selectors';
-import { StyledModal } from 'components/App/Modal/Modal.style';
-import { getRequestName } from 'helpers';
-import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import { LOGOUT_REQUEST } from 'containers/App/constants';
-import LoadingIndicator from 'components/LoadingIndicator';
+import { makeSelectUser, makeSelectMessages } from 'containers/App/selectors';
+
 import {
   StyledHeaderAction,
   StyledHeaderActionItem,
@@ -35,18 +26,15 @@ import {
 import messages from './messages';
 import Messages from '../Messages';
 import Notifications from '../Notifications';
+import Modal from './Modal';
 
 const stateSelector = createStructuredSelector({
   user: makeSelectUser(),
   messagesData: makeSelectMessages(),
-  isOpenedModal: makeSelectIsOpenedModal(),
-  isLoading: makeSelectIsLoading(getRequestName(LOGOUT_REQUEST)),
 });
 
 function HeaderAction({ intl }) {
-  const { messagesData, user, isOpenedModal, isLoading } = useSelector(
-    stateSelector,
-  );
+  const { messagesData, user } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ maxWidth: 479 });
 
@@ -115,31 +103,7 @@ function HeaderAction({ intl }) {
               </StyledHeaderActionItemName>
             </StyledHeaderActionItem>
 
-            <StyledModal
-              title={intl.formatMessage(messages.logout)}
-              visible={isOpenedModal}
-              onOk={onLogout}
-              onCancel={onToggleConfirmModal}
-              footer={[
-                <Button key="back" onClick={onToggleConfirmModal}>
-                  <FormattedMessage {...messages.popConfirmCancel} />
-                </Button>,
-                <Button
-                  key="submit"
-                  disabled={isLoading}
-                  type="primary"
-                  onClick={onLogout}
-                >
-                  {isLoading ? (
-                    <LoadingIndicator />
-                  ) : (
-                    <FormattedMessage {...messages.popConfirmOk} />
-                  )}
-                </Button>,
-              ]}
-            >
-              <FormattedMessage {...messages.popConfirmTitle} />
-            </StyledModal>
+            <Modal />
           </>
         ) : (
           <Popconfirm

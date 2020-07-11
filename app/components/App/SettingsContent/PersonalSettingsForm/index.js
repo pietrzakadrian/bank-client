@@ -51,7 +51,7 @@ export default function PersonalSettings() {
       name="settings"
     >
       <LastName />
-      <EmailAddress /> currency: user.userConfig?.currency?.name,
+      <EmailAddress />
       <Password />
       <StyledFormActionsWrapper>
         <StyledButton

@@ -31,6 +31,8 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
+
+
   ${media.tablet`
     .ant-dropdown {
       max-width: 340px;
@@ -40,6 +42,8 @@ const GlobalStyle = createGlobalStyle`
 
   @media screen and (max-width: 480px) {
     .ant-notification {
+      width: 100%;
+
       &.ant-notification-bottomLeft {
         left: 50% !important;
         transform: translateX(-50%) !important;

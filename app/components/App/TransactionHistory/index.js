@@ -65,7 +65,7 @@ export default function TransactionHistory() {
           <StyledUser>
             {truncateString(
               `${senderBill.user.firstName} ${senderBill.user.lastName}`,
-              15,
+              20,
             )}
           </StyledUser>
           <div>{senderBill.accountBillNumber}</div>
@@ -79,7 +79,7 @@ export default function TransactionHistory() {
           <StyledUser>
             {truncateString(
               `${recipientBill.user.firstName} ${recipientBill.user.lastName}`,
-              15,
+              20,
             )}
           </StyledUser>
           <div>{recipientBill.accountBillNumber}</div>

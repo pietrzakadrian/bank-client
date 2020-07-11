@@ -13,10 +13,6 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Amount money',
   },
-  validation: {
-    id: `${scope}.validation`,
-    defaultMessage: 'Amount money is required.',
-  },
   placeholder: {
     id: `${scope}.placeholder`,
     defaultMessage: 'Enter amount money',

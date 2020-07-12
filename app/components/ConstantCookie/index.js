@@ -16,6 +16,7 @@ export default function ConstantCookie() {
     if (cookies.accept) {
       ReactGA.initialize('UA-64684999-1');
       ReactGA.set({ anonymizeIp: true }); // GDPR
+      ReactGA.pageview(window.location.pathname + window.location.search);
     }
   }, [cookies]);
 

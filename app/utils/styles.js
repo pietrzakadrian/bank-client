@@ -30,7 +30,8 @@ const GlobalStyle = createGlobalStyle`
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
+  }
+
   input[type="color"],
   input[type="date"],
   input[type="datetime"],
@@ -46,16 +47,19 @@ const GlobalStyle = createGlobalStyle`
   input[type="url"],
   input[type="week"],
   select:focus,
+  .ant-select-dropdown,
   textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     font-size: 16px;
   }
+
   textarea:focus,
   input:focus,
   button:focus,
-  select:focus {
+  select:focus,
+  .ant-select-dropdown {
     outline: none;
   }
 

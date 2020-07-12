@@ -1,4 +1,3 @@
-import React from 'react';
 import { takeLatest, call, put, select, all } from 'redux-saga/effects';
 import {
   makeSelectToken,
@@ -7,8 +6,6 @@ import {
 import { api, request, colors, routes } from 'utils';
 import { notification } from 'antd';
 import { push } from 'connected-react-router';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import {
   GET_BILLS_REQUEST,
   GET_ACCOUNT_BALANCE_REQUEST,
@@ -25,9 +22,11 @@ import {
   getRecentTransactionsErrorAction,
   createNewBillSuccessAction,
   createNewBillIncorrectAction,
+  createNewBillErrorAction,
   getAvailableFundsErrorAction,
   getAvailableFundsSuccessAction,
 } from './actions';
+
 import { makeSelectCurrency } from './selectors';
 
 export function* getAvailableFunds() {
@@ -174,7 +173,7 @@ export function* getRecentTransactions() {
   }
 }
 
-export function* createNewBill() {
+export function* createNewBill({ snippets }) {
   const currency = yield select(makeSelectCurrency());
   const isCollapsedSidebar = yield select(makeSelectIsCollapsedSidebar());
   const { accessToken } = yield select(makeSelectToken());
@@ -200,38 +199,28 @@ export function* createNewBill() {
     yield put(createNewBillSuccessAction(bill));
 
     notification.success({
-      message: <FormattedMessage {...messages.billHasBeenCreated} />,
-      description: (
-        <FormattedMessage {...messages.billHasBeenCreatedDescription} />
-      ),
+      message: snippets.success.title,
+      description: snippets.success.description,
       style,
       placement,
     });
   } catch (error) {
-    yield put(createNewBillIncorrectAction(message));
-
-    let message;
-    let description;
-
     switch (error.statusCode) {
       case 400:
-        message = <FormattedMessage {...messages.billHasNotBeenCreated} />;
-        description = (
-          <FormattedMessage {...messages.billHasNotBeenCreatedDescription} />
-        );
+        yield put(createNewBillIncorrectAction(error));
+
+        notification.error({
+          message: snippets.error.title,
+          description: snippets.error.description,
+          style,
+          placement,
+        });
         break;
       default:
-        message = <FormattedMessage {...messages.serverError} />;
-        description = <FormattedMessage {...messages.serverErrorDescription} />;
+        yield put(createNewBillErrorAction(error));
+        yield put(push(routes.login.path));
         break;
     }
-
-    notification.error({
-      message,
-      description,
-      style,
-      placement,
-    });
   }
 }
 

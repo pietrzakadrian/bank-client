@@ -13,12 +13,4 @@ export default defineMessages({
     id: `${scope}.settings`,
     defaultMessage: 'Settings',
   },
-  saveDataTitle: {
-    id: `${scope}.save.data.title`,
-    defaultMessage: 'New data has been saved',
-  },
-  saveDataDescription: {
-    id: `${scope}.save.data.description`,
-    defaultMessage: 'The data has been refreshed automatically',
-  },
 });

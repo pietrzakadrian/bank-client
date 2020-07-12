@@ -28,8 +28,20 @@ function Modal({ intl }) {
   const [form] = StyledForm.useForm();
   const dispatch = useDispatch();
   const { isOpenedModal, isLoading } = useSelector(stateSelector);
+  const snippets = {
+    success: {
+      title: intl.formatMessage(messages.billHasBeenCreated),
+      description: intl.formatMessage(messages.billHasBeenCreatedDescription),
+    },
+    error: {
+      title: intl.formatMessage(messages.billHasNotBeenCreated),
+      description: intl.formatMessage(
+        messages.billHasNotBeenCreatedDescription,
+      ),
+    },
+  };
 
-  const createNewBill = () => dispatch(createNewBillAction());
+  const createNewBill = () => dispatch(createNewBillAction(snippets));
   const toggleModal = () => {
     dispatch(toggleModalAction());
     form.resetFields();

@@ -132,9 +132,10 @@ export function confirmTransactionAction() {
   };
 }
 
-export function confirmTransactionSuccessAction() {
+export function confirmTransactionSuccessAction(snippets) {
   return {
     type: CONFIRM_TRANSACTION_SUCCESS,
+    snippets,
   };
 }
 

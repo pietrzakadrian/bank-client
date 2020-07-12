@@ -15,17 +15,14 @@ import { makeSelectTransactions } from 'containers/HistoryPage/selectors';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { GET_TRANSACTION_HISTORY_REQUEST } from 'containers/HistoryPage/constants';
 import { makeSelectUser } from 'containers/App/selectors';
-import {
-  makeSelectDateFormat,
-  makeSelectLocale,
-} from 'providers/LanguageProvider/selectors';
+import { makeSelectDateFormat } from 'providers/LanguageProvider/selectors';
 import {
   StyledSenderAmountMoney,
   StyledUser,
   StyledTable,
 } from 'components/App/Transactions/Transactions.style';
 import { format } from 'date-fns';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
@@ -35,11 +32,10 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(
     getRequestName(GET_TRANSACTION_HISTORY_REQUEST),
   ),
-  locale: makeSelectLocale(),
 });
 
-export default function TransactionHistory() {
-  const { dateFormat, transactions, isLoading, user, locale } = useSelector(
+function TransactionHistory({ intl }) {
+  const { dateFormat, transactions, isLoading, user } = useSelector(
     stateSelector,
   );
   const dispatch = useDispatch();
@@ -120,7 +116,11 @@ export default function TransactionHistory() {
 
   return (
     <StyledTable
-      locale={locale}
+      sender={intl.formatMessage(messages.sender)}
+      recipient={intl.formatMessage(messages.recipient)}
+      amountMoney={intl.formatMessage(messages.amountMoney)}
+      transferTitle={intl.formatMessage(messages.transferTitle)}
+      date={intl.formatMessage(messages.date)}
       rowKey={({ uuid }) => uuid}
       loading={tableLoading}
       dataSource={transactions.data}
@@ -130,3 +130,9 @@ export default function TransactionHistory() {
     />
   );
 }
+
+TransactionHistory.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(TransactionHistory);

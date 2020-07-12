@@ -18,49 +18,6 @@ export const StyledTypography = styled.div`
   display: inline;
 `;
 
-function getColumnName(locale, child) {
-  if (locale === 'en') {
-    switch (child) {
-      case 1:
-        return 'Sender';
-      case 2:
-        return 'Recipient';
-      case 3:
-        return 'Amount money';
-      case 4:
-        return 'Transfer title';
-      case 5:
-        return 'Date';
-    }
-  } else if (locale === 'de') {
-    switch (child) {
-      case 1:
-        return 'Absender';
-      case 2:
-        return 'Empfänger';
-      case 3:
-        return 'Geldbetrag';
-      case 4:
-        return 'Übertragungstitel';
-      case 5:
-        return 'Datum';
-    }
-  } else if (locale === 'pl') {
-    switch (child) {
-      case 1:
-        return 'Nadawca';
-      case 2:
-        return 'Odbiorca';
-      case 3:
-        return 'Kwota pieniędzy';
-      case 4:
-        return 'Tytuł przelewu';
-      case 5:
-        return 'Data';
-    }
-  }
-}
-
 export const StyledTable = styled(Table)`
   @media only screen and (max-width: 768px) {
     table {
@@ -78,7 +35,7 @@ export const StyledTable = styled(Table)`
       }
 
       tr {
-        font-size: 13px;
+        font-size: 12px;
         border-bottom: 1px solid ${colors.primaryBlue};
         display: block;
         margin-bottom: 0.625em;
@@ -98,31 +55,31 @@ export const StyledTable = styled(Table)`
 
         &:nth-child(1) {
           &::before {
-            content: ${({ locale }) => `'${getColumnName(locale, 1)}'`};
+            content: ${({ sender }) => `'${sender}'`};
           }
         }
 
         &:nth-child(2) {
           &::before {
-            content: ${({ locale }) => `'${getColumnName(locale, 2)}'`};
+            content: ${({ recipient }) => `'${recipient}'`};
           }
         }
 
         &:nth-child(3) {
           &::before {
-            content: ${({ locale }) => `'${getColumnName(locale, 3)}'`};
+            content: ${({ amountMoney }) => `'${amountMoney}'`};
           }
         }
 
         &:nth-child(4) {
           &::before {
-            content: ${({ locale }) => `'${getColumnName(locale, 4)}'`};
+            content: ${({ transferTitle }) => `'${transferTitle}'`};
           }
         }
 
         &:nth-child(5) {
           &::before {
-            content: ${({ locale }) => `'${getColumnName(locale, 5)}'`};
+            content: ${({ date }) => `'${date}'`};
           }
         }
 

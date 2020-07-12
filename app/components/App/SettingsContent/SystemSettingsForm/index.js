@@ -1,6 +1,7 @@
 import React from 'react';
 import LocaleToggle from 'components/LocaleToggle';
 import CurrencyToggle from 'components/CurrencyToggle';
+import PropTypes from 'prop-types';
 import {
   makeSelectUser,
   makeSelectIsOpenedModal,
@@ -29,7 +30,7 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading([getRequestName(SET_USER_DATA_REQUEST)]),
 });
 
-export default function SystemSettingsForm() {
+export default function SystemSettingsForm({ snippets }) {
   const [form] = StyledForm.useForm();
   const dispatch = useDispatch();
   const { user, isLoading, isOpenedModal, currencies, newData } = useSelector(
@@ -40,7 +41,7 @@ export default function SystemSettingsForm() {
     form.resetFields();
     dispatch(toggleModalAction());
   };
-  const onSetUserData = () => dispatch(setUserDataAction());
+  const onSetUserData = () => dispatch(setUserDataAction(snippets));
 
   return (
     <StyledForm
@@ -113,3 +114,12 @@ export default function SystemSettingsForm() {
     </StyledForm>
   );
 }
+
+SystemSettingsForm.propTypes = {
+  snippets: PropTypes.shape({
+    success: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      descritpion: PropTypes.string.isRequired,
+    }),
+  }),
+};

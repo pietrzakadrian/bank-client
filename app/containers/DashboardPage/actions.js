@@ -8,6 +8,7 @@ import {
   CREATE_NEW_BILL_REQUEST,
   CREATE_NEW_BILL_SUCCESS,
   CREATE_NEW_BILL_INCORRECT,
+  CREATE_NEW_BILL_ERROR,
   GET_BILLS_REQUEST,
   GET_BILLS_SUCCESS,
   GET_BILLS_ERROR,
@@ -49,9 +50,10 @@ export function getAvailableFundsErrorAction(error) {
   };
 }
 
-export function createNewBillAction() {
+export function createNewBillAction(snippets) {
   return {
     type: CREATE_NEW_BILL_REQUEST,
+    snippets,
   };
 }
 
@@ -69,6 +71,12 @@ export function createNewBillIncorrectAction(error) {
   };
 }
 
+export function createNewBillErrorAction(error) {
+  return {
+    type: CREATE_NEW_BILL_ERROR,
+    error,
+  };
+}
 export function getBillsAction() {
   return {
     type: GET_BILLS_REQUEST,

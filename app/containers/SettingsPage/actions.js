@@ -33,9 +33,10 @@ export function getUserDataErrorAction(error) {
   };
 }
 
-export function setUserDataAction() {
+export function setUserDataAction(snippets) {
   return {
     type: SET_USER_DATA_REQUEST,
+    snippets,
   };
 }
 

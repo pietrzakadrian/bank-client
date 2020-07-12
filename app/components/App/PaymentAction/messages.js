@@ -37,4 +37,13 @@ export default defineMessages({
     id: `${scope}.placeholder`,
     defaultMessage: 'Authorization key',
   },
+  transferConfirmedTitle: {
+    id: `${scope}.transfer.confirmed.title`,
+    defaultMessage: 'The transfer has been made',
+  },
+  transferConfirmedDescription: {
+    id: `${scope}.transfer.confirmed.description`,
+    defaultMessage:
+      'Your balance has been updated. Check your transfer history in the History tab.',
+  },
 });

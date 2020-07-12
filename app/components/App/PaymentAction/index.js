@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import {
   nextStepAction,
   previousStepAction,
@@ -66,7 +66,7 @@ const stateSelector = createStructuredSelector({
   hasCreatedTransaction: makeSelectHasCreatedTransaction(),
 });
 
-export default function PaymentAction({ form }) {
+function PaymentAction({ intl, form }) {
   const {
     isLoading,
     currentStep,
@@ -75,6 +75,12 @@ export default function PaymentAction({ form }) {
     hasCreatedTransaction,
   } = useSelector(stateSelector);
   const dispatch = useDispatch();
+  const snippets = {
+    success: {
+      title: intl.formatMessage(messages.transferConfirmedTitle),
+      description: intl.formatMessage(messages.transferConfirmedDescription),
+    },
+  };
 
   const onChangeInput = (event) => dispatch(changeInputAction(event.target));
   const onPreviousStep = () => dispatch(previousStepAction());
@@ -82,7 +88,8 @@ export default function PaymentAction({ form }) {
   const onGetAuthorizationKey = () => dispatch(getAuthorizationKeyAction());
   const onCheckRecipient = () => dispatch(checkRecipientAction());
   const onCreateTransaction = () => dispatch(createTransactionAction());
-  const onConfirmTransaction = () => dispatch(confirmTransactionAction());
+  const onConfirmTransaction = () =>
+    dispatch(confirmTransactionAction(snippets));
 
   const onValidateFields = async () => {
     try {
@@ -198,4 +205,7 @@ export default function PaymentAction({ form }) {
 
 PaymentAction.propTypes = {
   form: PropTypes.object.isRequired,
+  intl: intlShape.isRequired,
 };
+
+export default injectIntl(PaymentAction);

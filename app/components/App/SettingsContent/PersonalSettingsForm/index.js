@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserDataAction } from 'containers/SettingsPage/actions';
 import LoadingIndicator from 'components/LoadingIndicator';
@@ -27,12 +28,12 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading([getRequestName(SET_USER_DATA_REQUEST)]),
 });
 
-export default function PersonalSettings() {
+export default function PersonalSettings({ snippets }) {
   const [form] = StyledForm.useForm();
   const { isLoading, newData, user } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
-  const onSetUserData = () => dispatch(setUserDataAction());
+  const onSetUserData = () => dispatch(setUserDataAction(snippets));
 
   const onValidateFields = async () => {
     try {
@@ -72,3 +73,12 @@ export default function PersonalSettings() {
     </StyledForm>
   );
 }
+
+PersonalSettings.propTypes = {
+  snippets: PropTypes.shape({
+    success: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      descritpion: PropTypes.string.isRequired,
+    }),
+  }),
+};

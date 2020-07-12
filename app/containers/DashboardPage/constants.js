@@ -10,6 +10,7 @@ export const CREATE_NEW_BILL_SUCCESS =
   'app/DashboardPage/CREATE_NEW_BILL_SUCCESS';
 export const CREATE_NEW_BILL_INCORRECT =
   'app/DashboardPage/CREATE_NEW_BILL_INCORRECT';
+export const CREATE_NEW_BILL_ERROR = 'app/DashboardPage/CREATE_NEW_BILL_ERROR';
 
 export const GET_BILLS_REQUEST = 'app/DashboardPage/GET_BILLS_REQUEST';
 export const GET_BILLS_SUCCESS = 'app/DashboardPage/GET_BILLS_SUCCESS';

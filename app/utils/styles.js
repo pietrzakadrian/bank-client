@@ -26,17 +26,21 @@ const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
   }
 
+  select, input, textarea {
+    &:active {
+      font-size: 16px;
+    } 
+  }
+
   .ant-dropdown {
     z-index: 999;
     width: 100%;
   }
 
-
-
   ${media.tablet`
     .ant-dropdown {
-      max-width: 340px;
-      width: 340px;
+      max-width: 390px;
+      width: 390px;
     }
   `}
 

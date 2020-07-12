@@ -185,7 +185,7 @@ export function* getAuthorizationKey() {
   }
 }
 
-export function* confirmTransaction() {
+export function* confirmTransaction({ snippets }) {
   const { accessToken } = yield select(makeSelectToken());
   const authorizationKey = yield select(makeSelectAuthorizationKey());
   const isCollapsedSidebar = yield select(makeSelectIsCollapsedSidebar());
@@ -207,10 +207,8 @@ export function* confirmTransaction() {
     yield put(confirmTransactionSuccessAction());
 
     notification.success({
-      message: <FormattedMessage {...messages.transferConfirmedTitle} />,
-      description: (
-        <FormattedMessage {...messages.transferConfirmedDescription} />
-      ),
+      message: snippets.success.title,
+      description: snippets.success.descirpion,
       style,
       placement,
     });

@@ -14,16 +14,24 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { getRequestName } from 'helpers';
 import { GET_USER_DATA_REQUEST } from 'containers/SettingsPage/constants';
+import { injectIntl, intlShape } from 'react-intl';
 import { PersonalSettingsForm, SystemSettingsForm } from '../SettingsContent';
 import { SettingsFormWrapper } from './SettingsForm.style';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading([getRequestName(GET_USER_DATA_REQUEST)]),
 });
 
-export default function SettingsForm() {
+function SettingsForm({ intl }) {
   const { isLoading } = useSelector(stateSelector);
   const dispatch = useDispatch();
+  const snippets = {
+    success: {
+      title: intl.formatMessage(messages.saveDataTitle),
+      description: intl.formatMessage(messages.saveDataDescription),
+    },
+  };
 
   const onGetUserData = () => dispatch(getUserDataAction());
 
@@ -38,12 +46,18 @@ export default function SettingsForm() {
           <LoadingIndicator />
         ) : (
           <>
-            <PersonalSettingsForm />
+            <PersonalSettingsForm snippets={snippets} />
 
-            <SystemSettingsForm />
+            <SystemSettingsForm snippets={snippets} />
           </>
         )}
       </SettingsFormWrapper>
     </StyledFormWrapper>
   );
 }
+
+SettingsForm.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(SettingsForm);

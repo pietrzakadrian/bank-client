@@ -6,9 +6,6 @@ import {
 } from 'containers/App/selectors';
 import { push } from 'connected-react-router';
 import { notification } from 'antd';
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import { GET_USER_DATA_REQUEST, SET_USER_DATA_REQUEST } from './constants';
 import {
   getUserDataSuccessAction,
@@ -35,7 +32,7 @@ export function* getUserData() {
   }
 }
 
-export function* setUserData() {
+export function* setUserData({ snippets }) {
   const { accessToken } = yield select(makeSelectToken());
   const newData = yield select(makeSelectNewData());
   const isCollapsedSidebar = yield select(makeSelectIsCollapsedSidebar());
@@ -58,8 +55,8 @@ export function* setUserData() {
     yield put(setUserDataSuccessAction(userData));
 
     notification.success({
-      message: <FormattedMessage {...messages.saveDataTitle} />,
-      description: <FormattedMessage {...messages.saveDataDescription} />,
+      message: snippets.success.title,
+      description: snippets.success.description,
       style,
       placement,
     });

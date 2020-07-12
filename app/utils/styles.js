@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
   input[type="url"],
   input[type="week"],
   select:focus,
-  .ant-select-dropdown,
+  .ant-select,
   textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -59,7 +59,7 @@ const GlobalStyle = createGlobalStyle`
   input:focus,
   button:focus,
   select:focus,
-  .ant-select-dropdown {
+  .ant-select {
     outline: none;
   }
 

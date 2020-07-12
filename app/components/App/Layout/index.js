@@ -27,8 +27,7 @@ export default function Layout({ children }) {
   useEffect(() => {
     ReactGA.initialize('UA-64684999-1', { debug: true });
     ReactGA.set({ anonymizeIp: true }); // GDPR
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  });
+  }, []);
 
   return (
     <>

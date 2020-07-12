@@ -25,7 +25,7 @@ export default function Layout({ children }) {
   const { isCollapsedSidebar } = useSelector(stateSelector);
 
   useEffect(() => {
-    ReactGA.initialize('UA-64684999-1', { debug: true });
+    ReactGA.initialize('UA-64684999-1');
     ReactGA.set({ anonymizeIp: true }); // GDPR
   }, []);
 

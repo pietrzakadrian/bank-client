@@ -119,7 +119,7 @@ SystemSettingsForm.propTypes = {
   snippets: PropTypes.shape({
     success: PropTypes.shape({
       title: PropTypes.string.isRequired,
-      descritpion: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
     }),
   }),
 };

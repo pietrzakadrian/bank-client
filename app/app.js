@@ -8,13 +8,14 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
 import omit from 'lodash/omit';
+import ReactGA from 'react-ga';
 
 // Import root app
 import App from 'containers/App';
@@ -35,6 +36,9 @@ import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
+
+ReactGA.initialize('UA-64684999-1');
+ReactGA.set({ anonymizeIp: true });
 
 // Create redux store with history
 const initialState = loadState();
@@ -57,17 +61,23 @@ store.subscribe(
   }, 1000),
 );
 
-const ConnectedApp = (props) => (
-  <Provider store={store}>
-    <LanguageProvider messages={props.messages}>
-      <ConnectedRouter history={history}>
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
-      </ConnectedRouter>
-    </LanguageProvider>
-  </Provider>
-);
+function ConnectedApp({ messages }) {
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <LanguageProvider messages={messages}>
+        <ConnectedRouter history={history}>
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
+        </ConnectedRouter>
+      </LanguageProvider>
+    </Provider>
+  );
+}
 
 ConnectedApp.propTypes = {
   messages: PropTypes.object,

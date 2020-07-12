@@ -19,6 +19,7 @@ import { routes } from 'utils';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import ConstantCookie from '../../components/ConstantCookie';
 
 const key = 'registerPage';
 function RegisterPage({ intl }) {
@@ -44,6 +45,8 @@ function RegisterPage({ intl }) {
 
       <RedirectToggle />
       <Footer />
+
+      <ConstantCookie />
     </>
   );
 }

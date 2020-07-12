@@ -5,6 +5,7 @@ import dashboardMessages from 'containers/DashboardPage/messages';
 import paymentMessages from 'containers/PaymentPage/messages';
 import historyMessages from 'containers/HistoryPage/messages';
 import settingsMessages from 'containers/SettingsPage/messages';
+import privacyMessages from 'containers/PrivacyPage/messages';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -38,7 +39,8 @@ export default {
     path: '/settings',
   },
   privacy: {
-    name: 'Privacy',
+    name: <FormattedMessage {...privacyMessages.privacy} />,
     path: '/privacy',
   },
+  notFound: { name: '404', path: '/404' },
 };

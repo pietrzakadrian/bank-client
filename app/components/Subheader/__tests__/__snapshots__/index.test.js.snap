@@ -31,7 +31,6 @@ exports[`<Subheader /> should render a information 1`] = `
     >
       <span
         class="ant-select-selection-search"
-        title="EN"
       >
         <input
           aria-activedescendant="rc_select_TEST_OR_SSR_list_0"
@@ -51,6 +50,7 @@ exports[`<Subheader /> should render a information 1`] = `
       </span>
       <span
         class="ant-select-selection-item"
+        title="EN"
       >
         EN
       </span>

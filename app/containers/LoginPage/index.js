@@ -16,6 +16,7 @@ import Footer from 'components/Footer';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import LoginForm from 'components/LoginForm';
 import { routes } from 'utils';
+import ConstantCookie from 'components/ConstantCookie';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -44,6 +45,8 @@ function LoginPage({ intl }) {
 
       <RedirectToggle />
       <Footer />
+
+      <ConstantCookie />
     </div>
   );
 }

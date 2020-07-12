@@ -7,7 +7,7 @@ export const StyledFooter = styled.footer`
   margin: 15px auto;
   max-width: 560px;
   font-size: 13px;
-  padding: 0 20px;
+  padding: 0 20px 10px;
 `;
 
 export const StyledWarning = styled.div`

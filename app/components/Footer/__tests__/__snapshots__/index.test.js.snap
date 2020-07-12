@@ -2,7 +2,7 @@
 
 exports[`<Footer /> should render a div 1`] = `
 <footer
-  class="Footerstyle__StyledFooter-sc-3vvbi3-0 dvHDti"
+  class="Footerstyle__StyledFooter-sc-3vvbi3-0 efEtfj"
 >
   <div
     class="Footerstyle__StyledWarning-sc-3vvbi3-1 btJlec"

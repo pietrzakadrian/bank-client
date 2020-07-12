@@ -4,9 +4,9 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import ReactGA from 'react-ga';
 import Sidebar from 'components/App/Sidebar';
 import Header from 'components/App/Header';
 import { createStructuredSelector } from 'reselect';
@@ -23,6 +23,12 @@ const stateSelector = createStructuredSelector({
 
 export default function Layout({ children }) {
   const { isCollapsedSidebar } = useSelector(stateSelector);
+
+  useEffect(() => {
+    ReactGA.initialize('UA-64684999-1', { debug: true });
+    ReactGA.set({ anonymizeIp: true }); // GDPR
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  });
 
   return (
     <>

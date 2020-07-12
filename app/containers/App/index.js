@@ -20,6 +20,7 @@ import DashboardPage from 'containers/DashboardPage/Loadable';
 import PaymentPage from 'containers/PaymentPage/Loadable';
 import HistoryPage from 'containers/HistoryPage/Loadable';
 import SettingsPage from 'containers/SettingsPage/Loadable';
+import PrivacyPage from 'containers/PrivacyPage/Loadable';
 import { ConfigProvider } from 'antd';
 import Layout from 'components/App/Layout';
 import { routes } from 'utils';
@@ -35,6 +36,7 @@ import deDE from 'antd/es/locale/de_DE';
 import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import saga from './saga';
 
 const stateSelector = createStructuredSelector({
@@ -77,6 +79,12 @@ function App() {
             path={routes.register.path}
             component={RegisterPage}
           />
+          <PublicRoute path={routes.privacy.path} component={PrivacyPage} />
+          <PublicRoute
+            exact
+            path={routes.notFound.path}
+            component={NotFoundPage}
+          />
 
           <Layout>
             <Switch>
@@ -97,10 +105,10 @@ function App() {
                 path={routes.settings.path}
                 component={SettingsPage}
               />
+
+              <Redirect to={routes.notFound.path} />
             </Switch>
           </Layout>
-
-          <PublicRoute component={NotFoundPage} />
         </Switch>
         <GlobalStyle />
       </div>

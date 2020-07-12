@@ -54,7 +54,6 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
       >
         <span
           class="ant-select-selection-search"
-          title="EN"
         >
           <input
             aria-activedescendant="rc_select_TEST_OR_SSR_list_0"
@@ -74,6 +73,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
         </span>
         <span
           class="ant-select-selection-item"
+          title="EN"
         >
           EN
         </span>
@@ -283,7 +283,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
     </button>
   </div>
   <footer
-    class="Footerstyle__StyledFooter-sc-3vvbi3-0 dvHDti"
+    class="Footerstyle__StyledFooter-sc-3vvbi3-0 efEtfj"
   >
     <div
       class="Footerstyle__StyledWarning-sc-3vvbi3-1 btJlec"
@@ -354,5 +354,42 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
       </button>
     </div>
   </footer>
+  <div
+    class="ant-card ConstantCookiestyle__StyledConstantCookie-xxbw17-0 iBqQYX ant-card-bordered"
+  >
+    <div
+      class="ant-card-body"
+    >
+      <div>
+        <p>
+          <span>
+            This site uses cookies to provide services at the highest level. By continuing to use the site, you agree to their use.
+          </span>
+        </p>
+        <div
+          class="ConstantCookiestyle__StyledConstantCookieActions-xxbw17-1 hGZINf"
+        >
+          <button
+            class="ant-btn"
+            type="button"
+          >
+            <a
+              href="https://github.com/pietrzakadrian"
+            >
+              Decline
+            </a>
+          </button>
+          <button
+            class="ant-btn ant-btn-primary"
+            type="button"
+          >
+            <span>
+              Accept
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;

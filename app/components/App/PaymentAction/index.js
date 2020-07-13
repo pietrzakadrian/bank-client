@@ -31,7 +31,7 @@ import {
   StyledError,
 } from 'components/Form/Form.style';
 import LoadingIndicator from 'components/LoadingIndicator';
-import { getRequestName } from 'helpers';
+import { getRequestName, disabledSpacesInput } from 'helpers';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import {
   GET_BILLS_REQUEST,
@@ -151,6 +151,7 @@ function PaymentAction({ intl, form }) {
                 <FormattedMessage {...messages.placeholder}>
                   {(placeholder) => (
                     <Input
+                      onKeyPress={disabledSpacesInput}
                       onChange={(event) => onChangeInput(event)}
                       name="authorizationKey"
                       value={authorizationKey}

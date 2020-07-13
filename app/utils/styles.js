@@ -32,24 +32,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  .ant-select {
-
-  }
-
-  input[type='text'],
-  input[type='number'],
-  input[type='password'],
-  textarea,
-  .ant-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    font-size: 16px;
-
-    &::placeholder, .ant-select-selection-placeholder { 
-      font-size: 14px;
-    }
-  }
 
   .ant-dropdown {
     z-index: 999;
@@ -64,6 +46,21 @@ const GlobalStyle = createGlobalStyle`
   `}
 
   @media screen and (max-width: 480px) {
+    input[type='text'],
+    input[type='number'],
+    input[type='password'],
+    textarea,
+    .ant-select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      font-size: 16px;
+
+      &::placeholder, .ant-select-selection-placeholder { 
+        font-size: 14px;
+      }
+    }
+    
     .ant-notification {
       width: 100%;
 

@@ -6,7 +6,7 @@ import { makeSelectLastName } from 'containers/RegisterPage/selectors';
 import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
-import { nameValidation } from 'helpers';
+import { nameValidation, disabledSpacesInput } from 'helpers';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
@@ -42,6 +42,7 @@ function LastName({ intl }) {
       rules={[{ validator: checkStringConsistsLettersOnly }]}
     >
       <Input
+        onKeyPress={disabledSpacesInput}
         onChange={(event) => onChangeInput(event)}
         name="lastName"
         value={lastName}

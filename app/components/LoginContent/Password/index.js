@@ -8,6 +8,7 @@ import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
 import messages from './messages';
+import { disabledSpacesInput } from '../../../helpers';
 
 const stateSelector = createStructuredSelector({
   password: makeSelectPassword(),
@@ -28,6 +29,7 @@ function Password({ intl }) {
       ]}
     >
       <Input.Password
+        onKeyPress={disabledSpacesInput}
         onChange={onChangePassword}
         name="password"
         value={password}

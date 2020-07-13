@@ -49,7 +49,8 @@ const paymentPageReducer = produce((draft, action) => {
           draft.recipientBill =
             draft.recipients?.find(
               (bill) =>
-                bill.accountBillNumber.replace(/ /g, '') === action.value,
+                bill.accountBillNumber.replace(/ /g, '') ===
+                action.value.trim(),
             ) || '';
         } else {
           draft[action.name] = action.value.trim();

@@ -39,6 +39,8 @@ export default function RegisterAction({ form }) {
   const { isLoading, currentStep, error } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+  console.log(error);
+
   const onRegister = () => dispatch(registerAction());
   const onPreviousStep = () => dispatch(previousStepAction());
   const onNextStep = () => dispatch(nextStepAction());

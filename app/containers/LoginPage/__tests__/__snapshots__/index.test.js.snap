@@ -25,7 +25,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
     />
   </header>
   <div
-    class="Subheaderstyle__StyledSubheader-sc-1dbp7w7-0 lkJlFV"
+    class="Subheaderstyle__StyledSubheader-sc-1dbp7w7-0 jVKMLr"
   >
     <div
       class="ant-page-header Subheaderstyle__StyledPageHeader-sc-1dbp7w7-1 gjCZxq ant-page-header-ghost"
@@ -355,7 +355,7 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
     </div>
   </footer>
   <div
-    class="ant-card ConstantCookiestyle__StyledConstantCookie-xxbw17-0 iBqQYX ant-card-bordered"
+    class="ant-card ConstantCookiestyle__StyledConstantCookie-xxbw17-0 krghBS ant-card-bordered"
   >
     <div
       class="ant-card-body"
@@ -376,7 +376,9 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
             <a
               href="https://github.com/pietrzakadrian"
             >
-              Decline
+              <span>
+                Decline
+              </span>
             </a>
           </button>
           <button

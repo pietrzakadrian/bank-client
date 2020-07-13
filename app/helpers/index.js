@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 export const formatBill = (bill) => ({
   ...bill,
   amountMoney: bill.amountMoney?.toLocaleString(undefined, {
@@ -39,4 +40,16 @@ export const truncateString = (string, maxLength = 190) => {
   if (!string) return null;
   if (string.length <= maxLength) return string;
   return `${string.substring(0, maxLength)}...`;
+};
+
+export const disabledSpacesInput = (event) => {
+  if (event.which === 32) {
+    event.preventDefault();
+    return false;
+  }
+};
+
+export const trimInput = (event) => {
+  const text = event.clipboardData.getData('Text');
+  this.value = text.split(' ').join('');
 };

@@ -8,6 +8,7 @@ import { makeSelectEmail } from 'containers/RegisterPage/selectors';
 import { StyledInformation } from 'components/RegisterForm/RegisterForm.style';
 import { StyledFormItem } from 'components/Form/Form.style';
 import messages from './messages';
+import { disabledSpacesInput } from '../../../helpers';
 
 const stateSelector = createStructuredSelector({
   email: makeSelectEmail(),
@@ -57,6 +58,7 @@ function EmailAddress({ intl }) {
         ]}
       >
         <Input
+          onKeyPress={disabledSpacesInput}
           onChange={(event) => onChangeInput(event)}
           name="email"
           value={email}

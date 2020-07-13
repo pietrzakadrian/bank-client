@@ -6,7 +6,7 @@ import { makeSelectFirstName } from 'containers/RegisterPage/selectors';
 import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
-import { nameValidation } from 'helpers';
+import { nameValidation, disabledSpacesInput, trimInput } from 'helpers';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
@@ -44,9 +44,14 @@ function FirstName({ intl }) {
     <StyledFormItem
       label={intl.formatMessage(messages.label)}
       name="firstName"
-      rules={[{ validator: checkStringConsistsLettersOnly }]}
+      rules={[
+        { validator: checkStringConsistsLettersOnly },
+        { whitespace: false },
+      ]}
     >
       <Input
+        onPaste={trimInput}
+        onKeyPress={disabledSpacesInput}
         onChange={(event) => onChangeInput(event)}
         name="firstName"
         value={firstName}

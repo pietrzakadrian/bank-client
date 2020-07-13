@@ -7,6 +7,7 @@ import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
 import messages from './messages';
+import { disabledSpacesInput } from '../../../helpers';
 
 const stateSelector = createStructuredSelector({
   password: makeSelectPassword(),
@@ -35,6 +36,7 @@ function Password({ intl }) {
       rules={[{ validator: checkLengthOfCharactersInPassword }]}
     >
       <Input.Password
+        onKeyPress={disabledSpacesInput}
         onChange={(event) => onChangeInput(event)}
         name="password"
         value={password}

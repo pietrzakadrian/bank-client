@@ -5,6 +5,7 @@
   "app.components.BankCards.title": "Karten",
   "app.components.BankInformation.description": "Wussten Sie, dass Überweisungen bei unserer Bank sofort eintreffen?",
   "app.components.Bills.action": "Erstellen Sie eine neue Rechnung",
+  "app.components.Bills.personal": "Persönlich",
   "app.components.Bills.title": "Rechnungen",
   "app.components.ConstantCookie.accept": "Akzeptieren",
   "app.components.ConstantCookie.decline": "Ablehnen",

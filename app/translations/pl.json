@@ -5,6 +5,7 @@
   "app.components.BankCards.title": "Karty",
   "app.components.BankInformation.description": "Czy wiesz, że przelewy w naszym banku przychodzą natychmiast?",
   "app.components.Bills.action": "Utwórz nowy rachunek",
+  "app.components.Bills.personal": "Osobisty",
   "app.components.Bills.title": "Rachunki",
   "app.components.ConstantCookie.accept": "Akceptuję",
   "app.components.ConstantCookie.decline": "Rezygnuję",

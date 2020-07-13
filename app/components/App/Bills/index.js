@@ -19,6 +19,7 @@ import { GET_BILLS_REQUEST } from 'containers/DashboardPage/constants';
 import { StyledBillAmountMoney } from './Bills.style';
 import { StyledButton, StyledButtonContent } from '../Button/Button.style';
 import messages from './messages';
+import { StyledTag } from '../Tag/Tag.style';
 
 const stateSelector = createStructuredSelector({
   bills: makeSelectBills(),
@@ -28,7 +29,14 @@ const stateSelector = createStructuredSelector({
 const columns = [
   {
     dataIndex: 'accountBillNumber',
-    render: (text) => <div>{text}</div>,
+    render: (text) => (
+      <div>
+        {text}{' '}
+        <StyledTag color="blue" key={text.uuid}>
+          <FormattedMessage {...messages.personal} />
+        </StyledTag>
+      </div>
+    ),
   },
   {
     dataIndex: 'amountMoney',

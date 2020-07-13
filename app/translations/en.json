@@ -5,6 +5,7 @@
   "app.components.BankCards.title": "Cards",
   "app.components.BankInformation.description": "Did you know that transfers in our bank arrive immediately?",
   "app.components.Bills.action": "Create a new bill",
+  "app.components.Bills.personal": "Personal",
   "app.components.Bills.title": "Bills",
   "app.components.ConstantCookie.accept": "Accept",
   "app.components.ConstantCookie.decline": "Decline",

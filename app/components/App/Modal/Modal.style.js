@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Modal } from 'antd';
+import { media } from 'utils';
 
 export const StyledModal = styled(Modal)`
   p {
@@ -21,4 +22,13 @@ export const StyledModal = styled(Modal)`
       }
     }
   }
+
+  ${media.tablet`
+    .ant-modal-footer {
+
+      button {
+        width: auto;
+      }
+    } 
+  `}
 `;

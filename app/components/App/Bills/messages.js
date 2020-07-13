@@ -11,4 +11,8 @@ export default defineMessages({
     id: `${scope}.action`,
     defaultMessage: 'Create a new bill',
   },
+  personal: {
+    id: `${scope}.personal`,
+    defaultMessage: 'Personal',
+  },
 });

@@ -33,4 +33,8 @@ export default defineMessages({
     id: `${scope}.transferTitle`,
     defaultMessage: 'Transfer Title',
   },
+  confirmation: {
+    id: `${scope}.confirmation`,
+    defaultMessage: 'Confirmation',
+  },
 });

@@ -19,7 +19,7 @@ export const StyledTypography = styled.div`
 `;
 
 export const StyledTable = styled(Table)`
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     table {
       border: 0;
 
@@ -83,11 +83,21 @@ export const StyledTable = styled(Table)`
           }
         }
 
+        &:nth-child(6) {
+          &::before {
+            content: ${({ confirmation }) => `'${confirmation}'`};
+          }
+        }
+
         &:last-child {
           border-bottom: 0;
         }
       }
     }
+  }
+
+  .ant-tag {
+    margin-right: 0;
   }
 
   .ant-empty {

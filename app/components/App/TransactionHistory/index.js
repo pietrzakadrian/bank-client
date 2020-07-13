@@ -10,6 +10,7 @@ import { getRequestName, truncateString } from 'helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionHistoryAction } from 'containers/HistoryPage/actions';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { FilePdfOutlined } from '@ant-design/icons';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectTransactions } from 'containers/HistoryPage/selectors';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
@@ -23,6 +24,7 @@ import {
 } from 'components/App/Transactions/Transactions.style';
 import { format } from 'date-fns';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
+import { Tag } from 'antd';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
@@ -112,6 +114,14 @@ function TransactionHistory({ intl }) {
         <div>{format(new Date(updatedAt), dateFormat)}</div>
       ),
     },
+    {
+      title: <FormattedMessage {...messages.confirmation} />,
+      render: ({ uuid }) => (
+        <Tag color="blue" key={uuid}>
+          <FilePdfOutlined /> Download PDF
+        </Tag>
+      ),
+    },
   ];
 
   return (
@@ -121,6 +131,7 @@ function TransactionHistory({ intl }) {
       amountMoney={intl.formatMessage(messages.amountMoney)}
       transferTitle={intl.formatMessage(messages.transferTitle)}
       date={intl.formatMessage(messages.date)}
+      confirmation={intl.formatMessage(messages.confirmation)}
       rowKey={({ uuid }) => uuid}
       loading={tableLoading}
       dataSource={transactions.data}

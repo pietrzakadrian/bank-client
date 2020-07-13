@@ -32,35 +32,23 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  input[type="color"],
-  input[type="date"],
-  input[type="datetime"],
-  input[type="datetime-local"],
-  input[type="email"],
-  input[type="month"],
-  input[type="number"],
-  input[type="password"],
-  input[type="search"],
-  input[type="tel"],
-  input[type="text"],
-  input[type="time"],
-  input[type="url"],
-  input[type="week"],
-  select:focus,
-  .ant-select,
-  textarea {
+  .ant-select {
+
+  }
+
+  input[type='text'],
+  input[type='number'],
+  input[type='password'],
+  textarea,
+  .ant-select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     font-size: 16px;
-  }
 
-  textarea:focus,
-  input:focus,
-  button:focus,
-  select:focus,
-  .ant-select {
-    outline: none;
+    &::placeholder, .ant-select-selection-placeholder { 
+      font-size: 14px;
+    }
   }
 
   .ant-dropdown {

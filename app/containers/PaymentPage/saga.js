@@ -208,13 +208,15 @@ export function* confirmTransaction({ snippets }) {
 
     notification.success({
       message: snippets.success.title,
-      description: snippets.success.descirpion,
+      description: snippets.success.description,
       style,
       placement,
     });
 
     yield put(push(routes.dashboard.path));
   } catch (error) {
+    console.log(error);
+
     let message;
 
     switch (error.statusCode) {

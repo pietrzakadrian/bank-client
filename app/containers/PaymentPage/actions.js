@@ -126,9 +126,10 @@ export function getAuthorizationKeyErrorAction(error) {
   };
 }
 
-export function confirmTransactionAction() {
+export function confirmTransactionAction(snippets) {
   return {
     type: CONFIRM_TRANSACTION_REQUEST,
+    snippets,
   };
 }
 

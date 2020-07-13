@@ -11,5 +11,13 @@ export const StyledModal = styled(Modal)`
   .ant-modal-footer {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+
+    button {
+      width: 50%;
+      div {
+        white-space: pre-wrap;
+      }
+    }
   }
 `;

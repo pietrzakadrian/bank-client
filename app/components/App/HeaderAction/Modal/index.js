@@ -31,7 +31,6 @@ export default function Modal() {
           title={title}
           visible={isOpenedModal}
           onOk={onLogout}
-          centered
           onCancel={onToggleConfirmModal}
           footer={[
             <Button key="back" onClick={onToggleConfirmModal}>

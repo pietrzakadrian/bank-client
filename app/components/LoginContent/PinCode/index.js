@@ -1,23 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectPinCode } from 'containers/LoginPage/selectors';
-import { changeInputNumberAction } from 'containers/App/actions';
+import {
+  changeInputNumberAction,
+  nextStepAction,
+} from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem, StyledInputNumber } from 'components/Form/Form.style';
+import { disabledSpacesInput, trimInput } from 'helpers';
 import messages from './messages';
-import { disabledSpacesInput, trimInput } from '../../../helpers';
 
 const stateSelector = createStructuredSelector({
   pinCode: makeSelectPinCode(),
 });
 
-function PinCode({ intl }) {
+function PinCode({ intl, form }) {
   const { pinCode } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
   const onChangePinCode = (name, value) =>
     dispatch(changeInputNumberAction({ name, value }));
+  const onNextStep = () => dispatch(nextStepAction());
+
+  const onValidateFields = async () => {
+    try {
+      await form.validateFields();
+      onNextStep();
+    } catch (err) {
+      Error(err);
+    }
+  };
 
   return (
     <StyledFormItem
@@ -32,6 +46,7 @@ function PinCode({ intl }) {
         min="1"
         type="number"
         onPaste={trimInput}
+        onPressEnter={onValidateFields}
         onKeyPress={disabledSpacesInput}
         onChange={(value) => onChangePinCode('pinCode', value)}
         name="pinCode"
@@ -44,6 +59,7 @@ function PinCode({ intl }) {
 
 PinCode.propTypes = {
   intl: intlShape.isRequired,
+  form: PropTypes.object.isRequired,
 };
 
 export default injectIntl(PinCode);

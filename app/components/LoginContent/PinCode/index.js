@@ -6,7 +6,7 @@ import { changeInputNumberAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem, StyledInputNumber } from 'components/Form/Form.style';
 import messages from './messages';
-import { disabledSpacesInput } from '../../../helpers';
+import { disabledSpacesInput, trimInput } from '../../../helpers';
 
 const stateSelector = createStructuredSelector({
   pinCode: makeSelectPinCode(),
@@ -28,9 +28,10 @@ function PinCode({ intl }) {
       ]}
     >
       <StyledInputNumber
-        max={1e9}
+        max={10e5 - 1}
         min="1"
         type="number"
+        onPaste={trimInput}
         onKeyPress={disabledSpacesInput}
         onChange={(value) => onChangePinCode('pinCode', value)}
         name="pinCode"

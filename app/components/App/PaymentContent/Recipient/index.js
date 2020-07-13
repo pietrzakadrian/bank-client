@@ -9,7 +9,7 @@ import { searchRecipientAction } from 'containers/PaymentPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { AutoComplete, Tooltip, Input } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { getRequestName, disabledSpacesInput } from 'helpers';
+import { getRequestName, disabledSpacesInput, trimInput } from 'helpers';
 import { SEARCH_RECIPIENT_REQUEST } from 'containers/PaymentPage/constants';
 import messages from './messages';
 
@@ -55,6 +55,7 @@ function Recipient({ intl }) {
         options={options}
       >
         <Input
+          onPaste={trimInput}
           onKeyPress={disabledSpacesInput}
           maxLength="26"
           placeholder={intl.formatMessage(messages.placeholder)}

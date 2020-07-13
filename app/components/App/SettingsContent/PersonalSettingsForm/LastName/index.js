@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledFormItem } from 'components/Form/Form.style';
-import { nameValidation } from 'helpers';
+import { nameValidation, trimInput, disabledSpacesInput } from 'helpers';
 import { Input } from 'antd';
 import { changeInputAction } from 'containers/App/actions';
 import { useDispatch } from 'react-redux';
@@ -29,6 +29,8 @@ function LastName({ intl }) {
       name="lastName"
     >
       <Input
+        onPaste={trimInput}
+        onKeyPress={disabledSpacesInput}
         placeholder={intl.formatMessage(messages.placeholder)}
         onChange={(event) => onChangeInput(event)}
         name="lastName"

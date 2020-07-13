@@ -10,7 +10,7 @@ import { changeInputNumberAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem, StyledInputNumber } from 'components/Form/Form.style';
 import messages from './messages';
-import { disabledSpacesInput } from '../../../../helpers';
+import { disabledSpacesInput, trimInput } from '../../../../helpers';
 
 const stateSelector = createStructuredSelector({
   amountMoney: makeSelectAmountMoney(),
@@ -60,6 +60,7 @@ function AmountMoney({ intl }) {
       <StyledInputNumber
         type="number"
         onKeyPress={disabledSpacesInput}
+        onPaste={trimInput}
         onChange={(value) => onChangeAmountMoney('amountMoney', value)}
         name="amountMoney"
         value={amountMoney}

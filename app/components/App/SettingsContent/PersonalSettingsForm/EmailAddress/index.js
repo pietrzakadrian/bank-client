@@ -7,6 +7,7 @@ import { changeInputAction, checkEmailAction } from 'containers/App/actions';
 import { Input } from 'antd';
 import { injectIntl, intlShape } from 'react-intl';
 import messages from './messages';
+import { disabledSpacesInput, trimInput } from '../../../../../helpers';
 
 const stateSelector = createStructuredSelector({
   user: makeSelectUser(),
@@ -46,6 +47,8 @@ function EmailAddress({ intl }) {
       ]}
     >
       <Input
+        onPaste={trimInput}
+        onKeyPress={disabledSpacesInput}
         onChange={(event) => onChangeInput(event)}
         name="email"
         placeholder={intl.formatMessage(messages.placeholder)}

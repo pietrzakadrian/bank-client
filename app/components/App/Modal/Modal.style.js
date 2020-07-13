@@ -15,6 +15,7 @@ export const StyledModal = styled(Modal)`
 
     button {
       width: 50%;
+
       div {
         white-space: pre-wrap;
       }

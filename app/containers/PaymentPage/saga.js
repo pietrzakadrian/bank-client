@@ -215,8 +215,6 @@ export function* confirmTransaction({ snippets }) {
 
     yield put(push(routes.dashboard.path));
   } catch (error) {
-    console.log(error);
-
     let message;
 
     switch (error.statusCode) {

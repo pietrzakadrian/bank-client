@@ -9,6 +9,8 @@ import Header from 'components/Header';
 import Subheader from 'components/Subheader';
 import { Helmet } from 'react-helmet-async';
 import { routes } from 'utils';
+import ConstantCookie from '../../components/ConstantCookie';
+import Privacy from '../../components/Privacy';
 
 export default function PrivacyPage() {
   return (
@@ -20,6 +22,10 @@ export default function PrivacyPage() {
 
       <Header />
       <Subheader pageTitle={routes.privacy.name} />
+
+      <Privacy />
+
+      <ConstantCookie />
     </>
   );
 }

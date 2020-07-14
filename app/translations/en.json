@@ -181,7 +181,7 @@
   "app.containers.PaymentPage.bill.not.valid": "The bill number entered is not valid.",
   "app.containers.PaymentPage.header": "This is the PaymentPage container!",
   "app.containers.PaymentPage.payment": "Payment",
-  "app.containers.PrivacyPage.privacy": "Privacy",
+  "app.containers.PrivacyPage.privacy": "Privacy rules",
   "app.containers.RegisterPage.description": "Description of RegisterPage",
   "app.containers.RegisterPage.email.unique": "Email address already exists.",
   "app.containers.RegisterPage.registration": "Registration",

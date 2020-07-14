@@ -11,7 +11,7 @@ exports[`<Recipient /> should render a Recipient 1`] = `
       class="ant-col ant-form-item-label"
     >
       <label
-        class="ant-form-item-required"
+        class=""
         for="recipientBill"
         title="Recipient"
       >

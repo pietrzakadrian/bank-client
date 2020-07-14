@@ -210,13 +210,13 @@ exports[`<LoginPage /> should render its loginPage 1`] = `
                   class="ant-input-number-input-wrap"
                 >
                   <input
-                    aria-valuemax="9007199254740991"
-                    aria-valuemin="-9007199254740991"
+                    aria-valuemax="999999"
+                    aria-valuemin="1"
                     autocomplete="off"
                     class="ant-input-number-input"
                     id="login_pinCode"
-                    max="9007199254740991"
-                    min="-9007199254740991"
+                    max="999999"
+                    min="1"
                     name="pinCode"
                     placeholder="Enter pin code"
                     role="spinbutton"

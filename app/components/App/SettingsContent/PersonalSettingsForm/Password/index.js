@@ -5,7 +5,7 @@ import { changeInputAction } from 'containers/App/actions';
 import { Input } from 'antd';
 import { injectIntl, intlShape } from 'react-intl';
 import messages from './messages';
-import { disabledSpacesInput, trimInput } from '../../../../../helpers';
+import { disabledSpacesInput } from '../../../../../helpers';
 
 function Password({ intl }) {
   const dispatch = useDispatch();
@@ -30,7 +30,6 @@ function Password({ intl }) {
       name="password"
     >
       <Input.Password
-        onPaste={trimInput}
         onKeyPress={disabledSpacesInput}
         onChange={(event) => onChangeInput(event)}
         name="password"

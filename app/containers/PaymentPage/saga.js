@@ -41,6 +41,7 @@ import {
   confirmTransactionSuccessAction,
 } from './actions';
 import messages from './messages';
+import { numberValidation } from '../../helpers';
 
 export function* getBills() {
   const { accessToken } = yield select(makeSelectToken());
@@ -74,6 +75,10 @@ export function* searchRecipient({ value }) {
     method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}` },
   };
+
+  if (!numberValidation(value)) {
+    return;
+  }
 
   if (value.length > 1) {
     yield delay(300);

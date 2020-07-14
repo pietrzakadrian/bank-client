@@ -9,7 +9,7 @@ import { searchRecipientAction } from 'containers/PaymentPage/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { AutoComplete, Tooltip, Input } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { getRequestName, disabledSpacesInput, trimInput } from 'helpers';
+import { getRequestName, disabledSpacesInput, numberValidation } from 'helpers';
 import { SEARCH_RECIPIENT_REQUEST } from 'containers/PaymentPage/constants';
 import messages from './messages';
 
@@ -27,6 +27,20 @@ function Recipient({ intl }) {
   const onSearchRecipient = (value) =>
     value && dispatch(searchRecipientAction(value));
 
+  const checkStringConsistsNumbersOnly = (_, value) => {
+    if (value && !numberValidation(value)) {
+      return Promise.reject(
+        new Error(intl.formatMessage(messages.validationNumber)),
+      );
+    }
+
+    if (!value) {
+      return Promise.reject(new Error(intl.formatMessage(messages.validation)));
+    }
+
+    return Promise.resolve();
+  };
+
   const options = recipients.map((recipient) => ({
     label: (
       <>
@@ -43,9 +57,7 @@ function Recipient({ intl }) {
     <StyledFormItem
       label={intl.formatMessage(messages.label)}
       name="recipientBill"
-      rules={[
-        { required: true, message: intl.formatMessage(messages.validation) },
-      ]}
+      rules={[{ validator: checkStringConsistsNumbersOnly }]}
     >
       <AutoComplete
         onSearch={onSearchRecipient}
@@ -55,7 +67,6 @@ function Recipient({ intl }) {
         options={options}
       >
         <Input
-          onPaste={trimInput}
           onKeyPress={disabledSpacesInput}
           maxLength="26"
           placeholder={intl.formatMessage(messages.placeholder)}

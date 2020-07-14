@@ -9,6 +9,11 @@ export const formatBill = (bill) => ({
     .trim(),
 });
 
+export const numberValidation = (value) => {
+  const isNumber = /^[0-9]*$/;
+  return isNumber.test(value);
+};
+
 export const nameValidation = (name) => {
   const isName = /^[a-z ,.'-]+$/i;
   return isName.test(name);
@@ -47,9 +52,4 @@ export const disabledSpacesInput = (event) => {
     event.preventDefault();
     return false;
   }
-};
-
-export const trimInput = (event) => {
-  const text = event.clipboardData.getData('Text');
-  this.value = text.split(' ').join('');
 };

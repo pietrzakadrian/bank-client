@@ -17,6 +17,10 @@ export default defineMessages({
     id: `${scope}.validation`,
     defaultMessage: 'Recipient is required.',
   },
+  validationNumber: {
+    id: `${scope}.validation.number`,
+    defaultMessage: 'Search using only numbers.',
+  },
   placeholder: {
     id: `${scope}.placeholder`,
     defaultMessage: 'Search recipient...',

@@ -9,8 +9,8 @@ import { StyledForm, StyledFormWrapper } from 'components/Form/Form.style';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { makeSelectCurrentStep } from 'containers/LoginPage/selectors';
+import steps from 'components/LoginStep/Steps';
 import LoginAction from 'components/LoginAction';
-import { PinCode, Password } from 'components/LoginContent';
 
 const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),
@@ -19,15 +19,6 @@ const stateSelector = createStructuredSelector({
 export default function LoginForm() {
   const { currentStep } = useSelector(stateSelector);
   const [form] = StyledForm.useForm();
-
-  const steps = [
-    {
-      content: <PinCode form={form} />,
-    },
-    {
-      content: <Password form={form} />,
-    },
-  ];
 
   return (
     <StyledFormWrapper>

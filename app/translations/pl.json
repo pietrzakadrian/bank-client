@@ -176,7 +176,7 @@
   "app.containers.NotFoundPage.back.to.app": "Wróć do aplikacji",
   "app.containers.NotFoundPage.notFoundPage": "",
   "app.containers.NotFoundPage.sorrySubheader": "Kliknięty link mógł być uszkodzony lub strona mogła zostać usunięta.",
-  "app.containers.NotFoundPage.sorryThisPageIsUnavailable": "Przepraszamy, ta strona jest niedostępna.",
+  "app.containers.NotFoundPage.sorryThisPageIsUnavailable": "Przepraszamy, ta strona jest niedostępna",
   "app.containers.PaymentPage.authorization.key.incorrect": "Zły kod",
   "app.containers.PaymentPage.bill.not.valid": "Podany numer rachunku jest nieprawidłowy.",
   "app.containers.PaymentPage.header": "",

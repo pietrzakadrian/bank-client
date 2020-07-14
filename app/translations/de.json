@@ -176,7 +176,7 @@
   "app.containers.NotFoundPage.back.to.app": "Gehen Sie zurück zur Anwendung",
   "app.containers.NotFoundPage.notFoundPage": "",
   "app.containers.NotFoundPage.sorrySubheader": "Der angeklickte Link wurde möglicherweise beschädigt oder die Seite wurde möglicherweise gelöscht.",
-  "app.containers.NotFoundPage.sorryThisPageIsUnavailable": "Es tut uns leid, diese Seite ist nicht verfügbar.",
+  "app.containers.NotFoundPage.sorryThisPageIsUnavailable": "Es tut uns leid, diese Seite ist nicht verfügbar",
   "app.containers.PaymentPage.authorization.key.incorrect": "Ungültiger Code",
   "app.containers.PaymentPage.bill.not.valid": "Die eingegebene Rechnungsnummer ist ungültig.",
   "app.containers.PaymentPage.header": "",

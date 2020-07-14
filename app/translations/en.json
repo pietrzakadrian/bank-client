@@ -176,7 +176,7 @@
   "app.containers.NotFoundPage.back.to.app": "Go back to the application",
   "app.containers.NotFoundPage.notFoundPage": "Not Found Page",
   "app.containers.NotFoundPage.sorrySubheader": "The link clicked may have been corrupted or the page may have been deleted.",
-  "app.containers.NotFoundPage.sorryThisPageIsUnavailable": "We're sorry, this page is unavailable.",
+  "app.containers.NotFoundPage.sorryThisPageIsUnavailable": "We're sorry, this page is unavailable",
   "app.containers.PaymentPage.authorization.key.incorrect": "Invalid code",
   "app.containers.PaymentPage.bill.not.valid": "The bill number entered is not valid.",
   "app.containers.PaymentPage.header": "This is the PaymentPage container!",

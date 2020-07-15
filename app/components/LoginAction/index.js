@@ -9,12 +9,10 @@ import {
   StyledButton,
 } from 'components/Form/Form.style';
 import LoadingIndicator from 'components/LoadingIndicator';
-import { nextStepAction, previousStepAction } from 'containers/App/actions';
-import { loginAction } from 'containers/LoginPage/actions';
+import { previousStepAction } from 'containers/App/actions';
 import { makeSelectCurrentStep } from 'containers/LoginPage/selectors';
 import { makeSelectError } from 'providers/ErrorProvider/selectors';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import steps from 'components/LoginStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { getRequestName } from 'helpers';
 import { LOGIN_REQUEST } from 'containers/LoginPage/constants';
@@ -26,27 +24,11 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(getRequestName(LOGIN_REQUEST)),
 });
 
-export default function LoginAction({ form }) {
+export default function LoginAction({ steps, onValidateFields }) {
   const { isLoading, currentStep, error } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
   const onPreviousStep = () => dispatch(previousStepAction());
-  const onNextStep = () => dispatch(nextStepAction());
-  const onLogin = () => dispatch(loginAction());
-
-  const onValidateFields = async () => {
-    try {
-      await form.validateFields();
-
-      if (currentStep === steps.length - 1) {
-        onLogin();
-      } else {
-        onNextStep();
-      }
-    } catch (err) {
-      Error(error);
-    }
-  };
 
   return (
     <StyledFormActionsWrapper>
@@ -87,5 +69,6 @@ export default function LoginAction({ form }) {
 }
 
 LoginAction.propTypes = {
-  form: PropTypes.object.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
+  steps: PropTypes.array.isRequired,
 };

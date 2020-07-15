@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectPinCode } from 'containers/LoginPage/selectors';
@@ -13,7 +13,7 @@ const stateSelector = createStructuredSelector({
   pinCode: makeSelectPinCode(),
 });
 
-function PinCode({ intl }) {
+function PinCode({ intl, onValidateFields }) {
   const { pinCode } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
@@ -31,6 +31,7 @@ function PinCode({ intl }) {
       <StyledInputNumber
         max={10e5 - 1}
         min="1"
+        onPressEnter={onValidateFields}
         type="number"
         onKeyPress={disabledSpacesInput}
         onChange={(value) => onChangePinCode('pinCode', value)}
@@ -44,6 +45,7 @@ function PinCode({ intl }) {
 
 PinCode.propTypes = {
   intl: intlShape.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
 };
 
 export default injectIntl(PinCode);

@@ -85,8 +85,6 @@ function* getAccountBalanceHistory() {
       requestParameters,
     );
 
-    console.log({ accountBalanceHistory });
-
     return yield accountBalanceHistory;
   } catch (error) {
     throw new Error(error);

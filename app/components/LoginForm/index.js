@@ -7,10 +7,12 @@
 import React from 'react';
 import { StyledForm, StyledFormWrapper } from 'components/Form/Form.style';
 import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeSelectCurrentStep } from 'containers/LoginPage/selectors';
-import steps from 'components/LoginStep/Steps';
 import LoginAction from 'components/LoginAction';
+import { PinCode, Password } from 'components/LoginContent';
+import { nextStepAction } from 'containers/App/actions';
+import { loginAction } from 'containers/LoginPage/actions';
 
 const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),
@@ -19,6 +21,29 @@ const stateSelector = createStructuredSelector({
 export default function LoginForm() {
   const { currentStep } = useSelector(stateSelector);
   const [form] = StyledForm.useForm();
+  const dispatch = useDispatch();
+
+  const onNextStep = () => dispatch(nextStepAction());
+  const onLogin = () => dispatch(loginAction());
+
+  const onValidateFields = async () => {
+    try {
+      await form.validateFields();
+
+      if (currentStep === steps.length - 1) {
+        onLogin();
+      } else {
+        onNextStep();
+      }
+    } catch (error) {
+      Error(error);
+    }
+  };
+
+  const steps = [
+    { content: <PinCode onValidateFields={onValidateFields} /> },
+    { content: <Password onValidateFields={onValidateFields} /> },
+  ];
 
   return (
     <StyledFormWrapper>
@@ -26,7 +51,7 @@ export default function LoginForm() {
         {steps[currentStep].content}
       </StyledForm>
 
-      <LoginAction form={form} />
+      <LoginAction steps={steps} onValidateFields={onValidateFields} />
     </StyledFormWrapper>
   );
 }

@@ -2,19 +2,19 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Input } from 'antd';
-
+import PropTypes from 'prop-types';
 import { makeSelectPassword } from 'containers/LoginPage/selectors';
 import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
+import { disabledSpacesInput } from 'helpers';
 import messages from './messages';
-import { disabledSpacesInput } from '../../../helpers';
 
 const stateSelector = createStructuredSelector({
   password: makeSelectPassword(),
 });
 
-function Password({ intl }) {
+function Password({ intl, onValidateFields }) {
   const { password } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
@@ -29,6 +29,7 @@ function Password({ intl }) {
       ]}
     >
       <Input.Password
+        onPressEnter={onValidateFields}
         onKeyPress={disabledSpacesInput}
         onChange={onChangePassword}
         name="password"
@@ -41,6 +42,7 @@ function Password({ intl }) {
 
 Password.propTypes = {
   intl: intlShape.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
 };
 
 export default injectIntl(Password);

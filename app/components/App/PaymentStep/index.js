@@ -3,13 +3,13 @@ import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { makeSelectCurrentStep } from 'containers/PaymentPage/selectors';
 import { StyledSteps } from 'components/Steps/Steps.style';
-import steps from './Steps';
+import PropTypes from 'prop-types';
 
 const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),
 });
 
-export default function PaymentStep() {
+export default function PaymentStep({ steps }) {
   const { currentStep } = useSelector(stateSelector);
 
   return (
@@ -20,3 +20,7 @@ export default function PaymentStep() {
     </StyledSteps>
   );
 }
+
+PaymentStep.propTypes = {
+  steps: PropTypes.array.isRequired,
+};

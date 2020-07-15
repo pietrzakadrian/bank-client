@@ -6,13 +6,14 @@ import { makeSelectTransferTitle } from 'containers/PaymentPage/selectors';
 import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
+import PropTypes from 'prop-types';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   transferTitle: makeSelectTransferTitle(),
 });
 
-function TransferTitle({ intl }) {
+function TransferTitle({ intl, onValidateFields }) {
   const { transferTitle } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
@@ -27,6 +28,7 @@ function TransferTitle({ intl }) {
       ]}
     >
       <Input
+        onPressEnter={onValidateFields}
         onChange={(event) => onChangeInput(event)}
         name="transferTitle"
         value={transferTitle}
@@ -38,6 +40,7 @@ function TransferTitle({ intl }) {
 
 TransferTitle.propTypes = {
   intl: intlShape.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
 };
 
 export default injectIntl(TransferTitle);

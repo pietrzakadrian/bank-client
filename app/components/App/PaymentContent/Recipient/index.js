@@ -11,6 +11,7 @@ import { AutoComplete, Tooltip, Input } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { getRequestName, disabledSpacesInput, numberValidation } from 'helpers';
 import { SEARCH_RECIPIENT_REQUEST } from 'containers/PaymentPage/constants';
+import PropTypes from 'prop-types';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
@@ -18,7 +19,7 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(getRequestName(SEARCH_RECIPIENT_REQUEST)),
 });
 
-function Recipient({ intl }) {
+function Recipient({ intl, onValidateFields }) {
   const { recipients } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
@@ -67,6 +68,7 @@ function Recipient({ intl }) {
         options={options}
       >
         <Input
+          onPressEnter={onValidateFields}
           onKeyPress={disabledSpacesInput}
           maxLength="26"
           placeholder={intl.formatMessage(messages.placeholder)}
@@ -83,6 +85,7 @@ function Recipient({ intl }) {
 
 Recipient.propTypes = {
   intl: intlShape.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
 };
 
 export default injectIntl(Recipient);

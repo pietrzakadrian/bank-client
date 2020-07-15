@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import {
-  nextStepAction,
-  previousStepAction,
-  changeInputAction,
-} from 'containers/App/actions';
+import { previousStepAction, changeInputAction } from 'containers/App/actions';
 import {
   getAuthorizationKeyAction,
-  checkRecipientAction,
   createTransactionAction,
   confirmTransactionAction,
 } from 'containers/PaymentPage/actions';
@@ -23,7 +18,6 @@ import {
   makeSelectAuthorizationKey,
   makeSelectHasCreatedTransaction,
 } from 'containers/PaymentPage/selectors';
-import steps from 'components/App/PaymentStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import {
   StyledFormActionsWrapper,
@@ -66,7 +60,7 @@ const stateSelector = createStructuredSelector({
   hasCreatedTransaction: makeSelectHasCreatedTransaction(),
 });
 
-function PaymentAction({ intl, form }) {
+function PaymentAction({ intl, onValidateFields, steps }) {
   const {
     isLoading,
     currentStep,
@@ -84,28 +78,11 @@ function PaymentAction({ intl, form }) {
 
   const onChangeInput = (event) => dispatch(changeInputAction(event.target));
   const onPreviousStep = () => dispatch(previousStepAction());
-  const onNextStep = () => dispatch(nextStepAction());
   const onGetAuthorizationKey = () => dispatch(getAuthorizationKeyAction());
-  const onCheckRecipient = () => dispatch(checkRecipientAction());
+
   const onCreateTransaction = () => dispatch(createTransactionAction());
   const onConfirmTransaction = () =>
     dispatch(confirmTransactionAction(snippets));
-
-  const onValidateFields = async () => {
-    try {
-      await form.validateFields();
-
-      if (currentStep === steps.length - 1) {
-        onNextStep();
-      } else if (currentStep === 1) {
-        onCheckRecipient();
-      } else {
-        onNextStep();
-      }
-    } catch (err) {
-      Error(err);
-    }
-  };
 
   return (
     <StyledFormActionsWrapper>
@@ -205,8 +182,9 @@ function PaymentAction({ intl, form }) {
 }
 
 PaymentAction.propTypes = {
-  form: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
+  steps: PropTypes.array.isRequired,
 };
 
 export default injectIntl(PaymentAction);

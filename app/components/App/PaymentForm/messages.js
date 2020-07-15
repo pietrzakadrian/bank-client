@@ -1,12 +1,12 @@
 /*
- * Steps Messages
+ * PaymentForm Messages
  *
  * This contains all the text for the Steps component.
  */
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.components.PaymentForm.PaymentStep.Seps';
+export const scope = 'app.components.PaymentForm';
 
 export default defineMessages({
   bill: {

@@ -9,8 +9,9 @@ import {
 import { changeInputNumberAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem, StyledInputNumber } from 'components/Form/Form.style';
+import { disabledSpacesInput } from 'helpers';
+import PropTypes from 'prop-types';
 import messages from './messages';
-import { disabledSpacesInput } from '../../../../helpers';
 
 const stateSelector = createStructuredSelector({
   amountMoney: makeSelectAmountMoney(),
@@ -18,7 +19,7 @@ const stateSelector = createStructuredSelector({
   bills: makeSelectBills(),
 });
 
-function AmountMoney({ intl }) {
+function AmountMoney({ intl, onValidateFields }) {
   const { amountMoney, senderBill } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
@@ -51,13 +52,10 @@ function AmountMoney({ intl }) {
     <StyledFormItem
       label={intl.formatMessage(messages.label)}
       name="amountMoney"
-      rules={[
-        {
-          validator: checkCorrectAmountMoney,
-        },
-      ]}
+      rules={[{ validator: checkCorrectAmountMoney }]}
     >
       <StyledInputNumber
+        onPressEnter={onValidateFields}
         type="number"
         onKeyPress={disabledSpacesInput}
         onChange={(value) => onChangeAmountMoney('amountMoney', value)}
@@ -71,6 +69,7 @@ function AmountMoney({ intl }) {
 
 AmountMoney.propTypes = {
   intl: intlShape.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
 };
 
 export default injectIntl(AmountMoney);

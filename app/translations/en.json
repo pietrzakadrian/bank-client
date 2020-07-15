@@ -83,6 +83,7 @@
   "app.components.PaymentForm.PaymentContent.Confirm.details": "Bank transfer details",
   "app.components.PaymentForm.PaymentContent.Confirm.title": "Transfer title:",
   "app.components.PaymentForm.PaymentContent.Recipient.label": "Recipient",
+  "app.components.PaymentForm.PaymentContent.Recipient.not.found.content": "To find the recipient, enter the starting digit of his account number.",
   "app.components.PaymentForm.PaymentContent.Recipient.placeholder": "Search recipient...",
   "app.components.PaymentForm.PaymentContent.Recipient.tooltip": "Search for the recipient by entering the bill numbers",
   "app.components.PaymentForm.PaymentContent.Recipient.validation": "Recipient is required.",

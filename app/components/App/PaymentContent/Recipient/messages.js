@@ -29,4 +29,9 @@ export default defineMessages({
     id: `${scope}.tooltip`,
     defaultMessage: 'Search for the recipient by entering the bill numbers',
   },
+  notFoundContent: {
+    id: `${scope}.not.found.content`,
+    defaultMessage:
+      'To find the recipient, enter the starting digit of his account number.',
+  },
 });

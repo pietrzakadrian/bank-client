@@ -6,7 +6,7 @@ import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { makeSelectRecipients } from 'containers/PaymentPage/selectors';
 import { changeInputAction } from 'containers/App/actions';
 import { searchRecipientAction } from 'containers/PaymentPage/actions';
-import { intlShape, injectIntl } from 'react-intl';
+import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
 import { AutoComplete, Tooltip, Input } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { getRequestName, disabledSpacesInput, numberValidation } from 'helpers';
@@ -66,6 +66,11 @@ function Recipient({ intl, onValidateFields }) {
           onChangeRecipientAccountBill('recipientAccountBillNumber', value)
         }
         options={options}
+        notFoundContent={
+          <div>
+            <FormattedMessage {...messages.notFoundContent} />
+          </div>
+        }
       >
         <Input
           onPressEnter={onValidateFields}

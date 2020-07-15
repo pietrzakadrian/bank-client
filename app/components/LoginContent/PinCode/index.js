@@ -1,12 +1,13 @@
 import React from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectPinCode } from 'containers/LoginPage/selectors';
 import { changeInputNumberAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem, StyledInputNumber } from 'components/Form/Form.style';
+import { disabledSpacesInput } from 'helpers';
 import messages from './messages';
-import { disabledSpacesInput } from '../../../helpers';
 
 const stateSelector = createStructuredSelector({
   pinCode: makeSelectPinCode(),

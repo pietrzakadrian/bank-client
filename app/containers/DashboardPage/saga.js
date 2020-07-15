@@ -85,6 +85,8 @@ function* getAccountBalanceHistory() {
       requestParameters,
     );
 
+    console.log({ accountBalanceHistory });
+
     return yield accountBalanceHistory;
   } catch (error) {
     throw new Error(error);
@@ -106,18 +108,32 @@ export function* getAccountBalance() {
       requestParameters,
     );
 
-    const expensesPercent = (Number(expenses) * 100) / Number(revenues);
-    const revenuesPercent = Number.isFinite(expensesPercent)
-      ? 100 - expensesPercent
-      : 0;
-
+    const revenuesPercent =
+      ((Number(revenues) - Number(expenses)) / Number(revenues)) * 100;
+    let savingsPercent;
     let savingsData;
     let savingsColors;
 
-    if (revenues === '0.00' && expenses === '0.00') {
+    if (Number(revenues) === Infinity) {
+      savingsPercent = 100;
+      savingsColors = [colors.primaryBlue, colors.red];
+      savingsData = [
+        { name: 'revenues', value: parseFloat(revenues) },
+        { name: 'expenses', value: parseFloat(expenses) },
+      ];
+    } else if (Number(expenses) === Infinity) {
+      savingsPercent = 0;
+      savingsColors = [colors.primaryBlue, colors.red];
+      savingsData = [
+        { name: 'revenues', value: parseFloat(revenues) },
+        { name: 'expenses', value: parseFloat(expenses) },
+      ];
+    } else if (!Number(revenues) && !Number(expenses)) {
+      savingsPercent = 0;
       savingsColors = ['#b8b8b8'];
-      savingsData = [{ id: 1, name: 'savings', value: 100 }];
+      savingsData = [{ name: 'savings', value: 100 }];
     } else {
+      savingsPercent = Math.max(0, revenuesPercent);
       savingsColors = [colors.primaryBlue, colors.red];
       savingsData = [
         { name: 'revenues', value: parseFloat(revenues) },
@@ -128,7 +144,7 @@ export function* getAccountBalance() {
     yield put(
       getAccountBalanceSuccessAction(
         currencyName,
-        revenuesPercent,
+        savingsPercent,
         savingsData,
         savingsColors,
       ),

@@ -37,13 +37,15 @@ export default function Layout({ children }) {
   const [cookies] = useCookies();
 
   useEffect(() => {
-    if (isLogged && !cookies.accept) {
-      ReactGA.initialize('UA-64684999-1');
-      ReactGA.set({ anonymizeIp: true, page: pathname });
-      ReactGA.pageview(pathname);
-    } else if (isLogged && cookies.accept) {
-      ReactGA.set({ anonymizeIp: true, page: pathname });
-      ReactGA.pageview(pathname);
+    if (isLogged) {
+      if (!cookies.accept) {
+        ReactGA.initialize('UA-64684999-1');
+        ReactGA.set({ anonymizeIp: true, page: pathname });
+        ReactGA.pageview(pathname);
+      } else {
+        ReactGA.set({ anonymizeIp: true, page: pathname });
+        ReactGA.pageview(pathname);
+      }
     }
   }, [pathname]);
 

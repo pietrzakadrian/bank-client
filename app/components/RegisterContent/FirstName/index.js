@@ -7,13 +7,14 @@ import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
 import { nameValidation, disabledSpacesInput } from 'helpers';
+import PropTypes from 'prop-types';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   firstName: makeSelectFirstName(),
 });
 
-function FirstName({ intl }) {
+function FirstName({ intl, onValidateFields }) {
   const { firstName } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const [isStartedRegistration, setIsStartedRegistration] = useState(false);
@@ -44,12 +45,10 @@ function FirstName({ intl }) {
     <StyledFormItem
       label={intl.formatMessage(messages.label)}
       name="firstName"
-      rules={[
-        { validator: checkStringConsistsLettersOnly },
-        { whitespace: false },
-      ]}
+      rules={[{ validator: checkStringConsistsLettersOnly }]}
     >
       <Input
+        onPressEnter={onValidateFields}
         onKeyPress={disabledSpacesInput}
         onChange={(event) => onChangeInput(event)}
         name="firstName"
@@ -62,6 +61,7 @@ function FirstName({ intl }) {
 
 FirstName.propTypes = {
   intl: intlShape.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
 };
 
 export default injectIntl(FirstName);

@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { nextStepAction, previousStepAction } from 'containers/App/actions';
-import { registerAction } from 'containers/RegisterPage/actions';
+import { previousStepAction } from 'containers/App/actions';
 import { makeSelectError } from 'providers/ErrorProvider/selectors';
 import { makeSelectCurrentStep } from 'containers/RegisterPage/selectors';
-import steps from 'components/RegisterStep/Steps';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import {
   StyledFormActionsWrapper,
@@ -35,27 +33,11 @@ const stateSelector = createStructuredSelector({
   ]),
 });
 
-export default function RegisterAction({ form }) {
+export default function RegisterAction({ steps, onValidateFields }) {
   const { isLoading, currentStep, error } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
-  const onRegister = () => dispatch(registerAction());
   const onPreviousStep = () => dispatch(previousStepAction());
-  const onNextStep = () => dispatch(nextStepAction());
-
-  const onValidateFields = async () => {
-    try {
-      await form.validateFields();
-
-      if (currentStep === steps.length - 1) {
-        onRegister();
-      } else {
-        onNextStep();
-      }
-    } catch (err) {
-      Error(err);
-    }
-  };
 
   return (
     <StyledFormActionsWrapper>
@@ -94,5 +76,6 @@ export default function RegisterAction({ form }) {
 }
 
 RegisterAction.propTypes = {
-  form: PropTypes.object.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
+  steps: PropTypes.array.isRequired,
 };

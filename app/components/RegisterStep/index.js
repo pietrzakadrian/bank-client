@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import {
@@ -6,14 +7,13 @@ import {
   makeSelectCurrentStep,
 } from 'containers/RegisterPage/selectors';
 import { StyledSteps } from 'components/Steps/Steps.style';
-import steps from './Steps';
 
 const stateSelector = createStructuredSelector({
   pinCode: makeSelectPinCode(),
   currentStep: makeSelectCurrentStep(),
 });
 
-export default function RegisterStep() {
+export default function RegisterStep({ steps }) {
   const { pinCode, currentStep } = useSelector(stateSelector);
 
   return (
@@ -28,3 +28,7 @@ export default function RegisterStep() {
     </StyledSteps>
   );
 }
+
+RegisterStep.propTypes = {
+  steps: PropTypes.array.isRequired,
+};

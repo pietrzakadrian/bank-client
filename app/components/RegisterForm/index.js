@@ -6,16 +6,26 @@
 
 import React, { useEffect } from 'react';
 import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import RegisterAction from 'components/RegisterAction';
 import {
   makeSelectPinCode,
   makeSelectCurrentStep,
 } from 'containers/RegisterPage/selectors';
-import steps from 'components/RegisterStep/Steps';
+import { nextStepAction } from 'containers/App/actions';
+import { registerAction } from 'containers/RegisterPage/actions';
 import RegisterStep from 'components/RegisterStep';
 import SuccessfulResult from 'components/RegisterContent/SuccessfulResult';
 import { StyledFormWrapper, StyledForm } from 'components/Form/Form.style';
+import { FormattedMessage } from 'react-intl';
+import {
+  EmailAddress,
+  Currency,
+  Password,
+  LastName,
+  FirstName,
+} from 'components/RegisterContent';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   pinCode: makeSelectPinCode(),
@@ -25,6 +35,24 @@ const stateSelector = createStructuredSelector({
 export default function RegisterForm() {
   const { pinCode, currentStep } = useSelector(stateSelector);
   const [form] = StyledForm.useForm();
+  const dispatch = useDispatch();
+
+  const onRegister = () => dispatch(registerAction());
+  const onNextStep = () => dispatch(nextStepAction());
+
+  const onValidateFields = async () => {
+    try {
+      await form.validateFields();
+
+      if (currentStep === steps.length - 1) {
+        onRegister();
+      } else {
+        onNextStep();
+      }
+    } catch (err) {
+      Error(err);
+    }
+  };
 
   useEffect(() => {
     form.validateFields([
@@ -36,9 +64,32 @@ export default function RegisterForm() {
     ]);
   }, []);
 
+  const steps = [
+    {
+      title: <FormattedMessage {...messages.firstName} />,
+      content: <FirstName onValidateFields={onValidateFields} />,
+    },
+    {
+      title: <FormattedMessage {...messages.lastName} />,
+      content: <LastName onValidateFields={onValidateFields} />,
+    },
+    {
+      title: <FormattedMessage {...messages.password} />,
+      content: <Password onValidateFields={onValidateFields} />,
+    },
+    {
+      title: <FormattedMessage {...messages.currency} />,
+      content: <Currency />,
+    },
+    {
+      title: <FormattedMessage {...messages.email} />,
+      content: <EmailAddress onValidateFields={onValidateFields} />,
+    },
+  ];
+
   return (
     <>
-      <RegisterStep />
+      <RegisterStep steps={steps} />
 
       <StyledFormWrapper>
         {pinCode ? (
@@ -54,7 +105,7 @@ export default function RegisterForm() {
               {steps[currentStep].content}
             </StyledForm>
 
-            <RegisterAction form={form} />
+            <RegisterAction onValidateFields={onValidateFields} steps={steps} />
           </>
         )}
       </StyledFormWrapper>

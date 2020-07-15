@@ -2,7 +2,6 @@ import React from 'react';
 import { intlShape, injectIntl } from 'react-intl';
 import CurrencyToggle from 'components/CurrencyToggle';
 import messages from './messages';
-
 /*
   This should be wrapped in Form.Item, but then validation of this field does not work.
   That's why Form.Item has been added to CurrencyToggle.

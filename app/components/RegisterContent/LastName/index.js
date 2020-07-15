@@ -7,13 +7,14 @@ import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
 import { StyledFormItem } from 'components/Form/Form.style';
 import { nameValidation, disabledSpacesInput } from 'helpers';
+import PropTypes from 'prop-types';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   lastName: makeSelectLastName(),
 });
 
-function LastName({ intl }) {
+function LastName({ intl, onValidateFields }) {
   const { lastName } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
@@ -42,6 +43,7 @@ function LastName({ intl }) {
       rules={[{ validator: checkStringConsistsLettersOnly }]}
     >
       <Input
+        onPressEnter={onValidateFields}
         onKeyPress={disabledSpacesInput}
         onChange={(event) => onChangeInput(event)}
         name="lastName"
@@ -54,6 +56,7 @@ function LastName({ intl }) {
 
 LastName.propTypes = {
   intl: intlShape.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
 };
 
 export default injectIntl(LastName);

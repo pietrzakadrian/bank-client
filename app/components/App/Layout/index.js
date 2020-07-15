@@ -10,8 +10,13 @@ import ReactGA from 'react-ga';
 import Sidebar from 'components/App/Sidebar';
 import Header from 'components/App/Header';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectIsCollapsedSidebar } from 'containers/App/selectors';
+import {
+  makeSelectIsCollapsedSidebar,
+  makeSelectIsLogged,
+  makeSelectLocation,
+} from 'containers/App/selectors';
 import { useSelector } from 'react-redux';
+import { useCookies } from 'react-cookie';
 import { StyledContent, StyledLayout } from './Layout.style';
 
 import Drawer from '../Drawer';
@@ -19,15 +24,28 @@ import Copyright from '../Copyright';
 
 const stateSelector = createStructuredSelector({
   isCollapsedSidebar: makeSelectIsCollapsedSidebar(),
+  isLogged: makeSelectIsLogged(),
+  location: makeSelectLocation(),
 });
 
 export default function Layout({ children }) {
-  const { isCollapsedSidebar } = useSelector(stateSelector);
+  const {
+    isCollapsedSidebar,
+    isLogged,
+    location: { pathname },
+  } = useSelector(stateSelector);
+  const [cookies] = useCookies();
 
   useEffect(() => {
-    ReactGA.initialize('UA-64684999-1');
-    ReactGA.set({ anonymizeIp: true }); // GDPR
-  }, []);
+    if (isLogged && !cookies.accept) {
+      ReactGA.initialize('UA-64684999-1');
+      ReactGA.set({ anonymizeIp: true, page: pathname });
+      ReactGA.pageview(pathname);
+    } else if (isLogged && cookies.accept) {
+      ReactGA.set({ anonymizeIp: true, page: pathname });
+      ReactGA.pageview(pathname);
+    }
+  }, [pathname]);
 
   return (
     <>

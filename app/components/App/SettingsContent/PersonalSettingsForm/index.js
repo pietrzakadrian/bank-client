@@ -51,9 +51,9 @@ export default function PersonalSettings({ snippets }) {
       layout="vertical"
       name="settings"
     >
-      <LastName />
-      <EmailAddress />
-      <Password />
+      <LastName onValidateFields={onValidateFields} />
+      <EmailAddress onValidateFields={onValidateFields} />
+      <Password onValidateFields={onValidateFields} />
       <StyledFormActionsWrapper>
         <StyledButton
           disabled={

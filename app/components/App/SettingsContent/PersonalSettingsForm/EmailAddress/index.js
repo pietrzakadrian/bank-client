@@ -6,14 +6,15 @@ import { makeSelectUser } from 'containers/SettingsPage/selectors';
 import { changeInputAction, checkEmailAction } from 'containers/App/actions';
 import { Input } from 'antd';
 import { injectIntl, intlShape } from 'react-intl';
+import { disabledSpacesInput } from 'helpers';
+import PropTypes from 'prop-types';
 import messages from './messages';
-import { disabledSpacesInput } from '../../../../../helpers';
 
 const stateSelector = createStructuredSelector({
   user: makeSelectUser(),
 });
 
-function EmailAddress({ intl }) {
+function EmailAddress({ intl, onValidateFields }) {
   const dispatch = useDispatch();
   const { user } = useSelector(stateSelector);
 
@@ -47,6 +48,7 @@ function EmailAddress({ intl }) {
       ]}
     >
       <Input
+        onPressEnter={onValidateFields}
         onKeyPress={disabledSpacesInput}
         onChange={(event) => onChangeInput(event)}
         name="email"
@@ -58,6 +60,7 @@ function EmailAddress({ intl }) {
 
 EmailAddress.propTypes = {
   intl: intlShape.isRequired,
+  onValidateFields: PropTypes.func.isRequired,
 };
 
 export default injectIntl(EmailAddress);

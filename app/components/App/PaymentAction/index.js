@@ -128,6 +128,7 @@ function PaymentAction({ intl, onValidateFields, steps }) {
                 <FormattedMessage {...messages.placeholder}>
                   {(placeholder) => (
                     <Input
+                      onPressEnter={onConfirmTransaction}
                       onKeyPress={disabledSpacesInput}
                       onChange={(event) => onChangeInput(event)}
                       name="authorizationKey"

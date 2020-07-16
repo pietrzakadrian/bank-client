@@ -37,4 +37,8 @@ export default defineMessages({
     id: `${scope}.confirmation`,
     defaultMessage: 'Confirmation',
   },
+  downloadPdf: {
+    id: `${scope}.download.pdf`,
+    defaultMessage: 'Download PDF',
+  },
 });

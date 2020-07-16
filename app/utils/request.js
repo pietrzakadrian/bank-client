@@ -13,6 +13,20 @@ function parseJSON(response) {
 }
 
 /**
+ * Parses the BLOBK returned by a network request
+ *
+ * @param  {object} response A response from a network request
+ *
+ * @return {object}          The parsed BLOB from the request
+ */
+function parseBLOB(response) {
+  if (response.status === 204 || response.status === 205) {
+    return null;
+  }
+  return response.blob();
+}
+
+/**
  * Checks if a network request came back fine, and throws an error if not
  *
  * @param  {object} response   A response from a network request
@@ -37,8 +51,11 @@ function checkStatus(response) {
  *
  * @return {object}           The response data
  */
-export default async function request(url, options) {
+export default async function request(url, options, json = true) {
   const fetchResponse = await fetch(url, options);
   const response = await checkStatus(fetchResponse);
-  return parseJSON(response);
+  if (json) {
+    return parseJSON(response);
+  }
+  return parseBLOB(response);
 }

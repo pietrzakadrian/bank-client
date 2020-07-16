@@ -8,7 +8,10 @@
 import React, { useEffect } from 'react';
 import { getRequestName, truncateString } from 'helpers';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTransactionHistoryAction } from 'containers/HistoryPage/actions';
+import {
+  getTransactionHistoryAction,
+  getConfirmationFileAction,
+} from 'containers/HistoryPage/actions';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { FilePdfOutlined } from '@ant-design/icons';
 import { createStructuredSelector } from 'reselect';
@@ -44,6 +47,8 @@ function TransactionHistory({ intl }) {
 
   const onGetTransactionHistory = (currentPage = 1) =>
     dispatch(getTransactionHistoryAction(currentPage));
+  const onGetConfirmationFile = (uuid) =>
+    dispatch(getConfirmationFileAction(uuid));
 
   useEffect(() => {
     onGetTransactionHistory();
@@ -117,7 +122,11 @@ function TransactionHistory({ intl }) {
     {
       title: <FormattedMessage {...messages.confirmation} />,
       render: ({ uuid }) => (
-        <Tag color="blue" key={uuid}>
+        <Tag
+          onClick={() => onGetConfirmationFile(uuid)}
+          color="blue"
+          key={uuid}
+        >
           <FilePdfOutlined /> Download PDF
         </Tag>
       ),

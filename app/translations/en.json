@@ -160,6 +160,7 @@
   "app.components.TransactionHistory.amountMoney": "Amount Money",
   "app.components.TransactionHistory.confirmation": "Confirmation",
   "app.components.TransactionHistory.date": "Date",
+  "app.components.TransactionHistory.download.pdf": "Download PDF",
   "app.components.TransactionHistory.header": "This is the TransactionHistory component!",
   "app.components.TransactionHistory.recipient": "Recipient",
   "app.components.TransactionHistory.sender": "Sender",

@@ -160,6 +160,7 @@
   "app.components.TransactionHistory.amountMoney": "Geldbetrag",
   "app.components.TransactionHistory.confirmation": "Bestätigung",
   "app.components.TransactionHistory.date": "Datum",
+  "app.components.TransactionHistory.download.pdf": "PDF Herunterladen",
   "app.components.TransactionHistory.header": "",
   "app.components.TransactionHistory.recipient": "Empfänger",
   "app.components.TransactionHistory.sender": "Absender",

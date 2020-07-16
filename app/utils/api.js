@@ -48,6 +48,9 @@ export default {
       case 'authorizationKey':
         return (uuid) =>
           `${API_BASE_URL}/${TRANSACTIONS}/${uuid}/authorizationKey`;
+      case 'confirmationFile':
+        return (uuid, locale) =>
+          `${API_BASE_URL}/${TRANSACTIONS}/${uuid}/${locale}/confirmationFile`;
       default:
         return `${API_BASE_URL}/${TRANSACTIONS}`;
     }

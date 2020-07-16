@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
     }
   `}
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 768px) {
     input[type='text'],
     input[type='number'],
     input[type='password'],

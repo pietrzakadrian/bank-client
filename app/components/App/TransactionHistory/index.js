@@ -127,7 +127,7 @@ function TransactionHistory({ intl }) {
           color="blue"
           key={uuid}
         >
-          <FilePdfOutlined /> Download PDF
+          <FilePdfOutlined /> <FormattedMessage {...messages.downloadPdf} />
         </Tag>
       ),
     },

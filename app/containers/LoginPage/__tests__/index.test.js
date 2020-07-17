@@ -5,9 +5,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import configureStore from '../../../configureStore';
+import configureStore from 'utils/configureStore';
+import { DEFAULT_LOCALE } from 'utils/locales';
 import LoginPage from '../index';
-import { DEFAULT_LOCALE } from '../../../locales';
 import 'utils/__tests__/__mocks__/matchMedia';
 
 describe('<LoginPage />', () => {

@@ -2,11 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { FormattedMessage, defineMessages } from 'react-intl';
 import { Provider } from 'react-redux';
-
+import configureStore from 'utils/configureStore';
+import { translationMessages } from 'utils/i18n';
 import LanguageProvider from '../index';
-import configureStore from '../../../configureStore';
-
-import { translationMessages } from '../../../i18n';
 
 const messages = defineMessages({
   someMessage: {

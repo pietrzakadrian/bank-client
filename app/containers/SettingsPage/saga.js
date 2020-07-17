@@ -6,6 +6,7 @@ import {
 } from 'containers/App/selectors';
 import { push } from 'connected-react-router';
 import { notification } from 'antd';
+
 import { GET_USER_DATA_REQUEST, SET_USER_DATA_REQUEST } from './constants';
 import {
   getUserDataSuccessAction,

@@ -27,7 +27,7 @@ import {
 } from 'components/App/Transactions/Transactions.style';
 import { format } from 'date-fns';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import { Tag } from 'antd';
+import { StyledTag } from './TransactionHistory.style';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({
@@ -122,13 +122,13 @@ function TransactionHistory({ intl }) {
     {
       title: <FormattedMessage {...messages.confirmation} />,
       render: ({ uuid }) => (
-        <Tag
+        <StyledTag
           onClick={() => onGetConfirmationFile(uuid)}
           color="blue"
           key={uuid}
         >
           <FilePdfOutlined /> <FormattedMessage {...messages.downloadPdf} />
-        </Tag>
+        </StyledTag>
       ),
     },
   ];

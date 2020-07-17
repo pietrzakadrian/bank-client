@@ -4,10 +4,10 @@ import { render } from '@testing-library/react';
 
 import * as actions from 'providers/LanguageProvider/actions';
 import LanguageProvider from 'providers/LanguageProvider';
-import LocaleToggle from '../index';
 
-import configureStore from '../../../configureStore';
-import { translationMessages } from '../../../i18n';
+import configureStore from 'utils/configureStore';
+import { translationMessages } from 'utils/i18n';
+import LocaleToggle from '../index';
 
 describe('<LocaleToggle />', () => {
   let store;

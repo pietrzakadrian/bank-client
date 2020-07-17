@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createMemoryHistory } from 'history';
-import configureStore from 'configureStore';
-import { DEFAULT_LOCALE } from 'locales';
+import configureStore from 'utils/configureStore';
+import { DEFAULT_LOCALE } from 'utils/locales';
 import { IntlProvider } from 'react-intl';
 import Header from '../index';
 

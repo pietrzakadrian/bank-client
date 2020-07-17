@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Toggle from 'components/Toggle';
 
-import { appLocales } from 'locales';
+import { appLocales } from 'utils/locales';
 import { changeLocale } from 'providers/LanguageProvider/actions';
 import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
 import messages from './messages';

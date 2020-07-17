@@ -14,6 +14,7 @@ import Footer from 'components/Footer';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
+import { Helmet } from 'react-helmet-async';
 import ConstantCookie from '../../components/ConstantCookie';
 import messages from './messages';
 
@@ -22,6 +23,10 @@ export default function NotFoundPage() {
 
   return (
     <>
+      <FormattedMessage {...messages.notFoundPage}>
+        {(title) => <Helmet title={title} />}
+      </FormattedMessage>
+
       <Header />
       <Subheader pageTitle={routes.notFound.name} />
 

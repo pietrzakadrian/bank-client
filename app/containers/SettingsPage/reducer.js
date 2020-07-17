@@ -42,7 +42,6 @@ const settingsPageReducer = produce((draft, action) => {
         } else {
           draft.newData[action.name] = action.value;
         }
-
         break;
       case TOGGLE_MODAL:
         draft.isOpenedModal = !draft.isOpenedModal;

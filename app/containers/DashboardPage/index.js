@@ -11,7 +11,6 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import Greeting from 'components/App/Greeting';
 import { useMediaQuery } from 'react-responsive';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import useResizeObserver from 'use-resize-observer';
 import AvailableFunds from 'components/App/AvailableFunds';
 import Savings from 'components/App/Savings';
@@ -27,21 +26,25 @@ import {
 import { createStructuredSelector } from 'reselect';
 import Credits from 'components/App/Credits';
 import Deposits from 'components/App/Deposits';
-import { makeSelectLayout } from 'containers/App/selectors';
+import { makeSelectLayout, makeSelectUser } from 'containers/App/selectors';
+import { FormattedMessage } from 'react-intl';
+import { getAlertCount } from 'helpers';
 import saga from './saga';
 import reducer from './reducer';
 import { changeLayoutAction } from './actions';
 import { makeSelectIsOpenedModal } from './selectors';
+import messages from './messages';
 
 const key = 'dashboardPage';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const stateSelector = createStructuredSelector({
   layout: makeSelectLayout(),
   isOpenedModal: makeSelectIsOpenedModal(),
+  user: makeSelectUser(),
 });
 
 export default function DashboardPage() {
-  const { layout, isOpenedModal } = useSelector(stateSelector);
+  const { layout, isOpenedModal, user } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const { ref } = useResizeObserver({ onResize });
   const isMobile = useMediaQuery({ maxWidth: 479 });
@@ -50,11 +53,10 @@ export default function DashboardPage() {
   useInjectSaga({ key, saga });
 
   return (
-    <div>
-      <Helmet>
-        <title>DashboardPage</title>
-        <meta name="description" content="Description of DashboardPage" />
-      </Helmet>
+    <>
+      <FormattedMessage {...messages.dashboard}>
+        {(title) => <Helmet title={`${getAlertCount(user)} ${title}`} />}
+      </FormattedMessage>
 
       <Greeting />
 
@@ -111,6 +113,6 @@ export default function DashboardPage() {
           </StyledGridItem>
         </ResponsiveReactGridLayout>
       </StyledGridWrapper>
-    </div>
+    </>
   );
 }

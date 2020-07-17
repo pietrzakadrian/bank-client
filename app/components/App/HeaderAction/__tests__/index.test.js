@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import configureStore from 'configureStore';
+import configureStore from 'utils/configureStore';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import { DEFAULT_LOCALE } from 'locales';
+import { DEFAULT_LOCALE } from 'utils/locales';
 import HeaderAction from '../index';
 
 describe('<HeaderAction />', () => {

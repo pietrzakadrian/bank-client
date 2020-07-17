@@ -2,7 +2,7 @@
  * Test store addons
  */
 
-import configureStore from '../configureStore';
+import configureStore from 'utils/configureStore';
 
 describe('configureStore', () => {
   it('should return a redux store', () => {

@@ -53,3 +53,13 @@ export const disabledSpacesInput = (event) => {
     return false;
   }
 };
+
+export const getAlertCount = (user) => {
+  if (+user?.userConfig?.notificationCount + +user?.userConfig?.messageCount) {
+    return `(${
+      +user?.userConfig?.notificationCount + +user?.userConfig?.messageCount
+    })`;
+  }
+
+  return '';
+};

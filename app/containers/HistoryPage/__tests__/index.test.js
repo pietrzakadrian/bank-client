@@ -2,7 +2,7 @@ import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
-import configureStore from '../../../configureStore';
+import configureStore from 'utils/configureStore';
 import HistoryPage from '../index';
 
 const renderer = new ShallowRenderer();

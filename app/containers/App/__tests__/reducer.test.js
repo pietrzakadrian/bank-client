@@ -17,6 +17,7 @@ describe('registerPageReducer', () => {
       currencies: [],
       isOpenedMessage: false,
       messages: [],
+      isOpenedModal: false,
       notifications: [],
       openedMessage: '',
     };

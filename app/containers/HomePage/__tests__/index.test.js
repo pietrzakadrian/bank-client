@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
-import configureStore from 'configureStore';
+import configureStore from 'utils/configureStore';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import HomePage from '../index';

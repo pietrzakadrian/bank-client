@@ -8,6 +8,7 @@ import {
   StyledFormActionsWrapper,
   StyledButton,
 } from 'components/Form/Form.style';
+import * as _ from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import {
   makeSelectNewData,
@@ -36,6 +37,10 @@ export default function PersonalSettings({ snippets }) {
   const onSetUserData = () => dispatch(setUserDataAction(snippets));
 
   const onValidateFields = async () => {
+    if (_.isEmpty(newData)) {
+      return;
+    }
+
     try {
       await form.validateFields();
       onSetUserData();
@@ -54,10 +59,12 @@ export default function PersonalSettings({ snippets }) {
       <LastName onValidateFields={onValidateFields} />
       <EmailAddress onValidateFields={onValidateFields} />
       <Password onValidateFields={onValidateFields} />
+
       <StyledFormActionsWrapper>
         <StyledButton
           disabled={
             isLoading ||
+            _.isEmpty(newData) ||
             !hasOwnProperties(newData, ['lastName', 'email', 'password'])
           }
           onClick={onValidateFields}

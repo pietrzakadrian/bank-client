@@ -32,10 +32,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import { loadState, saveState } from 'providers/PersistStore';
 import { throttle } from 'lodash';
 
-import configureStore from './configureStore';
+import configureStore from 'utils/configureStore';
 
 // Import i18n messages
-import { translationMessages } from './i18n';
+import { translationMessages } from 'utils/i18n';
 
 // Create redux store with history
 const initialState = loadState();
@@ -82,7 +82,7 @@ if (module.hot) {
   // Hot reloadable translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(['./i18n'], () => {
+  module.hot.accept(['utils/i18n'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render(translationMessages);
   });

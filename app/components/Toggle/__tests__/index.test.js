@@ -1,9 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider, defineMessages } from 'react-intl';
-
+import { DEFAULT_LOCALE } from 'utils/locales';
 import Toggle from '../index';
-import { DEFAULT_LOCALE } from '../../../locales';
 
 describe('<Toggle />', () => {
   it('should contain default text', () => {

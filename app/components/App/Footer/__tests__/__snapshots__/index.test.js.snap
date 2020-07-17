@@ -2,11 +2,11 @@
 
 exports[`<Footer /> should match the snapshot 1`] = `
 <footer
-  class="Footerstyle__StyledFooter-sc-7flfx7-0 ljccJr"
+  class="Footerstyle__StyledFooter-sc-7flfx7-0 iYkHNP"
 >
   <strong>
     Bank Application 2.0
   </strong>
-   | 22.05.20
+   | 10.07.2020
 </footer>
 `;

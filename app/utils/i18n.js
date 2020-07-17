@@ -12,11 +12,11 @@ const { addLocaleData } = require('react-intl');
 const enLocaleData = require('react-intl/locale-data/en');
 const deLocaleData = require('react-intl/locale-data/de');
 const plLocaleData = require('react-intl/locale-data/pl');
-const { DEFAULT_LOCALE } = require('./locales');
+const { DEFAULT_LOCALE } = require('utils/locales');
 
-const enTranslationMessages = require('./translations/en.json');
-const deTranslationMessages = require('./translations/de.json');
-const plTranslationMessages = require('./translations/pl.json');
+const enTranslationMessages = require('../translations/en.json');
+const deTranslationMessages = require('../translations/de.json');
+const plTranslationMessages = require('../translations/pl.json');
 
 addLocaleData(enLocaleData);
 addLocaleData(deLocaleData);

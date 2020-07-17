@@ -6,8 +6,8 @@
 
 import produce from 'immer';
 
+import { DEFAULT_LOCALE, DEFAULT_DATE_FORMAT } from 'utils/locales';
 import { CHANGE_LOCALE } from './constants';
-import { DEFAULT_LOCALE, DEFAULT_DATE_FORMAT } from '../../locales';
 
 export const initialState = {
   locale: DEFAULT_LOCALE,

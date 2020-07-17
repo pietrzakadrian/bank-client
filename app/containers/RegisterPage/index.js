@@ -6,9 +6,8 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { intlShape, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
-
 import Header from 'components/Header';
 import Subheader from 'components/Subheader';
 import RegisterForm from 'components/RegisterForm';
@@ -22,19 +21,16 @@ import messages from './messages';
 import ConstantCookie from '../../components/ConstantCookie';
 
 const key = 'registerPage';
-function RegisterPage({ intl }) {
+
+export default function RegisterPage() {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   return (
     <>
-      <Helmet>
-        <title>{intl.formatMessage(messages.registration)}</title>
-        <meta
-          name="description"
-          content={intl.formatMessage(messages.description)}
-        />
-      </Helmet>
+      <FormattedMessage {...messages.registration}>
+        {(title) => <Helmet title={title} />}
+      </FormattedMessage>
 
       <Header />
       <Subheader pageTitle={routes.register.name} />
@@ -50,9 +46,3 @@ function RegisterPage({ intl }) {
     </>
   );
 }
-
-RegisterPage.propTypes = {
-  intl: intlShape.isRequired,
-};
-
-export default injectIntl(RegisterPage);

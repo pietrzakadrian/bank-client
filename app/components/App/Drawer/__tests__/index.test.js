@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createMemoryHistory } from 'history';
-import configureStore from 'configureStore';
+import configureStore from 'utils/configureStore';
 
 import Drawer from '../index';
 

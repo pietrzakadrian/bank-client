@@ -12,9 +12,9 @@ import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
 import { createMemoryHistory } from 'history';
+import { DEFAULT_LOCALE } from 'utils/locales';
+import configureStore from 'utils/configureStore';
 import Footer from '../index';
-import { DEFAULT_LOCALE } from '../../../locales';
-import configureStore from '../../../configureStore';
 
 describe('<Footer />', () => {
   const history = createMemoryHistory();

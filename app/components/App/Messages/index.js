@@ -82,26 +82,39 @@ export default function Messages() {
             </>
           }
           dataSource={messages?.data}
-          renderItem={(message) => (
+          renderItem={({
+            uuid,
+            readed,
+            templates,
+            sender,
+            recipient,
+            createdAt,
+          }) => (
             <StyledListItem
-              key={message.uuid}
-              onClick={() => onOpenMessageModal(message.uuid)}
-              readed={message.readed ? 1 : 0}
+              key={uuid}
+              onClick={() => onOpenMessageModal(uuid)}
+              readed={
+                (recipient.uuid === user.uuid && readed) ||
+                sender.uuid === user.uuid
+                  ? 1
+                  : 0
+              }
             >
               <div style={{ width: '100%' }}>
                 <StyledSubject
                   dangerouslySetInnerHTML={{
                     __html: truncateString(
-                      message.templates.find(
+                      templates.find(
                         (template) => template.language.code === locale,
                       )?.subject,
                     ),
                   }}
                 />
+
                 <div
                   dangerouslySetInnerHTML={{
                     __html: truncateString(
-                      message.templates.find(
+                      templates.find(
                         (template) => template.language.code === locale,
                       )?.content,
                     ),
@@ -110,12 +123,12 @@ export default function Messages() {
 
                 <StyledListItemBottom>
                   <StyledListItemSenderWrapper>
-                    {message.sender.uuid === user.uuid ? 'to' : 'from'}{' '}
+                    {sender.uuid === user.uuid ? 'to' : 'from'}{' '}
                     <StyledListItemSender>
-                      {message.sender.firstName} {message.sender.lastName}
+                      {sender.firstName} {sender.lastName}
                     </StyledListItemSender>
                   </StyledListItemSenderWrapper>
-                  <div>{format(new Date(message.createdAt), dateFormat)}</div>
+                  <div>{format(new Date(createdAt), dateFormat)}</div>
                 </StyledListItemBottom>
               </div>
             </StyledListItem>

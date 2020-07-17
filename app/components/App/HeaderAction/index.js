@@ -11,7 +11,6 @@ import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import { useMediaQuery } from 'react-responsive';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectUser, makeSelectMessages } from 'containers/App/selectors';
-
 import {
   StyledHeaderAction,
   StyledHeaderActionItem,

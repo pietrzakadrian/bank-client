@@ -16,10 +16,6 @@ export const StyledFooter = styled.footer`
   white-space: nowrap;
   transition: 0.4s;
 
-  @media screen and (max-height: 767px) {
-    position: relative;
-  }
-
   ${media.tablet`
     opacity: ${({ collapsed }) => (collapsed ? 0 : 1)}};
     visibility: ${({ collapsed }) => (collapsed ? 'hidden' : 'visible')}};

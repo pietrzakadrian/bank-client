@@ -3,8 +3,8 @@ import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { FormattedMessage, IntlProvider } from 'react-intl';
-import { DEFAULT_LOCALE } from 'locales';
-import configureStore from 'configureStore';
+import { DEFAULT_LOCALE } from 'utils/locales';
+import configureStore from 'utils/configureStore';
 import Subheader from '../index';
 
 describe('<Subheader />', () => {

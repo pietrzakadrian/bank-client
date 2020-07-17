@@ -26,13 +26,6 @@ const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
   }
 
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-
   .ant-dropdown {
     z-index: 999;
     width: 100%;
@@ -49,17 +42,20 @@ const GlobalStyle = createGlobalStyle`
     input[type='text'],
     input[type='number'],
     input[type='password'],
-    textarea,
-    .ant-select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
+    textarea {
       appearance: none;
       font-size: 16px;
 
-      &::placeholder, .ant-select-selection-placeholder { 
+      &::placeholder { 
         font-size: 14px;
       }
     }
+
+     .ant-select {
+        .ant-select-selection-placeholder {
+          font-size: 14px;
+        }
+     }
     
     .ant-notification {
       width: 100%;

@@ -52,6 +52,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
      .ant-select {
+       font-size: 16px;
+       
         .ant-select-selection-placeholder {
           font-size: 14px;
         }

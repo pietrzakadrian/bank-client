@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { StyledFormItem } from 'components/Form/Form.style';
+import { StyledFormItem } from 'components/Form/styles';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { makeSelectRecipients } from 'containers/PaymentPage/selectors';
 import { changeInputAction } from 'containers/App/actions';

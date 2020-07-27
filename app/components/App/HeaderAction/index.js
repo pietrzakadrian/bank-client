@@ -21,7 +21,7 @@ import {
   StyledHeaderWrapper,
   StyledBellFilled,
   StyledMessageFilled,
-} from './HeaderAction.style';
+} from './styles';
 import messages from './messages';
 import Messages from '../Messages';
 import Notifications from '../Notifications';

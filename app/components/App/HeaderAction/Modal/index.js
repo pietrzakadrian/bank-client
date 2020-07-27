@@ -7,7 +7,7 @@ import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { getRequestName } from 'helpers';
 import { LOGOUT_REQUEST } from 'containers/App/constants';
 import { logoutAction, toggleConfirmModalAction } from 'containers/App/actions';
-import { StyledModal } from 'components/App/Modal/Modal.style';
+import { StyledModal } from 'components/App/Modal/styles';
 import { Button } from 'antd';
 import LoadingIndicator from 'components/LoadingIndicator';
 import messages from '../messages';

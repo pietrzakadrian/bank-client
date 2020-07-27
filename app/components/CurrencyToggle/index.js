@@ -13,7 +13,7 @@ import { intlShape, injectIntl } from 'react-intl';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { GET_CURRENCIES_REQUEST } from 'containers/App/constants';
 import { getRequestName } from 'helpers';
-import { StyledFormItem } from 'components/Form/Form.style';
+import { StyledFormItem } from 'components/Form/styles';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

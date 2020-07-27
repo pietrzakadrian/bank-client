@@ -6,10 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectLocation } from 'containers/App/selectors';
 import { useSelector } from 'react-redux';
-import {
-  StyledConstantCookie,
-  StyledConstantCookieActions,
-} from './ConstantCookie.style';
+import { StyledConstantCookie, StyledConstantCookieActions } from './styles';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

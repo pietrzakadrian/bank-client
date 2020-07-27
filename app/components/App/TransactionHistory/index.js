@@ -24,10 +24,10 @@ import {
   StyledSenderAmountMoney,
   StyledUser,
   StyledTable,
-} from 'components/App/Transactions/Transactions.style';
+} from 'components/App/Transactions/styles';
 import { format } from 'date-fns';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import { StyledTag } from './TransactionHistory.style';
+import { StyledTag } from './styles';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

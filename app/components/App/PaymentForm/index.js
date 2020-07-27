@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeSelectCurrentStep } from 'containers/PaymentPage/selectors';
 import { FormattedMessage } from 'react-intl';
 import PaymentStep from 'components/App/PaymentStep';
-import { StyledFormWrapper, StyledForm } from 'components/Form/Form.style';
+import { StyledFormWrapper, StyledForm } from 'components/Form/styles';
 import PaymentAction from 'components/App/PaymentAction';
 import { checkRecipientAction } from 'containers/PaymentPage/actions';
 import { nextStepAction } from 'containers/App/actions';

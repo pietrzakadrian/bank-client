@@ -11,7 +11,7 @@ import {
   StyledButton,
   StyledError,
   StyledFormActionsWrapper,
-} from 'components/Form/Form.style';
+} from 'components/Form/styles';
 import LoadingIndicator from 'components/LoadingIndicator';
 import {
   LOGIN_EXPRESS_ERROR,
@@ -23,7 +23,7 @@ import {
   StyledPinCodeWrapper,
   StyledSubTitle,
   StyledAction,
-} from './SuccessfulResult.style';
+} from './styles';
 
 const stateSelector = createStructuredSelector({
   pinCode: makeSelectPinCode(),

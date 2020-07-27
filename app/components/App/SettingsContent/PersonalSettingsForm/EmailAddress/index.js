@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledFormItem } from 'components/Form/Form.style';
+import { StyledFormItem } from 'components/Form/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectUser } from 'containers/SettingsPage/selectors';

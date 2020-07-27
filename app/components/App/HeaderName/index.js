@@ -6,7 +6,7 @@ import {
 } from 'containers/App/selectors';
 import { useSelector } from 'react-redux';
 import { routes } from 'utils';
-import { StyledHeaderName } from './HeaderName.style';
+import { StyledHeaderName } from './styles';
 
 const stateSelector = createStructuredSelector({
   location: makeSelectLocation(),

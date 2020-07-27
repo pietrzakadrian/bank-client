@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { routes } from 'utils';
-
 import {
   DesktopOutlined,
   WalletOutlined,
@@ -15,7 +14,7 @@ import { makeSelectLocation } from 'containers/App/selectors';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { StyledMenuItem } from './Navigation.style';
+import { StyledMenuItem } from './styles';
 
 const items = [
   {

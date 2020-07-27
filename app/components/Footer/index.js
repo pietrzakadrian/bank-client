@@ -15,7 +15,7 @@ import {
   StyledInfoCircleOutlined,
   StyledWarning,
   StyledTip,
-} from './Footer.style';
+} from './styles';
 import messages from './messages';
 
 export default function Footer() {

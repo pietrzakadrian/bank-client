@@ -16,7 +16,7 @@ import {
   makeSelectLocation,
 } from 'containers/App/selectors';
 import { useSelector } from 'react-redux';
-import { StyledContent, StyledLayout } from './Layout.style';
+import { StyledContent, StyledLayout } from './styles';
 
 import Drawer from '../Drawer';
 import Copyright from '../Copyright';

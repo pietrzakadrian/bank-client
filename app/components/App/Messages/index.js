@@ -8,7 +8,7 @@ import { getRequestName, truncateString } from 'helpers';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { format } from 'date-fns';
 import { GET_MESSAGES_REQUEST } from 'containers/App/constants';
-import { StyledButton } from 'components/App/Button/Button.style';
+import { StyledButton } from 'components/App/Button/styles';
 import {
   makeSelectLocale,
   makeSelectDateFormat,
@@ -26,8 +26,8 @@ import {
   StyledListItemSender,
   StyledListItemNoData,
   StyledListItemSenderWrapper,
-} from '../List/List.style';
-import { StyledSubject } from './Messages.style';
+} from 'components/App/List/styles';
+import { StyledSubject } from './styles';
 import messagesIntl from './messages';
 import Modal from './Modal';
 

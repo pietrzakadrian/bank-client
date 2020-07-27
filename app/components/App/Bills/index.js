@@ -3,23 +3,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectBills } from 'containers/DashboardPage/selectors';
 import { getBillsAction } from 'containers/DashboardPage/actions';
-import { StyledCard } from 'components/App/Card/Card.style';
+import { StyledCard } from 'components/App/Card/styles';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-import {
-  StyledTable,
-  StyledTableWrapper,
-} from 'components/App/Table/Table.style';
+import { StyledTable, StyledTableWrapper } from 'components/App/Table/styles';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
 import Modal from 'components/App/Bills/Modal';
 import { toggleModalAction } from 'containers/App/actions';
 import { getRequestName } from 'helpers';
 import { GET_BILLS_REQUEST } from 'containers/DashboardPage/constants';
-import { StyledBillAmountMoney } from './Bills.style';
-import { StyledButton, StyledButtonContent } from '../Button/Button.style';
+import {
+  StyledButton,
+  StyledButtonContent,
+} from 'components/App/Button/styles';
+import { StyledTag } from 'components/App/Tag/styles';
+import { StyledBillAmountMoney } from './styles';
 import messages from './messages';
-import { StyledTag } from '../Tag/Tag.style';
 
 const stateSelector = createStructuredSelector({
   bills: makeSelectBills(),

@@ -10,7 +10,7 @@ import {
   StyledNameWrapper,
   StyledLastSuccessfulLoggedDateWrapper,
   StyledLastFailedLoggedDate,
-} from './Greeting.style';
+} from './styles';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

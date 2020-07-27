@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledCopyright } from './Copyright.style';
+import { StyledCopyright } from './styles';
 
 export default function Copyright() {
   return (

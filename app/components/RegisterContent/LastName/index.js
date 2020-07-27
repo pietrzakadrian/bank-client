@@ -5,7 +5,7 @@ import { Input } from 'antd';
 import { makeSelectLastName } from 'containers/RegisterPage/selectors';
 import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
-import { StyledFormItem } from 'components/Form/Form.style';
+import { StyledFormItem } from 'components/Form/styles';
 import { nameValidation, disabledSpacesInput } from 'helpers';
 import PropTypes from 'prop-types';
 import messages from './messages';

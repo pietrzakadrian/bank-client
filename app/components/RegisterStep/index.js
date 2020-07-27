@@ -6,7 +6,7 @@ import {
   makeSelectPinCode,
   makeSelectCurrentStep,
 } from 'containers/RegisterPage/selectors';
-import { StyledSteps } from 'components/Steps/Steps.style';
+import { StyledSteps } from 'components/Steps/styles';
 
 const stateSelector = createStructuredSelector({
   pinCode: makeSelectPinCode(),

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import { StyledForm } from 'components/Form/Form.style';
+import { StyledForm } from 'components/Form/styles';
 import { createStructuredSelector } from 'reselect';
 import {
   makeSelectIsOpenedModal,
@@ -15,7 +15,7 @@ import { getRequestName } from 'helpers';
 import { CREATE_NEW_BILL_REQUEST } from 'containers/DashboardPage/constants';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import { toggleModalAction } from 'containers/App/actions';
-import { StyledModal } from 'components/App/Modal/Modal.style';
+import { StyledModal } from 'components/App/Modal/styles';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

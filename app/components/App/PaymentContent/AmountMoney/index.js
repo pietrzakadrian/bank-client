@@ -8,7 +8,7 @@ import {
 } from 'containers/PaymentPage/selectors';
 import { changeInputNumberAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
-import { StyledFormItem, StyledInputNumber } from 'components/Form/Form.style';
+import { StyledFormItem, StyledInputNumber } from 'components/Form/styles';
 import { disabledSpacesInput } from 'helpers';
 import PropTypes from 'prop-types';
 import messages from './messages';

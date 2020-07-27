@@ -5,13 +5,10 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectRecentTransactions } from 'containers/DashboardPage/selectors';
 import { makeSelectUser } from 'containers/App/selectors';
 import { getRecentTransactionsAction } from 'containers/DashboardPage/actions';
-import { StyledCard } from 'components/App/Card/Card.style';
+import { StyledCard } from 'components/App/Card/styles';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { format } from 'date-fns';
-import {
-  StyledTable,
-  StyledTableWrapper,
-} from 'components/App/Table/Table.style';
+import { StyledTable, StyledTableWrapper } from 'components/App/Table/styles';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
 import { getRequestName } from 'helpers';
 import { GET_RECENT_TRANSACTIONS_REQUEST } from 'containers/DashboardPage/constants';
@@ -20,7 +17,7 @@ import {
   StyledSenderAmountMoney,
   StyledUser,
   StyledTypography,
-} from 'components/App/Transactions/Transactions.style';
+} from 'components/App/Transactions/styles';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

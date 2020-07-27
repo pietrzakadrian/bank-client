@@ -10,7 +10,7 @@ import {
 } from 'containers/PaymentPage/actions';
 
 import { intlShape, injectIntl } from 'react-intl';
-import { StyledFormItem } from 'components/Form/Form.style';
+import { StyledFormItem } from 'components/Form/styles';
 import { getRequestName } from 'helpers';
 import { GET_BILLS_REQUEST } from 'containers/PaymentPage/constants';
 import LoadingIndicator from 'components/LoadingIndicator';

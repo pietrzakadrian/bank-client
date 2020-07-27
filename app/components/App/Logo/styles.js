@@ -1,4 +1,4 @@
-import { headerHeight } from 'components/App/Header/Header.style';
+import { headerHeight } from 'components/App/Header/styles';
 import styled from 'styled-components';
 
 export const StyledLogo = styled.div`

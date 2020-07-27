@@ -7,9 +7,9 @@ import {
   makeSelectAmountMoney,
   makeSelectTransferTitle,
 } from 'containers/PaymentPage/selectors';
-import { StyledCard } from 'components/App/Card/Card.style';
+import { StyledCard } from 'components/App/Card/styles';
 import { FormattedMessage } from 'react-intl';
-import { StyledConfirmWrapper, StyledLabel } from './Confirm.style';
+import { StyledConfirmWrapper, StyledLabel } from './styles';
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

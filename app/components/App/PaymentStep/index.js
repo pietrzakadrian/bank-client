@@ -2,7 +2,7 @@ import React from 'react';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { makeSelectCurrentStep } from 'containers/PaymentPage/selectors';
-import { StyledSteps } from 'components/Steps/Steps.style';
+import { StyledSteps } from 'components/Steps/styles';
 import PropTypes from 'prop-types';
 
 const stateSelector = createStructuredSelector({

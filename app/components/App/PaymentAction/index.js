@@ -23,7 +23,7 @@ import {
   StyledFormActionsWrapper,
   StyledButton,
   StyledError,
-} from 'components/Form/Form.style';
+} from 'components/Form/styles';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { getRequestName, disabledSpacesInput } from 'helpers';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
@@ -35,11 +35,8 @@ import {
   CONFIRM_TRANSACTION_INCORRECT,
 } from 'containers/PaymentPage/constants';
 import { Input } from 'antd';
-import {
-  AuthorizationKeyWrapper,
-  CreatedTransactionWrapper,
-} from './PaymentAction.style';
 import messages from './messages';
+import { AuthorizationKeyWrapper, CreatedTransactionWrapper } from './styles';
 
 const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),

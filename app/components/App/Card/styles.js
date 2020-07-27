@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Card } from 'antd';
 
 const cardHeaderHeight = 58;
+
 export const StyledCard = styled(Card)`
          width: 100%;
          height: 100%;

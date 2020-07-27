@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { media } from 'utils';
 import { Layout } from 'antd';
-import { headerHeight } from 'components/App/Header/Header.style';
+import { headerHeight } from 'components/App/Header/styles';
 
 export const StyledContent = styled(Layout.Content)`
   margin: ${headerHeight} auto 0;

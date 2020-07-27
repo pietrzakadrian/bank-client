@@ -7,7 +7,7 @@ import {
   StyledForm,
   StyledFormActionsWrapper,
   StyledButton,
-} from 'components/Form/Form.style';
+} from 'components/Form/styles';
 import * as _ from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import {

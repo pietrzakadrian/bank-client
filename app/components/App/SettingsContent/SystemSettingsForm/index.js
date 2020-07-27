@@ -4,7 +4,7 @@ import CurrencyToggle from 'components/CurrencyToggle';
 import PropTypes from 'prop-types';
 import { makeSelectUser } from 'containers/SettingsPage/selectors';
 import { createStructuredSelector } from 'reselect';
-import { StyledForm, StyledFormItem } from 'components/Form/Form.style';
+import { StyledForm, StyledFormItem } from 'components/Form/styles';
 import { useSelector } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';

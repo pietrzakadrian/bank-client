@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledFormItem } from 'components/Form/Form.style';
+import { StyledFormItem } from 'components/Form/styles';
 import { useDispatch } from 'react-redux';
 import { changeInputAction } from 'containers/App/actions';
 import { Input } from 'antd';

@@ -10,7 +10,7 @@ import {
   StyledWidgetContentTypographyMain,
   StyledWidgetContentTypographyMainUnit,
   StyledWidgetContentDescription,
-} from './Widget.style';
+} from './styles';
 
 export default function Widget({
   isLoading,

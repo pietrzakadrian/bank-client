@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledFormItem } from 'components/Form/Form.style';
+import { StyledFormItem } from 'components/Form/styles';
 import { nameValidation, disabledSpacesInput } from 'helpers';
 import { Input } from 'antd';
 import { changeInputAction } from 'containers/App/actions';

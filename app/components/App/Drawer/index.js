@@ -12,7 +12,7 @@ import { collapsedDrawerAction } from 'containers/App/actions';
 import Footer from 'components/App/Footer';
 import Navigation from 'components/App/Navigation';
 import Logo from 'components/App/Logo';
-import { StyledDrawer } from './Drawer.style';
+import { StyledDrawer } from './styles';
 
 const stateSelector = createStructuredSelector({
   isCollapsedDrawer: makeSelectIsCollapsedDrawer(),

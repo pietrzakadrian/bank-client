@@ -7,7 +7,7 @@ import {
   StyledError,
   StyledFormActionsWrapper,
   StyledButton,
-} from 'components/Form/Form.style';
+} from 'components/Form/styles';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { previousStepAction } from 'containers/App/actions';
 import { makeSelectCurrentStep } from 'containers/LoginPage/selectors';

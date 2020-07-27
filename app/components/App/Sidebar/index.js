@@ -11,8 +11,8 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectIsCollapsedSidebar } from 'containers/App/selectors';
 import Navigation from 'components/App/Navigation';
 import Footer from 'components/App/Footer';
-import { StyledSidebar } from './Sidebar.style';
-import Logo from '../Logo';
+import Logo from 'components/App/Logo';
+import { StyledSidebar } from './styles';
 
 const stateSelector = createStructuredSelector({
   isCollapsedSidebar: makeSelectIsCollapsedSidebar(),

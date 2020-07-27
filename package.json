@@ -99,7 +99,6 @@
     "sanitize.css": "11.0.1",
     "styled-components": "5.1.1",
     "use-resize-observer": "6.1.0"
-    
   },
   "devDependencies": {
     "@babel/cli": "7.10.5",
@@ -124,7 +123,6 @@
     "babel-plugin-styled-components": "1.10.7",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "circular-dependency-plugin": "5.2.0",
-    "compare-versions": "3.6.0",
     "compression-webpack-plugin": "4.0.0",
     "coveralls": "3.1.0",
     "css-loader": "3.6.0",
@@ -145,15 +143,12 @@
     "html-webpack-plugin": "4.3.0",
     "husky": "4.2.5",
     "image-webpack-loader": "6.0.0",
-    "imports-loader": "1.1.0",
     "jest-cli": "26.1.0",
     "jest-styled-components": "7.0.2",
     "jest-watch-typeahead": "0.6.0",
     "less-loader": "6.2.0",
     "lint-staged": "10.2.11",
-    "ngrok": "3.2.7",
     "node-plop": "0.26.0",
-    "null-loader": "4.0.0",
     "plop": "2.7.1",
     "prettier": "2.0.5",
     "react-test-renderer": "16.13.1",

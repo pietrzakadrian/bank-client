@@ -15,7 +15,6 @@ import {
 import { GET_NOTIFICATIONS_REQUEST } from 'containers/App/constants';
 import { useSelector } from 'react-redux';
 import LoadingIndicator from 'components/LoadingIndicator';
-import messages from './messages';
 import {
   StyledList,
   StyledListItem,
@@ -23,7 +22,8 @@ import {
   StyledListItemAmount,
   StyledListItemDate,
   StyledListItemNoData,
-} from '../List/List.style';
+} from 'components/App/List/styles';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   notifications: makeSelectNotifications(),

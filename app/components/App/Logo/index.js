@@ -6,7 +6,7 @@
 
 import React from 'react';
 import logo from 'images/logo.png';
-import { StyledLogo } from './Logo.style';
+import { StyledLogo } from './styles';
 
 export default function Logo() {
   return (

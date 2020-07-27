@@ -16,7 +16,7 @@ import { nextStepAction } from 'containers/App/actions';
 import { registerAction } from 'containers/RegisterPage/actions';
 import RegisterStep from 'components/RegisterStep';
 import SuccessfulResult from 'components/RegisterContent/SuccessfulResult';
-import { StyledFormWrapper, StyledForm } from 'components/Form/Form.style';
+import { StyledFormWrapper, StyledForm } from 'components/Form/styles';
 import { FormattedMessage } from 'react-intl';
 import {
   EmailAddress,

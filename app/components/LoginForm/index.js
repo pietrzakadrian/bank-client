@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { StyledForm, StyledFormWrapper } from 'components/Form/Form.style';
+import { StyledForm, StyledFormWrapper } from 'components/Form/styles';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeSelectCurrentStep } from 'containers/LoginPage/selectors';

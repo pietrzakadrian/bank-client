@@ -20,7 +20,7 @@ import {
   StyledBarsOutlined,
   StyledHeader,
   StyledHeaderWrapper,
-} from './Header.style';
+} from './styles';
 import Mark from '../Mark';
 import HeaderName from '../HeaderName';
 

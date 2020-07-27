@@ -1,6 +1,6 @@
 import React from 'react';
 import LoadingIndicator from 'components/LoadingIndicator';
-import { StyledModal } from 'components/App/Modal/Modal.style';
+import { StyledModal } from 'components/App/Modal/styles';
 import { Button } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';

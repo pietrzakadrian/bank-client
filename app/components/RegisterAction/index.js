@@ -11,7 +11,7 @@ import {
   StyledFormActionsWrapper,
   StyledButton,
   StyledError,
-} from 'components/Form/Form.style';
+} from 'components/Form/styles';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { getRequestName } from 'helpers';
 import { REGISTER_REQUEST } from 'containers/RegisterPage/constants';
@@ -20,7 +20,6 @@ import {
   GET_CURRENCIES_REQUEST,
 } from 'containers/App/constants';
 import { makeSelectIsLoading } from 'providers/LoadingProvider/selectors';
-
 import messages from './messages';
 
 const stateSelector = createStructuredSelector({

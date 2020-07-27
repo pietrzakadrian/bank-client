@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
-import { StyledModal } from 'components/App/Modal/Modal.style';
+import { StyledModal } from 'components/App/Modal/styles';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeSelectLocale } from 'providers/LanguageProvider/selectors';
@@ -9,7 +9,7 @@ import {
   makeSelectOpenedMessage,
   makeSelectMessages,
 } from 'containers/App/selectors';
-import { StyledButton } from 'components/App/Button/Button.style';
+import { StyledButton } from 'components/App/Button/styles';
 import { closeMessageModalAction } from 'containers/App/actions';
 
 const stateSelector = createStructuredSelector({

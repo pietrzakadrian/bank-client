@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { makeSelectPassword } from 'containers/LoginPage/selectors';
 import { changeInputAction } from 'containers/App/actions';
 import { intlShape, injectIntl } from 'react-intl';
-import { StyledFormItem } from 'components/Form/Form.style';
+import { StyledFormItem } from 'components/Form/styles';
 import { disabledSpacesInput } from 'helpers';
 import messages from './messages';
 

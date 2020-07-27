@@ -10,7 +10,7 @@ import { createStructuredSelector } from 'reselect';
 import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import { routes } from 'utils';
 import { makeSelectLocation } from 'containers/App/selectors';
-import { StyledRedirectToggle } from './RedirectToggle.style';
+import { StyledRedirectToggle } from './styles';
 import TogglePath from './TogglePath';
 import messages from './messages';
 

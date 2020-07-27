@@ -19,10 +19,7 @@ import Bills from 'components/App/Bills';
 import RecentTransactions from 'components/App/RecentTransactions';
 import BankCards from 'components/App/BankCards';
 import { onResize } from 'providers/ResizeLayout';
-import {
-  StyledGridWrapper,
-  StyledGridItem,
-} from 'components/App/Grid/Grid.style';
+import { StyledGridWrapper, StyledGridItem } from 'components/App/Grid/styles';
 import { createStructuredSelector } from 'reselect';
 import Credits from 'components/App/Credits';
 import Deposits from 'components/App/Deposits';

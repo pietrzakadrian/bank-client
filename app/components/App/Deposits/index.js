@@ -1,9 +1,12 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { BankOutlined } from '@ant-design/icons';
-import { StyledCard, StyledCardContent } from '../Card/Card.style';
+import { StyledCard, StyledCardContent } from 'components/App/Card/styles';
+import {
+  StyledButtonContent,
+  StyledButton,
+} from 'components/App/Button/styles';
 import messages from './messages';
-import { StyledButton, StyledButtonContent } from '../Button/Button.style';
 
 export default function Deposits() {
   return (

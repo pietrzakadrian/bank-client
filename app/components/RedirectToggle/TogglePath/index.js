@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { push } from 'connected-react-router';
-import { StyledButton } from '../RedirectToggle.style';
+import { StyledButton } from '../styles';
 
 export default function TogglePath({ name, path }) {
   const dispatch = useDispatch();

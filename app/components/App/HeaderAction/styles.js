@@ -7,7 +7,7 @@ import {
   BellFilled,
   MessageFilled,
 } from '@ant-design/icons';
-import { headerHeight } from 'components/App/Header/Header.style';
+import { headerHeight } from 'components/App/Header/styles';
 import { Button } from 'antd';
 
 export const StyledHeaderAction = styled.div`

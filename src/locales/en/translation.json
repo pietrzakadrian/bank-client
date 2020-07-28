@@ -1,0 +1,44 @@
+{
+  "information": {
+    "content": "If you take advantage of our promotion and register your account by the end of this year, you will receive 10,00 USD from us. Accounts already created will also receive this from us."
+  },
+  "footer": {
+    "header": "Remember the basic safety rules.",
+    "subheader": "Before you enter your ID number and access password on your website, make sure",
+    "ul": {
+      "li1": "Your password is secure. It contains at least 8 characters and consists of uppercase and lowercase letters",
+      "li2": "in the address bar or status bar, a padlock is visible at the bottom of the browser screen"
+    },
+    "warning": "Remember: The bank does not require confirmation of any data, correct login or reading of the Banks messages by means of SMS, TAN and / or e-mail, or installation of any applications on the users phones or computers.",
+    "footer": "This site uses cookies to provide services at the highest level. By clicking or navigating the site, you agree to allow our collection of information on through cookies. For more information on security, please visit:",
+    "buttonContent": "Privacy rules"
+  },
+  "redirectToggle": {
+    "registration": "Registration",
+    "login": "Log In",
+    "registrationContent": "If you do not have an account in our bank, you can create now by clicking on",
+    "loginContent": "If you already have a bank account, you can log in by clicking on"
+  },
+  "constantCookie": {
+    "description": "This site uses cookies to provide services at the highest level. By continuing to use the site, you agree to their use.",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "loginForm": {
+    "pinCode": {
+      "label": "Pin code",
+      "placeholder": "Enter pin code",
+      "validation": "Pin code is required."
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter password",
+      "validation": "Password is required."
+    },
+    "actions": {
+      "next": "Next",
+      "create": "Log In",
+      "previous": "Previous"
+    }
+  }
+}

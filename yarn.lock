@@ -1630,10 +1630,10 @@
     dom-accessibility-api "^0.4.6"
     pretty-format "^25.5.0"
 
-"@testing-library/jest-dom@5.11.1":
-  version "5.11.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.11.1.tgz#b9541d7625cec9e5feb647f49a96c43f7c055cdd"
-  integrity sha512-NHOHjDwyBoqM7mXjNLieSp/6vJ17DILzhNTw7+RarluaBkyWRzWgFj+d6xnd1adMBlwfQSeR2FWGTxHXCxeMSA==
+"@testing-library/jest-dom@5.11.2":
+  version "5.11.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.11.2.tgz#c49de331555c70127b5d7fc97344ad5265f4c54c"
+  integrity sha512-s+rWJx+lanEGKqvOl4qJR0rGjCrxsEjj9qjxFlg4NV4/FRD7fnUUAWPHqwpyafNHfLYArs58FADgdn4UKmjFmw==
   dependencies:
     "@babel/runtime" "^7.9.2"
     "@types/testing-library__jest-dom" "^5.9.1"
@@ -1811,10 +1811,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.9.2.tgz#ace1880c03594cc3e80206d96847157d8e7fa349"
   integrity sha512-bnoqK579sAYrQbp73wwglccjJ4sfRdKU7WNEZ5FW4K2U6Kc0/eZ5kvXG0JKsEKFB50zrFmfFt52/cvBbZa7eXg==
 
-"@types/node@14.0.26":
-  version "14.0.26"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.26.tgz#22a3b8a46510da8944b67bfc27df02c34a35331c"
-  integrity sha512-W+fpe5s91FBGE0pEa0lnqGLL4USgpLgs4nokw16SrBBco/gQxuua7KnArSEOd5iaMqbbSHV10vUDkJYJJqpXKA==
+"@types/node@14.0.27":
+  version "14.0.27"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.27.tgz#a151873af5a5e851b51b3b065c9e63390a9e0eb1"
+  integrity sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -1914,7 +1914,14 @@
     "@types/react-native" "*"
     csstype "^2.2.0"
 
-"@types/testing-library__jest-dom@5.9.1", "@types/testing-library__jest-dom@^5.9.1":
+"@types/testing-library__jest-dom@5.9.2":
+  version "5.9.2"
+  resolved "https://registry.yarnpkg.com/@types/testing-library__jest-dom/-/testing-library__jest-dom-5.9.2.tgz#59e4771a1cf87d51e89a5cc8195cd3b647cba322"
+  integrity sha512-K7nUSpH/5i8i0NagTJ+uFUDRueDlnMNhJtMjMwTGPPSqyImbWC/hgKPDCKt6Phu2iMJg2kWqlax+Ucj2DKMwpA==
+  dependencies:
+    "@types/jest" "*"
+
+"@types/testing-library__jest-dom@^5.9.1":
   version "5.9.1"
   resolved "https://registry.yarnpkg.com/@types/testing-library__jest-dom/-/testing-library__jest-dom-5.9.1.tgz#aba5ee062b7880f69c212ef769389f30752806e5"
   integrity sha512-yYn5EKHO3MPEMSOrcAb1dLWY+68CG29LiXKsWmmpVHqoP5+ZRiAVLyUHvPNrO2dABDdUGZvavMsaGpWNjM6N2g==
@@ -2340,10 +2347,10 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
-antd@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-4.5.0.tgz#e2d4a73e9799e5296ed06f1b8ee05305a8ffba4f"
-  integrity sha512-upEc2c3Fvyeiozk7aNHdv8T/0yQTQuchUEO4/DRLKjMEwR4lqj9NRadkxYbvPXcUdFZTY/9BSPSegn28dbHPDg==
+antd@4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-4.5.1.tgz#c4fe51a9bb68e10735d1995ad70cd0f90426fbc8"
+  integrity sha512-9gw6pKxr28H0RlLqcHlIPbZVfosKBGDRiJCEHNT6TVzWOWfFI4EfghdGhaA3mSZb1BTnjYenmlMgaezo5hXgTg==
   dependencies:
     "@ant-design/css-animation" "^1.7.2"
     "@ant-design/icons" "^4.2.1"

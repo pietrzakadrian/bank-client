@@ -18,7 +18,7 @@ export function LoginForm() {
   const dispatch = useDispatch();
 
   const onNextStep = () => dispatch(actions.nextStepAction());
-  const onLogin = () => dispatch(actions.loginAction());
+  const onLogin = () => dispatch(actions.loginRequestAction());
 
   const onValidateFields = async () => {
     try {

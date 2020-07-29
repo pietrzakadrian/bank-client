@@ -13,8 +13,8 @@ const loginPageSlice = createSlice({
   name: 'loginPage',
   initialState,
   reducers: {
-    changePinCodeAction(state, action: PayloadAction<string>) {
-      state.pinCode = action.payload;
+    changePinCodeAction(state, action: PayloadAction<number>) {
+      state.pinCode = action.payload || initialState.pinCode;
     },
     changePasswordAction(state, action: PayloadAction<string>) {
       state.password = action.payload;
@@ -25,7 +25,9 @@ const loginPageSlice = createSlice({
     previousStepAction(state) {
       state.currentStep -= 1;
     },
-    loginAction(state) {},
+    loginRequestAction() {},
+    loginSuccessAction(state, action: PayloadAction<any>) {},
+    loginErrorAction(state, action: PayloadAction<string>) {},
   },
 });
 

@@ -4,7 +4,7 @@
  *
  */
 import styled from 'styled-components';
-import { Form, InputNumber, Button } from 'antd';
+import { Form, Button } from 'antd';
 
 export const StyledFormActionsWrapper = styled.div`
   padding: 0 0 20px;
@@ -14,14 +14,18 @@ export const StyledFormActionsWrapper = styled.div`
 
 interface IStyledButton {
   type?: string;
-  back?: string;
+  backed?: string;
   errored?: number;
 }
 
 export const StyledButton = styled(Button)<IStyledButton>`
   &&& {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
     width: ${({ type }) => type !== 'link' && '100%'};
-    color: ${({ back }) => back && 'inherit'};
+    color: ${({ backed }) => backed && 'inherit'};
     background-color: ${({ errored }) => errored && 'rgb(229, 0, 0)'};
   }
 `;

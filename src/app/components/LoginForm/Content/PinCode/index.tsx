@@ -18,7 +18,7 @@ export function PinCode({ onValidateFields }) {
   const dispatch = useDispatch();
 
   const onChangePinCode = (event: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(actions.changePinCodeAction(event.currentTarget.value));
+    dispatch(actions.changePinCodeAction(parseInt(event.target.value, 10)));
 
   return (
     <StyledFormItem

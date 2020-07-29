@@ -35,7 +35,12 @@ export function Action({ steps, onValidateFields }: Props) {
 
   return (
     <StyledFormActionsWrapper>
-      <StyledButton type="primary" onClick={onValidateFields}>
+      <StyledButton
+        disabled={isLoading || !!error}
+        errored={error ? 1 : 0}
+        type="primary"
+        onClick={onValidateFields}
+      >
         {(currentStep < steps.length - 1 && (
           <>
             <span>{t(translations.loginForm.actions.next)}</span>

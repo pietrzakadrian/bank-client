@@ -1,3 +1,4 @@
+import { RouterState } from 'connected-react-router';
 import { LoginPageState } from 'app/containers/LoginPage/types';
 import { AppState } from 'app/containers/App/types';
 import { ErrorState } from 'app/providers/ErrorProvider/types';
@@ -9,10 +10,10 @@ import { LoadingState } from 'app/providers/LoadingProvider/types';
   You have to declare them here manually
 */
 export interface RootState {
+  router?: RouterState;
   loginPage?: LoginPageState;
-  global: AppState;
-  loading: LoadingState;
-  error: ErrorState;
-
+  global?: AppState;
+  loading?: LoadingState;
+  error?: ErrorState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

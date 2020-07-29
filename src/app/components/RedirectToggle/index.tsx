@@ -9,13 +9,16 @@ import { StyledRedirectToggle } from './styled';
 import routes from 'utils/routes';
 import { translations } from 'locales/i18n';
 import { TogglePath } from './TogglePath';
+import { selectLocation } from 'app/containers/App/selectors';
+import { useSelector } from 'react-redux';
 
 export function RedirectToggle() {
   const { t } = useTranslation();
+  const location = useSelector(selectLocation);
 
   return (
     <StyledRedirectToggle>
-      {window.location.pathname === routes.login.path ? (
+      {location?.pathname === routes.login.path ? (
         <>
           {t(translations.redirectToggle.registrationContent)}
 

@@ -9,7 +9,9 @@ const appSlice = createSlice({
   name: 'global',
   initialState,
   reducers: {
-    someAction(state, action: PayloadAction<any>) {},
+    changeInputAction(state, action: PayloadAction<any>) {},
+    nextStepAction(state, action: PayloadAction<any>) {},
+    previousStepAction(state, action: PayloadAction<any>) {},
   },
 });
 

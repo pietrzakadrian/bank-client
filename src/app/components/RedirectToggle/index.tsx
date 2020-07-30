@@ -20,8 +20,7 @@ export function RedirectToggle() {
     <StyledRedirectToggle>
       {location?.pathname === routes.login.path ? (
         <>
-          {t(translations.redirectToggle.registrationContent)}
-
+          {t(translations.redirectToggle.registrationContent)}{' '}
           <TogglePath
             name={t(translations.redirectToggle.registration)}
             path={routes.registration.path}
@@ -29,8 +28,7 @@ export function RedirectToggle() {
         </>
       ) : (
         <>
-          {t(translations.redirectToggle.loginContent)}
-
+          {t(translations.redirectToggle.loginContent)}{' '}
           <TogglePath
             name={t(translations.redirectToggle.login)}
             path={routes.login.path}

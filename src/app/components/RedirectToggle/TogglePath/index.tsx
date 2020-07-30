@@ -4,8 +4,10 @@
  *
  */
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+
 import { StyledButton } from './styled';
+import { push } from 'connected-react-router';
+import { useDispatch } from 'react-redux';
 
 interface Props {
   name: string;
@@ -13,8 +15,8 @@ interface Props {
 }
 
 export function TogglePath({ name, path }: Props) {
-  const history = useHistory();
-  const handleClick = () => history.push(path);
+  const dispatch = useDispatch();
+  const handleClick = () => dispatch(push(path));
 
   return (
     <StyledButton key={name} type="link" onClick={handleClick}>

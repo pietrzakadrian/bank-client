@@ -27,6 +27,10 @@ export const StyledButton = styled(Button)<IStyledButton>`
     width: ${({ type }) => type !== 'link' && '100%'};
     color: ${({ backed }) => backed && 'inherit'};
     background-color: ${({ errored }) => errored && 'rgb(229, 0, 0)'};
+
+    .anticon {
+      line-height: 0;
+    }
   }
 `;
 

@@ -11,6 +11,7 @@ import { createInjectorsEnhancer, forceReducerReload } from 'redux-injectors';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 import { History } from 'history';
+import { actions as AppActions } from 'app/containers/App/slice';
 
 import { createReducer } from './reducers';
 
@@ -37,7 +38,18 @@ export function configureAppStore(history?: History) {
 
   const store = configureStore({
     reducer: createReducer(),
-    middleware: [...getDefaultMiddleware(), ...middlewares],
+    middleware: [
+      ...getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [
+            AppActions.changeInputAction.type,
+            AppActions.previousStepAction.type,
+            AppActions.nextStepAction.type,
+          ],
+        },
+      }),
+      ...middlewares,
+    ],
     devTools: process.env.NODE_ENV !== 'production',
     enhancers,
   });

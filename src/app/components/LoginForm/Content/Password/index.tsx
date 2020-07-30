@@ -9,7 +9,7 @@ import { translations } from 'locales/i18n';
 import { StyledFormItem } from 'app/components/Form/styled';
 import { Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { actions } from 'app/containers/LoginPage/slice';
+import { actions } from 'app/containers/App/slice';
 import { selectPassword } from 'app/containers/LoginPage/selectors';
 
 export function Password({ onValidateFields }) {
@@ -17,7 +17,7 @@ export function Password({ onValidateFields }) {
   const password = useSelector(selectPassword);
   const dispatch = useDispatch();
   const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(actions.changePasswordAction(event.currentTarget.value));
+    dispatch(actions.changeInputAction(event.target));
 
   return (
     <StyledFormItem
@@ -31,6 +31,7 @@ export function Password({ onValidateFields }) {
       ]}
     >
       <Input.Password
+        data-key="loginPage"
         onPressEnter={onValidateFields}
         onChange={onChangePassword}
         name="password"

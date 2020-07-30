@@ -5,26 +5,39 @@
  */
 
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Helmet } from 'react-helmet-async';
+import { Switch, Route } from 'react-router-dom';
+import routes from 'utils/routes';
+import { GlobalStyle } from 'styles/global-styles';
+import { HomePage } from 'app/containers/HomePage/Loadable';
+import { LoginPage } from 'app/containers/LoginPage/Loadable';
+import { NotFoundPage } from 'app/containers/NotFoundPage/Loadable';
+import { RegistrationPage } from 'app/containers/RegistrationPage/Loadable';
+import { useInjectSaga } from 'utils/redux-injectors';
+import { sliceKey } from './slice';
 
-import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
-import { reducer, sliceKey } from './slice';
-import { selectApp } from './selectors';
 import { appSaga } from './saga';
 
-interface Props {}
-
-export function App(props: Props) {
+export function App() {
   useInjectSaga({ key: sliceKey, saga: appSaga });
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const app = useSelector(selectApp);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const dispatch = useDispatch();
 
   return (
     <>
-      <div></div>
+      <Helmet
+        titleTemplate="%s - React Boilerplate"
+        defaultTitle="React Boilerplate"
+      >
+        <meta name="description" content="A React Boilerplate application" />
+      </Helmet>
+
+      <Switch>
+        <Route exact path={routes.home.path} component={HomePage} />
+        <Route path={routes.login.path} component={LoginPage} />
+        <Route path={routes.registration.path} component={RegistrationPage} />
+
+        <Route component={NotFoundPage} />
+      </Switch>
+      <GlobalStyle />
     </>
   );
 }

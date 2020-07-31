@@ -16,10 +16,10 @@ interface Props {
 
 export function TogglePath({ name, path }: Props) {
   const dispatch = useDispatch();
-  const handleClick = () => dispatch(push(path));
+  const onClick = () => dispatch(push(path));
 
   return (
-    <StyledButton key={name} type="link" onClick={handleClick}>
+    <StyledButton key={name} type="link" onClick={onClick}>
       {name}
     </StyledButton>
   );

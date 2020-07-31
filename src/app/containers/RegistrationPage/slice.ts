@@ -1,7 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { ContainerState } from './types';
-import { actions as AppActions } from 'app/containers/App/slice';
 
 // The initial state of the RegistrationPage container
 export const initialState: ContainerState = {
@@ -18,21 +17,27 @@ const registrationPageSlice = createSlice({
   name: 'registrationPage',
   initialState,
   reducers: {
-    registerRequestAction() {},
-    registerSuccessAction(state, action: PayloadAction<number>) {
+    changeInputAction(state, action: PayloadAction<any>) {
+      state[action.payload.name] = action.payload.value;
+    },
+    selectCurrencyAction(state, action: PayloadAction<any>) {
+      state.currency = action.payload;
+    },
+    nextStepAction(state) {
+      state.currentStep += 1;
+    },
+    previousStepAction(state) {
+      state.currentStep -= 1;
+    },
+    registrationRequestAction() {},
+    registrationSuccessAction(state, action: PayloadAction<number>) {
       state.pinCode = action.payload;
     },
-    registerErrorAction(state, action: PayloadAction<string>) {},
-  },
-  extraReducers: {
-    [AppActions.changeInputAction.type]: (
-      state,
-      action: PayloadAction<any>,
-    ) => {
-      if (action.payload.dataset.key === registrationPageSlice.name) {
-        state[action.payload.name] = action.payload.value;
-      }
-    },
+    registrationErrorAction(state, action: PayloadAction<string>) {},
+    loginExpressRequestAction() {},
+    loginExpressSuccessAction() {},
+    loginExpressErrorAction() {},
+    checkEmailAction(state, action: PayloadAction<any>) {},
   },
 });
 

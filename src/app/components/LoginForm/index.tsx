@@ -5,21 +5,18 @@
  */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCurrentStep } from 'app/containers/LoginPage/selectors';
+import { selectLoginPage } from 'app/containers/LoginPage/selectors';
 import { actions } from 'app/containers/LoginPage/slice';
-import { actions as AppActions } from 'app/containers/App/slice';
 import { StyledForm, StyledFormWrapper } from 'app/components/Form/styled';
-import { PinCode } from './Content/PinCode';
-import { Password } from './Content/Password';
+import { PinCode, Password } from './Content';
 import { Action } from './Action';
 
 export function LoginForm() {
-  const currentStep = useSelector(selectCurrentStep);
+  const { currentStep } = useSelector(selectLoginPage);
   const [form] = StyledForm.useForm();
   const dispatch = useDispatch();
 
-  const onNextStep = () =>
-    dispatch(AppActions.nextStepAction({ dataset: { key: 'loginPage' } }));
+  const onNextStep = () => dispatch(actions.nextStepAction());
   const onLogin = () => dispatch(actions.loginRequestAction());
 
   const onValidateFields = async () => {

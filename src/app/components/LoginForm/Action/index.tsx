@@ -14,7 +14,7 @@ import {
 } from 'app/components/Form/styled';
 import { translations } from 'locales/i18n';
 import LoadingIndicator from 'app/components/LoadingIndicator';
-import { actions as AppActions } from 'app/containers/App/slice';
+import { actions } from 'app/containers/LoginPage/slice';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { selectError } from 'app/providers/ErrorProvider/selectors';
 import { selectLoading } from 'app/providers/LoadingProvider/selectors';
@@ -31,8 +31,7 @@ export function Action({ steps, onValidateFields }: Props) {
   const error = useSelector(selectError('loginPage/login'));
   const isLoading = useSelector(selectLoading('loginPage/login'));
 
-  const onPreviousStep = event =>
-    dispatch(AppActions.previousStepAction(event.currentTarget));
+  const onPreviousStep = () => dispatch(actions.previousStepAction());
 
   return (
     <StyledFormActionsWrapper>
@@ -60,12 +59,7 @@ export function Action({ steps, onValidateFields }: Props) {
       </StyledButton>
 
       {currentStep > 0 && (
-        <StyledButton
-          data-key="loginPage"
-          type="link"
-          backed="true"
-          onClick={onPreviousStep}
-        >
+        <StyledButton type="link" backed="true" onClick={onPreviousStep}>
           <>
             <LeftOutlined />
             <span>{t(translations.loginForm.actions.previous)}</span>

@@ -16,6 +16,10 @@ export const GlobalStyle = createGlobalStyle`
     min-width: 100%;
   }
 
+  svg {
+    vertical-align: baseline;
+  }
+
   input, select {
     font-family: inherit;
     font-size: inherit;

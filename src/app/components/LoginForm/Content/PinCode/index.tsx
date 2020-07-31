@@ -7,7 +7,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { selectPinCode } from 'app/containers/LoginPage/selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { actions } from 'app/containers/App/slice';
+import { actions } from 'app/containers/LoginPage/slice';
 import { translations } from 'locales/i18n';
 import { StyledFormItem } from 'app/components/Form/styled';
 import { Input } from 'antd';
@@ -32,7 +32,6 @@ export function PinCode({ onValidateFields }) {
       ]}
     >
       <Input
-        data-key="loginPage"
         type="number"
         max={10e5 - 1}
         min="0"

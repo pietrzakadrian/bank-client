@@ -3,15 +3,24 @@ import { createSlice } from 'utils/@reduxjs/toolkit';
 import { ContainerState } from './types';
 
 // The initial state of the App container
-export const initialState: ContainerState = {};
+export const initialState: ContainerState = {
+  isCollapsedSidebar: false,
+  isCollapsedDrawer: false,
+  isLogged: false,
+  token: {},
+  user: {},
+  currencies: [],
+};
 
 const appSlice = createSlice({
   name: 'global',
   initialState,
   reducers: {
-    changeInputAction(state, action: PayloadAction<any>) {},
-    nextStepAction(state, action: PayloadAction<any>) {},
-    previousStepAction(state, action: PayloadAction<any>) {},
+    getCurrenciesRequestAction() {},
+    getCurrenciesSuccessAction(state, action: PayloadAction<any>) {
+      state.currencies = action.payload;
+    },
+    getCurrenciesErrorAction(state, action: PayloadAction<any>) {},
   },
 });
 

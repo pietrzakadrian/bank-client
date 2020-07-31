@@ -23,5 +23,5 @@ export function LocaleToggle() {
     </Select.Option>
   ));
 
-  return <Select defaultValue={i18n.languages?.[0]}>{content}</Select>;
+  return <Select>{content}</Select>;
 }

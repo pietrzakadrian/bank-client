@@ -25,6 +25,10 @@
     "accept": "Accept",
     "decline": "Decline"
   },
+  "currency": {
+    "placeholder": "Select currency",
+    "validation": "Currency is required."
+  },
   "loginForm": {
     "pinCode": {
       "label": "Pin code",
@@ -39,6 +43,63 @@
     "actions": {
       "next": "Next",
       "create": "Log In",
+      "previous": "Previous"
+    }
+  },
+  "registerForm": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "password": "Password",
+    "currency": "Currency",
+    "email": "E-Mail Address",
+    "content": {
+      "firstName": {
+        "label": "First name",
+        "validation": {
+          "firstNameSyntax": "The first name entered must be valid.",
+          "firstNameRequired": "First name is required."
+        },
+        "placeholder": "Enter first name"
+      },
+      "lastName": {
+        "label": "Last name",
+        "validation": {
+          "lastNameSyntax": "The last name entered must be valid.",
+          "lastNameRequired": "Last name is required."
+        },
+        "placeholder": "Enter last name"
+      },
+      "emailAddress": {
+        "label": "E-Mail Address",
+        "validation": {
+          "processingPersonalData": "Confirmation of consent to the processing of personal data is required.",
+          "emailAddressSyntax": "E-Mail address must be valid.",
+          "emailAddressRequired": "E-Mail address is required.",
+          "emailAddressExist": "E-Mail address already exists."
+        },
+        "placeholder": "Enter e-mail address",
+        "checkboxContent": "I agree to the processing of my personal data.",
+        "information": "Registration does not require confirmation by the email."
+      },
+      "currency": {
+        "label": "Currency"
+      },
+      "password": {
+        "label": "Password",
+        "validation": {
+          "passwordNotEnoughCharacters": "Password must be at least 6 characters long."
+        },
+        "placeholder": "Enter password"
+      },
+      "successfulResult": {
+        "title": "The account has been successfully registered!",
+        "subtitle": "Your PIN code is: {{pinCode}}. Remember it or save it in a safe place, because you must enter the PIN code when you want to log into the banking system.",
+        "action": "Log in to the banking system"
+      }
+    },
+    "actions": {
+      "next": "Next",
+      "create": "Create an account",
       "previous": "Previous"
     }
   }

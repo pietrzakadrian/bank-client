@@ -18,7 +18,8 @@ export function FirstName({ onValidateFields }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const onChange = event => dispatch(actions.changeInputAction(event.target));
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(actions.changeInputAction(event.target));
   const checkStringConsistsLettersOnly = (_, value) => {
     if (value && !nameValidation(value)) {
       return Promise.reject(

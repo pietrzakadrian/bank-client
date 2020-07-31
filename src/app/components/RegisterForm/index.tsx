@@ -35,6 +35,8 @@ export function RegisterForm() {
       await form.validateFields();
 
       if (currentStep === steps.length - 1) {
+        console.log('elo ');
+
         onRegister();
       } else {
         onNextStep();

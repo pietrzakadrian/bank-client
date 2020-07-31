@@ -18,9 +18,10 @@ export function EmailAddress({ onValidateFields }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const onChange = event => dispatch(actions.changeInputAction(event.target));
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(actions.changeInputAction(event.target));
   const onCheckEmail = (value, reject, resolve) =>
-    dispatch(actions.checkEmailAction({ value, reject, resolve }));
+    dispatch(actions.checkEmailRequestAction({ value, reject, resolve }));
 
   const checkDataProcessingIsAccepted = (_, value) => {
     if (value) {
@@ -37,11 +38,11 @@ export function EmailAddress({ onValidateFields }) {
     );
   };
 
-  const checkEmailAddressAlreadyExist = (_, value, callback): any =>
+  const checkEmailAddressAlreadyExist = (_, value): any =>
     new Promise((resolve, reject) =>
       onCheckEmail(value, reject, resolve),
     ).catch(() =>
-      callback(
+      Promise.reject(
         t(
           translations.registerForm.content.emailAddress.validation
             .emailAddressExist,

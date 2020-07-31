@@ -25,10 +25,10 @@ export default {
     register: `${API_BASE_URL}/${AUTH}/register`,
     logout: `${API_BASE_URL}/${AUTH}/logout`,
   },
-  users: (path = '') => {
+  users: (path: EndpointNames | string = '', email?: string) => {
     switch (path) {
       case EndpointNames.checkEmail:
-        return email => `${API_BASE_URL}/${USERS}/${email}/checkEmail`;
+        return `${API_BASE_URL}/${USERS}/${email}/checkEmail`;
       default:
         return `${API_BASE_URL}/${USERS}`;
     }
@@ -36,7 +36,7 @@ export default {
   currencies: `${API_BASE_URL}/${CURRENCIES}`,
   messages: `${API_BASE_URL}/${MESSAGES}`,
   notifications: `${API_BASE_URL}/${NOTIFICATIONS}`,
-  bills: (path = '') => {
+  bills: (path: EndpointNames | string = '', accountBillNumber?: string) => {
     switch (path) {
       case EndpointNames.amountMoney:
         return `${API_BASE_URL}/${BILLS}/amountMoney`;
@@ -45,24 +45,25 @@ export default {
       case EndpointNames.accountBalanceHistory:
         return `${API_BASE_URL}/${BILLS}/accountBalanceHistory`;
       case EndpointNames.search:
-        return accountBillNumber =>
-          `${API_BASE_URL}/${BILLS}/${accountBillNumber}/search`;
+        return `${API_BASE_URL}/${BILLS}/${accountBillNumber}/search`;
       default:
         return `${API_BASE_URL}/${BILLS}`;
     }
   },
-  transactions: (path = '') => {
+  transactions: (
+    path: EndpointNames | string = '',
+    uuid?: string,
+    locale?: string,
+  ) => {
     switch (path) {
       case EndpointNames.create:
         return `${API_BASE_URL}/${TRANSACTIONS}/create`;
       case EndpointNames.confirm:
         return `${API_BASE_URL}/${TRANSACTIONS}/confirm`;
       case EndpointNames.authorizationKey:
-        return uuid =>
-          `${API_BASE_URL}/${TRANSACTIONS}/${uuid}/authorizationKey`;
+        return `${API_BASE_URL}/${TRANSACTIONS}/${uuid}/authorizationKey`;
       case EndpointNames.confirmationFile:
-        return (uuid, locale) =>
-          `${API_BASE_URL}/${TRANSACTIONS}/${uuid}/${locale}/confirmationFile`;
+        return `${API_BASE_URL}/${TRANSACTIONS}/${uuid}/${locale}/confirmationFile`;
       default:
         return `${API_BASE_URL}/${TRANSACTIONS}`;
     }

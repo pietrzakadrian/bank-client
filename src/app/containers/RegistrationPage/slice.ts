@@ -13,6 +13,12 @@ export const initialState: ContainerState = {
   currentStep: 0,
 };
 
+export interface ICredential {
+  value: string;
+  reject: any;
+  resolve: any;
+}
+
 const registrationPageSlice = createSlice({
   name: 'registrationPage',
   initialState,
@@ -35,9 +41,12 @@ const registrationPageSlice = createSlice({
     },
     registrationErrorAction(state, action: PayloadAction<string>) {},
     loginExpressRequestAction() {},
-    loginExpressSuccessAction() {},
-    loginExpressErrorAction() {},
-    checkEmailAction(state, action: PayloadAction<any>) {},
+    loginExpressSuccessAction(state, action: PayloadAction<any>) {},
+    loginExpressErrorAction(state, action: PayloadAction<any>) {},
+    checkEmailRequestAction(state, action: PayloadAction<any>) {},
+    checkEmailSuccessAction(state, action: PayloadAction<any>) {},
+    checkEmailErrorAction(state, action: PayloadAction<any>) {},
+    checkEmailInvalidAction() {},
   },
 });
 

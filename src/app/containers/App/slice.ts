@@ -1,6 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { ContainerState } from './types';
+import { actions as registrationPageActions } from 'app/containers/RegistrationPage/slice';
 
 // The initial state of the App container
 export const initialState: ContainerState = {
@@ -21,6 +22,15 @@ const appSlice = createSlice({
       state.currencies = action.payload;
     },
     getCurrenciesErrorAction(state, action: PayloadAction<any>) {},
+  },
+  extraReducers: {
+    [registrationPageActions.loginExpressSuccessAction.type]: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+    },
   },
 });
 

@@ -19,7 +19,8 @@ export function Password({ onValidateFields }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const onChange = event => dispatch(actions.changeInputAction(event.target));
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(actions.changeInputAction(event.target));
   const checkLengthOfCharactersInPassword = (_, value) => {
     if (value && value.length > 5) {
       return Promise.resolve();

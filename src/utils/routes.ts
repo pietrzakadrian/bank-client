@@ -1,11 +1,17 @@
+import i18n from 'i18next';
+import { translations } from 'locales/i18n';
+
 export default {
   home: { name: 'Home', path: '/' },
-  login: { name: 'Login', path: '/login' },
-  registration: { name: 'Registration', path: '/registration' },
+  login: { name: i18n.t(translations.login.title), path: '/login' },
+  registration: {
+    name: i18n.t(translations.registration.title),
+    path: '/registration',
+  },
   dashboard: { name: 'Dashboard', path: '/dashboard' },
   payment: { name: 'Payment', path: '/payment' },
   history: { name: 'History', path: '/history' },
   settings: { name: 'Settings', path: '/settings' },
-  privacy: { name: 'Privacy', path: '/privacy' },
-  notFound: { name: '404', path: '/404' },
+  privacy: { name: i18n.t(translations.privacy.title), path: '/privacy' },
+  notFound: { name: i18n.t(translations.notFound.title), path: '/404' },
 };

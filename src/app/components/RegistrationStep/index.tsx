@@ -12,7 +12,7 @@ interface Props {
   steps: any;
 }
 
-export function RegisterStep({ steps }: Props) {
+export function RegistrationStep({ steps }: Props) {
   const { pinCode, currentStep } = useSelector(selectRegistrationPage);
 
   return (

@@ -13,9 +13,15 @@ import {
   StyledWarning,
   StyledTip,
 } from './styled';
+import { useDispatch } from 'react-redux';
+import { push } from 'connected-react-router';
+import routes from 'utils/routes';
 
 export function Footer() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const onClick = () => dispatch(push(routes.privacy.path));
 
   return (
     <StyledFooter>
@@ -36,7 +42,7 @@ export function Footer() {
 
       <div>
         {t(translations.footer.footer)}
-        <StyledButton type="link">
+        <StyledButton type="link" onClick={onClick}>
           {t(translations.footer.buttonContent)}
         </StyledButton>
       </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { RegisterForm } from '..';
+import { Privacy } from '..';
 
-describe('<RegisterForm  />', () => {
+describe('<Privacy  />', () => {
   it('should match snapshot', () => {
-    const loadingIndicator = render(<RegisterForm />);
+    const loadingIndicator = render(<Privacy />);
     expect(loadingIndicator.container.firstChild).toMatchSnapshot();
   });
 });

@@ -18,8 +18,3 @@ export const StyledSubTitle = styled.div`
 export const StyledAction = styled.div`
   padding: 0 0 28px;
 `;
-
-export const StyledPinCodeWrapper = styled.span`
-  font-weight: 700;
-  color: #1890ff;
-`;

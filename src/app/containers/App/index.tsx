@@ -13,9 +13,9 @@ import { HomePage } from 'app/containers/HomePage/Loadable';
 import { LoginPage } from 'app/containers/LoginPage/Loadable';
 import { NotFoundPage } from 'app/containers/NotFoundPage/Loadable';
 import { RegistrationPage } from 'app/containers/RegistrationPage/Loadable';
+import { PrivacyPage } from 'app/containers/PrivacyPage/Loadable';
 import { useInjectSaga } from 'utils/redux-injectors';
 import { sliceKey } from './slice';
-
 import { appSaga } from './saga';
 
 export function App() {
@@ -34,6 +34,7 @@ export function App() {
         <Route exact path={routes.home.path} component={HomePage} />
         <Route path={routes.login.path} component={LoginPage} />
         <Route path={routes.registration.path} component={RegistrationPage} />
+        <Route path={routes.privacy.path} component={PrivacyPage} />
 
         <Route component={NotFoundPage} />
       </Switch>

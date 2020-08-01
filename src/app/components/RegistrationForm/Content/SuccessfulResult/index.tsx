@@ -36,9 +36,17 @@ export function SuccessfulResult() {
       />
 
       <StyledSubTitle>
-        {t(translations.registerForm.content.successfulResult.subtitle, {
-          pinCode,
-        })}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: t(
+              translations.registerForm.content.successfulResult.subtitle,
+              {
+                pinCode,
+                interpolation: { escapeValue: false },
+              },
+            ),
+          }}
+        />
       </StyledSubTitle>
 
       <StyledFormActionsWrapper>

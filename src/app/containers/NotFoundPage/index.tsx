@@ -25,8 +25,7 @@ export function NotFoundPage() {
   return (
     <>
       <Helmet>
-        <title>{t(translations.notFound.header)}</title>
-        <meta name="description" content="Description of LoginPage" />
+        <title>{t(translations.notFound.title)}</title>
       </Helmet>
 
       <Header />
@@ -34,7 +33,7 @@ export function NotFoundPage() {
 
       <Result
         status="error"
-        title={t(translations.notFound.header)}
+        title={t(translations.notFound.title)}
         subTitle={t(translations.notFound.subheader)}
         extra={[
           <Button type="primary" key="return" onClick={onClick}>

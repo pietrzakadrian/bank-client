@@ -16,16 +16,20 @@ import { RedirectToggle } from 'app/components/RedirectToggle';
 import { Footer } from 'app/components/Footer';
 import { ConstantCookie } from 'app/components/ConstantCookie';
 import routes from 'utils/routes';
-import { RegisterForm } from 'app/components/RegisterForm';
+import { RegistrationForm } from 'app/components/RegistrationForm';
+import { translations } from 'locales/i18n';
+import { useTranslation } from 'react-i18next';
 
 export function RegistrationPage() {
   useInjectReducer({ key: sliceKey, reducer: reducer });
   useInjectSaga({ key: sliceKey, saga: registrationPageSaga });
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Helmet>
-        <title>RegistrationPage</title>
+        <title>{t(translations.registration.title)}</title>
         <meta name="description" content="Description of RegistrationPage" />
       </Helmet>
 
@@ -34,7 +38,7 @@ export function RegistrationPage() {
 
       <Information />
 
-      <RegisterForm />
+      <RegistrationForm />
 
       <RedirectToggle />
       <Footer />

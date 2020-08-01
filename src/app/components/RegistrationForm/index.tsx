@@ -11,7 +11,7 @@ import { actions } from 'app/containers/RegistrationPage/slice';
 import { useTranslation } from 'react-i18next';
 import { translations } from 'locales/i18n';
 import Action from './Action';
-import { RegisterStep } from 'app/components/RegisterStep';
+import { RegistrationStep } from 'app/components/RegistrationStep';
 import {
   FirstName,
   LastName,
@@ -19,9 +19,9 @@ import {
   EmailAddress,
   SuccessfulResult,
   Currency,
-} from 'app/components/RegisterForm/Content';
+} from 'app/components/RegistrationForm/Content';
 
-export function RegisterForm() {
+export function RegistrationForm() {
   const { pinCode, currentStep } = useSelector(selectRegistrationPage);
   const dispatch = useDispatch();
   const [form] = StyledForm.useForm();
@@ -74,7 +74,7 @@ export function RegisterForm() {
 
   return (
     <>
-      <RegisterStep steps={steps} />
+      <RegistrationStep steps={steps} />
 
       <StyledFormWrapper>
         {pinCode ? (

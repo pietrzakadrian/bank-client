@@ -16,15 +16,19 @@ import { Footer } from 'app/components/Footer';
 import { ConstantCookie } from 'app/components/ConstantCookie';
 import routes from 'utils/routes';
 import { LoginForm } from 'app/components/LoginForm';
+import { useTranslation } from 'react-i18next';
+import { translations } from 'locales/i18n';
 
 export function LoginPage() {
   useInjectReducer({ key: sliceKey, reducer: reducer });
   useInjectSaga({ key: sliceKey, saga: loginPageSaga });
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Helmet>
-        <title>LoginPage</title>
+        <title>{t(translations.login.title)}</title>
         <meta name="description" content="Description of LoginPage" />
       </Helmet>
 

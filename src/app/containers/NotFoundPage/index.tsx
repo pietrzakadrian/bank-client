@@ -1,45 +1,51 @@
+/**
+ *
+ * NotFoundPage
+ *
+ */
 import React from 'react';
-import styled from 'styled-components/macro';
-import { P } from './P';
 import { Helmet } from 'react-helmet-async';
+import { Header } from 'app/components/Header';
+import { Subheader } from 'app/components/Subheader';
+import { Footer } from 'app/components/Footer';
+import { ConstantCookie } from 'app/components/ConstantCookie';
+import { Result, Button } from 'antd';
+import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { push } from 'connected-react-router';
+import routes from 'utils/routes';
+import { translations } from 'locales/i18n';
 
 export function NotFoundPage() {
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+
+  const onClick = () => dispatch(push(routes.dashboard.path));
+
   return (
     <>
       <Helmet>
-        <title>404 Page Not Found</title>
-        <meta name="description" content="Page not found" />
+        <title>{t(translations.notFound.header)}</title>
+        <meta name="description" content="Description of LoginPage" />
       </Helmet>
-      <Wrapper>
-        <Title>
-          4
-          <span role="img" aria-label="Crying Face">
-            😢
-          </span>
-          4
-        </Title>
-        <P>Page not found.</P>
-      </Wrapper>
+
+      <Header />
+      <Subheader pageTitle={routes.notFound.name} />
+
+      <Result
+        status="error"
+        title={t(translations.notFound.header)}
+        subTitle={t(translations.notFound.subheader)}
+        extra={[
+          <Button type="primary" key="return" onClick={onClick}>
+            {t(translations.notFound.backToApp)}
+          </Button>,
+        ]}
+      />
+
+      <Footer />
+
+      <ConstantCookie />
     </>
   );
 }
-
-const Wrapper = styled.div`
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  min-height: 320px;
-`;
-
-const Title = styled.div`
-  margin-top: -8vh;
-  font-weight: bold;
-  color: black;
-  font-size: 3.375rem;
-
-  span {
-    font-size: 3.125rem;
-  }
-`;

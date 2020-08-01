@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConstantCookie  /> should match snapshot 1`] = `
+.c0 {
+  position: fixed;
+  bottom: 0;
+}
+
+.c1 {
+  text-align: right;
+}
+
+.c1 button:last-child {
+  margin-left: 5px;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    max-width: 330px;
+    right: 10px;
+    bottom: 10px;
+    box-shadow: rgba(0,0,0,0.2) 0em 0.0625em 0.1875em 0em,rgba(0,0,0,0.14) 0em 0.0625em 0.0625em 0em,rgba(0,0,0,0.12) 0em 0.125em 0.0625em -0.0625em;
+  }
+}
+
+<div
+  class="ant-card c0 ant-card-bordered"
+>
+  <div
+    class="ant-card-body"
+  >
+    <div>
+      <p>
+        This site uses cookies to provide services at the highest level. By continuing to use the site, you agree to their use.
+      </p>
+      <div
+        class="c1"
+      >
+        <button
+          class="ant-btn"
+          type="button"
+        >
+          <a
+            href="https://github.com/pietrzakadrian"
+          >
+            Decline
+          </a>
+        </button>
+        <button
+          class="ant-btn ant-btn-primary"
+          type="button"
+        >
+          <span>
+            Accept
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

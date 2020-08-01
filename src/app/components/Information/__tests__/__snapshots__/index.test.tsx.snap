@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Information  /> should match snapshot 1`] = `
+.c0 {
+  max-width: 1260px;
+  margin: 10px auto;
+  color: #fff;
+  background-color: #1890ff;
+  padding: 10px 15px;
+  border-radius: 2px;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    padding: 10px 130px;
+  }
+}
+
+<div
+  class="c0"
+>
+  If you take advantage of our promotion and register your account by the end of this year, you will receive 10,00 USD from us. Accounts already created will also receive this from us.
+</div>
+`;

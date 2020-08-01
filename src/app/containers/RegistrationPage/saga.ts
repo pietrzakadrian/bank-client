@@ -1,45 +1,16 @@
-import { delay, call, put, takeLatest, select } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actions } from './slice';
-import { emailValidation } from 'utils/helpers';
-import api, { EndpointNames } from 'utils/api';
+import api from 'utils/api';
 import i18n from 'i18next';
 import { translations } from 'locales/i18n';
 import { request } from 'utils/request';
-import { selectRegistrationPage } from './selectors';
+import {
+  selectRegistrationPage,
+  selectPinCode,
+  selectPassword,
+} from './selectors';
 import { push } from 'connected-react-router';
 import routes from 'utils/routes';
-
-export function* checkEmail({
-  payload,
-}: ReturnType<typeof actions.checkEmailRequestAction>) {
-  const requestURL = api.users(EndpointNames.checkEmail, payload.value);
-
-  if (!payload.value) {
-    yield call(payload.resolve);
-  }
-
-  if (emailValidation(payload.value)) {
-    try {
-      yield delay(400);
-
-      const { exist } = yield call(request, requestURL);
-      yield put(actions.checkEmailSuccessAction(exist));
-
-      if (exist) {
-        yield call(payload.reject);
-      } else {
-        yield call(payload.resolve);
-      }
-    } catch (error) {
-      yield put(
-        actions.checkEmailErrorAction(i18n.t(translations.serverError)),
-      );
-    }
-  } else {
-    yield put(actions.checkEmailInvalidAction());
-    yield call(payload.resolve);
-  }
-}
 
 export function* register() {
   const { firstName, lastName, email, password, currency } = yield select(
@@ -64,7 +35,8 @@ export function* register() {
 }
 
 export function* loginExpress() {
-  const { pinCode, password } = yield select(selectRegistrationPage);
+  const pinCode: number = yield select(selectPinCode);
+  const password: string = yield select(selectPassword);
 
   const requestURL = api.auth.login;
   const requestParameters = {
@@ -85,7 +57,6 @@ export function* loginExpress() {
 }
 
 export function* registrationPageSaga() {
-  yield takeLatest(actions.checkEmailRequestAction.type, checkEmail);
   yield takeLatest(actions.registrationRequestAction.type, register);
   yield takeLatest(actions.loginExpressRequestAction.type, loginExpress);
 }

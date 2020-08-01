@@ -22,6 +22,10 @@ const appSlice = createSlice({
       state.currencies = action.payload;
     },
     getCurrenciesErrorAction(state, action: PayloadAction<any>) {},
+    checkEmailRequestAction(state, action: PayloadAction<any>) {},
+    checkEmailSuccessAction(state, action: PayloadAction<any>) {},
+    checkEmailErrorAction(state, action: PayloadAction<any>) {},
+    checkEmailInvalidAction() {},
   },
   extraReducers: {
     [registrationPageActions.loginExpressSuccessAction.type]: (

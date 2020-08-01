@@ -12,12 +12,11 @@ export const selectLoginPage = createSelector(
 
 export const selectPinCode = createSelector(
   [selectDomain],
-  loginPageState => loginPageState.pinCode,
+  loginPageState => +loginPageState.pinCode,
 );
 
-export const selectPassword = createSelector(
-  [selectDomain],
-  loginPageState => loginPageState.password,
+export const selectPassword = createSelector([selectDomain], loginPageState =>
+  loginPageState.password.trim(),
 );
 
 export const selectCurrentStep = createSelector(

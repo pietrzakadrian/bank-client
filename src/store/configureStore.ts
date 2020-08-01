@@ -11,8 +11,6 @@ import { createInjectorsEnhancer, forceReducerReload } from 'redux-injectors';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 import { History } from 'history';
-import { actions as RegistrationPageActions } from 'app/containers/RegistrationPage/slice';
-import { actions as LoginPageActions } from 'app/containers/LoginPage/slice';
 
 import { createReducer } from './reducers';
 
@@ -41,16 +39,11 @@ export function configureAppStore(history?: History) {
     reducer: createReducer(),
     middleware: [
       ...getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [
-            RegistrationPageActions.changeInputAction.type,
-            LoginPageActions.changeInputAction.type,
-          ],
-        },
+        serializableCheck: false,
       }),
       ...middlewares,
     ],
-    devTools: process.env.NODE_ENV !== 'production',
+    devTools: true || process.env.NODE_ENV !== 'production',
     enhancers,
   });
 

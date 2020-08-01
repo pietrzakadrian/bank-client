@@ -24,10 +24,10 @@ export function App() {
   return (
     <>
       <Helmet
-        titleTemplate="%s - React Boilerplate"
-        defaultTitle="React Boilerplate"
+        titleTemplate="%s - Bank Application"
+        defaultTitle="Bank Application"
       >
-        <meta name="description" content="A React Boilerplate application" />
+        <meta name="description" content="Bank Application" />
       </Helmet>
 
       <Switch>

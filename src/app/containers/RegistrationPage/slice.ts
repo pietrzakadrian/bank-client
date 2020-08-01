@@ -43,10 +43,6 @@ const registrationPageSlice = createSlice({
     loginExpressRequestAction() {},
     loginExpressSuccessAction(state, action: PayloadAction<any>) {},
     loginExpressErrorAction(state, action: PayloadAction<any>) {},
-    checkEmailRequestAction(state, action: PayloadAction<any>) {},
-    checkEmailSuccessAction(state, action: PayloadAction<any>) {},
-    checkEmailErrorAction(state, action: PayloadAction<any>) {},
-    checkEmailInvalidAction() {},
   },
 });
 

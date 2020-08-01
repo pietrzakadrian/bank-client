@@ -8,12 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectRegistrationPage } from 'app/containers/RegistrationPage/selectors';
 import { translations } from 'locales/i18n';
-import {
-  StyledResult,
-  StyledSubTitle,
-  StyledAction,
-  StyledPinCodeWrapper,
-} from './styled';
+import { StyledResult, StyledSubTitle, StyledAction } from './styled';
 import {
   StyledButton,
   StyledError,

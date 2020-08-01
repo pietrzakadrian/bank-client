@@ -11,6 +11,7 @@ import { selectRegistrationPage } from 'app/containers/RegistrationPage/selector
 import { StyledFormItem } from 'app/components/Form/styled';
 import { Input, Checkbox } from 'antd';
 import { actions } from 'app/containers/RegistrationPage/slice';
+import { actions as appActions } from 'app/containers/App/slice';
 import { StyledInformation } from './styled';
 
 export function EmailAddress({ onValidateFields }) {
@@ -21,7 +22,7 @@ export function EmailAddress({ onValidateFields }) {
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(actions.changeInputAction(event.target));
   const onCheckEmail = (value, reject, resolve) =>
-    dispatch(actions.checkEmailRequestAction({ value, reject, resolve }));
+    dispatch(appActions.checkEmailRequestAction({ value, reject, resolve }));
 
   const checkDataProcessingIsAccepted = (_, value) => {
     if (value) {

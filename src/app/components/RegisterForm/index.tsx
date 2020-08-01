@@ -35,8 +35,6 @@ export function RegisterForm() {
       await form.validateFields();
 
       if (currentStep === steps.length - 1) {
-        console.log('elo ');
-
         onRegister();
       } else {
         onNextStep();
@@ -49,27 +47,27 @@ export function RegisterForm() {
   const steps = [
     {
       id: 1,
-      title: t(translations.registerForm.firstName),
+      title: t(translations.registerForm.content.firstName.label),
       content: <FirstName onValidateFields={onValidateFields} />,
     },
     {
       id: 2,
-      title: t(translations.registerForm.lastName),
+      title: t(translations.registerForm.content.lastName.label),
       content: <LastName onValidateFields={onValidateFields} />,
     },
     {
       id: 3,
-      title: t(translations.registerForm.password),
+      title: t(translations.registerForm.content.password.label),
       content: <Password onValidateFields={onValidateFields} />,
     },
     {
       id: 4,
-      title: t(translations.registerForm.currency),
+      title: t(translations.registerForm.content.currency.label),
       content: <Currency />,
     },
     {
       id: 5,
-      title: t(translations.registerForm.email),
+      title: t(translations.registerForm.content.emailAddress.label),
       content: <EmailAddress onValidateFields={onValidateFields} />,
     },
   ];

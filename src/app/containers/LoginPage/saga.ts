@@ -5,6 +5,8 @@ import { actions } from './slice';
 import api from 'utils/api';
 import { translations } from 'locales/i18n';
 import i18n from 'i18next';
+import { push } from 'connected-react-router';
+import routes from 'utils/routes';
 
 interface IRequestParameters {
   method?: string;
@@ -26,6 +28,7 @@ export function* login() {
   try {
     const response = yield call(request, requestURL, requestParameters);
     yield put(actions.loginSuccessAction(response));
+    yield put(push(routes.dashboard.path));
   } catch (error) {
     if (error.response?.status) {
       yield put(actions.loginErrorAction(i18n.t(translations.serverError)));

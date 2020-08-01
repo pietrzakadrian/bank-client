@@ -47,11 +47,6 @@
     }
   },
   "registerForm": {
-    "firstName": "First name",
-    "lastName": "Last name",
-    "password": "Password",
-    "currency": "Currency",
-    "email": "E-Mail Address",
     "content": {
       "firstName": {
         "label": "First name",

@@ -4,7 +4,6 @@
  *
  */
 import React from 'react';
-import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 import { selectLocation } from 'app/containers/App/selectors';
 import { Menu } from 'antd';

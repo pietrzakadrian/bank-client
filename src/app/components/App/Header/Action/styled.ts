@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 import { media } from 'styles/media';
 import { headerHeight } from 'app/components/App/Header/styled';
 import { Button } from 'antd';
+import { ButtonProps } from 'antd/lib/button';
 
 export const StyledAction = styled.div`
   color: black;
@@ -17,7 +18,7 @@ export const StyledAction = styled.div`
   `};
 `;
 
-export const StyledActionItem = styled(Button)`
+export const StyledActionItem = styled(Button)<ButtonProps>`
   display: inline-flex;
   align-items: center;
   padding: 0;

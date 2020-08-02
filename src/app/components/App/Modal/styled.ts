@@ -3,6 +3,8 @@ import { Modal } from 'antd';
 import { media } from 'styles/media';
 
 export const StyledModal = styled(Modal)`
+  padding-bottom: 0;
+
   p {
     &:last-child {
       margin-bottom: 0;

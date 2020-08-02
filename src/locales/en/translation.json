@@ -126,7 +126,14 @@
           "readed": "Mark everything as read"
         }
       },
-      "notifications": "Notifications",
+      "notifications": {
+        "title": "Notifications",
+        "worth": "worth",
+        "actions": {
+          "noNotifications": "No new notifications.",
+          "newNotification": "You have received a new transfer from"
+        }
+      },
       "logout": "Logout",
       "popConfirm": {
         "title": "Are you sure you want to log out?",

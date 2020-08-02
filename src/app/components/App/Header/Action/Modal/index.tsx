@@ -4,11 +4,9 @@
  *
  */
 import React from 'react';
-import { selectApp } from 'app/containers/App/selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
-import { Dropdown, Badge, Popconfirm, Button } from 'antd';
+import { Button } from 'antd';
 import { translations } from 'locales/i18n';
 import { actions } from 'app/containers/App/slice';
 import { StyledModal } from 'app/components/App/Modal/styled';

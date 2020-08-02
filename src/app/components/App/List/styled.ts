@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { List } from 'antd';
 import { media } from 'styles/media';
-import { ListItemProps } from 'antd/lib/list';
 
 export const StyledList = styled(List)<any>`
   &&& {
@@ -97,4 +96,8 @@ export const StyledListItemNoData = styled.div`
   pointer-events: none;
   color: #bababa;
   font-size: 13px;
+`;
+
+export const StyledItemWrapper = styled.div`
+  width: 100%;
 `;

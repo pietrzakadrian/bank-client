@@ -35,8 +35,17 @@ export function Action() {
   const { t } = useTranslation();
 
   const onLogout = () => dispatch(actions.logoutRequestAction());
-  //   const onGetMessages = () => dispatch(getMessagesAction());
-  //   const onGetNotifications = () => dispatch(getNotificationsAction());
+  const handleMessages = () => {
+    if (!messages?.data?.length) {
+      dispatch(actions.getMessagesRequestAction());
+    }
+  };
+  const handleNotifications = () => {
+    if (user?.userConfig.notificationCount) {
+      dispatch(actions.getNotificationsRequestAction());
+    }
+  };
+
   //   const onToggleConfirmModal = () => dispatch(toggleConfirmModalAction());
 
   return (
@@ -48,7 +57,7 @@ export function Action() {
           placement="bottomCenter"
           arrow={!isMobile}
         >
-          <StyledActionItem type="link">
+          <StyledActionItem type="link" onClick={handleMessages}>
             <Badge count={user?.userConfig?.messageCount}>
               {user?.userConfig?.messageCount ? (
                 <MessageFilled />
@@ -68,7 +77,7 @@ export function Action() {
           placement="bottomCenter"
           arrow={!isMobile}
         >
-          <StyledActionItem type="link">
+          <StyledActionItem type="link" onClick={handleNotifications}>
             <Badge count={user?.userConfig?.notificationCount}>
               {user?.userConfig?.notificationCount ? (
                 <BellFilled />
@@ -77,7 +86,7 @@ export function Action() {
               )}
             </Badge>
             <StyledActionItemName>
-              {t(translations.header.actions.notifications)}
+              {t(translations.header.actions.notifications.title)}
             </StyledActionItemName>
           </StyledActionItem>
         </Dropdown>

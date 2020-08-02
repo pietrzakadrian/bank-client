@@ -10,7 +10,7 @@ import { push } from 'connected-react-router';
 import routes from 'utils/routes';
 
 export function* logout() {
-  const { accessToken } = yield select(selectApp);
+  const { token } = yield select(selectApp);
 
   const requestURL = api.auth.logout;
   const requestParameters = {
@@ -18,7 +18,7 @@ export function* logout() {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${token.accessToken}`,
     },
   };
 
@@ -77,10 +77,10 @@ export function* checkEmail({
   }
 }
 export function* getMessages() {
-  const { accessToken } = yield select(selectApp);
+  const { token } = yield select(selectApp);
   const requestURL = api.messages;
   const requestParameters = {
-    headers: { Authorization: `Bearer ${accessToken}` },
+    headers: { Authorization: `Bearer ${token.accessToken}` },
   };
 
   try {
@@ -93,11 +93,11 @@ export function* getMessages() {
 }
 
 export function* getNotifications() {
-  const { accessToken, user } = yield select(selectApp);
+  const { token, user } = yield select(selectApp);
   const requestURL = `${api.notifications}?take=${user?.userConfig?.notificationCount}&order=DESC`;
 
   const requestParameters = {
-    headers: { Authorization: `Bearer ${accessToken}` },
+    headers: { Authorization: `Bearer ${token.accessToken}` },
   };
 
   try {
@@ -106,6 +106,62 @@ export function* getNotifications() {
   } catch (error) {
     yield put(actions.getNotificationsErrorAction(error));
     yield put(push(routes.login.path));
+  }
+}
+
+export function* openMessage({
+  payload,
+}: ReturnType<typeof actions.openMessageAction>) {
+  const { messages } = yield select(selectApp);
+  const isReadedMessage = messages?.data.find(
+    message => message.uuid === payload.uuid,
+  ).readed;
+
+  if (!isReadedMessage) {
+    yield call(readMessage);
+  }
+}
+
+export function* readMessage() {
+  const { token, openedMessage } = yield select(selectApp);
+
+  const requestURL = api.messages;
+  const requestParameters = {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token.accessToken}`,
+    },
+    body: JSON.stringify({ uuid: openedMessage.uuid }),
+  };
+
+  try {
+    yield put(actions.readMessageRequestAction());
+    yield call(request, requestURL, requestParameters);
+    yield put(actions.readMessageSuccessAction());
+  } catch (error) {
+    yield put(actions.readMessageErrorAction(error));
+  }
+}
+
+export function* readMessages() {
+  const { token } = yield select(selectApp);
+  const requestURL = api.messages;
+  const requestParameters = {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token.accessToken}`,
+    },
+  };
+
+  try {
+    yield call(request, requestURL, requestParameters);
+    yield put(actions.readMessagesSuccessAction());
+  } catch (error) {
+    yield put(actions.readMessagesErrorAction(error));
   }
 }
 
@@ -118,4 +174,6 @@ export function* appSaga() {
     actions.getNotificationsRequestAction.type,
     getNotifications,
   );
+  yield takeLatest(actions.openMessageAction.type, openMessage);
+  yield takeLatest(actions.readMessagesRequestAction.type, readMessages);
 }

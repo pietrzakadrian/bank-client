@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 import routes from 'utils/routes';
 import { GlobalStyle } from 'styles/global-styles';
 import { HomePage } from 'app/containers/HomePage/Loadable';

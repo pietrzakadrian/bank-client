@@ -7,7 +7,8 @@ export interface AppState {
   user: any;
   currencies: any[];
   messages: any;
-  notifications: any[];
+  openedMessage: any;
+  notifications: any;
 }
 
 export type ContainerState = AppState;

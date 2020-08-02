@@ -13,6 +13,7 @@ export const initialState: ContainerState = {
   user: {},
   currencies: [],
   messages: [],
+  openedMessage: {},
   notifications: [],
 };
 
@@ -25,14 +26,45 @@ const appSlice = createSlice({
       state.currencies = action.payload;
     },
     getCurrenciesErrorAction(state, action: PayloadAction<any>) {},
-    getMessagesRequestAction(state, action: PayloadAction<any>) {},
+    getMessagesRequestAction() {},
     getMessagesSuccessAction(state, action: PayloadAction<any>) {
       state.messages = action.payload;
     },
     getMessagesErrorAction(state, action: PayloadAction<any>) {},
-    getNotificationsRequestAction(state, action: PayloadAction<any>) {},
+    openMessageAction(state, action: PayloadAction<any>) {
+      state.openedMessage = action.payload;
+    },
+
+    readMessageRequestAction() {},
+    readMessageSuccessAction(state) {
+      state.messages.data.find(
+        ({ uuid }) => uuid === state.openedMessage.uuid,
+      ).readed = true;
+
+      if (state.user?.userConfig.messageCount) {
+        state.user.userConfig.messageCount -= 1;
+      }
+    },
+    readMessageErrorAction(state, action: PayloadAction<any>) {},
+    readMessagesRequestAction() {},
+    readMessagesSuccessAction(state) {
+      state.messages.data = state.messages.data.map(message => ({
+        ...message,
+        readed: true,
+      }));
+
+      if (state.user?.userConfig.messageCount) {
+        state.user.userConfig.messageCount = 0;
+      }
+    },
+    readMessagesErrorAction(state, action: PayloadAction<any>) {},
+    getNotificationsRequestAction() {},
     getNotificationsSuccessAction(state, action: PayloadAction<any>) {
       state.notifications = action.payload;
+
+      if (state.user?.userConfig.notificationCount) {
+        state.user.userConfig.notificationCount = 0;
+      }
     },
     getNotificationsErrorAction(state, action: PayloadAction<any>) {},
     checkEmailRequestAction(state, action: PayloadAction<any>) {},

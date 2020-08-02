@@ -118,6 +118,8 @@
     "actions": {
       "messages": {
         "title": "Messages",
+        "to": "to",
+        "from": "from",
         "actions": {
           "newMessages": "New messages:",
           "noMessages": "No new messages.",

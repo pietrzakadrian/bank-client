@@ -12,7 +12,7 @@ const localeSlice = createSlice({
   name: 'language',
   initialState,
   reducers: {
-    localeChanged(state, action: PayloadAction<string>) {
+    changeLocaleAction(state, action: PayloadAction<string>) {
       state.locale = action.payload;
 
       if (action.payload === 'en') {

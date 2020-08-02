@@ -1,50 +1,48 @@
 import styled from 'styled-components';
 import { List } from 'antd';
 import { media } from 'styles/media';
+import { ListItemProps } from 'antd/lib/list';
 
-export const StyledList = styled(List)`
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.2) 0em 0.0625em 0.1875em 0em,
-    rgba(0, 0, 0, 0.14) 0em 0.0625em 0.0625em 0em,
-    rgba(0, 0, 0, 0.12) 0em 0.125em 0.0625em -0.0625em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  .ant-spin-nested-loading {
-    width: 100%;
-  }
-
-  .ant-list-header {
-    width: 100%;
-    padding: 5px 15px;
-    font-size: 13px;
+export const StyledList = styled(List)<any>`
+  &&& {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.2) 0em 0.0625em 0.1875em 0em,
+      rgba(0, 0, 0, 0.14) 0em 0.0625em 0.0625em 0em,
+      rgba(0, 0, 0, 0.12) 0em 0.125em 0.0625em -0.0625em;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    flex-direction: column;
 
-    button {
-      font-size: 13px;
+    .ant-spin-nested-loading {
+      width: 100%;
     }
-  }
 
-  .ant-list-items {
-    max-height: 350px;
-    overflow-y: auto;
-  }
+    .ant-list-header {
+      width: 100%;
+      padding: 5px 15px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-  ${media.tablet`
+      button {
+        font-size: 13px;
+      }
+    }
+
+    .ant-list-items {
+      max-height: 350px;
+      overflow-y: auto;
+    }
+
+    ${media.tablet`
     min-height: 153px;
   `}
+  }
 `;
 
-interface IStyledListItem {
-  readed: boolean;
-  hovered: boolean;
-}
-
-export const StyledListItem = styled(List.Item)<IStyledListItem>`
+export const StyledListItem = styled(List.Item)<any>`
   &&& {
     padding: 10px 15px;
     background-color: ${({ readed }) => (!readed ? '#e6f7ff' : 'white')};

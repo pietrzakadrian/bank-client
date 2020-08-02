@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro';
 import { media } from 'styles/media';
 
-interface IStyledFooter {
+interface StyledFooterProps {
   collapsed: boolean;
 }
 
-export const StyledFooter = styled.footer<IStyledFooter>`
+export const StyledFooter = styled.footer<StyledFooterProps>`
   display: inline-block;
   color: black;
   text-align: center;

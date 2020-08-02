@@ -6,16 +6,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select } from 'antd';
-// import { LanguageKey } from 'locales/i18n';
+import { useDispatch } from 'react-redux';
+import { actions as languageActions } from 'app/providers/LanguageProvider/slice';
 
 export function LocaleToggle() {
   const { i18n } = useTranslation();
-  // const handleLanguageChange = (
-  //   event: React.ChangeEvent<HTMLSelectElement>,
-  // ) => {
-  //   const language = event.target.name as LanguageKey;
-  //   i18n.changeLanguage(language);
-  // };
+  const dispatch = useDispatch();
+
+  const handleLanguageChange = (locale): any => {
+    i18n.changeLanguage(locale);
+    dispatch(languageActions.localeChanged(locale));
+  };
 
   const content = i18n.languages?.map(language => (
     <Select.Option key={language} value={language}>
@@ -23,5 +24,9 @@ export function LocaleToggle() {
     </Select.Option>
   ));
 
-  return <Select>{content}</Select>;
+  return (
+    <Select defaultValue={i18n.language} onSelect={handleLanguageChange}>
+      {content}
+    </Select>
+  );
 }

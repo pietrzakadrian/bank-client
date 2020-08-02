@@ -13,6 +13,7 @@ export const initialState: ContainerState = {
   user: {},
   currencies: [],
   messages: [],
+  notifications: [],
 };
 
 const appSlice = createSlice({
@@ -24,6 +25,16 @@ const appSlice = createSlice({
       state.currencies = action.payload;
     },
     getCurrenciesErrorAction(state, action: PayloadAction<any>) {},
+    getMessagesRequestAction(state, action: PayloadAction<any>) {},
+    getMessagesSuccessAction(state, action: PayloadAction<any>) {
+      state.messages = action.payload;
+    },
+    getMessagesErrorAction(state, action: PayloadAction<any>) {},
+    getNotificationsRequestAction(state, action: PayloadAction<any>) {},
+    getNotificationsSuccessAction(state, action: PayloadAction<any>) {
+      state.notifications = action.payload;
+    },
+    getNotificationsErrorAction(state, action: PayloadAction<any>) {},
     checkEmailRequestAction(state, action: PayloadAction<any>) {},
     checkEmailSuccessAction(state, action: PayloadAction<any>) {},
     checkEmailErrorAction(state, action: PayloadAction<any>) {},

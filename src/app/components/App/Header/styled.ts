@@ -9,11 +9,11 @@ import { Layout } from 'antd';
 
 export const headerHeight = '64px';
 
-interface IStyledHeader {
+interface StyledHeaderProps {
   opened: boolean;
 }
 
-export const StyledHeader = styled(Layout.Header)<IStyledHeader>`
+export const StyledHeader = styled(Layout.Header)<StyledHeaderProps>`
   display: flex;
   align-items: center;
   padding: 0 25px;

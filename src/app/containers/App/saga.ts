@@ -76,9 +76,46 @@ export function* checkEmail({
     yield call(payload.resolve);
   }
 }
+export function* getMessages() {
+  const { accessToken } = yield select(selectApp);
+  const requestURL = api.messages;
+  const requestParameters = {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  };
+
+  try {
+    const response = yield call(request, requestURL, requestParameters);
+    yield put(actions.getMessagesSuccessAction(response));
+  } catch (error) {
+    yield put(actions.getMessagesErrorAction(error));
+    yield put(push(routes.login.path));
+  }
+}
+
+export function* getNotifications() {
+  const { accessToken, user } = yield select(selectApp);
+  const requestURL = `${api.notifications}?take=${user?.userConfig?.notificationCount}&order=DESC`;
+
+  const requestParameters = {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  };
+
+  try {
+    const response = yield call(request, requestURL, requestParameters);
+    yield put(actions.getNotificationsSuccessAction(response));
+  } catch (error) {
+    yield put(actions.getNotificationsErrorAction(error));
+    yield put(push(routes.login.path));
+  }
+}
 
 export function* appSaga() {
   yield takeLatest(actions.getCurrenciesRequestAction.type, getCurrencies);
   yield takeLatest(actions.checkEmailRequestAction.type, checkEmail);
   yield takeLatest(actions.logoutRequestAction.type, logout);
+  yield takeLatest(actions.getMessagesRequestAction.type, getMessages);
+  yield takeLatest(
+    actions.getNotificationsRequestAction.type,
+    getNotifications,
+  );
 }

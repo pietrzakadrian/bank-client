@@ -12,13 +12,13 @@ export const StyledFormActionsWrapper = styled.div`
   margin: 0 auto;
 `;
 
-interface IStyledButton {
+interface StyledButtonProps {
   type?: string;
   backed?: string;
   errored?: number;
 }
 
-export const StyledButton = styled(Button)<IStyledButton>`
+export const StyledButton = styled(Button)<StyledButtonProps>`
   &&& {
     display: flex;
     align-items: center;
@@ -42,11 +42,11 @@ export const StyledError = styled.div`
   line-height: 1.5715;
 `;
 
-interface IStyledFormWrapper {
+interface StyledFormWrapperProps {
   shadowed?: string;
 }
 
-export const StyledFormWrapper = styled.div<IStyledFormWrapper>`
+export const StyledFormWrapper = styled.div<StyledFormWrapperProps>`
   text-align: center;
   background-color: rgb(242, 244, 247);
   box-shadow: ${({ shadowed }) =>
@@ -54,21 +54,21 @@ export const StyledFormWrapper = styled.div<IStyledFormWrapper>`
     `rgba(0, 0, 0, 0.2) 0em 0.0625em 0.1875em 0em, rgba(0, 0, 0, 0.14) 0em 0.0625em 0.0625em 0em, rgba(0, 0, 0, 0.12) 0em 0.125em 0.0625em -0.0625em;`};
 `;
 
-interface IStyledForm {
+interface StyledFormProps {
   centered?: string;
 }
 
-export const StyledForm = styled(Form)<IStyledForm>`
+export const StyledForm = styled(Form)<StyledFormProps>`
   max-width: 300px;
   margin: ${({ centered }) => (centered ? '0 auto' : 0)};
   width: 100%;
 `;
 
-interface IStyledFormItem {
+interface StyledFormItemProps {
   tailed?: string;
 }
 
-export const StyledFormItem = styled(Form.Item)<IStyledFormItem>`
+export const StyledFormItem = styled(Form.Item)<StyledFormItemProps>`
   padding: ${({ tailed }) => (tailed ? '0' : '20px 0 0')};
   text-align: left;
 

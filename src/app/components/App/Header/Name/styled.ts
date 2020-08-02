@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro';
 import { media } from 'styles/media';
 
-interface IStyledName {
+interface StyledNameProps {
   opened: boolean;
 }
 
-export const StyledName = styled.span<IStyledName>`
+export const StyledName = styled.span<StyledNameProps>`
   display: none;
   margin: 0 15px;
   font-size: 19px;

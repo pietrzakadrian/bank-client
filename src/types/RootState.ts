@@ -5,6 +5,7 @@ import { ErrorState } from 'app/providers/ErrorProvider/types';
 import { LoadingState } from 'app/providers/LoadingProvider/types';
 import { RegistrationPageState } from 'app/containers/RegistrationPage/types';
 import { DashboardPageState } from 'app/containers/DashboardPage/types';
+import { LanguageState } from 'app/providers/LanguageProvider/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -16,6 +17,7 @@ export interface RootState {
   loginPage?: LoginPageState;
   global?: AppState;
   loading?: LoadingState;
+  language?: LanguageState;
   error?: ErrorState;
   registrationPage?: RegistrationPageState;
   dashboardPage?: DashboardPageState;

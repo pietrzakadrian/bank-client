@@ -9,11 +9,11 @@ export const StyledContent = styled(Layout.Content)`
   width: 100%;
 `;
 
-interface IStyledLayout {
+interface StyledLayoutProps {
   opened: boolean;
 }
 
-export const StyledLayout = styled(Layout)<IStyledLayout>`
+export const StyledLayout = styled(Layout)<StyledLayoutProps>`
   transition: all 0.1s ease-in-out;
   padding-left: 0;
   background-color: #fff;

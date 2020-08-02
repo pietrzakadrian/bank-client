@@ -22,8 +22,12 @@ export const StyledActionItem = styled(Button)`
   align-items: center;
   padding: 0;
 
-  .anticon {
-    display: flex;
+  .ant-badge {
+    font-size: 19px;
+
+    .anticon {
+      display: flex;
+    }
   }
 `;
 

@@ -4,6 +4,7 @@ import { AppState } from 'app/containers/App/types';
 import { ErrorState } from 'app/providers/ErrorProvider/types';
 import { LoadingState } from 'app/providers/LoadingProvider/types';
 import { RegistrationPageState } from 'app/containers/RegistrationPage/types';
+import { DashboardPageState } from 'app/containers/DashboardPage/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -17,5 +18,6 @@ export interface RootState {
   loading?: LoadingState;
   error?: ErrorState;
   registrationPage?: RegistrationPageState;
+  dashboardPage?: DashboardPageState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

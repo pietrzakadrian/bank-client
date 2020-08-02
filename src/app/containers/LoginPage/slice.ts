@@ -1,6 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { ContainerState } from './types';
+import { LOCATION_CHANGE } from 'connected-react-router';
 
 // The initial state of the LoginPage container
 export const initialState: ContainerState = {
@@ -25,6 +26,11 @@ const loginPageSlice = createSlice({
     loginRequestAction() {},
     loginSuccessAction(state, action: PayloadAction<any>) {},
     loginErrorAction(state, action: PayloadAction<string>) {},
+  },
+  extraReducers: {
+    [LOCATION_CHANGE]: () => {
+      return initialState;
+    },
   },
 });
 

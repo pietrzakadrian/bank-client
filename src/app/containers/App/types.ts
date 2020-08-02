@@ -6,6 +6,7 @@ export interface AppState {
   token: any;
   user: any;
   currencies: any[];
+  messages: any[];
 }
 
 export type ContainerState = AppState;

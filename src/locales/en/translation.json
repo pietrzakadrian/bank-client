@@ -113,5 +113,24 @@
   },
   "registration": {
     "title": "Registration"
+  },
+  "header": {
+    "actions": {
+      "messages": {
+        "title": "Messages",
+        "actions": {
+          "newMessages": "New messages:",
+          "noMessages": "No new messages.",
+          "readed": "Mark everything as read"
+        }
+      },
+      "notifications": "Notifications",
+      "logout": "Logout",
+      "popConfirm": {
+        "title": "Are you sure you want to log out?",
+        "ok": "Yes",
+        "cancel": "Cancel"
+      }
+    }
   }
 }

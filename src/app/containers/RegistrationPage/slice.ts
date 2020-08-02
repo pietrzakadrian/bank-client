@@ -1,6 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { ContainerState } from './types';
+import { LOCATION_CHANGE } from 'connected-react-router';
 
 // The initial state of the RegistrationPage container
 export const initialState: ContainerState = {
@@ -43,6 +44,11 @@ const registrationPageSlice = createSlice({
     loginExpressRequestAction() {},
     loginExpressSuccessAction(state, action: PayloadAction<any>) {},
     loginExpressErrorAction(state, action: PayloadAction<any>) {},
+  },
+  extraReducers: {
+    [LOCATION_CHANGE]: () => {
+      return initialState;
+    },
   },
 });
 

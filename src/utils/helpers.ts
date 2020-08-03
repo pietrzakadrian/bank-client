@@ -18,3 +18,24 @@ export const truncate = (string: string, maxLength: number = 190): string => {
 
   return `${string.substring(0, maxLength)}...`;
 };
+
+export const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('bank2_state');
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (e) {
+    return undefined;
+  }
+};
+
+export const saveState = state => {
+  try {
+    const serializedState = JSON.stringify(state);
+    return localStorage.setItem('bank2_state', serializedState);
+  } catch (e) {
+    return undefined;
+  }
+};

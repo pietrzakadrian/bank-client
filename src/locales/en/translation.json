@@ -114,6 +114,9 @@
   "registration": {
     "title": "Registration"
   },
+  "dashboard": {
+    "title": "Dashboard"
+  },
   "header": {
     "actions": {
       "messages": {

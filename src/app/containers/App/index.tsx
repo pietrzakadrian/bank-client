@@ -27,6 +27,8 @@ import { Layout } from 'app/components/App/Layout';
 export function App() {
   useInjectSaga({ key: sliceKey, saga: appSaga });
 
+  console.log('test');
+
   return (
     <>
       <Helmet

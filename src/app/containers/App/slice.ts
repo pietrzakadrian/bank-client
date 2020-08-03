@@ -88,6 +88,11 @@ const appSlice = createSlice({
     toggleSidebarAction(state) {
       state.isCollapsedSidebar = !state.isCollapsedSidebar;
     },
+    getUserRequestAction() {},
+    getUserSuccessAction(state, action: PayloadAction<any>) {
+      state.user = action.payload;
+    },
+    getUserErrorAction(state, action: PayloadAction<any>) {},
   },
   extraReducers: {
     [registrationPageActions.loginExpressSuccessAction.type]: (

@@ -27,6 +27,9 @@ import { Credits } from 'app/components/App/Credits';
 import { Deposits } from 'app/components/App/Deposits';
 import { Bills } from 'app/components/App/Bills';
 import { RecentTransactions } from 'app/components/App/RecentTransactions';
+import { translations } from 'locales/i18n';
+
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 export function DashboardPage() {
   useInjectReducer({ key: sliceKey, reducer: reducer });
@@ -36,7 +39,6 @@ export function DashboardPage() {
   const isMobile = useMediaQuery({ maxWidth: 479 });
   const { layout, user } = useSelector(selectApp);
   const { t } = useTranslation();
-  const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
   const onChangeLayout = layouts =>
     dispatch(actions.changeLayoutAction(layouts));
@@ -44,7 +46,7 @@ export function DashboardPage() {
   return (
     <>
       <Helmet>
-        <title>DashboardPage</title>
+        <title>{t(translations.dashboard.title)}</title>
         <meta name="description" content="Description of DashboardPage" />
       </Helmet>
 

@@ -46,7 +46,7 @@ export function RecentTransactions() {
       render: ({ transferTitle, senderBill, recipientBill }) => (
         <>
           <div>
-            {senderBill.user.uuid === user.uuid ? (
+            {senderBill.user.uuid === user?.uuid ? (
               <div>
                 <StyledTypography>
                   {t(translations.recentTransactions.to)}{' '}
@@ -75,7 +75,7 @@ export function RecentTransactions() {
         <div>
           <div>{format(new Date(updatedAt), 'dd.MM.yyyy')}</div>
           <div>
-            {senderBill.user.uuid === user.uuid ? (
+            {senderBill.user.uuid === user?.uuid ? (
               <StyledSenderAmountMoney>
                 -{amountMoney} {senderBill.currency.name}
               </StyledSenderAmountMoney>

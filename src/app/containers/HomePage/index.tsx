@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { selectApp } from '../App/selectors';
-import { useEffect } from 'react';
+import { selectApp } from 'app/containers/App/selectors';
+import React, { useEffect } from 'react';
 import { push } from 'connected-react-router';
 import routes from 'utils/routes';
 

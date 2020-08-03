@@ -17,6 +17,8 @@ import * as serviceWorker from 'serviceWorker';
 import { history } from 'utils/history';
 import 'antd/dist/antd.css';
 import 'sanitize.css/sanitize.css';
+import { throttle, omit } from 'lodash';
+import { saveState, loadState } from 'utils/helpers';
 
 // Import root app
 import { App } from 'app/containers/App';
@@ -29,8 +31,26 @@ import { configureAppStore } from 'store/configureStore';
 import './locales/i18n';
 
 // Create redux store with history
-const store = configureAppStore(history);
+const preloadedState = loadState();
+
+const store = configureAppStore(preloadedState, history);
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
+
+// Load and Save redux store to localStorage
+store.subscribe(
+  throttle(() => {
+    saveState({
+      global: omit(store.getState().global, [
+        'messages',
+        'notifications',
+        'currencies',
+        'openedMessage',
+        'isOpenedMessage',
+        'user',
+      ]),
+    });
+  }, 1000),
+);
 
 interface Props {
   Component: typeof App;

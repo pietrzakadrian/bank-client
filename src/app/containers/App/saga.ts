@@ -165,6 +165,21 @@ export function* readMessages() {
   }
 }
 
+export function* getUser() {
+  const { token } = yield select(selectApp);
+  const requestURL = api.users();
+  const requestParameters = {
+    headers: { Authorization: `Bearer ${token.accessToken}` },
+  };
+
+  try {
+    const response = yield call(request, requestURL, requestParameters);
+    yield put(actions.getUserSuccessAction(response));
+  } catch (error) {
+    yield put(actions.getUserErrorAction(error));
+  }
+}
+
 export function* appSaga() {
   yield takeLatest(actions.getCurrenciesRequestAction.type, getCurrencies);
   yield takeLatest(actions.checkEmailRequestAction.type, checkEmail);
@@ -176,4 +191,5 @@ export function* appSaga() {
   );
   yield takeLatest(actions.openMessageAction.type, openMessage);
   yield takeLatest(actions.readMessagesRequestAction.type, readMessages);
+  yield takeLatest(actions.getUserRequestAction.type, getUser);
 }

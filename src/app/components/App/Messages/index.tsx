@@ -79,8 +79,8 @@ export function Messages() {
               onClick={() => onReadMessage(message)}
               key={message.uuid}
               readed={
-                (message.recipient.uuid === user.uuid && message.readed) ||
-                message.sender.uuid === user.uuid
+                (message.recipient.uuid === user?.uuid && message.readed) ||
+                message.sender.uuid === user?.uuid
                   ? 1
                   : 0
               }
@@ -100,7 +100,7 @@ export function Messages() {
 
                 <StyledListItemBottom>
                   <StyledListItemSenderWrapper>
-                    {message.sender.uuid === user.uuid
+                    {message.sender.uuid === user?.uuid
                       ? t(translations.header.actions.messages.to)
                       : t(translations.header.actions.messages.from)}{' '}
                     <StyledListItemSender>

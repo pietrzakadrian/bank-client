@@ -14,7 +14,7 @@ import { History } from 'history';
 
 import { createReducer } from './reducers';
 
-export function configureAppStore(history?: History) {
+export function configureAppStore(preloadedState = {}, history?: History) {
   const reduxSagaMonitorOptions = {};
   const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
   const { run: runSaga } = sagaMiddleware;
@@ -37,6 +37,7 @@ export function configureAppStore(history?: History) {
 
   const store = configureStore({
     reducer: createReducer(),
+    preloadedState,
     middleware: [
       ...getDefaultMiddleware({
         serializableCheck: false,

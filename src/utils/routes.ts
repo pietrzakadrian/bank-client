@@ -8,7 +8,7 @@ export default {
     name: i18n.t(translations.registration.title),
     path: '/registration',
   },
-  dashboard: { name: 'Dashboard', path: '/dashboard' },
+  dashboard: { name: i18n.t(translations.dashboard.title), path: '/dashboard' },
   payment: { name: 'Payment', path: '/payment' },
   history: { name: 'History', path: '/history' },
   settings: { name: 'Settings', path: '/settings' },

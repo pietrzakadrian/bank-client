@@ -3,7 +3,7 @@
  * Messages
  *
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { truncate } from 'utils/helpers';
 import { selectApp } from 'app/containers/App/selectors';
@@ -28,19 +28,17 @@ import { Modal } from './Modal';
 import { actions } from 'app/containers/App/slice';
 
 export function Messages() {
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
   const { messages, user } = useSelector(selectApp);
-  const isLoading = useSelector(selectLoading('global/getMessages'));
   const { locale, dateFormat } = useSelector(selectLanguage);
+  const isLoading = useSelector(selectLoading('global/getMessages'));
   const { t } = useTranslation();
 
-  const handleMessage = message => {
-    onReadMessage(message);
-    setIsOpenModal(true);
-  };
   const onReadMessage = message => dispatch(actions.openMessageAction(message));
   const onReadMessages = () => dispatch(actions.readMessagesRequestAction());
+
+  const getMessageTemplate = ({ templates }, locale, key) =>
+    truncate(templates.find(({ language }) => language.code === locale)?.[key]);
 
   return (
     <>
@@ -78,7 +76,7 @@ export function Messages() {
           dataSource={messages?.data}
           renderItem={message => (
             <StyledListItem
-              onClick={() => handleMessage(message)}
+              onClick={() => onReadMessage(message)}
               key={message.uuid}
               readed={
                 (message.recipient.uuid === user.uuid && message.readed) ||
@@ -90,21 +88,13 @@ export function Messages() {
               <StyledItemWrapper>
                 <StyledSubject
                   dangerouslySetInnerHTML={{
-                    __html: truncate(
-                      message.templates.find(
-                        template => template.language.code === locale,
-                      )?.subject,
-                    ),
+                    __html: getMessageTemplate(message, locale, 'subject'),
                   }}
                 />
 
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: truncate(
-                      message.templates.find(
-                        template => template.language.code === locale,
-                      )?.content,
-                    ),
+                    __html: getMessageTemplate(message, locale, 'content'),
                   }}
                 />
 
@@ -125,7 +115,7 @@ export function Messages() {
         />
       )}
 
-      <Modal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
+      <Modal />
     </>
   );
 }

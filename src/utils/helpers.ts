@@ -9,6 +9,12 @@ export const emailValidation = (email: string): boolean => {
 };
 
 export const truncate = (string: string, maxLength: number = 190): string => {
-  if (string?.length <= maxLength) return string;
+  if (!string) {
+    return '';
+  }
+  if (string?.length <= maxLength) {
+    return string;
+  }
+
   return `${string.substring(0, maxLength)}...`;
 };

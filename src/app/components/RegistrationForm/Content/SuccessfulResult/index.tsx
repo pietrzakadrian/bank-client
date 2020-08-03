@@ -51,7 +51,11 @@ export function SuccessfulResult() {
 
       <StyledFormActionsWrapper>
         <StyledAction>
-          <StyledButton type="primary" onClick={onLoginExpress}>
+          <StyledButton
+            disabled={isLoading}
+            type="primary"
+            onClick={onLoginExpress}
+          >
             {(error && <StyledError>{error}</StyledError>) ||
               (isLoading && <LoadingIndicator />) ||
               (!isLoading &&

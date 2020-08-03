@@ -13,3 +13,10 @@ export const selectLocation = createSelector(
   [selectRouter],
   routerState => routerState.location,
 );
+
+export const selectOpenedMessageTemplate = locale =>
+  createSelector([selectDomain], appState =>
+    appState.openedMessage?.templates?.find(
+      ({ language }) => language.code === locale,
+    ),
+  );

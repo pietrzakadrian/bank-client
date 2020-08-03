@@ -15,7 +15,7 @@ export function LocaleToggle() {
 
   const handleLanguageChange = (locale): any => {
     i18n.changeLanguage(locale);
-    dispatch(languageActions.changeLocaleAction(locale));
+    dispatch(languageActions.changeLocaleAction());
   };
 
   const content = i18n.languages?.map(language => (

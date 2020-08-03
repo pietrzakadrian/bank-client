@@ -8,15 +8,17 @@ export function HomePage() {
   const { isLogged } = useSelector(selectApp);
   const dispatch = useDispatch();
 
+  const onRedirect = path => dispatch(push(path));
+
   const useEffectOnMount = (effect: React.EffectCallback) => {
     useEffect(effect, []);
   };
 
   useEffectOnMount(() => {
     if (isLogged) {
-      dispatch(push(routes.dashboard.path));
+      onRedirect(routes.dashboard.path);
     } else {
-      dispatch(push(routes.login.path));
+      onRedirect(routes.login.path);
     }
   });
 

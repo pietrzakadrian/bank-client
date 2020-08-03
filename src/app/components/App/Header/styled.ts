@@ -10,7 +10,7 @@ import { Layout } from 'antd';
 export const headerHeight = '64px';
 
 interface StyledHeaderProps {
-  opened: boolean;
+  opened: number;
 }
 
 export const StyledHeader = styled(Layout.Header)<StyledHeaderProps>`

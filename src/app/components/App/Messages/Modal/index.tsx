@@ -4,52 +4,45 @@
  *
  */
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectLanguage } from 'app/providers/LanguageProvider/selectors';
 import { StyledModal } from 'app/components/App/Modal/styled';
 import { StyledButton } from 'app/components/App/Button/styled';
 import { selectApp } from 'app/containers/App/selectors';
+import { actions } from 'app/containers/App/slice';
+import { selectOpenedMessageTemplate } from 'app/containers/App/selectors';
 
-interface Props {
-  isOpenModal: boolean;
-  setIsOpenModal: any;
-}
-
-export function Modal({ isOpenModal, setIsOpenModal }: Props) {
+export function Modal() {
   const { locale } = useSelector(selectLanguage);
-  const { openedMessage } = useSelector(selectApp);
+  const { isOpenedMessage } = useSelector(selectApp);
+  const openedMessageTemplate = useSelector(
+    selectOpenedMessageTemplate(locale),
+  );
+  const dispatch = useDispatch();
 
-  const handleReadedMessage = () => setIsOpenModal(false);
-
-  const subject = openedMessage?.templates?.find(
-    template => template.language.code === locale,
-  )?.subject;
-  const content = openedMessage?.templates?.find(
-    template => template.language.code === locale,
-  )?.content;
-  const actions = openedMessage?.templates?.find(
-    template => template.language.code === locale,
-  )?.actions;
+  const onCloseMessage = () => dispatch(actions.closeMessageAction());
 
   return (
     <StyledModal
-      title={subject}
-      visible={isOpenModal}
-      onOk={handleReadedMessage}
-      onCancel={handleReadedMessage}
+      title={openedMessageTemplate?.subject}
+      visible={isOpenedMessage}
+      onOk={onCloseMessage}
+      onCancel={onCloseMessage}
       centered={true}
-      footer={actions?.map((action, index) => (
+      footer={openedMessageTemplate?.actions?.map((action, index) => (
         <StyledButton
           key={index}
           hovered="true"
           type="link"
-          onClick={handleReadedMessage}
+          onClick={onCloseMessage}
         >
           <div dangerouslySetInnerHTML={{ __html: action }} />
         </StyledButton>
       ))}
     >
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: openedMessageTemplate?.content }}
+      />
     </StyledModal>
   );
 }

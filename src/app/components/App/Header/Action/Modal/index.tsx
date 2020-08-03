@@ -13,7 +13,12 @@ import { StyledModal } from 'app/components/App/Modal/styled';
 import { selectLoading } from 'app/providers/LoadingProvider/selectors';
 import LoadingIndicator from 'app/components/LoadingIndicator';
 
-export function Modal() {
+interface Props {
+  opened: boolean;
+  onCloseModal: any;
+}
+
+export function Modal({ opened, onCloseModal }: Props) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const isLoading = useSelector(selectLoading('global/logout'));
@@ -23,10 +28,11 @@ export function Modal() {
   return (
     <StyledModal
       title={t(translations.header.actions.logout)}
-      visible={false}
+      visible={opened}
+      onCancel={onCloseModal}
       onOk={onLogout}
       footer={[
-        <Button key="back">
+        <Button key="back" onClick={onCloseModal}>
           {t(translations.header.actions.popConfirm.cancel)}
         </Button>,
         <Button

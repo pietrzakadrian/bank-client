@@ -30,6 +30,11 @@ export const StyledActionItem = styled(Button)<ButtonProps>`
       display: flex;
     }
   }
+
+  .anticon {
+    font-size: 19px;
+    display: flex;
+  }
 `;
 
 export const StyledActionItemName = styled.div`

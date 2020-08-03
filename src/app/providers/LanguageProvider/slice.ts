@@ -1,4 +1,3 @@
-import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { ContainerState } from './types';
 import i18n from 'i18next';
@@ -12,10 +11,10 @@ const localeSlice = createSlice({
   name: 'language',
   initialState,
   reducers: {
-    changeLocaleAction(state, action: PayloadAction<string>) {
-      state.locale = action.payload;
+    changeLocaleAction(state) {
+      state.locale = i18n.language;
 
-      if (action.payload === 'en') {
+      if (i18n.language === 'en') {
         state.dateFormat = 'dd.MM.yyyy, hh:mm aa';
       } else {
         state.dateFormat = 'dd.MM.yyyy, HH:mm';

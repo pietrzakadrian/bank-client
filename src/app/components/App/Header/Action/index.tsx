@@ -3,7 +3,7 @@
  * Action
  *
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { selectApp } from 'app/containers/App/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
@@ -29,6 +29,7 @@ import { Messages } from 'app/components/App/Messages';
 import { Notifications } from 'app/components/App/Notifications';
 
 export function Action() {
+  const [isOpenedConfirmModal, setIsOpenedConfirmModal] = useState(false);
   const { user, messages } = useSelector(selectApp);
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ maxWidth: 479 });
@@ -45,8 +46,7 @@ export function Action() {
       dispatch(actions.getNotificationsRequestAction());
     }
   };
-
-  //   const onToggleConfirmModal = () => dispatch(toggleConfirmModalAction());
+  const handleLogout = () => setIsOpenedConfirmModal(!isOpenedConfirmModal);
 
   return (
     <StyledAction>
@@ -93,14 +93,14 @@ export function Action() {
 
         {isMobile ? (
           <>
-            <StyledActionItem type="link">
+            <StyledActionItem onClick={handleLogout} type="link">
               <PoweroffOutlined />
               <StyledActionItemName>
                 {t(translations.header.actions.logout)}
               </StyledActionItemName>
             </StyledActionItem>
 
-            <Modal />
+            <Modal opened={isOpenedConfirmModal} onCloseModal={handleLogout} />
           </>
         ) : (
           <Popconfirm

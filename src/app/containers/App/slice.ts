@@ -3,14 +3,17 @@ import { createSlice } from 'utils/@reduxjs/toolkit';
 import { ContainerState } from './types';
 import { actions as registrationPageActions } from 'app/containers/RegistrationPage/slice';
 import { actions as loginPageActions } from 'app/containers/LoginPage/slice';
+import { actions as dashboardPageActions } from 'app/containers/DashboardPage/slice';
 
 // The initial state of the App container
 export const initialState: ContainerState = {
   isCollapsedSidebar: false,
   isCollapsedDrawer: false,
   isLogged: false,
+  isOpenedMessage: false,
   token: {},
   user: {},
+  layout: {},
   currencies: [],
   messages: [],
   openedMessage: {},
@@ -33,8 +36,11 @@ const appSlice = createSlice({
     getMessagesErrorAction(state, action: PayloadAction<any>) {},
     openMessageAction(state, action: PayloadAction<any>) {
       state.openedMessage = action.payload;
+      state.isOpenedMessage = true;
     },
-
+    closeMessageAction(state) {
+      state.isOpenedMessage = false;
+    },
     readMessageRequestAction() {},
     readMessageSuccessAction(state) {
       state.messages.data.find(
@@ -72,7 +78,9 @@ const appSlice = createSlice({
     checkEmailErrorAction(state, action: PayloadAction<any>) {},
     checkEmailInvalidAction() {},
     logoutRequestAction() {},
-    logoutSuccessAction() {},
+    logoutSuccessAction(state) {
+      return initialState;
+    },
     logoutErrorAction(state, action: PayloadAction<any>) {},
     toggleDrawerAction(state) {
       state.isCollapsedDrawer = !state.isCollapsedDrawer;
@@ -97,6 +105,12 @@ const appSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLogged = true;
+    },
+    [dashboardPageActions.changeLayoutAction.type]: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      state.layout = JSON.parse(JSON.stringify(action.payload));
     },
   },
 });

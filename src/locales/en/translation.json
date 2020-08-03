@@ -141,5 +141,39 @@
         "cancel": "Cancel"
       }
     }
+  },
+  "greeting": {
+    "goodMorning": "Good morning",
+    "goodEvening": "Good evening",
+    "lastSuccessfulLogin": "Last successful login:",
+    "lastFailedLogin": "Last failed login:"
+  },
+  "availableFunds": "Available Funds",
+  "savings": "Savings",
+  "bankInformation": "Did you know that transfers in our bank arrive immediately?",
+  "cards": {
+    "title": "Cards",
+    "description": "The cards function is disabled.",
+    "action": "New card"
+  },
+  "credits": {
+    "title": "Credits",
+    "description": "The credits function is disabled.",
+    "action": "New credit"
+  },
+  "deposits": {
+    "title": "Deposits",
+    "description": "The deposits function is disabled.",
+    "action": "New deposit"
+  },
+  "bills": {
+    "title": "Bills",
+    "action": "Create a new bill",
+    "personal": "Personal"
+  },
+  "recentTransactions": {
+    "to": "to",
+    "from": "from",
+    "title": "Recent Transactions"
   }
 }

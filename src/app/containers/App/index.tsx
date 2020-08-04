@@ -9,12 +9,6 @@ import { Helmet } from 'react-helmet-async';
 import { Switch, Redirect } from 'react-router-dom';
 import routes from 'utils/routes';
 import { GlobalStyle } from 'styles/global-styles';
-import { HomePage } from 'app/containers/HomePage/Loadable';
-import { LoginPage } from 'app/containers/LoginPage/Loadable';
-import { NotFoundPage } from 'app/containers/NotFoundPage/Loadable';
-import { DashboardPage } from 'app/containers/DashboardPage/Loadable';
-import { RegistrationPage } from 'app/containers/RegistrationPage/Loadable';
-import { PrivacyPage } from 'app/containers/PrivacyPage/Loadable';
 import { useInjectSaga } from 'utils/redux-injectors';
 import { sliceKey } from './slice';
 import { appSaga } from './saga';
@@ -22,12 +16,22 @@ import {
   Public as PublicRoute,
   Private as PrivateRoute,
 } from 'app/components/Route';
+
 import { Layout } from 'app/components/App/Layout';
+
+import { HomePage } from 'app/containers/HomePage/Loadable';
+import { LoginPage } from 'app/containers/LoginPage/Loadable';
+import { NotFoundPage } from 'app/containers/NotFoundPage/Loadable';
+import { DashboardPage } from 'app/containers/DashboardPage/Loadable';
+import { RegistrationPage } from 'app/containers/RegistrationPage/Loadable';
+import { PaymentPage } from 'app/containers/PaymentPage/Loadable';
+
+import { PrivacyPage } from 'app/containers/PrivacyPage/Loadable';
+import { HistoryPage } from 'app/containers/HistoryPage/Loadable';
+import { SettingsPage } from 'app/containers/SettingsPage/Loadable';
 
 export function App() {
   useInjectSaga({ key: sliceKey, saga: appSaga });
-
-  console.log('test');
 
   return (
     <>
@@ -70,12 +74,12 @@ export function App() {
               path={routes.dashboard.path}
               component={DashboardPage}
             />
-            {/* <PrivateRoute path={routes.payment.path} component={PaymentPage} />
+            <PrivateRoute path={routes.payment.path} component={PaymentPage} />
             <PrivateRoute path={routes.history.path} component={HistoryPage} />
             <PrivateRoute
               path={routes.settings.path}
               component={SettingsPage}
-            /> */}
+            />
 
             <Redirect to={routes.notFound.path} />
           </Switch>

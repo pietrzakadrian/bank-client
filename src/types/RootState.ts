@@ -6,6 +6,9 @@ import { LoadingState } from 'app/providers/LoadingProvider/types';
 import { RegistrationPageState } from 'app/containers/RegistrationPage/types';
 import { DashboardPageState } from 'app/containers/DashboardPage/types';
 import { LanguageState } from 'app/providers/LanguageProvider/types';
+import { HistoryPageState } from 'app/containers/HistoryPage/types';
+import { SettingsPageState } from 'app/containers/SettingsPage/types';
+import { PaymentPageState } from 'app/containers/PaymentPage/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -21,5 +24,8 @@ export interface RootState {
   error?: ErrorState;
   registrationPage?: RegistrationPageState;
   dashboardPage?: DashboardPageState;
+  historyPage?: HistoryPageState;
+  settingsPage?: SettingsPageState;
+  paymentPage?: PaymentPageState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

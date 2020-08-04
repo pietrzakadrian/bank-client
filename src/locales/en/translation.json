@@ -111,11 +111,20 @@
   "login": {
     "title": "Log In"
   },
+  "payment": {
+    "title": "Payment"
+  },
   "registration": {
     "title": "Registration"
   },
   "dashboard": {
     "title": "Dashboard"
+  },
+  "history": {
+    "title": "History"
+  },
+  "settings": {
+    "title": "Settings"
   },
   "header": {
     "actions": {
@@ -177,6 +186,53 @@
   "recentTransactions": {
     "to": "to",
     "from": "from",
-    "title": "Recent Transactions"
+    "title": "Recent Transactions",
+    "sender": "Sender",
+    "recipient": "Recipient",
+    "date": "Date",
+    "amountMoney": "Amount Money",
+    "transferTitle": "Transfer Title",
+    "confirmation": "Confirmation",
+    "downloadPdf": "Download PDF"
+  },
+  "settingsForm": {
+    "saveDataTitle": "New data has been saved",
+    "saveDataDescription": "The data has been refreshed automatically",
+    "content": {
+      "personalForm": {
+        "save": "Save data",
+        "password": {
+          "label": "Password",
+          "validation": "Password must be at least 6 characters long.",
+          "placeholder": "Enter new password"
+        },
+        "lastName": {
+          "placeholder": "Enter new last name",
+          "label": "Last name",
+          "validation": "The last name entered must be valid."
+        },
+        "emailAddress": {
+          "label": "E-Mail Address",
+          "validation": {
+            "emailAddressSyntax": "E-Mail address must be valid.",
+            "emailAddressExist": "E-Mail address already exists."
+          },
+          "placeholder": "Enter e-mail address"
+        }
+      },
+      "systemForm": {
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "currency": {
+          "label": "Default currency",
+          "title": "Change the default currency",
+          "tryingChangeDefaultCurrency": "You are trying to change your default currency to <strong style='color: #1890ff;'>{{currency}}</strong>? This will convert the available funds in the dashboard.",
+          "tryingChangeDefaultCurrencyConfirm": "Do you confirm the change approval?"
+        },
+        "language": {
+          "label": "Language"
+        }
+      }
+    }
   }
 }

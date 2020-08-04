@@ -1,8 +1,9 @@
 import styled from 'styled-components/macro';
 import { Modal } from 'antd';
 import { media } from 'styles/media';
+import { ModalProps } from 'antd/lib/modal';
 
-export const StyledModal = styled(Modal)`
+export const StyledModal = styled(Modal)<ModalProps>`
   padding-bottom: 0;
 
   p {

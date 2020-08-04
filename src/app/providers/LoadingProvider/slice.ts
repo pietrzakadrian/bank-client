@@ -8,7 +8,7 @@ export const reducer = produce((draft, action) => {
   const matches = /(.*)(Request|Error|Success)/.exec(action.type);
 
   if (!matches) {
-    return initialState;
+    return;
   }
 
   const [, requestName, requestState] = matches;

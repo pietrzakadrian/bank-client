@@ -19,7 +19,7 @@ export const truncate = (string: string, maxLength: number = 190): string => {
   return `${string.substring(0, maxLength)}...`;
 };
 
-export const loadState = () => {
+export const loadState = (): JSON | undefined => {
   try {
     const serializedState = localStorage.getItem('bank2_state');
     if (serializedState === null) {
@@ -38,4 +38,12 @@ export const saveState = state => {
   } catch (e) {
     return undefined;
   }
+};
+
+export const hasOwnProperties = (inputObject, properties): boolean => {
+  if (properties.some(inputObject.hasOwnProperty, inputObject)) {
+    return true;
+  }
+
+  return false;
 };

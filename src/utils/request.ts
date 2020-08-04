@@ -20,19 +20,19 @@ function parseJSON(response: Response) {
   return response.json();
 }
 
-// /**
-//  * Parses the BLOB returned by a network request
-//  *
-//  * @param  {object} response A response from a network request
-//  *
-//  * @return {object}          The parsed BLOB from the request
-//  */
-// function parseBLOB(response: Response) {
-//   if (response.status === 204 || response.status === 205) {
-//     return null;
-//   }
-//   return response.blob();
-// }
+/**
+ * Parses the BLOB returned by a network request
+ *
+ * @param  {object} response A response from a network request
+ *
+ * @return {object}          The parsed BLOB from the request
+ */
+function parseBLOB(response: Response) {
+  if (response.status === 204 || response.status === 205) {
+    return null;
+  }
+  return response.blob();
+}
 
 /**
  * Checks if a network request came back fine, and throws an error if not
@@ -61,8 +61,13 @@ function checkStatus(response: Response) {
 export async function request(
   url: string,
   options?: RequestInit,
-): Promise<{} | { err: ResponseError }> {
+  json = true,
+): Promise<any> {
   const fetchResponse = await fetch(url, options);
   const response = checkStatus(fetchResponse);
-  return parseJSON(response);
+
+  if (json) {
+    return parseJSON(response);
+  }
+  return parseBLOB(response);
 }

@@ -4,6 +4,9 @@ import { ContainerState } from './types';
 import { actions as registrationPageActions } from 'app/containers/RegistrationPage/slice';
 import { actions as loginPageActions } from 'app/containers/LoginPage/slice';
 import { actions as dashboardPageActions } from 'app/containers/DashboardPage/slice';
+import { actions as settingsPageActions } from 'app/containers/SettingsPage/slice';
+
+import { LOCATION_CHANGE } from 'connected-react-router';
 
 // The initial state of the App container
 export const initialState: ContainerState = {
@@ -116,6 +119,16 @@ const appSlice = createSlice({
       action: PayloadAction<any>,
     ) => {
       state.layout = JSON.parse(JSON.stringify(action.payload));
+    },
+    [LOCATION_CHANGE]: state => {
+      state.isCollapsedDrawer = false;
+    },
+    // todo: I don't know why settingsPageActions.setUserDataSuccessAction.type cannot be compiled
+    'settingsPage/setUserDataSuccessAction': (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      state.user = action.payload;
     },
   },
 });

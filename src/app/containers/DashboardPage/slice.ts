@@ -1,6 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { ContainerState } from './types';
+import { actions as appActions } from 'app/containers/App/slice';
 
 // The initial state of the DashboardPage container
 export const initialState: ContainerState = {
@@ -25,11 +26,7 @@ const dashboardPageSlice = createSlice({
       state.currency = initialState.currency;
     },
     createNewBillErrorAction(state, action: PayloadAction<any>) {},
-    getBillsRequestAction() {},
-    getBillsSuccessAction(state, action: PayloadAction<any>) {
-      state.bills = action.payload;
-    },
-    getBillsErrorAction(state, action: PayloadAction<any>) {},
+
     getAvailableFundsRequestAction() {},
     getAvailableFundsSuccessAction(state, action: PayloadAction<any>) {
       state.amountMoney = action.payload.amountMoney;
@@ -59,6 +56,14 @@ const dashboardPageSlice = createSlice({
       state.currency = action.payload;
     },
     changeLayoutAction(state, action: PayloadAction<any>) {},
+  },
+  extraReducers: {
+    [appActions.getBillsSuccessAction.type]: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      state.bills = action.payload;
+    },
   },
 });
 

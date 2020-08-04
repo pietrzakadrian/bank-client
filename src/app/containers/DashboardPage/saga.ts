@@ -125,21 +125,6 @@ export function* getAccountBalance() {
   }
 }
 
-export function* getBills() {
-  const { token } = yield select(selectApp);
-  const requestURL = api.bills();
-  const requestParameters = {
-    headers: { Authorization: `Bearer ${token.accessToken}` },
-  };
-
-  try {
-    const { data } = yield call(request, requestURL, requestParameters);
-    yield put(actions.getBillsSuccessAction(data));
-  } catch (error) {
-    yield put(actions.getBillsErrorAction(error));
-  }
-}
-
 export function* getRecentTransactions() {
   const { token } = yield select(selectApp);
   const requestURL = `${api.transactions()}?take=4&order=DESC`;
@@ -200,7 +185,6 @@ export function* dashboardPageSaga() {
     actions.getAccountBalanceRequestAction.type,
     getAccountBalance,
   );
-  yield takeLatest(actions.getBillsRequestAction.type, getBills);
   yield takeLatest(
     actions.getRecentTransactionsRequestAction.type,
     getRecentTransactions,

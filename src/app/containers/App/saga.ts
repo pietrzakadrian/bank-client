@@ -180,6 +180,21 @@ export function* getUser() {
   }
 }
 
+export function* getBills() {
+  const { token } = yield select(selectApp);
+  const requestURL = api.bills();
+  const requestParameters = {
+    headers: { Authorization: `Bearer ${token.accessToken}` },
+  };
+
+  try {
+    const { data } = yield call(request, requestURL, requestParameters);
+    yield put(actions.getBillsSuccessAction(data));
+  } catch (error) {
+    yield put(actions.getBillsErrorAction(error));
+  }
+}
+
 export function* appSaga() {
   yield takeLatest(actions.getCurrenciesRequestAction.type, getCurrencies);
   yield takeLatest(actions.checkEmailRequestAction.type, checkEmail);
@@ -192,4 +207,5 @@ export function* appSaga() {
   yield takeLatest(actions.openMessageAction.type, openMessage);
   yield takeLatest(actions.readMessagesRequestAction.type, readMessages);
   yield takeLatest(actions.getUserRequestAction.type, getUser);
+  yield takeLatest(actions.getBillsRequestAction.type, getBills);
 }

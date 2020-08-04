@@ -96,6 +96,10 @@ const appSlice = createSlice({
       state.user = action.payload;
     },
     getUserErrorAction(state, action: PayloadAction<any>) {},
+
+    getBillsRequestAction() {},
+    getBillsSuccessAction(state, action: PayloadAction<any>) {},
+    getBillsErrorAction(state, action: PayloadAction<any>) {},
   },
   extraReducers: {
     [registrationPageActions.loginExpressSuccessAction.type]: (
@@ -114,12 +118,12 @@ const appSlice = createSlice({
       state.token = action.payload.token;
       state.isLogged = true;
     },
-    [dashboardPageActions.changeLayoutAction.type]: (
-      state,
-      action: PayloadAction<any>,
-    ) => {
-      state.layout = JSON.parse(JSON.stringify(action.payload));
-    },
+    // [dashboardPageActions.changeLayoutAction.type]: (
+    //   state,
+    //   action: PayloadAction<any>,
+    // ) => {
+    //   state.layout = JSON.parse(JSON.stringify(action.payload));
+    // },
     [LOCATION_CHANGE]: state => {
       state.isCollapsedDrawer = false;
     },

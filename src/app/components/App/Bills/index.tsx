@@ -5,7 +5,7 @@
  */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actions } from 'app/containers/DashboardPage/slice';
+import { actions as appActions } from 'app/containers/App/slice';
 import { selectDashboardPage } from 'app/containers/DashboardPage/selectors';
 import { selectLoading } from 'app/providers/LoadingProvider/selectors';
 import { useTranslation } from 'react-i18next';
@@ -24,10 +24,10 @@ import { StyledBillAmountMoney } from './styled';
 export function Bills() {
   const dispatch = useDispatch();
   const { bills } = useSelector(selectDashboardPage);
-  const isLoading = useSelector(selectLoading('dashboardPage/getBills'));
+  const isLoading = useSelector(selectLoading('global/getBills'));
   const { t } = useTranslation();
 
-  const getBills = () => dispatch(actions.getBillsRequestAction());
+  const getBills = () => dispatch(appActions.getBillsRequestAction());
 
   const useEffectOnMount = (effect: React.EffectCallback) => {
     useEffect(effect, []);

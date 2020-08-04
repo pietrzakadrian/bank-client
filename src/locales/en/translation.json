@@ -195,6 +195,60 @@
     "confirmation": "Confirmation",
     "downloadPdf": "Download PDF"
   },
+  "paymentForm": {
+    "bill": "Bill",
+    "recipient": "Recipient",
+    "amountMoney": "Amount of money",
+    "transferTitle": "Transfer title",
+    "confirmData": "Confirm data",
+    "actions": {
+      "next": "Next",
+      "receive": "Receive authorization key",
+      "make": "Make a payment",
+      "previous": "Previous",
+      "dontGetAuthrozationKey": "I did not receive an email with a code",
+      "authorizationKeySent": "The authorization key has been sent",
+      "placeholder": "Authorization key",
+      "transferConfirmedTitle": "The transfer has been made",
+      "transferConfirmedDescription": "Your balance has been updated. Check your transfer history in the History tab."
+    },
+    "content": {
+      "transferTitle": {
+        "label": "Transfer title",
+        "validation": "Transfer title is required.",
+        "placeholder": "Enter transfer title"
+      },
+      "recipient": {
+        "label": "Recipient",
+        "placeholder": "Search recipient...",
+        "tooltip": "Search for the recipient by entering the bill numbers",
+        "notFoundContent": "To find the recipient, enter the starting digit of his account number.",
+        "validation": {
+          "recipientRequired": "Recipient is required.",
+          "recipientSyntax": "Search using only numbers."
+        }
+      },
+      "confirm": {
+        "details": "Bank transfer details",
+        "amount": "Amount:",
+        "title": "Transfer title:"
+      },
+      "bill": {
+        "label": "Bill",
+        "validation": "Bill is required.",
+        "placeholder": "Select bill"
+      },
+      "amountMoney": {
+        "label": "Amount money",
+        "placeholder": "Enter amount money",
+        "validation": {
+          "requiredValidation": "Amout money is required.",
+          "valueValidation": "You don't have that amount of money.",
+          "zeroLessValidation": "You cannot transfer an amount less than or equal to 0."
+        }
+      }
+    }
+  },
   "settingsForm": {
     "saveDataTitle": "New data has been saved",
     "saveDataDescription": "The data has been refreshed automatically",

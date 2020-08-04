@@ -1,3 +1,8 @@
+export const numberValidation = (value: string): boolean => {
+  const isNumber = /^[0-9]*$/;
+  return isNumber.test(value);
+};
+
 export const nameValidation = (name: string): boolean => {
   const isName = /^[a-z ,.'-]+$/i;
   return isName.test(name);

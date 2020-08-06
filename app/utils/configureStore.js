@@ -14,11 +14,10 @@ export default function configureStore(initialState = {}, history) {
 
   // If Redux Dev Tools and Saga Dev Tools Extensions are installed, enable them
   /* istanbul ignore next */
-  if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+  if (typeof window === 'object') {
     /* eslint-disable no-underscore-dangle */
     if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
-      console.log('dodaje:)');
-
+      console.log('wchodze:)');
       composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
     }
 
@@ -29,6 +28,8 @@ export default function configureStore(initialState = {}, history) {
     //     sagaMonitor: window.__SAGA_MONITOR_EXTENSION__,
     //   };
     /* eslint-enable */
+
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
   }
 
   const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);

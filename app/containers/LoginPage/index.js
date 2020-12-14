@@ -39,6 +39,7 @@ export default function LoginPage() {
       <LoginForm />
 
       <RedirectToggle />
+
       <Footer />
 
       <ConstantCookie />

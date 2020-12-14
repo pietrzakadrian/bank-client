@@ -6,6 +6,8 @@ import paymentMessages from 'containers/PaymentPage/messages';
 import historyMessages from 'containers/HistoryPage/messages';
 import settingsMessages from 'containers/SettingsPage/messages';
 import privacyMessages from 'containers/PrivacyPage/messages';
+import forgetPasswordMessages from 'containers/ForgetPasswordPage/messages';
+
 
 import { FormattedMessage } from 'react-intl';
 
@@ -41,6 +43,10 @@ export default {
   privacy: {
     name: <FormattedMessage {...privacyMessages.privacy} />,
     path: '/privacy',
+  },
+  forgetPassword: {
+    name: <FormattedMessage {...forgetPasswordMessages.forgetPassword} />,
+    path: '/password/forget',
   },
   notFound: { name: '404', path: '/404' },
 };

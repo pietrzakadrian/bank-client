@@ -21,6 +21,7 @@ import PaymentPage from 'containers/PaymentPage/Loadable';
 import HistoryPage from 'containers/HistoryPage/Loadable';
 import SettingsPage from 'containers/SettingsPage/Loadable';
 import PrivacyPage from 'containers/PrivacyPage/Loadable';
+import ForgetPassword from 'containers/ForgetPasswordPage/Loadable';
 import { ConfigProvider } from 'antd';
 import Layout from 'components/App/Layout';
 import { routes } from 'utils';
@@ -38,6 +39,7 @@ import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import saga from './saga';
+
 
 const stateSelector = createStructuredSelector({
   locale: makeSelectLocale(),
@@ -80,6 +82,12 @@ function App() {
             component={RegisterPage}
           />
           <PublicRoute path={routes.privacy.path} component={PrivacyPage} />
+          <PublicRoute
+            restricted
+            path={routes.forgetPassword.path}
+            component={ForgetPassword}
+          />
+
           <PublicRoute
             exact
             path={routes.notFound.path}

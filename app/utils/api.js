@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://api.pietrzakadrian.com/bank';
+const API_BASE_URL = 'http://localhost:4000/bank';
 const AUTH = 'Auth';
 const USERS = 'Users';
 const CURRENCIES = 'Currencies';
@@ -7,11 +7,14 @@ const TRANSACTIONS = 'Transactions';
 const MESSAGES = 'Messages';
 const NOTIFICATIONS = 'Notifications';
 
+
 export default {
   auth: {
     login: `${API_BASE_URL}/${AUTH}/login`,
     register: `${API_BASE_URL}/${AUTH}/register`,
     logout: `${API_BASE_URL}/${AUTH}/logout`,
+    forgetPassword: `${API_BASE_URL}/${AUTH}/password/forget`,
+    resetPassword: `${API_BASE_URL}/${AUTH}/password/reset`,
   },
   users: (path = '') => {
     switch (path) {

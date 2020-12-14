@@ -13,6 +13,8 @@ import LoginAction from 'components/LoginAction';
 import { PinCode, Password } from 'components/LoginContent';
 import { nextStepAction } from 'containers/App/actions';
 import { loginAction } from 'containers/LoginPage/actions';
+import ForgotPasswordRedirect from 'components/ForgotPasswordRedirect'
+
 
 const stateSelector = createStructuredSelector({
   currentStep: makeSelectCurrentStep(),
@@ -52,6 +54,8 @@ export default function LoginForm() {
       </StyledForm>
 
       <LoginAction steps={steps} onValidateFields={onValidateFields} />
+
+      <ForgotPasswordRedirect />
     </StyledFormWrapper>
   );
 }

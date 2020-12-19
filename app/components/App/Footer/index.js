@@ -19,7 +19,7 @@ export default function Footer() {
 
   return (
     <StyledFooter collapsed={isCollapsedSidebar}>
-      <strong>Bank Application 2.0</strong> | 10.07.2020
+      <strong>Bank Application 2.1</strong> | 19.12.2020
     </StyledFooter>
   );
 }

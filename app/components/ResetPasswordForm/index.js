@@ -4,41 +4,46 @@
  *
  */
 
+import React from 'react';
 import { StyledResult } from 'components/ForgotPasswordForm/styles';
 import { StyledForm, StyledFormWrapper } from 'components/Form/styles';
 import ResetPasswordAction from 'components/ResetPasswordAction';
-import { resetPasswordAction, resetPasswordErrorAction } from 'containers/ResetPasswordPage/actions';
-import { makeSelectIsSuccess, makeSelectPassword, makeSelectPassword2 } from 'containers/ResetPasswordPage/selectors';
+import {
+  resetPasswordAction,
+  resetPasswordErrorAction,
+} from 'containers/ResetPasswordPage/actions';
+import {
+  makeSelectIsSuccess,
+  makeSelectPassword,
+  makeSelectPassword2,
+} from 'containers/ResetPasswordPage/selectors';
 import Password from 'components/ResetPasswordContent/Password';
 import Password2 from 'components/ResetPasswordContent/Password2';
-import React from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
-
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import messages from './messages';
 import { createStructuredSelector } from 'reselect';
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   password: makeSelectPassword(),
   password2: makeSelectPassword2(),
-  isSuccess: makeSelectIsSuccess()
+  isSuccess: makeSelectIsSuccess(),
 });
 
-function ResetPasswordForm() {
+export default function ResetPasswordForm() {
   const [form] = StyledForm.useForm();
   const dispatch = useDispatch();
-  const {password, isSuccess, password2} = useSelector(stateSelector);
+  const { password, isSuccess, password2 } = useSelector(stateSelector);
   const onReset = () => dispatch(resetPasswordAction());
-
   const onValidateFields = async () => {
     try {
       await form.validateFields();
 
       if (password !== password2) {
         return dispatch(
-          resetPasswordErrorAction(<FormattedMessage {...messages.passwordNotMatching} />),
+          resetPasswordErrorAction(
+            <FormattedMessage {...messages.passwordNotMatching} />,
+          ),
         );
       }
 
@@ -51,26 +56,24 @@ function ResetPasswordForm() {
   return (
     <StyledFormWrapper>
       {isSuccess ? (
-          <StyledResult status="success" title={
-<FormattedMessage {...messages.title} />
-          } subTitle={
-<FormattedMessage {...messages.description} />
-            
-          } />
+        <StyledResult
+          status="success"
+          title={<FormattedMessage {...messages.title} />}
+          subTitle={<FormattedMessage {...messages.description} />}
+        />
       ) : (
-          <StyledForm   name="reset-password"      layout="vertical" centered="true" form={form}>
-              <Password onValidateFields={onValidateFields} />
-              <Password2 onValidateFields={onValidateFields} />
+        <StyledForm
+          name="reset-password"
+          layout="vertical"
+          centered="true"
+          form={form}
+        >
+          <Password onValidateFields={onValidateFields} />
+          <Password2 onValidateFields={onValidateFields} />
 
-            <ResetPasswordAction onValidateFields={onValidateFields}/>
-          </StyledForm>
+          <ResetPasswordAction onValidateFields={onValidateFields} />
+        </StyledForm>
       )}
     </StyledFormWrapper>
   );
 }
-
-ResetPasswordForm.propTypes = {};
-
-export default ResetPasswordForm;
-
-

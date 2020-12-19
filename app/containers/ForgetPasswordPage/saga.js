@@ -36,7 +36,7 @@ export function* forgotPassword() {
       }
     }
 
-    yield put(forgotPasswordErrorAction(message))
+    yield put(forgotPasswordErrorAction(message));
   }
 }
 

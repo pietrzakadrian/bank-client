@@ -31,6 +31,14 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
+  #reset-password {
+    .ant-form-item {
+      &:nth-child(2) {
+        padding-top: 0;
+      }
+    }
+  }
+
   ${media.tablet`
     .ant-dropdown {
       max-width: 390px;

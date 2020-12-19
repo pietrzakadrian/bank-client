@@ -20,7 +20,7 @@ function ForgotPasswordForm() {
   const dispatch = useDispatch();
   const isSuccess = useSelector(makeSelectIsSuccess());
 
-  const onForgot = () => dispatch(forgotPasswordAction())
+  const onForgot = () => dispatch(forgotPasswordAction());
 
   const onValidateFields = async () => {
     try {
@@ -35,23 +35,23 @@ function ForgotPasswordForm() {
   return (
     <StyledFormWrapper>
       {isSuccess ? (
-    <StyledResult
-    status="success"
-    title={            <FormattedMessage {...messages.title} />}
-    subTitle={            <FormattedMessage {...messages.description} />}
+        <StyledResult
+          status="success"
+          title={            <FormattedMessage {...messages.title} />}
+          subTitle={            <FormattedMessage {...messages.description} />}
   
-  />
+        />
          
       ) : (
-<StyledForm       name="forget-password"      layout="vertical" centered="true" form={form}>
+        <StyledForm       name="forget-password"      layout="vertical" centered="true" form={form}>
   
 
-        <EmailAddress onValidateFields={onValidateFields} />
+          <EmailAddress onValidateFields={onValidateFields} />
 
-<ForgotPasswordAction onValidateFields={onValidateFields} />
+          <ForgotPasswordAction onValidateFields={onValidateFields} />
 
 
-</StyledForm>
+        </StyledForm>
       )}
       
     </StyledFormWrapper>

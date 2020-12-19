@@ -7,7 +7,7 @@ import historyMessages from 'containers/HistoryPage/messages';
 import settingsMessages from 'containers/SettingsPage/messages';
 import privacyMessages from 'containers/PrivacyPage/messages';
 import forgetPasswordMessages from 'containers/ForgetPasswordPage/messages';
-
+import resetPasswordMessages from 'containers/ResetPasswordPage/messages';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -47,6 +47,10 @@ export default {
   forgetPassword: {
     name: <FormattedMessage {...forgetPasswordMessages.forgetPassword} />,
     path: '/password/forget',
+  },
+  resetPassword: {
+    name: <FormattedMessage {...resetPasswordMessages.resetPassword} />,
+    path: '/password/reset',
   },
   notFound: { name: '404', path: '/404' },
 };

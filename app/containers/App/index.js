@@ -22,6 +22,8 @@ import HistoryPage from 'containers/HistoryPage/Loadable';
 import SettingsPage from 'containers/SettingsPage/Loadable';
 import PrivacyPage from 'containers/PrivacyPage/Loadable';
 import ForgetPassword from 'containers/ForgetPasswordPage/Loadable';
+import ResetPassword from 'containers/ResetPasswordPage/Loadable';
+
 import { ConfigProvider } from 'antd';
 import Layout from 'components/App/Layout';
 import { routes } from 'utils';
@@ -87,7 +89,11 @@ function App() {
             path={routes.forgetPassword.path}
             component={ForgetPassword}
           />
-
+          <PublicRoute
+            restricted
+            path={`${routes.resetPassword.path}/:token`}
+            component={ResetPassword}
+          />
           <PublicRoute
             exact
             path={routes.notFound.path}

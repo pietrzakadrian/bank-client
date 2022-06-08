@@ -74,7 +74,7 @@
     "invariant": "2.2.4",
     "ip": "1.1.5",
     "lodash": "4.17.19",
-    "minimist": "1.2.5",
+    "minimist": "1.2.6",
     "offline-plugin": "5.0.7",
     "path": "0.12.7",
     "prop-types": "15.7.2",
